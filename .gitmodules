@@ -1,0 +1,6 @@
+[submodule "widgetTools"]
+	path = widgetTools
+	url = https://gitlab.com/CannonContraption/widgetTools.git
+[submodule "windowTools"]
+	path = windowTools
+	url = https://gitlab.com/CannonContraption/windowTools.git
