@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="utf-8" >
+	<title>
+	    #!/bin/bash it 'till it works
+	</title>
+	<!-- Style information -->
+	<link rel="stylesheet" type="text/css" href="windowTools/windowTools.css" />
+	<link rel="stylesheet" type="text/css" href="bashworks-theme.css" />
+	<link rel="stylesheet" type="text/css" href="widgetTools/widgetTools.css" />
+	<!-- Script sources -->
+	<script src="windowTools/windowTools.js"></script>
+	<script src="widgetTools/widgetTools.js"></script>
+	<script src="blog.js"></script>
+    </head>
+    <body>
+	<div id="panel" />
+	<img
+	    onmouseover="menuButtonMouseHover()"
+	    onmouseout="menuButtonMouseLeave()"
+	    onclick="openmenu()"
+	    id="menubutton"
+	    src="windowTools/beta-start-button-3.png" />
+	<div id="menu">
+	</div>
+	<div
+	    id=menubackground
+	    onclick=openmenu()
+	    style='display:none;'></div>
+    </body>
+</html>
