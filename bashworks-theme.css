@@ -1,6 +1,21 @@
+html
+{
+    height: 100%;
+    background-color: #000;
+}
 body
 {
-    background: url("/home/jim/Pictures/Wallpapers/MountainPoster.JPG");
+    height: 100%;
+    background-color: #000000;
+    background: url("bashworks.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+#menubutton
+{
+    transition: transform 0.2s;
 }
 
 /*

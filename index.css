@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
+body{
+	background-color:black;
+	background-image:url('wall/orbitals.png');
+	background-size: contain;
+	background-position: center;
+	background-repeat:no-repeat;
+	overflow:hidden;
+        font-family:'Fira Sans';
+}
+#menubutton{
+	transition:transform 0.2s;
+}
