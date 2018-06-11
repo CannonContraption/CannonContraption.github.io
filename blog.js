@@ -212,10 +212,19 @@ function make_menu_buttons()
 	menu_space,
 	"menubutton",
 	"blog");
+    var about_button = makeButton(
+	menu_space,
+	"menubutton",
+	"about");
     setClickAction(
 	blog_button.button,
 	function(){
 	    menuexec(blog_window);
+	});
+    setClickAction(
+	about_button.button,
+	function(){
+	    menuexec(make_about_window);
 	});
 }
 
