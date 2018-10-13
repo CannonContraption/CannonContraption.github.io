@@ -99,7 +99,20 @@ function load_post(
 	    height = height.substring(0,height.length-2);
 	    widgetSpace.style.height = parseInt(height)+deltay;
 	});
+    post_window.maximizeEvent.push(
+        function(
+            cwindow,
+            windowWidth,
+            windowHeight)
+        {
+            var widgetSpace = cwindow.body.getElementsByClassName(
+		"widgetSpace")[0];
+	    var height = widgetSpace.style.height;
+	    height = height.substring(0,height.length-2);
+	    widgetSpace.style.height = windowHeight;
+        });
     widgetSpace.style.overflowY="auto";
+    return post_window;
 }
 
 function blog_window()
@@ -140,7 +153,7 @@ function blog_window()
 	"bashprompt",
 	"blogpost");
     setClickAction(
-	latestButton.button,
+	latestButton,
 	function()
 	{
 	    load_post(
@@ -217,12 +230,12 @@ function make_menu_buttons()
 	"menubutton",
 	"about");
     setClickAction(
-	blog_button.button,
+	blog_button,
 	function(){
 	    menuexec(blog_window);
 	});
     setClickAction(
-	about_button.button,
+	about_button,
 	function(){
 	    menuexec(make_about_window);
 	});
