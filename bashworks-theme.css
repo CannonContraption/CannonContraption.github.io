@@ -1,6 +1,7 @@
 :root{
-    --bright-fg-color: #107000;
-    --fg-color: #00a00d;
+    --bright-fg-color: #8b8889;
+    --fg-color: #d1ad79;
+    --bg-color: #333c4f;
 }
 
 html
@@ -79,8 +80,8 @@ div.icon{
 }
 
 div.icon:focus, div.icon:active{
-  background:linear-gradient(to top, #00a00d,  #107000);
-  border:1px solid #107000;
+  background:linear-gradient(to top, var(--fg-color),  var(--bright-fg-color));
+  border:1px solid var(--bright-fg-color);
   border-radius:3px;
   color:black;
 }
@@ -180,7 +181,7 @@ button.tbutton:active{
  */
 button.tbutton:focus, button.button:focus, button.toggled:focus, input.button:focus{
   padding: 3px;
-  border:2px solid #00a00d;
+  border:2px solid var(--fg-color);
 }
 
 /*
@@ -261,7 +262,7 @@ input.text{
  * cursor is in the box)
  */
 input.text:focus{
-  border:2px solid #00a00d;
+  border:2px solid var(--fg-color);
   padding:1px;
 }
 
@@ -300,5 +301,5 @@ div.section{
 }
 */
 .window{
-	background: linear-gradient(to right, #242424, var(--fg-color));
+    background: linear-gradient(to right, var(--bg-color), var(--fg-color));
 }

@@ -1,8 +1,8 @@
 var colorScheme = {
-	activepanelcolor: "#00a00d",
-	lowerpanelcolor: "#107000",
+	activepanelcolor: "#8b8889",
+	lowerpanelcolor: "#d1ad79",
 	lowerwindowborder: 'black',
-	minipanelcolor: 'grey',
+	minipanelcolor: '#333c4f',
 }
 
 function make_introduction_window()
@@ -148,7 +148,7 @@ function blog_window(
             "blogpost");
         var intro_icon = makeIcon(
             browser_section,
-            "intro",
+            "foodintro",
             "blogpost");
         setDblClickAction(
             instantpot_icon,
@@ -164,7 +164,7 @@ function blog_window(
             function(){
                 load_post(
                     food_intro,
-                    "intro",
+                    "foodintro",
                     "Food!",
                     "5/14/2019");
             });
