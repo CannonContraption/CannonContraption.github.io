@@ -1,3 +1,8 @@
+:root{
+    --bright-fg-color: #107000;
+    --fg-color: #00a00d;
+}
+
 html
 {
     height: 100%;
@@ -7,7 +12,8 @@ body
 {
     height: 100%;
     background-color: #000000;
-    background: url("bashworks.png");
+    background: url("bashworks2.jpg");
+    background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -73,8 +79,8 @@ div.icon{
 }
 
 div.icon:focus, div.icon:active{
-  background:linear-gradient(to top, #febe10, #daa00d);
-  border:1px solid #daa00d;
+  background:linear-gradient(to top, #00a00d,  #107000);
+  border:1px solid #107000;
   border-radius:3px;
   color:black;
 }
@@ -174,7 +180,7 @@ button.tbutton:active{
  */
 button.tbutton:focus, button.button:focus, button.toggled:focus, input.button:focus{
   padding: 3px;
-  border:2px solid #febe10;
+  border:2px solid #00a00d;
 }
 
 /*
@@ -255,7 +261,7 @@ input.text{
  * cursor is in the box)
  */
 input.text:focus{
-  border:2px solid #febe10;
+  border:2px solid #00a00d;
   padding:1px;
 }
 
@@ -276,4 +282,23 @@ div.section{
  */
 .tabledata{
   border: 1px solid #a5a5a5;
+}
+/*
+.windowButton{
+    background:linear-gradient(to top, #00a00d, #107000);
+    border:1px solid #107000;
+}
+
+.windowButtonDeactivated{
+    border:1px solid #107000;
+}
+
+.menubutton{
+    background:linear-gradient(to top, #00a00d, #107000);
+    border:1px solid #107000;
+    box-shadow:0px 0px 3px #00a00d;
+}
+*/
+.window{
+	background: linear-gradient(to right, #242424, var(--fg-color));
 }

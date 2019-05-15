@@ -1,3 +1,10 @@
+var colorScheme = {
+	activepanelcolor: "#00a00d",
+	lowerpanelcolor: "#107000",
+	lowerwindowborder: 'black',
+	minipanelcolor: 'grey',
+}
+
 function make_introduction_window()
 {
     var introwindow = addWindow(
@@ -42,7 +49,7 @@ function make_about_window()
     var points_section = makeSection(widgetSpace);
     makeLabel(
 	points_section,
-	"<b>1)</b> The best software is (usually) bespoke software.");
+	"<b>1)</b> The best software is bespoke software (at least when it's time-cheap to make it)");
     makeLabel(
 	points_section,
 	"<b>2)</b> There's more satisfaction to be had from stringing together a bunch of scripts and watching it work than plugging something into the notification tray and running a setup wizard.");;
@@ -115,10 +122,11 @@ function load_post(
     return post_window;
 }
 
-function blog_window()
+function blog_window(
+    category)
 {
     var blog_browser_window = addWindow(
-	"blog",
+	category + " blog",
 	500);
     var widgetSpace = makeWidgetSpace();
     setWidgetSpace(
@@ -132,86 +140,127 @@ function blog_window()
 	"Latest post");
     var browser_section = makeSection(
 	widgetSpace);
-    var lisprglory_icon = makeIcon(
-	browser_section,
-	"lisprglory",
-	"blogpost");
-    var codestyle_post_icon = makeIcon(
-	browser_section,
-	"codestyle",
-	"blogpost");
-    var ansi_block_graphics = makeIcon(
-	browser_section,
-	"ansiblock",
-	"blogpost");
-    var web_desk_programming = makeIcon(
-	browser_section,
-	"webdesk",
-	"blogpost");
-    var bash_prompt_icon = makeIcon(
-	browser_section,
-	"bashprompt",
-	"blogpost");
-    setClickAction(
-	latestButton,
-	function()
-	{
-	    load_post(
-		lisprglory,
-		"lisprglory",
-		"(describe Lisp): Recursive Glory",
-		"6/8/2018");
-	});
-    setDblClickAction(
-	lisprglory_icon,
-	function()
-	{
-	    load_post(
-		lisprglory,
-		"lisprglory",
-		"(describe Lisp): Recursive Glory",
-		"6/8/2018");
-	});
-    setDblClickAction(
-	codestyle_post_icon,
-	function()
-	{
-	    load_post(
-		codestyle,
-		"codestyle",
-		"Code Style, and How To Write for Reading",
-		"9/3/2017");
-	});
-    setDblClickAction(
-	ansi_block_graphics,
-	function()
-	{
-	    load_post(
-		ansiblock,
-		"ansiblock",
-		"ANSI Color Block Graphics",
-		"6/22/2017");
-	});
-    setDblClickAction(
-	bash_prompt_icon,
-	function()
-	{
-	    load_post(
-		bashprompt,
-		"bashprompt",
-		"Making Bash Prompt you with Information",
-		"2/20/2017");
-	});
-    setDblClickAction(
-	web_desk_programming,
-	function()
-	{
-	    load_post(
-		webdesk,
-		"webdesk",
-		"Web Programming a Desktop with Javascript",
-		"2/25/2017");
-	});
+    if(category == "Food")
+    {
+        var instantpot_icon = makeIcon(
+            browser_section,
+            "instantpot",
+            "blogpost");
+        var intro_icon = makeIcon(
+            browser_section,
+            "intro",
+            "blogpost");
+        setDblClickAction(
+            instantpot_icon,
+            function(){
+                load_post(
+                    instantpot,
+                    "instantpot",
+                    "An instant pot is not a slow cooker!",
+                    "5/14/2019");
+            });
+        setDblClickAction(
+            intro_icon,
+            function(){
+                load_post(
+                    food_intro,
+                    "intro",
+                    "Food!",
+                    "5/14/2019");
+            });
+        setClickAction(
+            latestButton,
+            function(){
+                load_post(
+                    instantpot,
+                    "instantpot",
+                    "An instant pot is not a slow cooker!",
+                    "5/14/2019");
+            });
+    }
+    if(category == "Tech")
+    {
+        var lisprglory_icon = makeIcon(
+	    browser_section,
+	    "lisprglory",
+	    "blogpost");
+        var codestyle_post_icon = makeIcon(
+	    browser_section,
+	    "codestyle",
+	    "blogpost");
+        var ansi_block_graphics = makeIcon(
+	    browser_section,
+	    "ansiblock",
+	    "blogpost");
+        var web_desk_programming = makeIcon(
+	    browser_section,
+	    "webdesk",
+	    "blogpost");
+        var bash_prompt_icon = makeIcon(
+	    browser_section,
+	    "bashprompt",
+	    "blogpost");
+        setClickAction(
+	    latestButton,
+	    function()
+	    {
+	        load_post(
+		    lisprglory,
+		    "lisprglory",
+		    "(describe Lisp): Recursive Glory",
+		    "6/8/2018");
+	    });
+        setDblClickAction(
+	    lisprglory_icon,
+	    function()
+	    {
+	        load_post(
+		    lisprglory,
+		    "lisprglory",
+		    "(describe Lisp): Recursive Glory",
+		    "6/8/2018");
+	    });
+        setDblClickAction(
+	    codestyle_post_icon,
+	    function()
+	    {
+	        load_post(
+		    codestyle,
+		    "codestyle",
+		    "Code Style, and How To Write for Reading",
+		    "9/3/2017");
+	    });
+        setDblClickAction(
+	    ansi_block_graphics,
+	    function()
+	    {
+	        load_post(
+		    ansiblock,
+		    "ansiblock",
+		    "ANSI Color Block Graphics",
+		    "6/22/2017");
+	    });
+        setDblClickAction(
+	    bash_prompt_icon,
+	    function()
+	    {
+	        load_post(
+		    bashprompt,
+		    "bashprompt",
+		    "Making Bash Prompt you with Information",
+		    "2/20/2017");
+	    });
+        setDblClickAction(
+	    web_desk_programming,
+	    function()
+	    {
+	        load_post(
+		    webdesk,
+		    "webdesk",
+		    "Web Programming a Desktop with Javascript",
+		    "2/25/2017");
+	    });
+    }
 }
 
 function make_menu_buttons()
@@ -224,15 +273,26 @@ function make_menu_buttons()
     var blog_button = makeButton(
 	menu_space,
 	"menubutton",
-	"blog");
+	"Tech blog");
     var about_button = makeButton(
 	menu_space,
 	"menubutton",
 	"about");
+    var blog_food = makeButton(
+        menu_space,
+        "menubutton",
+        "Food blog");
     setClickAction(
 	blog_button,
 	function(){
-	    menuexec(blog_window);
+	    menuexec(
+                function(){blog_window("Tech")});
+	});
+    setClickAction(
+	blog_food,
+	function(){
+	    menuexec(
+                function(){blog_window("Food")});
 	});
     setClickAction(
 	about_button,
