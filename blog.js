@@ -180,6 +180,10 @@ function blog_window(
     }
     if(category == "Tech")
     {
+        var zshdumb_icon = makeIcon(
+            browser_section,
+            "zshdumb",
+            "blogpost");
         var lisprglory_icon = makeIcon(
 	    browser_section,
 	    "lisprglory",
@@ -205,10 +209,20 @@ function blog_window(
 	    function()
 	    {
 	        load_post(
-		    lisprglory,
-		    "lisprglory",
-		    "(describe Lisp): Recursive Glory",
-		    "6/8/2018");
+		    zshdumb,
+		    "zshdumb",
+		    "ZSH Scripts are Dumb.",
+		    "7/27/2019");
+	    });
+        setDblClickAction(
+            zshdumb_icon,
+            function()
+	    {
+	        load_post(
+		    zshdumb,
+		    "zshdumb",
+		    "ZSH Scripts are Dumb.",
+		    "7/27/2019");
 	    });
         setDblClickAction(
 	    lisprglory_icon,
