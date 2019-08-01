@@ -180,6 +180,10 @@ function blog_window(
     }
     if(category == "Tech")
     {
+        var blogtech_icon = makeIcon(
+            browser_section,
+            "blogtech",
+            "blogpost");
         var zshdumb_icon = makeIcon(
             browser_section,
             "zshdumb",
@@ -209,10 +213,20 @@ function blog_window(
 	    function()
 	    {
 	        load_post(
-		    zshdumb,
-		    "zshdumb",
-		    "ZSH Scripts are Dumb.",
-		    "7/27/2019");
+		    bloggingtech,
+		    "blogtech",
+		    "Blogging is Hard.",
+		    "7/31/2019");
+	    });
+        setDblClickAction(
+            blogtech_icon,
+            function()
+	    {
+	        load_post(
+		    bloggingtech,
+		    "blogtech",
+		    "Blogging is Hard.",
+		    "7/31/2019");
 	    });
         setDblClickAction(
             zshdumb_icon,
