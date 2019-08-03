@@ -29,8 +29,8 @@ function make_introduction_window()
         widgetSpace);
     makeLabel(
         widgetSpace,
-        "You'll see two buttons for the blog. Try the 'new' ones first, \
-and if they don't work then try the 'old' ones.");
+        "<b>Site Under Construction!</b><p>You'll see two buttons for the blog. Try the 'new' ones first, \
+and if they don't work well / are slow then try the 'old' ones.</p>");
 }
 
 function make_about_window()
@@ -159,7 +159,7 @@ function blog_window(
 	"Latest post");
     var browser_section = makeSection(
 	widgetSpace);
-    if(category == "Food")
+    if(category == "oldfood")
     {
         var instantpot_icon = makeIcon(
             browser_section,
@@ -196,6 +196,40 @@ function blog_window(
                     "An instant pot is not a slow cooker!",
                     "5/14/2019");
             });
+    }
+    if(category == "food")
+    {
+        setClickAction(
+            latestButton,
+            function(){
+                load_post(
+                    instantpot,
+                    "instantpot",
+                    "An instant pot is not a slow cooker!",
+                    "5/14/2019");
+            });
+        var instantpot_icon = makeIcon(
+            browser_section,
+            "instantpot",
+            "blogpost");
+        var intro_icon = makeIcon(
+            browser_section,
+            "foodintro",
+            "blogpost");
+        setDblClickAction(
+            instantpot_icon,
+            function() {
+                frame_post(
+                    "instantpot",
+                    "instantpot.html",
+                    "food")});
+        setDblClickAction(
+            intro_icon,
+            function() {
+                frame_post(
+                    "intro",
+                    "intro.html",
+                    "food")});
     }
     if(category == "tech")
     {
@@ -413,22 +447,26 @@ function make_menu_buttons()
     makeLabel(
 	makeSection(menu_space),
 	"cannoncontraption.github.io/");
-    var blog_button = makeButton(
-	menu_space,
-	"menubutton",
-	"Old Tech blog");
     var tech_button = makeButton(
         menu_space,
         "menubutton",
         "New Tech Blog");
+    var blog_button = makeButton(
+	menu_space,
+	"menubutton",
+	"Old Tech blog");
+    var food_button = makeButton(
+        menu_space,
+        "menubutton",
+        "New Food Blog");
+    var blog_food = makeButton(
+        menu_space,
+        "menubutton",
+        "Old Food blog");
     var about_button = makeButton(
 	menu_space,
 	"menubutton",
 	"about");
-    var blog_food = makeButton(
-        menu_space,
-        "menubutton",
-        "Food blog");
     setClickAction(
 	blog_button,
 	function(){
@@ -442,10 +480,16 @@ function make_menu_buttons()
                 function(){blog_window("tech")});
 	});
     setClickAction(
+        food_button,
+        function(){
+            menuexec(
+                function(){blog_window("food")});
+        });
+    setClickAction(
 	blog_food,
 	function(){
 	    menuexec(
-                function(){blog_window("Food")});
+                function(){blog_window("oldfood")});
 	});
     setClickAction(
 	about_button,
