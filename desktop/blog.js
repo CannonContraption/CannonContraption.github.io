@@ -25,6 +25,12 @@ function make_introduction_window()
 	"Click on the menu at the bottom to start."+
 	    " There you'll find blog posts, general information, and "+
 	    "eventually other goodies too.");
+    makeRule(
+        widgetSpace);
+    makeLabel(
+        widgetSpace,
+        "You'll see two buttons for the blog. Try the 'new' ones first, \
+and if they don't work then try the 'old' ones.");
 }
 
 function make_about_window()
@@ -68,6 +74,19 @@ function make_about_window()
 	 ["Gitlab!", "gitlab.com/CannonContraption", "My goto, issue tracking is nicer :D"],
 	 ["YouTube!", "https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q", "I make videos once in a blue moon!"],
 	 ["SoundCloud!", "https://soundcloud.com/jimmydean886", "I write music!"]]);
+}
+
+function frame_post(
+    post_name,
+    post_fname,
+    category)
+{
+    var blogwd = addWindow(
+        category + "/" + post_name,
+        800);
+    setWindowContents(
+        blogwd,
+        "<iframe src='../posts/"+category+"/"+post_fname+"' style='width:100%;height:100%;' frameborder=0></iframe>");
 }
 
 function load_post(
@@ -178,7 +197,103 @@ function blog_window(
                     "5/14/2019");
             });
     }
-    if(category == "Tech")
+    if(category == "tech")
+    {
+        setClickAction(
+	    latestButton,
+	    function()
+	    {
+	        frame_post(
+                    "blogtech",
+                    "blogtech.html",
+                    "tech");
+	    });
+         var blogtech_icon = makeIcon(
+            browser_section,
+            "blogtech",
+            "blogpost");
+        var zshdumb_icon = makeIcon(
+            browser_section,
+            "zshdumb",
+            "blogpost");
+        var lisprglory_icon = makeIcon(
+	    browser_section,
+	    "lisprglory",
+	    "blogpost");
+        var codestyle_icon = makeIcon(
+	    browser_section,
+	    "codestyle",
+	    "blogpost");
+        var ansi_block_graphics_icon = makeIcon(
+	    browser_section,
+	    "ansiblock",
+	    "blogpost");
+        var webdesk_icon = makeIcon(
+	    browser_section,
+	    "webdesk",
+	    "blogpost");
+        var bashprompt_icon = makeIcon(
+	    browser_section,
+	    "bashprompt",
+	    "blogpost");
+        setDblClickAction(
+            blogtech_icon,
+            function() {
+                frame_post(
+                    "blogtech",
+                    "blogtech.html",
+                    "tech");
+            });
+        setDblClickAction(
+            zshdumb_icon,
+            function() {
+                frame_post(
+                    "zshdumb",
+                    "zshdumb.html",
+                    "tech");
+            });
+        setDblClickAction(
+            lisprglory_icon,
+            function() {
+                frame_post(
+                    "lisprglory",
+                    "lisprglory.html",
+                    "tech");
+            });
+        setDblClickAction(
+            codestyle_icon,
+            function() {
+                frame_post(
+                    "codestyle",
+                    "codestyle.html",
+                    "tech");
+            });
+        setDblClickAction(
+            ansi_block_graphics_icon,
+            function() {
+                frame_post(
+                    "ansiblock",
+                    "ansiblock.html",
+                    "tech");
+            });
+        setDblClickAction(
+            webdesk_icon,
+            function() {
+                frame_post(
+                    "webdesk",
+                    "webdesk.html",
+                    "tech");
+            });
+        setDblClickAction(
+            bashprompt_icon,
+            function() {
+                frame_post(
+                    "bashprompt",
+                    "bashprompt.html",
+                    "tech");
+            });
+    }
+    if(category == "oldtech")
     {
         var blogtech_icon = makeIcon(
             browser_section,
@@ -301,7 +416,11 @@ function make_menu_buttons()
     var blog_button = makeButton(
 	menu_space,
 	"menubutton",
-	"Tech blog");
+	"Old Tech blog");
+    var tech_button = makeButton(
+        menu_space,
+        "menubutton",
+        "New Tech Blog");
     var about_button = makeButton(
 	menu_space,
 	"menubutton",
@@ -314,7 +433,13 @@ function make_menu_buttons()
 	blog_button,
 	function(){
 	    menuexec(
-                function(){blog_window("Tech")});
+                function(){blog_window("oldtech")});
+	});
+    setClickAction(
+	tech_button,
+	function(){
+	    menuexec(
+                function(){blog_window("tech")});
 	});
     setClickAction(
 	blog_food,

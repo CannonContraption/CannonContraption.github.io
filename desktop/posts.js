@@ -684,5 +684,8 @@ reading, but if I decide down the road to integrate some \
 web-app like thing into the modern site, it won&rsquo;t get \
 in the way of the clean, static-site CMS setup. It&rsquo;ll \
 merely extend and enhance it.</p> \
+<p style="margin-top: 1em">Edit: if you can read this, try \
+the "new tech blog" from the menu, that&rsquo;s the new system. \
+</p> \
 <hr>';
 }
