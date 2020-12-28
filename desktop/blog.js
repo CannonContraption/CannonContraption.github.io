@@ -231,6 +231,59 @@ function blog_window(
                     "intro.html",
                     "food")});
     }
+    if(category == "keyboards")
+    {
+        setClickAction(
+            latestButton,
+            function(){
+                frame_post(
+                    "intro",
+                    "intro.html",
+                    "keyboard")});
+        let introicon = makeIcon(
+            browser_section,
+            "intro",
+            "blogpost");
+        setDblClickAction(
+            introicon,
+            function(){
+                frame_post(
+                    "intro",
+                    "intro.html",
+                    "keyboard")});
+    }
+    if (category == "games")
+    {
+        setClickAction(
+            latestButton,
+            function(){
+                frame_post(
+                    "rnc1",
+                    "rnc1.html",
+                    "game")});
+        let rnc1icon = makeIcon(
+            browser_section,
+            "rnc1",
+            "blogpost");
+        let introicon = makeIcon(
+            browser_section,
+            "intro",
+            "blogpost");
+        setDblClickAction(
+            rnc1icon,
+            function(){
+                frame_post(
+                    "rnc1",
+                    "rnc1.html",
+                    "game")});
+        setDblClickAction(
+            introicon,
+            function(){
+                frame_post(
+                    "intro",
+                    "intro.html",
+                    "game")});
+    }
     if(category == "tech")
     {
         setClickAction(
@@ -450,28 +503,28 @@ function make_menu_buttons()
     var tech_button = makeButton(
         menu_space,
         "menubutton",
-        "New Tech Blog");
-    var blog_button = makeButton(
+        "Software/Tech");
+    var keyboard_button = makeButton(
 	menu_space,
 	"menubutton",
-	"Old Tech blog");
+	"Keyboards");
     var food_button = makeButton(
         menu_space,
         "menubutton",
-        "New Food Blog");
-    var blog_food = makeButton(
+        "Food");
+    var games_button = makeButton(
         menu_space,
         "menubutton",
-        "Old Food blog");
+        "Video Games");
     var about_button = makeButton(
 	menu_space,
 	"menubutton",
 	"about");
     setClickAction(
-	blog_button,
+	keyboard_button,
 	function(){
 	    menuexec(
-                function(){blog_window("oldtech")});
+                function(){blog_window("keyboards")});
 	});
     setClickAction(
 	tech_button,
@@ -486,11 +539,9 @@ function make_menu_buttons()
                 function(){blog_window("food")});
         });
     setClickAction(
-	blog_food,
-	function(){
-	    menuexec(
-                function(){blog_window("oldfood")});
-	});
+        games_button,
+        function(){
+            menuexec(function(){blog_window("games")})});
     setClickAction(
 	about_button,
 	function(){
