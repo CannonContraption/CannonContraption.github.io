@@ -29,8 +29,7 @@ function make_introduction_window()
         widgetSpace);
     makeLabel(
         widgetSpace,
-        "<b>Site Under Construction!</b><p>You'll see two buttons for the blog. Try the 'new' ones first, \
-and if they don't work well / are slow then try the 'old' ones.</p>");
+        "If you're on a phone, you may want to go back and choose the \"classic site\".<br>Unfortunately, touch-only interfaces are somewhat awkward with the desktop interface for the moment.");
 }
 
 function make_about_window()
@@ -45,23 +44,13 @@ function make_about_window()
     makeLabel(
 	widgetSpace,
 	"<h2>About</h2>"+
-	    "The CannonContraption");
+	    "CannonContraption");
     makeRule(
 	widgetSpace);
     makeLabel(
 	widgetSpace,
-	"Hello! I'm Jim Read, a computer science student in Massachusetts.<br>"+
-	    "I have a passion for odd and unusual (espeically unix-ey) utilities and programs that can streamline my work as a developer, and still not get in the way of using my computer for basic browsing and email. I was at one point a real subscriber to the app life, until I realized two things:");
-    var points_section = makeSection(widgetSpace);
-    makeLabel(
-	points_section,
-	"<b>1)</b> The best software is bespoke software (at least when it's time-cheap to make it)");
-    makeLabel(
-	points_section,
-	"<b>2)</b> There's more satisfaction to be had from stringing together a bunch of scripts and watching it work than plugging something into the notification tray and running a setup wizard.");;
-    makeLabel(
-	widgetSpace,
-	"This site is where I document some of my more interesting adventures in UNIX/Linux goodness, as well as a few other bits and bobs of being a nerd.");
+	"Hello! I'm Jim Read, a software engineer in Massachusetts, currently working for Dell EMC.<br>"+
+	    "I have a passion for odd and unusual (espeically unix-ey) utilities and programs that can streamline my work as a developer.");
     makeRule(
 	widgetSpace);
     makeLabel(
@@ -70,10 +59,10 @@ function make_about_window()
     makeTableWithData(
 	widgetSpace,
 	true,
-	[["Github!", "github.com/CannonContraption", "Older projects live here."],
-	 ["Gitlab!", "gitlab.com/CannonContraption", "My goto, issue tracking is nicer :D"],
-	 ["YouTube!", "https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q", "I make videos once in a blue moon!"],
-	 ["SoundCloud!", "https://soundcloud.com/jimmydean886", "I write music!"]]);
+	[["Github!", "<a href=https://github.com/CannonContraption>github.com/CannonContraption</a>", "My contributions to Microsoft's AI training."],
+	 ["Gitlab!", "<a href=https://gitlab.com/CannonContraption>gitlab.com/CannonContraption</a>", "Most of my projects live here now, I found the issue tracker slightly nicer at one point."],
+	 ["YouTube!", "<a href=https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q>https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q</a>", "I sometimes make videos"],
+	 ["SoundCloud!", "<a href=https://soundcloud.com/jimmydean886>https://soundcloud.com/jimmydean886</a>", "I write music!"]]);
 }
 
 function frame_post(
