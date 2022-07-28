@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Transition to Pelican</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="#!/bin/bash it 'till it works Atom Feed" />
+        <link href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="#!/bin/bash it 'till it works RSS Feed" />
+        <meta name="description" content="In my last post in the tech blog, I talked about how blogging tech is hard, and generally whined about how I managed my site for way too long. My..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">#!/bin/bash it 'till it works</a></h1>
+                <nav><ul>
+                    <li><a href="./category/food.html">Food</a></li>
+                    <li><a href="./category/games.html">Games</a></li>
+                    <li class="active"><a href="./category/tech.html">Tech</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./transition-to-pelican.html" rel="bookmark"
+           title="Permalink to Transition to Pelican">Transition to Pelican</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-07-27T00:00:00-04:00">
+                Published: Wed 27 July 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="./category/tech.html">Tech</a>.</p>
+<p>tags: <a href="./tag/blog.html">blog</a> <a href="./tag/tech.html">tech</a> </p>
+</footer><!-- /.post-info -->      <p>In my last post in the tech blog, I talked about how blogging tech is hard, and generally whined about how I managed my site for way too long. My conclusion was that it was my own fault and I should do better. Eventually, I implemented the changes I had suggested to myself in order to get myself to post more often, and lo and behold I nearly abandoned the blog immediately after that.</p>
+<p>I personally don't believe that the tech I had made before was all that bad, it was just a lot of manual effort for a blog I'm not super invested in at the moment, and any amount of real work to maintain it felt like it was too much work. I'm here to solve that now with probably the most drastic site redesign since I left Blogger and struck out to make my own site from my own tech.</p>
+<h1>Blogging Was Hard</h1>
+<p>First, I feel like I should talk about what I was doing before that made blogging so difficult to justify. In reality I've never had any trouble expressing myself with words, and I rather enjoy writing long-form articles every now and again. There's a lot of reasons why, but mainly it boils down to the same reason many software folks keep a rubber duck on their desks, it's a way to vent and clear one's thoughts in order to better organize them. Putting a structure on things that mentally crystallize for months or years can shed light on the full scope of those thoughts, and this organization process is therefore very valuable to me.</p>
+<p>This only works when it's easy to do.</p>
+<h2>First Generation Bashworks</h2>
+<p>My first iteration of the site was Blogger. This worked, but I ended up writing most of my posts directly in HTML. There's nothing wrong with doing this, but it's tedious and kind of defeats the purpose, in a way. I also never quite got the site looking like I wanted, it always seemed unfinished.</p>
+<h2>Second Generation Bashworks</h2>
+<p>At the time I was attending university, and had written a new blogging framework with some friends as a project for the computer science club. The idea was that we'd have an intranet site on campus that members of the club could post interesting things to, possibly hosted on a raspberry pi. We toyed with posting it to the internet but nobody came up with a good way to do that on the cheap (free). In the end, we made a desktop-in-a-browser, which we had licensed <a href="http://www.wtfpl.net/">WTFPL</a> meaning I could do as I pleased with it. There was also some server-side stuff involved, since we wanted user logins, and a simple way for new members to post stuff without having taken our classes on web programming. All of this I discarded, since my hosting platform would be GitHub Pages.</p>
+<p>Basically, I took <a href="https://gitlab.com/CannonContraption/windowtools">WindowTools</a> and <a href="https://gitlab.com/CannonContraption/widgettools">WidgetTools</a> and made a new site with them. However, I did a pretty lazy job in this first iteration, and rather than store articles as separate pages that are loaded upon request, the whole blog was pretty much contained to a single JS file which set up the page and also stored the posts as JavaScript strings. I knew this was insanely dumb at the time even, but I didn't really care. It got me up and running.</p>
+<p>Around the time I wrote the <a href="blogging-is-hard.html">Blogging is Hard</a> article, I had finally gotten fed up with this. I also wanted a static site. Read the post if you want more information about that generation of this site.</p>
+<p>I had used mainly groff at the time to compose articles. This was pretty convenient compared to the JavaScript strings, but still required some hand-editing afterwards. I had a custom font I wanted to use, and the new classic site and the desktop site both required hand-coded links to hook up the articles.</p>
+<h1>Transition to Pelican</h1>
+<p>Around the same time as I moved to the second-generation blog site, a <a href="https://kroche.io">friend of mine</a> had just transitioned to Pelican himself. He had told me in great detail how great it was, how it made a nice static site, and how all it required to compose articles was Markdown.</p>
+<p>It wasn't until a few years later that I went into business with him and a friend of his, and the site they had created was Pelican based. I was impressed.</p>
+<p>The site coming out the other side looked as professional as most other sites in our field, and it was really quite easy to add content to. The dev server was also very helpful in making changes of any type to the site, so I eventually concluded that this was the right move for my blog.</p>
+<p>There's also the added benefit that I have an Atom feed again, something that's been missing since I moved away from Blogger since I'm a little too lazy to hand-write that.</p>
+<h2>This looks pretty plain...</h2>
+<p>Yes it does. If you don't agree with this, you're probably reading this (far?) in the future once I've gotten around to rewriting the default theme with something a little more unique. If so, enjoy! I'm sure whatever I came up with is suitably dry and boring, just like this post probably is to most people.</p>
+<h1>Desktop site?</h1>
+<p>This is going to be in limbo for a bit, I think. The desktop site is pretty formulaic, so I could transition it to a simple Pelican theme, or I could start over entirely and just integrate WindowTools as an alternate frontend. I believe Pelican is flexible enough to support this well, without losing any of the simplicity of site management that it brings.</p>
+<p>So, I've moved all of my posts over to Pelican, and pretty soon I should have the desktop back up and running, available from a link at the top of the page or something.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/windowTools">WindowTools</a></li>
+                            <li><a href="desktop/">Desktop Site</a></li>
+                            <li><a href="https://gitlab.com/spacecowboy/Feeder">Feeder for Android</a></li>
+                            <li><a href="https://hyliu.me/fluent-reader/">Fluent Reader</a></li>
+                            <li><a href="https://apps.apple.com/app/feedly-get-smarter/id396069556">Feedly for iOS</a></li>
+                            <li><a href="archives">Archives</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://gitlab.com/CannonContraption">GitLab</a></li>
+                            <li><a href="https://github.com/CannonContraption">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q">YouTube</a></li>
+                            <li><a href="https://soundcloud.com/jimmydean886">SoundCloud</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+header#banner
+{
+    background-color: black;
+    color: white;
+}
+
+
+a#homelink
+{
+    color:white;
+}
+
+body
+{
+    margin-left:200px;
+    margin-right:200px;
+}

@@ -1,0 +1,1774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>#!/bin/bash it 'till it works</title><link href="https://cannoncontraption.github.io/" rel="alternate"></link><link href="https://cannoncontraption.github.io/feeds/all.atom.xml" rel="self"></link><id>https://cannoncontraption.github.io/</id><updated>2022-07-27T00:00:00-04:00</updated><entry><title>Transition to Pelican</title><link href="https://cannoncontraption.github.io/transition-to-pelican.html" rel="alternate"></link><published>2022-07-27T00:00:00-04:00</published><updated>2022-07-27T00:00:00-04:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2022-07-27:/transition-to-pelican.html</id><summary type="html">&lt;p&gt;In my last post in the tech blog, I talked about how blogging tech is hard, and generally whined about how I managed my site for way too long. My conclusion was that it was my own fault and I should do better. Eventually, I implemented the changes I had …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In my last post in the tech blog, I talked about how blogging tech is hard, and generally whined about how I managed my site for way too long. My conclusion was that it was my own fault and I should do better. Eventually, I implemented the changes I had suggested to myself in order to get myself to post more often, and lo and behold I nearly abandoned the blog immediately after that.&lt;/p&gt;
+&lt;p&gt;I personally don't believe that the tech I had made before was all that bad, it was just a lot of manual effort for a blog I'm not super invested in at the moment, and any amount of real work to maintain it felt like it was too much work. I'm here to solve that now with probably the most drastic site redesign since I left Blogger and struck out to make my own site from my own tech.&lt;/p&gt;
+&lt;h1&gt;Blogging Was Hard&lt;/h1&gt;
+&lt;p&gt;First, I feel like I should talk about what I was doing before that made blogging so difficult to justify. In reality I've never had any trouble expressing myself with words, and I rather enjoy writing long-form articles every now and again. There's a lot of reasons why, but mainly it boils down to the same reason many software folks keep a rubber duck on their desks, it's a way to vent and clear one's thoughts in order to better organize them. Putting a structure on things that mentally crystallize for months or years can shed light on the full scope of those thoughts, and this organization process is therefore very valuable to me.&lt;/p&gt;
+&lt;p&gt;This only works when it's easy to do.&lt;/p&gt;
+&lt;h2&gt;First Generation Bashworks&lt;/h2&gt;
+&lt;p&gt;My first iteration of the site was Blogger. This worked, but I ended up writing most of my posts directly in HTML. There's nothing wrong with doing this, but it's tedious and kind of defeats the purpose, in a way. I also never quite got the site looking like I wanted, it always seemed unfinished.&lt;/p&gt;
+&lt;h2&gt;Second Generation Bashworks&lt;/h2&gt;
+&lt;p&gt;At the time I was attending university, and had written a new blogging framework with some friends as a project for the computer science club. The idea was that we'd have an intranet site on campus that members of the club could post interesting things to, possibly hosted on a raspberry pi. We toyed with posting it to the internet but nobody came up with a good way to do that on the cheap (free). In the end, we made a desktop-in-a-browser, which we had licensed &lt;a href="http://www.wtfpl.net/"&gt;WTFPL&lt;/a&gt; meaning I could do as I pleased with it. There was also some server-side stuff involved, since we wanted user logins, and a simple way for new members to post stuff without having taken our classes on web programming. All of this I discarded, since my hosting platform would be GitHub Pages.&lt;/p&gt;
+&lt;p&gt;Basically, I took &lt;a href="https://gitlab.com/CannonContraption/windowtools"&gt;WindowTools&lt;/a&gt; and &lt;a href="https://gitlab.com/CannonContraption/widgettools"&gt;WidgetTools&lt;/a&gt; and made a new site with them. However, I did a pretty lazy job in this first iteration, and rather than store articles as separate pages that are loaded upon request, the whole blog was pretty much contained to a single JS file which set up the page and also stored the posts as JavaScript strings. I knew this was insanely dumb at the time even, but I didn't really care. It got me up and running.&lt;/p&gt;
+&lt;p&gt;Around the time I wrote the &lt;a href="blogging-is-hard.html"&gt;Blogging is Hard&lt;/a&gt; article, I had finally gotten fed up with this. I also wanted a static site. Read the post if you want more information about that generation of this site.&lt;/p&gt;
+&lt;p&gt;I had used mainly groff at the time to compose articles. This was pretty convenient compared to the JavaScript strings, but still required some hand-editing afterwards. I had a custom font I wanted to use, and the new classic site and the desktop site both required hand-coded links to hook up the articles.&lt;/p&gt;
+&lt;h1&gt;Transition to Pelican&lt;/h1&gt;
+&lt;p&gt;Around the same time as I moved to the second-generation blog site, a &lt;a href="https://kroche.io"&gt;friend of mine&lt;/a&gt; had just transitioned to Pelican himself. He had told me in great detail how great it was, how it made a nice static site, and how all it required to compose articles was Markdown.&lt;/p&gt;
+&lt;p&gt;It wasn't until a few years later that I went into business with him and a friend of his, and the site they had created was Pelican based. I was impressed.&lt;/p&gt;
+&lt;p&gt;The site coming out the other side looked as professional as most other sites in our field, and it was really quite easy to add content to. The dev server was also very helpful in making changes of any type to the site, so I eventually concluded that this was the right move for my blog.&lt;/p&gt;
+&lt;p&gt;There's also the added benefit that I have an Atom feed again, something that's been missing since I moved away from Blogger since I'm a little too lazy to hand-write that.&lt;/p&gt;
+&lt;h2&gt;This looks pretty plain...&lt;/h2&gt;
+&lt;p&gt;Yes it does. If you don't agree with this, you're probably reading this (far?) in the future once I've gotten around to rewriting the default theme with something a little more unique. If so, enjoy! I'm sure whatever I came up with is suitably dry and boring, just like this post probably is to most people.&lt;/p&gt;
+&lt;h1&gt;Desktop site?&lt;/h1&gt;
+&lt;p&gt;This is going to be in limbo for a bit, I think. The desktop site is pretty formulaic, so I could transition it to a simple Pelican theme, or I could start over entirely and just integrate WindowTools as an alternate frontend. I believe Pelican is flexible enough to support this well, without losing any of the simplicity of site management that it brings.&lt;/p&gt;
+&lt;p&gt;So, I've moved all of my posts over to Pelican, and pretty soon I should have the desktop back up and running, available from a link at the top of the page or something.&lt;/p&gt;</content><category term="Tech"></category><category term="blog"></category><category term="tech"></category></entry><entry><title>Ratchet and Clank (PS2) Review</title><link href="https://cannoncontraption.github.io/ratchet-and-clank-ps2-review.html" rel="alternate"></link><published>2020-12-28T00:00:00-05:00</published><updated>2020-12-28T00:00:00-05:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2020-12-28:/ratchet-and-clank-ps2-review.html</id><summary type="html">&lt;h2&gt;1. Introduction
+&lt;a name="1. Introduction"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;The Ratchet and Clank series has
+been getting a lot of buzz lately, what with the trailers
+for the new PS5 entry, Rift Apart. However, the series got
+its start way back in 2002 on the PS2, as Insomniac
+Games&amp;rsquo; first entry on the platform. This particular
+series …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1. Introduction
+&lt;a name="1. Introduction"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;The Ratchet and Clank series has
+been getting a lot of buzz lately, what with the trailers
+for the new PS5 entry, Rift Apart. However, the series got
+its start way back in 2002 on the PS2, as Insomniac
+Games&amp;rsquo; first entry on the platform. This particular
+series is, in my opinion, the single best 3D platforming
+series ever released, and I don&amp;rsquo;t think I&amp;rsquo;m
+alone in this.&lt;/p&gt;
+
+&lt;h3&gt;1.1. Personally
+&lt;a name="1.1. Personally"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;I got my start with the series
+on the PS3. Ratchet and Clank Future: A Crack in Time was
+the second game I ever played on PS3, behind the original
+Little Big Planet. Having grown up mostly with the Nintendo
+Entertainment System and a relatively weak
+&amp;quot;multimedia&amp;quot; PC, the experience was mind-blowing
+to me. Watching what was essentially a computer game render
+visuals with particle effects everywhere, a 3D world I could
+run around in, the massive number of things on screen, it
+captivated me. As if the visuals weren&amp;rsquo;t enough, the
+sound design and soundtrack in that game are among the best
+ever made, certainly up to that point, but even now the
+experience still holds up remarkably well.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;My first interaction with the
+first game, however, was much later on. The first time I
+played it was in the Ratchet &amp;amp; Clank Collection, on PS3.
+The graphics and sound were of course much more primitive
+than the technical showpieces that are the PS3 entries I had
+played up to that point, but nevertheless it felt like much
+the same game.&lt;/p&gt;
+
+&lt;h3&gt;1.2. Game Basics
+&lt;a name="1.2. Game Basics"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;Core to the Ratchet and Clank
+series is the usual 3D-platforming challenges, a diverse set
+of enemies with different attack styles, and an enormous
+arsenal of weaponry in various amusing and cartoonish forms.
+Interspersed with this are occasional racing or puzzle
+sections, that require either quick thinking, mastery of a
+DualShock, or careful consideration and planning. Usually
+it&amp;rsquo;s a mix of all of this. I believe it&amp;rsquo;s for
+reasons of easy adaptability to new concepts and hardware
+that Sony chose to make another Ratchet and Clank be one of
+the showpieces of PS5 launch marketing.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;The focus of Ratchet and Clank
+is combat-readiness first, platforming chops second.
+You&amp;rsquo;ll need both to a degree, but there&amp;rsquo;s a lot
+more focus on the gun- and wrench-play than on tricky camera
+setups and precise jumps. This, in my opinion, makes it a
+lot more approachable to modern (2020) audiences than many
+of its contemporaries.&lt;/p&gt;
+
+&lt;h2&gt;2. Controls
+&lt;a name="2. Controls"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;So yes, as a warning, you should
+have an original controller for whatever PlayStation the
+Ratchet and Clank you&amp;rsquo;re interested came out on.
+Aftermarket controllers work, but they often make the game
+much harder to play. In the case of Ratchet and Clank 1,
+that would be a DualShock 2.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;This, in my opinion, is one of
+the great strengths of the game. Most of the series,
+possibly all of it, shares this in common- while not every
+feature of the console the game launched on is used, the
+developers aren&amp;rsquo;t afraid to take advantage of
+what&amp;rsquo;s unique and special about that system. In the
+case of the PS2 that&amp;rsquo;s the controller, as I mentioned.
+However, the game does this without feeling like features
+got shoehorned in or slapped on for no reason- if a feature
+of a controller is used, for example, it&amp;rsquo;s done
+because whatever mechanic uses that feature is uniquely
+suited to it. Analog buttons, for example, are used in
+swimming in the game. Not only do you have the option of
+ascending and descending underwater, but you can control
+that by changing the pressure of your finger on the X and
+square buttons. A similar story is true for jumping, though
+arguably this could be done as well to a reasonable degree
+with a digital button.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Beyond just the featureset of
+the controller, the controls in Ratchet and Clank are...
+fine. They work, they don&amp;rsquo;t feel super awkward or
+silly, but they&amp;rsquo;re certainly among the roughest in the
+series. For example, the lack of a strafe function is
+annoying, even though there&amp;rsquo;s a button basically free
+for that.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Where the control set really
+seems odd is in its choice to duplicate buttons. Both sets
+of shoulder buttons generally do the same thing. So, while
+in the PS3 Ratchet and Clank games, you can use R1 to fire
+your equipped weapon, R1 is crouch in the original, and so
+is R2. There are some minor areas where one set has a
+different function from the other, but it&amp;rsquo;s rare.&lt;/p&gt;
+
+&lt;h2&gt;3. Graphics
+&lt;a name="3. Graphics"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;Ratchet and Clank is...
+inoffensive in terms of graphics. It probably won&amp;rsquo;t
+blow your mind, even as PS2 games go, but it&amp;rsquo;s also
+not hideous. It&amp;rsquo;s stylized enough that the world fits
+with itself, the graphics don&amp;rsquo;t get in the way of
+this. However, it still retains a lot of flat polygonal
+objects, and there are some cut corners when it comes to
+things like rounded edges.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;As you would expect, the
+particle effects are rough and dated, the character models
+aren&amp;rsquo;t super detailed, and there&amp;rsquo;s not very much
+in the world that could be used to relate scale to the real
+world. It&amp;rsquo;s part of the charm of the game in a way,
+but if you&amp;rsquo;re not into that sort of thing I could see
+the sort of random scale of some objects being an issue. If
+you can play Half-Life without any issue, you&amp;rsquo;ll be
+fine here, too. However, when put together, what really are
+just technical limitations contribute immensely to the style
+of the game, making it feel a little bit more like
+you&amp;rsquo;re inside a cartoon. The basic particle effects
+are maybe the only thing that breaks this a little bit, but
+even then it&amp;rsquo;s nothing to really break the experience
+overall.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;That&amp;rsquo;s not to say I
+don&amp;rsquo;t enjoy the graphics in this game. I think
+what&amp;rsquo;s especially impressive is that they managed to
+get long, detailed, winding stages all to fit into memory on
+the PS2 without awkward loading screens in the middle of a
+planet or a path. Once you&amp;rsquo;ve landed, you aren&amp;rsquo;t
+waiting for anything to load off of disk, which contributes
+immensely to the feeling of immersion that the game&amp;rsquo;s
+world provides. Given that the game was released two years
+in to the lifespan of the PS2 (which itself is notoriously
+difficult to develop for) and that this is Insomniac&amp;rsquo;s
+first PS2 title, what they pulled off with the hardware is
+still impressive, despite its shortcomings.&lt;/p&gt;
+
+&lt;h2&gt;4. Sound
+&lt;a name="4. Sound"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;h3&gt;4.1. Sound Effects
+&lt;a name="4.1. Sound Effects"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;This is one area where the
+collection falls flat. If you care a lot about audio in your
+PS2 games for some reason, play this on the PS2. The PS3
+gets the pitch wrong in a bunch of places, which renders
+some features of a couple gadgets useless (most affected
+being the metal detector).&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Sound on the PS2 is fine for a
+PS2 game. It won&amp;rsquo;t win any awards, it&amp;rsquo;s dated at
+best and has a few harsh sounds that some people will find
+annoying, like a lot of (especially older) games, but
+it&amp;rsquo;s no so bad as to ruin the experience. Again, it
+fits with the style of the game, and where in history it
+belongs.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Sound effects are generally
+basic. There&amp;rsquo;s quite a lot of pitch shifting involved,
+which can sometimes make the different sounds sound
+interesting, but usually the developers use this for an
+over-exaggerated Doppler effect.&lt;/p&gt;
+
+&lt;h3&gt;4.2. Music
+&lt;a name="4.2. Music"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;The soundtrack to the original
+is very much computer generated. It wears this proudly on
+its sleeve, and while it does occasionally try to mimic a
+real instrument, it generally doesn&amp;rsquo;t do this in a
+totally blatant, tasteless way, and once again the way that
+instruments are used contributes somewhat to the aesthetic
+of the game. Of course there are ups and downs in this one,
+just like any soundtrack, but by the time the game is done
+very few of the tracks should have worn out their welcome,
+and if one did it won&amp;rsquo;t have probably played for all
+that long past that point.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;However, that&amp;rsquo;s something
+I should also put in context. Relative to what most other
+soundtracks of the time were like, this one is a great
+example of well-composed music matched excellently to each
+environment. The music beautifully complements the game
+world, both of them feeling dated, but in a pleasant,
+nostalgic kind of way for a modern audience, rather than a
+tacky, tasteless way. Despite any minor complaints I make
+about the soundtrack, I wouldn&amp;rsquo;t switch it for
+anything, even at its weakest.&lt;/p&gt;
+
+&lt;h2&gt;5. Game World
+&lt;a name="5. Game World"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;h3&gt;5.1. Story
+&lt;a name="5.1. Story"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;I&amp;rsquo;m going to try my best
+not to spoil anything here, but the &amp;quot;Save the solar
+system&amp;quot; premise presented within the first 10 minutes
+of the game is fairly true to what the game is. It does
+require some suspension of disbelief, since the hero of the
+story is basically a kid who made a starship using a wiki in
+his backyard, not some galactic authority. However,
+overlooking this the story is sufficient to keep the game
+engaging, and to give some stakes to everything the
+character does in that world.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;The writing is generally pretty
+smart, and while not every joke in the game is going to be
+to everyone&amp;rsquo;s taste, the game is overall very
+lighthearted, especially considering one of the core tools
+the character has is an enormous arsenal of insane weaponry
+and various other massive mayhem making mechanisms. In fact,
+I would go so far as to say that even given that it was the
+original in the series, Ratchet and Clank has some of the
+better writing of all of the games in the series. It has its
+rough edges, and unfortunately portrays Ratchet as a whiny
+teenager, rather than the level-headed awkward fun-guy from
+the later games. However, the way this story is told makes
+Ratchet and Clank&amp;rsquo;s friendship in the later games make
+a lot more sense. In this early game, they start out as
+total strangers. Ratchet especially views his relationship
+with Clank at first as transactional, and doesn&amp;rsquo;t seem
+to be seeking companionship at all.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;I want to note briefly here that
+in this respect, I think the original game far outpaces the
+2016 remake. The new game is good as well, but story-wise
+the original introduces the characters and knits them
+together in a much more logical way. You know why Ratchet
+and Clank stick together, it&amp;rsquo;s not something that just
+happens out of nowhere with no explanation or story behind
+it other than just pure availability of another character in
+the vicinity when robots attack. While we&amp;rsquo;re on the
+subject, the tone of the original is, at least in my
+opinion, much more suited to the kind of game that any
+Ratchet and Clank really is.&lt;/p&gt;
+
+&lt;h3&gt;5.2. Environments
+&lt;a name="5.2. Environments"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;The different planets the
+characters explore, and overall the setting in general is
+something that contributes a lot to the game. Starting off
+in the middle of nowhere, then proceeding to explore nearly
+abandoned spaceships and stations, toxic worlds filled with
+poisonous gas, worlds covered in ocean, ice worlds, each
+with their own challenges unique to that world adds a great
+amount of depth to the game. A lot of the puzzle of the game
+is simply figuring out the best way to conquer an
+environment. Graphically, most of these areas are fairly
+primitive, and some of them feel mechanically similar, but
+it almost always feels like there&amp;rsquo;s something unique
+about each place. It&amp;rsquo;s also unique to see flying
+chainsaws that aren&amp;rsquo;t trying to kill your character,
+and find yourself not really questioning it. This may be the
+ultimate test of a game world- can you believe it? If not,
+do you need to? By the way, I feel I can spoil this much
+safely- if you manage to shoot down one of those flying
+chainsaws, it gives you a bolt- while not worth much,
+it&amp;rsquo;s still kind of fun to see if you can manage.&lt;/p&gt;
+
+&lt;h3&gt;5.3. Side Missions
+&lt;a name="5.3. Side Missions"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;On the whole, this is a linear
+game. Side missions aren&amp;rsquo;t the focus here at all.
+However, there are some alternate paths you can take.
+Sometimes these are more obvious than others, but the side
+areas and the main quest path feel incredibly similar. This
+means that it&amp;rsquo;s easy to choose the wrong one in some
+cases, and travel down the side path thinking it was the
+story path. Unfortunately for those who like a quick, linear
+game, the only way to know that all paths are completed is
+to travel through the start menu for a minute and find the
+missions page.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;There generally aren&amp;rsquo;t
+side missions per se, as a result. However, there are
+gadgets and items that can be collected by visiting side
+paths. They usually come with mission items in the missions
+screen marked as just &amp;quot;Explore the Destroyed City&amp;quot;
+and things along those lines. If there&amp;rsquo;s something
+major to explore (as in not a gold bolt, etc.) then there
+will be a mission item for it marked in the missions
+page.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Each of these side paths result
+in a reward of some sort, and the vast majority end up being
+well worth it. Unlike future games, for example, gold bolts
+are not just used for unlocking cosmetics in-game, but are
+instead used to buy gold weapons. This becomes incredibly
+useful, especially in late game or in new game+ (which is
+NOT challenge mode in this entry).&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Overall, my advice in most
+Ratchet and Clank games is to follow all of the side paths
+completely. Even if you don&amp;rsquo;t want the reward at the
+end, one of the common tasks in the game is grinding for
+bolts. It&amp;rsquo;s not strictly required, you can get by
+without doing it, however there&amp;rsquo;s almost always some
+weapon or item that would make the game that much more fun
+that requires a great sum of bolts (or later other
+currencies) to obtain.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Usually, Ratchet and Clank games
+have some specific mini-game challenges, and in this game
+that&amp;rsquo;s just hoverboard racing. Everything else is
+generally just the usual platforming.&lt;/p&gt;
+
+&lt;h4&gt;5.3.1. Hoverboard Races
+&lt;a name="5.3.1. Hoverboard Races"&gt;&lt;/a&gt;
+&lt;/h4&gt;
+
+&lt;p style="margin-top: 1em"&gt;Being perfectly honest,
+I&amp;rsquo;m a little bit conflicted about these. The races
+control like a kart racer just as much as anything.
+There&amp;rsquo;s in-air steering, powerups, accelerator pads,
+etc. etc. There&amp;rsquo;s no such thing as a twitch reaction
+due to the heavy use of slow tank controls, and
+there&amp;rsquo;s a heavy penalty for missing an accelerator
+pad, or crashing. Given that both of these are easy to do,
+the races certainly take some practice and patience.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;These races usually also have
+crates all over the place, which can make for a fun
+additional target. Participation in races isn&amp;rsquo;t a
+terribly great way to earn bolts, but at least the first few
+times through a course there&amp;rsquo;s something to be
+collected if you have built up the skill to do it.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;There are two courses in the
+game, one in Blackwater City on Rilgar, fairly early in the
+game, and a required race on Kalebo later in the game. While
+the Blackwater City race is strictly optional, I strongly
+suggest everyone play it. Between the two courses, this is
+the easier one, and the prize for first place, while not
+strictly required, makes the later race MUCH easier.
+It&amp;rsquo;s hard to understate this- while the prize you get
+only matters in races, you&amp;rsquo;ll spend a similar amount
+of time racing either way, you&amp;rsquo;ll enjoy it a lot more
+if you win the first race.&lt;/p&gt;
+
+&lt;h2&gt;6. Conclusions
+&lt;a name="6. Conclusions"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;In conversation I don&amp;rsquo;t
+give people number scores for a game, I don&amp;rsquo;t think
+that really gives a good impression of a game on its own.
+However, I&amp;rsquo;m going to bury one way down at the bottom
+here, to sort of give my overall impressions. I give Ratchet
+and Clank a 56/64. It was a solid start to an even more
+solid game, and despite my nitpicks with it, it&amp;rsquo;s not
+a case where having played the later games the original is
+no longer playable or enjoyable. The earliest games in the
+series hold up almost as well as the later entries, and is
+certainly worth playing if you can get your hands on a
+copy.&lt;/p&gt;
+
+&lt;h2&gt;7. A Note on the Ratchet and Clank Collection
+&lt;a name="7. A Note on the Ratchet and Clank Collection"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;If this is the way you find the
+game, it&amp;rsquo;s still worth picking up. However, it runs
+only at 720p, not 1080 like you might expect for a simpler
+game running on PS3. Also, it does have a few more framerate
+dips than the original. That said, the first game is fine
+here, at any rate. I would advise getting the PS2 original
+for any of the later games, however. At my best guess, the
+engine from the first game was ported, and all of the newer
+games run on that. This is fine to simply play the games,
+but with my experience with the third game, even running on
+an HDTV it looks far better on the PS2. There are various
+blur and depth of field effects that sell some environments
+(like underwater) where in the collection it looks like a
+cheap PS2 game. This isn&amp;rsquo;t a case where that should
+stop you from trying the game, again, but bear it in mind
+when playing through.&lt;/p&gt;</content><category term="Games"></category><category term="game"></category><category term="review"></category></entry><entry><title>Games!</title><link href="https://cannoncontraption.github.io/games.html" rel="alternate"></link><published>2020-12-18T00:00:00-05:00</published><updated>2020-12-18T00:00:00-05:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2020-12-18:/games.html</id><summary type="html">&lt;p style="margin-top: 1em"&gt;I Play Video Games.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;This isn&amp;rsquo;t really anything
+special these days, but I figure that at this point
+I&amp;rsquo;ve probably played enough video games to have some
+meaningful comments on them from time to time. This section
+will be where I talk about games, gaming, what I&amp;rsquo;m …&lt;/p&gt;</summary><content type="html">&lt;p style="margin-top: 1em"&gt;I Play Video Games.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;This isn&amp;rsquo;t really anything
+special these days, but I figure that at this point
+I&amp;rsquo;ve probably played enough video games to have some
+meaningful comments on them from time to time. This section
+will be where I talk about games, gaming, what I&amp;rsquo;m
+playing, the state of the industry, so on and so forth.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;While not a terribly unique
+position, I&amp;rsquo;ve been playing games most of my life,
+starting on PC and on the original Nintendo (some of you
+probably know it best as the NES). While these days all my
+PC gaming is on Linux, I have four of the five Playstations,
+an Xbox One X, a Nintendo, a Super Nintendo, and a FireCore
+Genesis. This, in my opinion, gives me a wide base of gaming
+experience to draw upon. As someone technical, I believe I
+also have a basic understanding of how each of these
+consoles work, as well as their strengths and
+weaknesses.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;So if any of this sounds
+interesting, please stay tuned! Hopefully this section will
+prove entertaining and informative to you.&lt;/p&gt;</content><category term="Games"></category><category term="games"></category><category term="intro"></category></entry><entry><title>Blogging is Hard.</title><link href="https://cannoncontraption.github.io/blogging-is-hard.html" rel="alternate"></link><published>2019-07-31T00:00:00-04:00</published><updated>2019-07-31T00:00:00-04:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2019-07-31:/blogging-is-hard.html</id><summary type="html">&lt;h2&gt;1. No It&amp;rsquo;s Not.
+&lt;a name="1. No It&amp;rsquo;s Not."&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;My title this time is a lie.
+It&amp;rsquo;s a big, fat, JUICY lie. I&amp;rsquo;ve just put myself
+in a position where it&amp;rsquo;s hard. No, really.&lt;/p&gt;
+
+&lt;h2&gt;2. Cool Tech
+&lt;a name="2. Cool Tech"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;The existence of this whole blog
+is a testament to one thing in particular- …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1. No It&amp;rsquo;s Not.
+&lt;a name="1. No It&amp;rsquo;s Not."&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;My title this time is a lie.
+It&amp;rsquo;s a big, fat, JUICY lie. I&amp;rsquo;ve just put myself
+in a position where it&amp;rsquo;s hard. No, really.&lt;/p&gt;
+
+&lt;h2&gt;2. Cool Tech
+&lt;a name="2. Cool Tech"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;The existence of this whole blog
+is a testament to one thing in particular- I really love
+technology. Many people would probably go so far as to say
+that I love web technology, since I used so many
+up-and-coming web browser features to make such a blog.
+It&amp;rsquo;s this interest in cool tech that first drew my eye
+to the Computer Science Club at school. This is where our
+story about blogging starts.&lt;/p&gt;
+
+&lt;h3&gt;2.1. The Computer Science Club
+&lt;a name="2.1. The Computer Science Club"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;I loved the concept of a
+computer science club, and for the first semester I was a
+part of it, it introduced me to many wonderful people,
+exciting tech, and challenging puzzles. All this was without
+the aid of a professor. The first (and really only) major
+project I embarked on during my time with the club was work
+on a website. We had huge goals for the site, ranging from
+personal blogs for members, to scheduling tools, to small
+size for easy hosting down the road. And that&amp;rsquo;s
+ignoring the big killer feature for me personally. It was
+going to be a desktop in a browser.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;As is probably clear by now,
+this site is sort of born out of the ashes of that project.
+Club leadership was only solid for the first semester I was
+there, and quickly as schedules filled up people started
+wandering off to internships or other random commitments. It
+wasn&amp;rsquo;t really even a lack of interest in the club,
+there was plenty of that. It was lack of interest in
+leadership. No one wanted to figure out the logistics, the
+marketing, the random member questions, the finances of a
+small club and restrictions on what can be done with
+university funds.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;That project had gotten really
+close to being finished, too. We had a solid front-end, as
+I&amp;rsquo;ve mentioned (and you can probably see) it&amp;rsquo;s a
+desktop in a browser, complete with most of the hallmark
+features of a desktop like stacking windows, minimization,
+maximization, a taskbar, and many other things. At the time
+of writing there&amp;rsquo;s no mobile site, but I&amp;rsquo;ve been
+mulling over options for that for a really long time, and
+when the site was still the computer science club site I had
+even begun development of a drop-in replacement window
+manager for mobile, since, after all, the API itself is
+really not too complex. What we lacked was a backend.&lt;/p&gt;
+
+&lt;h3&gt;2.2. Server-side CMS systems suck.
+&lt;a name="2.2. Server-side CMS systems suck."&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;That last sentence was a sort of
+lie. We had most of a backend. We had enough so that our
+site could list a directory and pull up blog posts, using a
+database to hold metadata and other random stuff of that
+nature. It worked, we had example blog &amp;quot;posts&amp;quot;,
+and if it were just us we probably could have left it at
+that and put the site live. The problem was it was supposed
+to be club wide.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;The thing about computer science
+as a major is that it attracts a wide variety of people, all
+at different skill levels. There are people interested in
+low- level programming for robotics, embedded systems, and
+other such fields. They probably wouldn&amp;rsquo;t have much
+interest in learning PHP in order to insert a blog post onto
+a website, nor would they probably want to do it in
+JavaScript. As a general rule, we wanted to avoid making
+people learn database programming, probably some Python,
+maybe PHP, and of course HTML and CSS just to post about
+some new tool they were playing with in their Java I course,
+or to post about how they think their class (and broadly
+classes on a specific topic) might be improved. That kind of
+learning curve would be a huge turn-off. To add insult to
+injury, not everyone associated with the club would need to
+even be a CS major, they&amp;rsquo;d just have to be interested
+in the topic in some way. Shutting them off with huge
+technical barriers would have been a mistake.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;To be clear about all of this,
+we knew we didn&amp;rsquo;t have to do most of this. The problem
+wasn&amp;rsquo;t at all how to make a blogging site, it was how
+to make a site that could grow with the club, and also be a
+project for the club. We wanted it to be a one-stop-shop for
+everything CS, and we wanted it to be set up so that no one
+could just waltz in and delete everyone else&amp;rsquo;s posts
+with an accidental query or mis-click. We could have used
+WordPress, but that has a lot of problems. We could have
+used Pellican with someone managing the merge of new posts.
+That doesn&amp;rsquo;t leave much avenue for people to just post
+stuff though, since there&amp;rsquo;d be a social process to
+getting things posted. We all know how the stereotypical CS
+student loves social processes. So we may have bit off a bit
+more than we were willing to chew.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Even now, though, I&amp;rsquo;m
+underselling this a bit. We had a login system, we had
+randomized user IDs for sessions, we had a salted, hashed
+password table, and all of this had a frontend. We just
+never finished the blog composer (we got really close
+though) and we never integrated any of this with any other
+part. If we had decided to go ahead and bring the site live
+in the state it was in, it would have been a matter of a
+couple of weeks before we had it more or less working fully.
+That&amp;rsquo;s weeks as a side project, not weeks of constant
+development time.&lt;/p&gt;
+
+&lt;h2&gt;3. Surviving the CS Club Site
+&lt;a name="3. Surviving the CS Club Site"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;By the time two months had
+passed and no development had really happened on the site,
+or even sooner when I realized I was the only one to commit
+in a month or two, I was already thinking ahead a bit. Many
+of my friends from the old CS club are what I like to refer
+to as &amp;quot;technical &lt;br&gt;
+minimalists&amp;quot;. We all like software that follows the
+UNIX philosophy to some extent. Tools or components that
+make up a bigger project have served all of us well over the
+years, and so with that we wanted to make sure that the site
+we use to post all of this random chatter followed that as
+well to some extent. In reality, I was the one who really
+enforced this, but I think everyone at worst approved of it.
+So, the design of the site wasn&amp;rsquo;t one big
+interconnected set of assets and scripts and so forth, but
+instead a few frontend modules tied together with some light
+scripts and a backend. And while the backend was two pieces
+that never got integrated with one another, this design
+proved effective enough that only the site-specific
+&amp;quot;glue&amp;quot; scripts needed to even know about the fact
+that any of these modules were used together. This model is
+still in use today, and I&amp;rsquo;m going to briefly touch on
+the different parts that survive.&lt;/p&gt;
+
+&lt;h3&gt;3.1. WindowTools
+&lt;a name="3.1. WindowTools"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;This is, quite frankly, the most
+important piece of the entire site from a pure front-end
+perspective. It&amp;rsquo;s the window manager, as the name
+implies. It handles all of the movement, drawing, resizing,
+and actions that can be performed on windows, and more
+broadly on elements on screen. It even has a sort of
+rudimentary event processor, though that&amp;rsquo;s really more
+a set of queues and lists copy-pasted into the various
+places they make sense for autostarting programs and letting
+window contents run some JS code to handle resizing and
+maximization.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;WindowTools was one of the
+single most challenging pieces of web software I&amp;rsquo;ve
+ever written. It is pure JavaScript. No libraries were
+harmed- I mean used- in the making of this tool.&lt;/p&gt;
+
+&lt;h3&gt;3.2. WidgetTools
+&lt;a name="3.2. WidgetTools"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;This is one of the less exciting
+pieces. It&amp;rsquo;s a big wrapper so you don&amp;rsquo;t have to
+think about the fact that you can&amp;rsquo;t really sit down
+and write a web page in any reasonable amount of time in
+pure JavaScript. It&amp;rsquo;s just not meant for that.
+Instead, I took cues from GTK and designed a wrapper that
+could do more traditional widget drawing without needing to
+reinvent the wheel every time a button shows up on screen.
+It can also do some &amp;quot;cooler&amp;quot; things like take a 2
+dimensional array and turn it into a table, but I
+didn&amp;rsquo;t end up using that very much at all.&lt;/p&gt;
+
+&lt;h3&gt;3.3. PageTools
+&lt;a name="3.3. PageTools"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;I mentioned a mobile site. This
+would have been the wrapper for the WindowTools API that
+would make it mobile-ready. I never finished it, and frankly
+it&amp;rsquo;s a mess. This isn&amp;rsquo;t helped by the fact that
+I didn&amp;rsquo;t know how to write web pages for mobile at
+that point in time. At all. While the tool technically is
+still around, I don&amp;rsquo;t know if I even bothered
+uploading it to GitLab or GitHub along with the rest of the
+project.&lt;/p&gt;
+
+&lt;h2&gt;4. There Is No Backend; Long Live the Backend
+&lt;a name="4. There Is No Backend; Long Live the Backend"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;This site, as you see it right
+now, contains absolutely none of the backend that we had
+worked so hard to develop for the CS club site. Instead, in
+the glue scripts I wrote this time, I added a JS file with a
+bunch of functions. Each function would return the full text
+of a post, and the blog display window simply takes that
+text and sets the inside of the content window to whatever
+that post function returned.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;This is for a number of reasons.
+First of all, the club site was designed to work in a very
+similar way. The big exception here is that instead of one
+big, dumb JS file, there would be an actual backend.
+That&amp;rsquo;s not to say I couldn&amp;rsquo;t still do something
+similar, with each page in its own HTML file that&amp;rsquo;s
+dynamically loaded when you start the page, but for whatever
+reason I didn&amp;rsquo;t do that. I probably eventually will,
+but this time I didn&amp;rsquo;t. Also, it means that if at some
+point I want to put some more immersive content in a page,
+there&amp;rsquo;s nothing to stop me from simply scripting that
+in place. I think I had a concept for &amp;quot;live posts&amp;quot;
+that I was going to start using after the first few, but
+this turned out to be a little less practical and useful
+than I had originally thought.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;This is actually the first place
+where the actual goal of a blogging site has been realized
+with these tools. I had a previous site at this same
+address, but rather than hosting any content on its own, it
+simply linked back to my then-active blogspot site. That
+situation had much worse challenges than this one does,
+mainly stemming from limitations in blogspot that make
+things like inserting code somewhat more challenging, since
+it very much relies on its WYSIWYG editor. This editor
+injects random style into even manually entered text should
+you really touch it at all. Compared to that, this is quite
+similar in terms of effort required to post.&lt;/p&gt;
+
+&lt;h2&gt;5. The Future of #/bin/bash it
+&lt;a name="5. The Future of #/bin/bash it"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;This has been something
+I&amp;rsquo;ve thought about for a very long time. This site is
+built around a lot of older ideas from a younger me. Someone
+who used (and loved) every inch of KDE. Someone who believed
+in text editors like Kate and GEdit, someone who would only
+sometimes venture into the world of Vim for quick tweaks to
+some configuration file, and who wholly avoided Emacs for
+fear of it being &amp;quot;too complicated&amp;quot;. When I wrote
+this site, I very much thought of true software minimalism
+such as Suckless as a hindrance more than a useful and
+productive way to use a computer. Times have changed.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;That doesn&amp;rsquo;t mean this
+site is going away. I feel like this sort of idea in the web
+space is something that isn&amp;rsquo;t explored or used enough,
+and that many different styles of sites could benefit from
+using something like this. It also amuses me that my blog,
+which I have in the past thought of as a way to showcase the
+various side projects I&amp;rsquo;ve developed over the years is
+in fact one such project itself. I am, however, considering
+my options.&lt;/p&gt;
+
+&lt;h3&gt;5.1. Challenges with the Site Now
+&lt;a name="5.1. Challenges with the Site Now"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;As I mentioned a little while
+ago, this whole site is fed by a big ol&amp;rsquo; JS file which
+contains the full text of every post. It just returns that
+text and that&amp;rsquo;s about it. This needs to change before
+too long, if for no other reason than it being the Wrong
+Way(tm) to do things.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;The side I left alone to some
+extent is exactly how metadata is stored. I have one
+function call that creates the blog window, and at the
+moment for each post button in the browse window, I have
+&amp;quot;hard coded&amp;quot; the metadata for each post in
+literals to this function call. Needless to say, if I ever
+have enough volume of posts that any form of search becomes
+relevant, this isn&amp;rsquo;t a good enough way to store
+metadata.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;One of the biggest comments I
+get about this site is how awful it is on mobile. When I
+designed the site, I had intended to come up with some
+clever way to determine platform, and simply refer people to
+m.whatevermydomain.is and they&amp;rsquo;d be served up the
+mobile version of the site. No additional thought required.
+While this would probably work well for people who know
+about it, there&amp;rsquo;s not exactly any magic-bullet
+software that can tell a browser if you&amp;rsquo;re actually on
+mobile or not. Furthermore, even if there were, I&amp;rsquo;d
+probably want to do something similar to PageTools for the
+site just to keep my duplication of effort to a minimum.
+There are, of course, compromises. I&amp;rsquo;ll get into some
+of those in a moment.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;As icing on the cake here, I
+just started a second &amp;quot;blog&amp;quot;, or more accurately
+started up a second category of my blog dedicated to food.
+As a user of this site, you see the separation of posts
+between the tech and food sides of the site. There is no
+technical separation. The very same posts.js file houses all
+of the texts for the posts, and the backend names share the
+same space. So, if for example I wanted to talk about
+cinnamon in conjunction with baking, and also post about the
+Cinnamon Desktop Environment, I&amp;rsquo;d have to come up with
+different function names for each post or there&amp;rsquo;d be
+conflicts preventing the site from loading.&lt;/p&gt;
+
+&lt;h3&gt;5.2. Potential Next Steps
+&lt;a name="5.2. Potential Next Steps"&gt;&lt;/a&gt;
+&lt;/h3&gt;
+
+&lt;p style="margin-top: 1em"&gt;With my current computing
+lifestyle, I rather enjoy things that are keyboard driven. I
+put off getting any sort of decent mouse for my computer
+until really quite recently, since I can do almost
+everything I want to do with just the keyboard when left to
+my own devices.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;With this in mind, I&amp;rsquo;ve
+given serious consideration to a static site, no JS
+included. This would make my job much easier, because I
+already have been writing the vast majority of my writings
+in groff, which exports natively to plain HTML. This would
+mean I could use something like Qutebrowser to browse my own
+site with a keyboard. It would also mean that with very
+minor work I could get a great degree of accessibility for
+mobile users virtually for free. No fancy frameworks or
+media queries required. It would also mean that people using
+text based browsers could read my musings. The problem here
+is that I like the idea of the desktop in a browser and very
+much want to keep it.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;One thing is clear, no matter
+how the front end works out. I am going to ditch that stupid
+posts.js file, probably sooner rather than later. It
+doesn&amp;rsquo;t serve its purpose particularly well, and
+it&amp;rsquo;s got a lot of single lines that are frankly too
+large for many text editors to even read. For example, even
+Vim gives up trying to syntax highlight after half of the
+first post, and Emacs has historically gotten confused about
+what line it&amp;rsquo;s on and how big the file is. To be
+clear, they both can read it just fine, but it&amp;rsquo;s not
+what one would consider &amp;quot;supported&amp;quot; in the way it
+probably should be.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;In order to work with this,
+I&amp;rsquo;m going to adopt a one-file-per-post approach.
+I&amp;rsquo;ll be making a posts folder before too long, and in
+it will be a bunch of html files, one for each post.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;So with that problem solved, the
+biggest question in my mind is &amp;quot;to static or not to
+static&amp;quot;. My current stance on things is that I should
+support both. When the page is loaded, maybe it could ask if
+you want a classic or modern experience, and present the
+caveat that the &amp;quot;modern&amp;quot; experience basically
+requires a mouse and desktop browser. If you choose
+&amp;quot;classic&amp;quot;, it&amp;rsquo;ll dump you onto a landing
+page with post names, and load each post as its own HTML
+file. In place of the current browser on the
+&amp;quot;modern&amp;quot; site will be an HTML iframe tag inside of
+a window for each post you decide to read. In reality,
+it&amp;rsquo;ll all go to the static site for actual post
+reading, but if I decide down the road to integrate some
+web-app like thing into the modern site, it won&amp;rsquo;t get
+in the way of the clean, static-site CMS setup. It&amp;rsquo;ll
+merely extend and enhance it.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;I don&amp;rsquo;t really have a
+roadmap for any of this. If you look at the dates for my
+posts over the years you&amp;rsquo;ll get an idea for why. I
+don&amp;rsquo;t post a lot, and it usually happens in short
+bursts when I feel like writing. Maybe one day that will be
+different, but for now it&amp;rsquo;s a hack, and it&amp;rsquo;s a
+hack that works.&lt;/p&gt;
+
+&lt;h2&gt;6. EDIT FROM THE FUTURE!
+&lt;a name="6. EDIT FROM THE FUTURE!"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;If you&amp;rsquo;re reading this,
+I&amp;rsquo;ve gone and made the switch. There&amp;rsquo;s now a
+prompt that asks for &amp;rsquo;classic&amp;rsquo; or
+&amp;rsquo;desktop&amp;rsquo; sites, and they very much operate on
+their own. If you&amp;rsquo;re in the desktop version, however,
+you&amp;rsquo;ll notice that (for now) there&amp;rsquo;s still a
+button for the old, dumb JS blog windows. This is because of
+one important limitation of iframes I forgot about up until
+now. It was a large part of why I didn&amp;rsquo;t do this
+sooner.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Try moving the window around a
+bit and you&amp;rsquo;ll notice the mouse quickly outraces the
+titlebar. The window will appear stuck. Just move your mouse
+back to the titlebar and click and the problem will go away.
+I intend to fix this at some point, probably by creating an
+AJAX parser for web pages like I may have suggested
+elsewhere in this post, but I don&amp;rsquo;t anticipate that
+happening really quickly. This is one of those future plans
+for a while down the road.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;In the mean time, the classic
+site works, and while I&amp;rsquo;m still hand coding the
+entries for each post, the posts themselves at least can be
+virtually taken direct from Groff&amp;rsquo;s output, no need to
+do any tricky JS string formatting or nonsense like
+that.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;I&amp;rsquo;ll probably update this
+post again when I&amp;rsquo;ve implemented the change to make
+smoother windows, and at that point I&amp;rsquo;ll be removing
+posts.js for good- and good riddence!&lt;/p&gt;</content><category term="Tech"></category><category term="blogging"></category><category term="tech"></category><category term="desktop"></category><category term="blog"></category></entry><entry><title>Zsh Scripts are Dumb</title><link href="https://cannoncontraption.github.io/zsh-scripts-are-dumb.html" rel="alternate"></link><published>2019-07-27T00:00:00-04:00</published><updated>2019-07-27T00:00:00-04:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2019-07-27:/zsh-scripts-are-dumb.html</id><summary type="html">&lt;h2&gt;1. Background
+&lt;a name="1. Background"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;As you can probably tell by the
+existence of this blog, I&amp;rsquo;m what most people in the
+tech world call a &amp;quot;power user&amp;quot;. I make use of all
+sorts of little hacks and tricks to make my computers run
+faster, and do what I want rather than …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1. Background
+&lt;a name="1. Background"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;As you can probably tell by the
+existence of this blog, I&amp;rsquo;m what most people in the
+tech world call a &amp;quot;power user&amp;quot;. I make use of all
+sorts of little hacks and tricks to make my computers run
+faster, and do what I want rather than what the manufacturer
+wanted out of the box. I run a lot of programs that
+don&amp;rsquo;t show up on a hard disk from a new Best Buy
+computer, in fact there&amp;rsquo;s very little overlap.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;One of those programs is Zsh.
+Even in the Linux world, Zsh is fairly obscure. It&amp;rsquo;s
+got a devoted following, but many people wonder why they
+would want it, or consider it too bloated for everyday use.
+Many people also link this bloat to slower operation.
+They&amp;rsquo;re both right and wrong, in my experience.&lt;/p&gt;
+
+&lt;h2&gt;2. So why Zsh?
+&lt;a name="2. So why Zsh?"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;I wouldn&amp;rsquo;t use it if I
+didn&amp;rsquo;t love it. Zsh has a wonderful interactive
+prompt, and its autocomplete is nearly instantaneous. For a
+while I swore by Zsh for everything. I started writing
+functions in my zshrc rather than increasing the size of my
+~/bin folder, and I ported over all of my customizations to
+Bash and tweaked and improved them with some of Zsh&amp;rsquo;s
+more useful features.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Zsh really isn&amp;rsquo;t slow. It
+might be bloated, in fact the argument could be made that
+Zsh is enormous. For interactive use, however, it&amp;rsquo;s
+zippy. I&amp;rsquo;ve actually ended up backing myself into a
+corner on friends&amp;rsquo; machines since they all run Bash,
+and I&amp;rsquo;ll try and autocomplete a package in Apt or
+Pacman, only to see the prompt hang for a few minutes.
+That&amp;rsquo;s not seconds, that&amp;rsquo;s minutes. I&amp;rsquo;ve
+tried to make Bash expand a !!* statement, only to get a
+system bell. I&amp;rsquo;ve written regex statements and wanted
+to double-check them by tab-expanding them, like Zsh does,
+only to be greeted with another system bell. It&amp;rsquo;s
+frustrating to go back.&lt;/p&gt;
+
+&lt;h2&gt;3. Big git = Big problems
+&lt;a name="3. Big git = Big problems"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;Part of my Bash setup which got
+ported to Zsh was my git integration. I used that particular
+feature constantly in school, and it seemed a natural fit
+for my workflow. My setup for integrating git was
+essentially run git status and check the return code. This
+works great if you&amp;rsquo;re working in a very small
+repository. Unfortunately, as soon as you jump to something
+of any significant size, this becomes a huge bottleneck. My
+prompt would normally show up instantly, but simply
+cd&amp;rsquo;ing into too big of a repository would make it take
+a second or sometimes more to even show up. This is simply
+too much time to wait for a prompt. I began to
+investigate.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Since this happens only in the
+git code, that seemed like the logical place to start
+looking. That code made three calls to git, one to see if
+there&amp;rsquo;s a repository here, one to get the branch, and
+one to get the number of changed files. My first instinct
+was to start using files in the .git directory rather than
+using git itself to get as much of this information as
+possible. This has a number of important drawbacks. First of
+all, it requires that there be code to traverse backwards in
+the directory tree until it finds whether there&amp;rsquo;s a
+.git directory anywhere higher on the tree. But, for testing
+purposes, I ignored this and started poking around. I
+figured out quite quickly that a simple file exists to list
+the current branch. This is somewhat more efficient than
+calling git branch and parsing the output to get this
+information, which is what I was assuming the code did. Bear
+in mind here it had been years since I had originally wrote
+this particular git integration script, or really touched it
+at all in any significant way. I put this into the script,
+only to realize that I was using some special parameters
+with git branch that effectively did the same thing anyhow-
+I wasn&amp;rsquo;t just parsing the list of branches to see
+which one had the asterisk next to it. On to the next
+solution.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;This is where I became curious
+enough to start timing commands to see what the shortest
+running time git command I could think of was. I
+didn&amp;rsquo;t try exhaustively, and there&amp;rsquo;s probably a
+command better suited to this task than what I settled on.
+However, after testing git status, git branch, and a couple
+other information prompts, I figured out that git branch was
+the quickest one, and running it in a non-repository
+directory caused it to exit non-zero. Bingo. I swapped out
+the first git status with git branch, and got a real
+improvement. That said, it still wasn&amp;rsquo;t quite as quick
+as I&amp;rsquo;d like, so further down the rabbit hole we
+go.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Next up was the remaining git
+status command. When passed the -s option, it gives a brief
+output, one line per changed file. Counting the number of
+lines in the output of that command is a decent way of
+getting this number, and it&amp;rsquo;s what I was doing. What I
+wondered was whether this was really the best way in terms
+of speed. To the man pages I went, only to quickly discover
+the -u option. This option allows for control over untracked
+files, and whether they are displayed on screen. This turns
+out to somewhat significantly reduce the time git status
+takes to display something.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Putting all of this together
+made for a Bash prompt that while still not as instant as
+without the git integration, was barely passible and
+performed well enough.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;I was doing all of that work in
+Bash. However, when I finally managed to get Zsh running on
+that particular computer, I quickly realized that its
+interpreter for scripts was slow enough to undo almost all
+of the speed gains I had gotten through optimizing the
+prompt in Bash. Needless to say, this was not acceptable. On
+to the next tweak&lt;/p&gt;
+
+&lt;h2&gt;4. POSIX shell to the rescue
+&lt;a name="4. POSIX shell to the rescue"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;Recently, I&amp;rsquo;ve been
+reading a lot of things about shell scripting, as well as
+watching videos by various different Linux users. Notable
+among those users is Luke Smith. He and I share some
+interesting parallels in computing. We both use suckless
+tools, like dwm, dmenu, st, and a few others. We both use
+groff. We have both used Arch and i3 in the past. We both
+use Void Linux at the moment, and a number of other things.
+The coolest part about this in my mind is that we both got
+to this point independently at more or less the exact same
+time, without ever really crossing paths.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;I mention this because among Mr.
+Smith&amp;rsquo;s videos is one titled &amp;quot;Bash is
+Bloated!&amp;quot; Intrigued, I watched it to see what he had to
+say. I&amp;rsquo;m not going to recount everything he said in
+the video, but one small statistic he cited stuck in my
+head. He mentioned DASH, or the Debian Almquist Shell.
+It&amp;rsquo;s an implementation of pure POSIX shell, with no
+extensions or enhancements. It&amp;rsquo;s just a shell. This
+means no autocomplete with tab (at least by default), no
+process substitution using parentheses, and a variety of
+other things. DASH supposedly runs scripts something like
+four times faster than Bash. Since it&amp;rsquo;s supposed to be
+a POSIX shell anyhow, regardless of whether it&amp;rsquo;s ASH
+or DASH or anything else, I decided to start setting the
+interpreter for all of my existing scripts to /bin/sh. Sure
+enough, most of them worked and I had to wait a little less
+time between doing a thing and seeing it done.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Of course the problem here
+isn&amp;rsquo;t whether just any old script could be faster, but
+whether Git integration in my prompt could be faster. I
+think the answer at this point might be pretty obvious,
+since Zsh is quite a lot bigger than Bash. One caveat,
+however, is that I would have to take my existing inline
+function in Zsh and come up with a way to make it
+external.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;I set out to create this magical
+external script which could handle this all for me. I
+started copying the different parts of the script out of my
+zshrc, and plugging it into another file pointed at /bin/sh.
+After briefly becoming confused as to why it was printing
+-ne, only to realize -e isn&amp;rsquo;t needed for escape
+sequences to work, I got it working. No trouble at all. When
+I then ran my Zsh built-in and compared it against the sh
+script, the result was nothing short of impressive.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;Before I close out this post,
+however, there&amp;rsquo;s one important technical point I
+should mention about using escape sequences in prompts. This
+is something that will probably confuse people at first when
+they first try to do this. See, prompts are tricky. They
+expect that their prompt strings be labelled such that the
+shell can anticipate how many characters long it is for word
+wrapping purposes. Since escape characters don&amp;rsquo;t
+print, they mess up this calculation. In order to get around
+this, various different shells handle this with a variety of
+delimiters. For Bash, this is \[, for Zsh this is %{, other
+shells will probably use other different delmiters. These
+generally can be substituted with \001 and \002 in
+situations where you&amp;rsquo;re dealing with output from a
+script like this, but just to be safe, I broke the line
+after the output from the git integration finished. This is
+for a couple other reasons too, such as tiling window
+managers like dwm not always giving adequate horizontal
+space for really long prompts, but it&amp;rsquo;s something to
+keep in mind.&lt;/p&gt;
+
+&lt;h2&gt;5. Conclusion Time
+&lt;a name="5. Conclusion Time"&gt;&lt;/a&gt;
+&lt;/h2&gt;
+
+&lt;p style="margin-top: 1em"&gt;Honestly speaking, if speed is
+no object, Bash and Zsh both have some wonderful advantages
+when it comes to the features available in a shell scripting
+language. It&amp;rsquo;s entirely impossible to redirect the
+output of a program to more than one other program in POSIX
+shell, and Bash supports such a feature. It&amp;rsquo;s
+something I&amp;rsquo;ve used myself a fair amount at this
+point, and in some circumstances this warrants the speed hit
+for readability and extra features. This is, after all,
+shell scripting. The shell is not a programming environment,
+and it was never meant to be used as one.&lt;/p&gt;
+
+&lt;p style="margin-top: 1em"&gt;With that said, however, Zsh is
+a dumb idea for little shell scripts. It&amp;rsquo;s way too
+slow for its benefits to really be useful in most cases, and
+it can make little tweaks in any environment really slow
+down your workflow.&lt;/p&gt;
+&lt;hr&gt;</content><category term="Tech"></category><category term="zsh"></category><category term="scripting"></category><category term="scripts"></category><category term="shell"></category></entry><entry><title>An Instant Pot is NOT a Slow Cooker!</title><link href="https://cannoncontraption.github.io/an-instant-pot-is-not-a-slow-cooker.html" rel="alternate"></link><published>2019-05-14T00:00:00-04:00</published><updated>2019-05-14T00:00:00-04:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2019-05-14:/an-instant-pot-is-not-a-slow-cooker.html</id><summary type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Imagine for a moment a world where you need to bring food with you every day. I know, I know, no one reading this could possibly be in that situation. But bear with me anyhow. Let's just assume for a moment that you have a nice chili that you …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Imagine for a moment a world where you need to bring food with you every day. I know, I know, no one reading this could possibly be in that situation. But bear with me anyhow. Let's just assume for a moment that you have a nice chili that you want to slow cook- you put all the ingredients in your crock pot, and since obviously everyone in this situation only owns a crock pot (college student times, it really happened) you put your rice in with everything else. You turn it on, next morning everything comes out well enough- the rice may be a bit soggy but you live with it since it's got a good taste and the flavors blend nicely.&lt;/p&gt;
+&lt;p&gt;Fast forward a bit. Rather than having a crock pot, the crock pot started flaking off rust chips because it's old (also happened) and it's now gone. In its place is a shiny new instant pot! When I was in this situation, I figured they couldn't be too different and just put my usual chili recipe in there and turned on the pressure. Boy was I in for a shock.&lt;/p&gt;
+&lt;h2&gt;How not to cook rice&lt;/h2&gt;
+&lt;p&gt;The instant pot over and over again displayed the error "BURN". It didn't seem to matter what settings I used to make this happen, or whether it was the whole thing at once as before, or just the rice on its own with the "rice" setting advertised on the front. Every time it would display this message, and there'd be a sticky mess of rice remains stuck to the bottom of the pot, sometimes with other ingredients trapped underneath. All in all, not a pleasant experience.&lt;/p&gt;
+&lt;h2&gt;Instant Pots are NOT Slow Cookers&lt;/h2&gt;
+&lt;p&gt;My immediate next thought was that the pressure was the problem. The next time I went to cook my chili, I simply set the instant pot on slow cook mode and walked away. All indications were that this would work fine. Then I decided enough time had passed and checked on it. I had set the instant pot to slow cook medium heat, which I figured would probably land somewhere in between low and high on a traditional slow cooker.&lt;/p&gt;
+&lt;p&gt;I was wrong. Sticking my finger into a pot of what was essentially still luke-warm soup was not a pleasant surprise. At that point I was about ready to call it quits on that idea, and switched to pressure cook mode. I encountered the same "BURN" error as before, but after a couple of attempts at least I had something I could eat for lunch that week. Trying it again the next week yielded the same result.&lt;/p&gt;
+&lt;p&gt;For those who might end up in the same sort of position as me, here's about where the Instant Pot's slow cook temperature lines up with a crock pot:&lt;br&gt;&lt;br&gt;&lt;table border=1px&gt;&lt;tr&gt;&lt;td&gt;Instant Pot setting&lt;/td&gt;&lt;td&gt;Crock Pot analog&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;High&lt;/td&gt;&lt;td&gt;Low with the lid off&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Medium&lt;/td&gt;&lt;td&gt;Keep Warm&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Low&lt;/td&gt;&lt;td&gt;Off&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;br&gt;&lt;br&gt;Clearly you're not going to get very good results if you go into this without this knowledge.&lt;/p&gt;
+&lt;h2&gt;Potential Issues&lt;/h2&gt;
+&lt;p&gt;I have a lot of theories as to why this problem is as bad as it is. Firstly, the lid doesn't seal the same way. The crock pot is designed with a lid that forms a loose seal from the steam built up as the food cooks. While it's not a hard seal, and steam can still escape, there should be no holes in the lid of a properly functioning crock pot, or else the food won't cook right. The Instant Pot's lid is designed for pressure cooking, so it requires pressure to seal completely. This allows for the pressure release and for the lid to come off safely when used as a pressure cooker. There don't seem to be any good third-party lid options, at least none that I tried did the trick. You may have better luck.&lt;/p&gt;
+&lt;p&gt;Secondly, the Instant Pot only seems to heat from the bottom, where the crock pot heats all sides. Furthermore, the crock in a crock pot has a fair amount of thermal mass, which helps to spread out the heat. The Instant Pot uses a steel liner, much like a soup pot or a really big saucepan. The Instant Pot may also just not have good enough heat control to give a good in-between heating setting. A lot of steam is required for pressure, which requires a lot of heat. When that kind of heat isn't required, the thermal controls may not be accurate enough to produce a desirable result.&lt;/p&gt;
+&lt;h2&gt;Back to a real Crock-Pot&lt;/h2&gt;
+&lt;p&gt;Finally, fed up with the extra work being put into lunch for the week, I broke down and bought a crock pot. Immediately I could tell the difference. Like any new appliance, it took some getting used to since the old one did not behave &lt;i&gt;quite&lt;/i&gt; exactly like the old one, but with not very much time I was back to my old routine.&lt;/p&gt;
+&lt;p&gt;Most of this actually happened months ago by now. In fact, this whole blog site just got a minor facelift recently, including new background graphics and some under-the-hood improvements to themeing which made a color change practical. The reason those changes didn't go live in December of last year is because I was planning out this post. Since then, I've had some more time to experiment and figure out what works and what doesn't with an Instant pot. Long story short- if you expect a slow cooker, buy a slow cooker. The Instant Pot &lt;i&gt;will not do the trick&lt;/i&gt;. It won't. That said, I don't hate the thing. It makes the best macaroni and cheese I've ever had the pleasure of enjoying, and it can do meats, soups, even cheesecake really well.&lt;/p&gt;
+&lt;p&gt;There's a number of things that both appliances do really well. For example, pulled meats are really easy with an Instant Pot. Nothing sticks to the bottom, and if you leave a roast in there for a little over an hour it comes out in pieces, ready to be pulled. Just season it, add some water, and hit 'go'. This is really the secret superpower of a crock-pot, however. Do the same thing with a crock-pot, and after about 14 hours or so, you have the same result but with more even flavor. It's not a big difference, but there's a difference.&lt;/p&gt;
+&lt;h2&gt;Conclusion time&lt;/h2&gt;
+&lt;p&gt;I know I've said it before, it's even in the title. An Instant Pot isn't a crock-pot. Don't buy an Instant Pot thinking you can just do away with the old crock-pot when it gets old. They serve different purposes, even if the Instant Pot tries to ape the crock-pot, it really does &lt;i&gt;just that&lt;/i&gt;, it apes it.&lt;/p&gt;
+&lt;p&gt;Does this mean I think you shouldn't buy an Instant Pot? Honestly, no. I love the thing, and it really does making traditionally long cook time meals quick and easy. It does a lot of things really really well. It's just not a slow cooker. It really, really isn't.&lt;/p&gt;</content><category term="Food"></category><category term="instantpot"></category><category term="food"></category><category term="crockpot"></category><category term="slowcooker"></category><category term="pressurecooker"></category></entry><entry><title>Food!</title><link href="https://cannoncontraption.github.io/food.html" rel="alternate"></link><published>2019-05-14T00:00:00-04:00</published><updated>2019-05-14T00:00:00-04:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2019-05-14:/food.html</id><summary type="html">&lt;p&gt;We eat every day. It seems obvious, but really think about that. Eating is part of the human experience. For nearly literally all of us.&lt;/p&gt;
+&lt;p&gt;With this in mind, I really love to cook. Sometimes there's nothing more satisfying than readying a new chili, making burritos, preparing a good steak …&lt;/p&gt;</summary><content type="html">&lt;p&gt;We eat every day. It seems obvious, but really think about that. Eating is part of the human experience. For nearly literally all of us.&lt;/p&gt;
+&lt;p&gt;With this in mind, I really love to cook. Sometimes there's nothing more satisfying than readying a new chili, making burritos, preparing a good steak dinner, experimenting with pasta, or even just preparing a unique salad. It's a huge world.&lt;/p&gt;
+&lt;h1&gt;This isn't the most intelligent part of this site.&lt;/h1&gt;
+&lt;p&gt;I'm not a cook. I'm not. I'd get all sorts of food in my keyboard, since I'd almost certainly set my workstation up in the kitchen if I ever became a cook. It's just how I work. That doesn't mean I don't love it, and it doesn't mean I'm not going to write about it, but I'd make a really poor professional chef. Algorithm-generated meals don't sound too appealing to me, and it's almost certainly one of the first things I would do to speed up production time.&lt;/p&gt;
+&lt;p&gt;With all of this said, don't expect professional level advice or insight, I'm just another guy who eats food every day writing about some notable instances of food that comes out really well, or really poorly. If this has you interested, go ahead and pull up the Food Blog window again, and take a look!&lt;/p&gt;
+&lt;p&gt;I will see you there, my fellow food-eating people!&lt;/p&gt;</content><category term="Food"></category><category term="intro"></category><category term="food"></category></entry><entry><title>Lisp: Recursive Glory!</title><link href="https://cannoncontraption.github.io/lisp-recursive-glory.html" rel="alternate"></link><published>2018-06-18T00:00:00-04:00</published><updated>2018-06-18T00:00:00-04:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2018-06-18:/lisp-recursive-glory.html</id><summary type="html">&lt;p&gt;Recently I've been toying a lot with the idea of doing more lisp programming to solve some of the tasks I generally would do with Python or BASH. Lisp often gets written off as old or weird, and while it is old and weird, it's certainly not past its usefulness …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently I've been toying a lot with the idea of doing more lisp programming to solve some of the tasks I generally would do with Python or BASH. Lisp often gets written off as old or weird, and while it is old and weird, it's certainly not past its usefulness. Here are a few of the advantages I've seen just from messing with it the past few months:&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h2&gt;
+Simplicity&lt;/h2&gt;
+&lt;p&gt;Probably the most obvious advantage of a language like Lisp is that it has few core constructs. To illustrate, here is the basic syntax of any Lisp statement:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;code&gt;
+(command argument argument (command2 argument))&amp;nbsp;&lt;/code&gt;&lt;br /&gt;
+&lt;br /&gt;
+So there's a few things in this which look odd to the experienced C-esque or BASH-esque familiar. First and foremost statements are all parenthetical. The very first character is a parenthesis. While this has earned the language the nickname "Lots of Inconvenient Superfluous Parentheses" in the past, it's also its core strength.&lt;br /&gt;
+&lt;br /&gt;
+Lisp got its name from this very unusual syntax. The language was originally an abbreviation of "LISt Processing". Upon closer examination, it becomes clear that everything in that statement above could be considered part of a list. Indeed, this is exactly how Lisp interprets it and is a core part of its simple nature.&lt;br /&gt;
+&lt;br /&gt;
+So with all that said, let's try and parse what's actually happening here. Just like in mathematics, we start with the inner set of parentheses. Inside those are the words 'command2 argument'. What happens here is that the Lisp interpreter will execute the function 'command2' with the argument 'argument'.&lt;br /&gt;
+&lt;br /&gt;
+The only other real language structure that you would probably need to be aware of is the single quote. Here's another example:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;code&gt;
+'("Joe" "Jill" "Jonathan" "Jacob" "Jenna")
+&lt;/code&gt;&lt;br /&gt;
+&lt;br /&gt;
+Yet again, quite simple looking. You'll notice first and foremost however, that we started with a string. If this worked like a normal list, that wouldn't work. Instead, what this is is a list of data. It is indeed possible to actually try and run this later (which is part of the power of lisp) but the single quote prevents any single element (be it a list or an atom- a single element of a list) from being evaluated. This means if you have a variable chocolate, and you wanted to pass the word chocolate to the function instead of the variable (similar to pass-by-reference if implemented correctly) you would run&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;code&gt;
+(command 'chocolate)&amp;nbsp;&lt;/code&gt;&lt;br /&gt;
+&lt;br /&gt;
+and instead of getting the value of chocolate, you would in fact get the word chocolate.&lt;br /&gt;
+&lt;br /&gt;
+That's it. Those are the two real main structures to keep in mind.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h2&gt;
+Recursive Glory&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://3.bp.blogspot.com/-_VXOnE5jk1s/Wxq7vECyPHI/AAAAAAAAeUY/zgzIPnW-AYY-JOvBtolwSOYHb_P_GrNRgCK4BGAYYCw/s1600/Screenshot_20180608_132409.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://3.bp.blogspot.com/-_VXOnE5jk1s/Wxq7vECyPHI/AAAAAAAAeUY/zgzIPnW-AYY-JOvBtolwSOYHb_P_GrNRgCK4BGAYYCw/s400/Screenshot_20180608_132409.png" /&gt;&lt;/a&gt;Part of the draw of Lisp is the simplicity I mentioned above. While this is nice from a structure perspective, Lisp is also really useful because it plays well with recursion. In fact, a well written Lisp program may never need to explicitly declare a variable. Not once. Let's take the example of summing the values 1 to n. Mathematically, you could write this as the equation you see to the left of this text (Unfortunately, I couldn't get it to format correctly inline). In lisp, this is quite simple to express:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;code&gt;
+(defun sum (n)&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;nbsp;(if (= n 1)&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;nbsp; 1&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;nbsp; (+ n (sum (- n 1)))))&amp;nbsp;&lt;/code&gt;&lt;br /&gt;
+&lt;br /&gt;
+For the curious, the syntax to set a variable is (setq varname value) and if you want to define a global parameter, (defparameter varname value). You'll note neither is used here at all. &lt;br /&gt;
+&lt;br /&gt;
+So here's what's happening:&lt;br /&gt;
+&lt;br /&gt;
+First you hand it n. Let's say that's 3 in this case. We know, 3+2+1 = 6 so this is easy to test.&lt;br /&gt;
+&lt;br /&gt;
+Next, it checks to see if n is 1. If so, it just simply evaluates 1. The last thing you evaluate is the return of your function, and because of this we return 1.&lt;br /&gt;
+&lt;br /&gt;
+If it's not 1, it adds n to whatever (sum (- n 1)) is.&lt;br /&gt;
+&lt;br /&gt;
+In this case, the computer will actually end up adding things like this:&lt;br /&gt;
+((1) + 2) + 3 = 6&lt;br /&gt;
+I've put parentheses around each run of the function. If we were to write this in lisp's preferred syntax:&lt;br /&gt;
+(+ (+ 1 2) 3) = 6&lt;br /&gt;
+&lt;br /&gt;
+You can see that this syntax perfectly represents our order of operations for any n calculations. For those notationally inclined who don't already know, this is commonly called prefix notation. It is also sometimes called "Polish notation" because the first person to popularly theorize its usefulness was Polish. Those who have used HP calculators will likely know about Reverse Polish Notation (RPN), or postfix, which is simply the same notation with the operator at the end.&lt;br /&gt;
+&lt;br /&gt;
+Let's take one more look at this function, this time in plain old C for those who know that best:&lt;br /&gt;
+&lt;br /&gt;
+&lt;code&gt;
+int sum(&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+    int n)&lt;br /&gt;
+{&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+  if(n == 1)&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+    return 1;&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+  return n+sum(n-1);&lt;br /&gt;
+}&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&lt;br /&gt;&lt;/code&gt;
+As you are probably aware, we really don't code C this way much at all. The more common way to do something like this is a for loop:&lt;br /&gt;
+&lt;br /&gt;
+&lt;code&gt;
+int sum(&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+    int n)&lt;br /&gt;
+{&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+  int sum = 0;&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+  for(&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+      int i = 1;&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+      i &amp;lt;= n;&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+      i++)&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+    {&lt;br /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+      sum += i;&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+    }&lt;br /&gt;&amp;nbsp;&amp;nbsp;
+  return sum;&lt;br /&gt;
+}&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&lt;br /&gt;
+&lt;/code&gt;
+&lt;br /&gt;
+Which while better formatted in C than the recursive solution, and certainly more common, this solution takes a lot more code to write. It also requires the use of more structures. Furthermore, in both of these C programs we are forced to declare what we are returning. This means declaring a local variable as well.&lt;br /&gt;
+&lt;br /&gt;
+And one final note on the syntax here, let's imagine this code without the line breaks. It should become clear very quickly which one is easier to read and understand in this format:&lt;br /&gt;
+&lt;br /&gt;
+&lt;code&gt;
+(defun sum (n) (if (= n 1) 1 (+ n (sum (- n 1)))))&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&lt;/code&gt;&lt;code&gt;int sum(int n){if(n == 1)return 1;return n+sum(n-1);}&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;int sum(int n){int sum = 0;for(int i = 1;i &amp;lt;= n;i++){sum += i;}return sum;}&lt;/code&gt;&lt;br /&gt;
+&lt;br /&gt;
+I don't think anyone will argue this is the right way to code, but nonetheless, based on character count alone the Lisp version wins. Looking closer though, you can clearly see what the Lisp program is doing at any point along the line about as well as you might be able to with a mathematical formula. It's well compartmentalized, and all you have to see to know what executes first is where the parentheses are.&lt;br /&gt;
+&lt;br /&gt;
+In the C programs (especially the second one) inference of logical notation can't take you very far, in fact you have to know the syntax of C and you also have to be knowledgeable in its specific assignment-and-addition operators to read it. In the Lisp version, however, all you really need to know is that defun is define a function, and it takes the argument n, and an if statement is the conditional, what to do if true, then what to do if false. Everything else virtually explains itself.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h2&gt;
+Conclusion&lt;/h2&gt;
+&lt;p&gt;In a world where programmer time is more expensive than CPU time, Lisp makes sense.&lt;br /&gt;
+&lt;br /&gt;
+It's clear that I like Lisp. It's a capable language, which lends itself well to reading and writing programs logically. It doesn't exactly seem easy at first, but after you understand the basic structure once, it's not a far leap to begin extending the language - in the language. Even C and C++, known for their flexibility, have to resort to a messy preprocessor syntax to really be extended in any way at all, meaningful or otherwise. Lisp allows for one program structure to rule them all.&lt;br /&gt;
+&lt;br /&gt;
+So here's a question that I get asked a fair amount when I start talking about Lisp:&lt;br /&gt;
+'Why oh why would you ever want to use it?'&lt;br /&gt;
+&lt;br /&gt;
+My answer is usually,&lt;br /&gt;
+'It's clean code for any purpose. You can write the language in the language; you can write really complex stuff in ten minutes, and explain it to someone who's never seen code in five.'&lt;br /&gt;
+&lt;br /&gt;
+While that doesn't justify things or go into detail like this post does, it usually will get someone to do one of two things:&lt;br /&gt;
+&lt;br /&gt;
+&lt;code&gt;(or (call me crazy) (try it for themselves))&lt;/code&gt;&lt;/p&gt;</content><category term="Tech"></category><category term="code"></category><category term="style"></category><category term="lisp"></category><category term="tech"></category></entry><entry><title>Code Style and How to Write for Reading</title><link href="https://cannoncontraption.github.io/code-style-and-how-to-write-for-reading.html" rel="alternate"></link><published>2017-09-03T00:00:00-04:00</published><updated>2017-09-03T00:00:00-04:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2017-09-03:/code-style-and-how-to-write-for-reading.html</id><summary type="html">&lt;p&gt;Recently I was browsing through YouTube, and it kept suggesting this video about programming mistakes, with one of those paper-cutout like CG thumbnails. My first impression was that it was one of those "let me show you how to code" videos, like so many of YouTube's suggestions to me are …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Recently I was browsing through YouTube, and it kept suggesting this video about programming mistakes, with one of those paper-cutout like CG thumbnails. My first impression was that it was one of those "let me show you how to code" videos, like so many of YouTube's suggestions to me are. The fact of the matter is, while YouTube tried to get me to watch beginning coder videos, like normal, they cycled through my feed pretty quickly, this one stuck around for a few days.&lt;br /&gt;
+&lt;br /&gt;
+I don't pretend to know the algorithm YouTube uses to display this stuff, but somehow it figured I would like that video. Intrigued, I clicked it and braced myself for what would surely be someone explaining why using single letters as variable names is bad.&lt;br /&gt;
+&lt;br /&gt;
+That's not what it was.&lt;br /&gt;
+&lt;br /&gt;
+One of the odd things I like to watch there is lectures. It doesn't have to be computer science related, but I like watching people talk about something they're passionate about. Every time I learn something new about the subject which I hadn't previously even thought about.&lt;br /&gt;
+&lt;br /&gt;
+This video, despite it's code-school thumbnail, was one of those videos.&lt;br /&gt;
+&lt;br /&gt;
+Up until I watched it, I was a hard line fan of Stroustrup indentation. Functions like this one below were nice to me, I was used to them, and they were rather standard.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+int do_a_thing(int this, string that, bool the_other_thing){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;if(the_other_thing){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;cout&amp;lt;&amp;lt;this&amp;lt;&amp;lt;endl;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;else{&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;cout&amp;lt;&amp;lt;that&amp;lt;&amp;lt;endl;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;for(int i = 0; i&amp;lt;this; i++){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;do_something_with_i(i, this, that);&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;return 0;&lt;br /&gt;
+}&lt;br /&gt;
+&lt;/code&gt;&lt;/section&gt;
+&lt;p&gt;&lt;br /&gt;
+I'm not going to get too deep into the topics in the video, I'll link to it at the end, but my takeaway was basically a whole bunch of stuff I had figured out before, but not really internalized. Here's the shortlist:
+&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Comments get out of date fast, often conveying wrong information (In the words of the presenter, &lt;q&gt;comments are lies waiting to happen&lt;/q&gt;)&lt;/li&gt;
+&lt;li&gt;It's OK to put a line break in an argument list&lt;/li&gt;
+&lt;li&gt;Variable names should be human-readable, not Java-human-readable or abbreviated to the point of meaninglessness&lt;ul&gt;
+&lt;li&gt;This means no networkedAntiTheftVisualRecorder, just use securityCamera&lt;/li&gt;
+&lt;li&gt;Something out of my code to this effect: menubhoverout is bad, menuButtonMouseLeave is better&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Layout matters, and consitent predictable layout makes for readable, debuggable, sustainable code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;These aren't exactly the points that were made, but again, not trying to repeat what was in the video in its entirety here.&lt;br /&gt;
+&lt;br /&gt;
+This prompted me to look at my largest, and arguably most worked on free time project, the FSU CS Club site. I've discussed a little about the site in my first post, and here I'm going to show the change in code style since I watched the video.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+function movewindow(currentwindow, increasex, increasey){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;//client window bounaries: get the current dimensions of a window&lt;/i&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;var&lt;/b&gt; cwbounds = currentwindow.toplevel.getBoundingClientRect();&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;//screen boundaries: get the current dimensions of the screen&lt;/i&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;var&lt;/b&gt; scbounds = document.body.getBoundingClientRect();&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;//new X position (from top left corner)&lt;/i&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;var&lt;/b&gt; newx = cwbounds.left + increasex;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;//new Y position (from top left corner)&lt;/i&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;var&lt;/b&gt; newy = cwbounds.top + increasey;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;//now we make sure we're not running off the screen in the horizontal direction&lt;/i&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;if&lt;/b&gt;(newx&amp;gt;0 &amp;amp;&amp;amp; cwbounds.right+increasex &amp;lt; scbounds.right){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentwindow.toplevel.style.left = newx + "px";&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;//and try to make sure we don't run off the screen in the vertical direction&lt;/i&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;i&gt;//though the code for the bottom doesn't work right, not sure why.&lt;/i&gt;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;if&lt;/b&gt;(newy&amp;gt;0 &amp;amp;&amp;amp; cwbounds.bottom + increasey &amp;lt; scbounds.bottom){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentwindow.toplevel.style.top = newy + "px";&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+}
+&lt;/code&gt;&lt;/section&gt;
+&lt;p&gt;Note that most of these comments are obvious, and a number of them would be with better variable names. Also note that the code is largely horizontal, and can make for some long lines.&lt;br /&gt;
+&lt;br /&gt;
+Now the new code:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+&lt;b&gt;function&lt;/b&gt;&amp;nbsp;movewindow(&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentwindow,&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;increasex,&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;increasey)&lt;br /&gt;
+{&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;var&lt;/b&gt;&amp;nbsp;currentWindowBounds&amp;nbsp;=&amp;nbsp;currentwindow.toplevel.getBoundingClientRect();&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;var&lt;/b&gt;&amp;nbsp;screenBounds&amp;nbsp;=&amp;nbsp;document.body.getBoundingClientRect();&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;var&lt;/b&gt;&amp;nbsp;newx&amp;nbsp;=&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentWindowBounds.left&amp;nbsp;+&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;increasex;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;var&lt;/b&gt;&amp;nbsp;newy&amp;nbsp;=&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentWindowBounds.top&amp;nbsp;+&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;increasey;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;if&lt;/b&gt;(&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;newx&amp;gt;0&amp;nbsp;&amp;amp;&amp;amp;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentWindowBounds.right&amp;nbsp;+&amp;nbsp;increasex&amp;nbsp;&amp;lt;&amp;nbsp;screenBounds.right)&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentwindow.toplevel.style.left&amp;nbsp;=&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;newx&amp;nbsp;+&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"px";&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;b&gt;if&lt;/b&gt;(&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;newy&amp;gt;0&amp;nbsp;&amp;amp;&amp;amp;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentWindowBounds.bottom&amp;nbsp;+&amp;nbsp;increasey&amp;nbsp;&amp;lt;&amp;nbsp;screenBounds.bottom)&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;currentwindow.toplevel.style.top&amp;nbsp;=&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;newy&amp;nbsp;+&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;"px";&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+}&lt;br /&gt;
+
+&lt;/code&gt;&lt;/section&gt;&lt;/p&gt;
+&lt;p&gt;When trying to debug the second version of this otherwise identical code, it's much easier to find specific variables, troubleshoot problems, and even understand to an extent. Also note that as parts of this program expand, the general format is not broken, and horizontal scrolling is not an issue. Switching to this style virtually eliminated &amp;gt;80 character lines, making it readable alongside not one more document, but two more on my 1080p monitor. With the old style, some functions would become unreadable if they didn't have at least 2/3 of the screen to display their enormous lines on.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+And this comes to the final part of this post: why any of this matters.&lt;br /&gt;
+&lt;br /&gt;
+I've seen a lot of lectures where someone will recommend something only for it to turn out to not be very useful. There are plenty of people who use some K&amp;amp;R derived indentation scheme like I was, and to good effect, it's a solid style. This time, however, the change in something as trivial as style has made the code arguably neater and easier to not only read, but expand upon down the line without breaking the readability of the code.&lt;br /&gt;
+&lt;br /&gt;
+I've been using GNU Emacs for my coding of late, and I do want to mention that it makes all of this really easy. A lot of my code had bad indentation, or hadn't been changed when a new level of code was inserted above another existing level, and it made for some trouble. When formatting all of this, if a mistake crops up, Emacs is intelligent enough that simply selecting the region where things went wrong and typing &lt;code&gt;C-M-\&lt;/code&gt; will solve indentation problems, and even go so far as to place the braces on the correct indentation level to separate code from parameter lists properly. Emacs will also let you align arguments to a function right at the end of the function name, where the list would run horizontally otherwise in Stroustrup style.&lt;br /&gt;
+&lt;br /&gt;
+Here's the original code sample in the new format:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+int&amp;nbsp;do_a_thing(&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;int&amp;nbsp;this,&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;string&amp;nbsp;that,&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;bool&amp;nbsp;the_other_thing)&lt;br /&gt;
+{&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;if(the_other_thing)&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;cout&amp;lt;&amp;lt;this&amp;amp;lt&amp;lt;endl;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;else&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;cout&amp;lt;&amp;lt;that&amp;lt;&amp;lt;endl;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;for(&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;int&amp;nbsp;countsUpToThis&amp;nbsp;=&amp;nbsp;0;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;countsUpToThis&amp;lt;this;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;countsUpToThis++)&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;do_something_with_i(&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;countsUpToThis,&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;this,&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;that);&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;}&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;return&amp;nbsp;0;&lt;br /&gt;
+}&lt;br /&gt;
+&lt;/code&gt;&lt;/section&gt;&lt;/p&gt;
+&lt;p&gt;Much neater, right?&lt;br /&gt;
+&lt;br /&gt;
+&lt;a href="https://youtu.be/ytJnSttKL6A"&gt;Original lecture video (Edit: Appears to be broken?)&lt;/a&gt;&lt;/p&gt;</content><category term="Tech"></category><category term="code"></category><category term="style"></category><category term="programming"></category></entry><entry><title>ANSI Color Block Graphics</title><link href="https://cannoncontraption.github.io/ansi-color-block-graphics.html" rel="alternate"></link><published>2017-06-22T00:00:00-04:00</published><updated>2017-06-22T00:00:00-04:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2017-06-22:/ansi-color-block-graphics.html</id><summary type="html">&lt;p&gt;Before reading, please note that anything surrounded by 'm/ and /' is to be interpreted as regex. If you are not familiar with regex, or REGular EXpressions, please&amp;nbsp; visit &lt;a href="https://www.codeproject.com/Articles/939/An-Introduction-to-Regular-Expressions"&gt;this CodeProject page&lt;/a&gt;. If you know a little, but don't know the syntax I'm using, visit &lt;a href="http://perldoc.perl.org/perlre.html"&gt;the PerlDoc page for regex&lt;/a&gt;.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;
+Introduction …&lt;/h3&gt;</summary><content type="html">&lt;p&gt;Before reading, please note that anything surrounded by 'm/ and /' is to be interpreted as regex. If you are not familiar with regex, or REGular EXpressions, please&amp;nbsp; visit &lt;a href="https://www.codeproject.com/Articles/939/An-Introduction-to-Regular-Expressions"&gt;this CodeProject page&lt;/a&gt;. If you know a little, but don't know the syntax I'm using, visit &lt;a href="http://perldoc.perl.org/perlre.html"&gt;the PerlDoc page for regex&lt;/a&gt;.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;
+Introduction&lt;/h3&gt;
+&lt;p&gt;For those who know how the world of sh and POSIX-like systems works, the idea of using escapes to color text is probably a very familiar one. Using that to create graphics, however, may not be so familiar.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;
+The ANSI Escape(s) &lt;/h3&gt;
+&lt;p&gt;In my post on how to make BASH prompt you with return and git information, I used the 'm/\033[7;#m/' sequence to turn the background various colors. This works for the most part, but it caused problems during my testing when trying to overlay text. Because of this, I started using a slightly different set of color codes. In the case of text colors, the 'm/\033[3#m/' sequence is how the color is set. In this case the 'm/3#/' portion of that sequence is important. Numbers in the 30's from 30-37 indicate colors. This is what is called "foreground colors".&lt;br /&gt;
+&lt;br /&gt;
+To use foreground colors to color a background, one needs only change our 'm/\033[3#m/' pattern to 'm/\033[7;3#m/', adding a 7; before the color code. What this does is it enables a "reverse video" mode. This means that colors are kept at regular intensity (so no 1; prefix, we have a 7; there) and foreground colors populate the background and vice-versa.&lt;br /&gt;
+&lt;br /&gt;
+The other method of coloring the background is to change the color sequence entirely. Where in the last example, the color codes have all been 'm/3#/', if we swap this pattern for 'm/4#/' where the number in question is the same set of values as the 'm/3#/' pattern, we end up with background colors changing. This has the benefit of allowing the terminal emulator to judge which colors are appropriate for the foreground without setting them, so if you have a black background terminal and set a black character, the text on top will still be visible. If the reverse-video modifier is used, the text takes the background color and therefore is invisible.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;
+Escaping the Graphics&lt;/h3&gt;
+&lt;p&gt;So far what I've been talking about has been about color escape sequences, and that's nothing new here. Where things get interesting is when you apply these sequences to try and make graphics.&lt;br /&gt;
+&lt;br /&gt;
+I have been working on a small text adventure game. It has been acting as a passtime and a time waster at that, and it may not even ever be finished. However, I didn't want to include any graphics libraries of any sort during the creation of the game. This means that, since I'm using my language of choice, C++, there is no sort of imagery whatsoever without color escapes or something similar. Here is where the interesting bits are.&lt;br /&gt;
+&lt;br /&gt;
+If you assume that wherever the program will be run, it will be run in a POSIX-like environment such as Linux (the only OS any of my desktops or laptops run), MacOS, or Cygwin, you can assume that these escapes will work. In order to make imagery and make the game more interesting, all one needs do is set the color escapes, and type a space for each character they want that color. For example, if I wanted to print a small French flag, I could do so with the following code:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+\033[41m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[47m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[44m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[m\n&lt;br /&gt;
+\033[41m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[47m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[44m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[m\n&lt;br /&gt;
+\033[41m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[47m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[44m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[m\n&lt;br /&gt;
+&lt;/code&gt;&lt;br /&gt;
+&lt;/section&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+All that I would need to do from here to put this in my program is remove the line breaks (which I added to illustrate the pattern) and then paste this sequence into a cout&amp;lt;&amp;lt; line. The result would look something like this:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+#include&lt;iostream&gt;&lt;br /&gt;
+int main(){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;std::cout&amp;lt;&amp;lt;"\033[41m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[47m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[44m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[m\n\033[41m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[47m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[44m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[m\n\033[41m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[47m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[44m&amp;nbsp;&amp;nbsp;&amp;nbsp;\033[m\n";&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;return 0;&lt;br /&gt;
+}
+&lt;/iostream&gt;&lt;/code&gt;
+&lt;/section&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+While this looks ugly from a programmer's perspective, and probably would be much cleaner (not to mention better code) if instead of one cout I had used three, one per line, and instead of using \n to break the line I had used endl, but for the sake of my own sanity, doing that over twenty or more lines seemed impractical, and so I used the method I have so far illustrated.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h3&gt;
+How to Save your Sanity in the Process&lt;/h3&gt;
+&lt;p&gt;That aside, coding large graphics in this way is tedious. When the end goal is to create a complicated image or graphic show up on screen, inputting escapes by hand gets old fast.&lt;br /&gt;
+&lt;br /&gt;
+In my case, after less than ten seconds of thought, I got to work developing a small Python script which would replace individual characters with colored spaces. My first design was to simply make something that would replace a single character (g for green, for example) with the appropriate escape code and a space. Immediately, I knew this was the wrong approach. Assuming that the same color is repeated more than once, the characters required to reissue the escape for every repeated space would be massive, and pasting large amounts of program output into a document can sometimes cause issues with text editors which cannot handle long lines. While this was a design issue with the easiest solution, I knew of a better way.&lt;br /&gt;
+&lt;br /&gt;
+My second and final design checks for repeated characters by storing whatever the last used color escape was, and only outputting a new one if the current and previous escapes did not match. This means that if I were to input a line of black characters, it would issue the black color, fill the line with spaces, and move on until it hits a different color.&lt;br /&gt;
+&lt;br /&gt;
+Here is a pattern I am using in the game I mentioned:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+rrrrmmmmrrrrmmmmrrrrmmmmrrrrmmmmrrrrmmmmrrrrmmmmrrrrmmmmrrrrmmmmrrrrmmmmrrrrmmmm&lt;br /&gt;
+mmmmrrrrmmmmrrrrmmmmrrrrlllllllllllllllllllllbbbbbbbbbbbmmmmrrrrmmmmrrrrmmmmrrrr&lt;br /&gt;
+rrrrmmmmrrrlllmmrrrrmmmmllllllllllllllllllllbbbbbbbbbbbbrrrrmmmmrrrrmlllrrrrmmmm&lt;br /&gt;
+mmmmrrrrlywwwwllmmmmrrrrlllllllllllllllllllbbbbbbbbbbbbbmmmmrrrrmmlywwwwllmmrrrr&lt;br /&gt;
+rrrrmmmlywwwwwwllrrrmmmmllllllllllllllllllbbbbbbbbbbbbbbrrrrmmmmrlywwwwwwllrmmmm&lt;br /&gt;
+mmmmrrrlywwwwwwllmmmrrrrlllllllllllllllllbbbbbbbbbbbbbbbmmmmrrrrmlywwwwwwllmrrrr&lt;br /&gt;
+rrrrmmmllllllllllrrrmmmmllllllllllllllllbbbbbbbbbbbbbbbbrrrrmmmmrllllllllllrmmmm&lt;br /&gt;
+mmmmrrrlywwwwwwllmmmrrrrlllllllllllllllbbbbbbbbbbbbbbbbbmmmmrrrrmlywwwwwwllmrrrr&lt;br /&gt;
+rrrrmmmmlywwwwllrrrrmmmmllllllllllllllbbbbbbbbbbbbbbbbbbrrrrmmmmrrlywwwwllrrmmmm&lt;br /&gt;
+mmmmrrrrmlywwllrmmmmrrrrlllllllllllllbbbbbbbbbbbbbbbbbbbmmmmrrrrmmmlywwllmmmrrrr&lt;br /&gt;
+rrrrmmmmrrlyllmmrrrrmmmmllllllllllllbbbbbbbbbbbbbbbbbbbbrrrrmmmmrrrrlyllrrrrmmmm&lt;br /&gt;
+mmmmrrrrmmmllrrrmmmmrrrrlllllllllllbbbbbbbbbbbbbbbbbbbbbmmmmrrrrmmmmrllrmmmmrrrr&lt;br /&gt;
+rrrrmmmmrrrrmmmmrrrrmmmmllllllllllbbbbbbbbbbbbbbbbbbbbbbrrrrmmmmrrrrmmmmrrrrmmmm&lt;br /&gt;
+mmmmrrrrmmmmrrrrmmmmrrrrlllllllllbbbbbbbbbbbbbbbbbbbbbbbmmmmrrrrmmmmrrrrmmmmrrrr&lt;br /&gt;
+rrrrmmmmrrrrmmmmrrrrmmmmllllllllbbbbbbbbbbbbbbbbbbbbbbbbrrrrmmmmrrrrmmmmrrrrmmmm&lt;br /&gt;
+mmmmrrrrmmmmrrrrmmmmrrrrlllllllbbbbbbbbbbbbbbbbbbbbbbbbbmmmmrrrrmmmmrrrrmmmmrrrr&lt;br /&gt;
+rrrrmmmmrrrrmmmmrrrrmmmmllllllbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrmmmmrrrrmmmmrrrrmmmm&lt;br /&gt;
+mmmmrrrrmmmmrrrrmmmmrrrrlllllbbbbbbbbbbbbbbbbbbbbbbbbbbbmmmmrrrrmmmmrrrrmmmmrrrr&lt;br /&gt;
+rrrrmmmmrrrrmmmmrrrrmmmmllllbbbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrmmmmrrrrmmmmrrrrmmmm&lt;br /&gt;
+mmmmrrrrmmmmrrrrmmmmrrrrlllbbbbbbbbbbbbbbbbbbbbbbbbbbbbbmmmmrrrrmmmmrrrrmmmmrrrr&lt;br /&gt;
+rrrrmmmmrrrrmmmmrrrrmmmmllbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrmmmmrrrrmmmmrrrrmmmm&lt;br /&gt;
+mmmmrrrrmmmmrrrrmmmmrrrrlbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbmmmmrrrrmmmmrrrrmmmmrrrr&lt;br /&gt;
+rrrrmmmmrrrrmmmmrrrrmmmmbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbrrrrmmmmrrrrmmmmrrrrmmmm&lt;br /&gt;
+mmmmrrrrmmmmrrrrmmmmrrrrbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbmmmmrrrrmmmmrrrrmmmmrrrr&lt;br /&gt;
+&lt;/code&gt;&lt;/section&gt;
+&lt;p&gt;&lt;br /&gt;
+Even in pattern form, it is clear that there are distinct patterns in the text. In order to turn this into escape sequences, I used the following Python script:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+#!/usr/bin/env python3&lt;br /&gt;
+&lt;br /&gt;
+import sys;&lt;br /&gt;
+"""&lt;br /&gt;
+l = black char(30)&lt;br /&gt;
+r = red char (31)&lt;br /&gt;
+g = green char (32)&lt;br /&gt;
+y = yello char (33)&lt;br /&gt;
+b = blue char (34)&lt;br /&gt;
+m = magenta char (35)&lt;br /&gt;
+c = cyan char (36)&lt;br /&gt;
+w = white char (37)&lt;br /&gt;
+"""&lt;br /&gt;
+filename = open(sys.argv[1], "r");&lt;br /&gt;
+lastcode = 30;&lt;br /&gt;
+code = 30;&lt;br /&gt;
+for line in filename:&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;for cchar in line:&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;lastcode = code;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;if cchar == '\n':&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;sys.stdout.write("\\n");&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;continue;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;elif cchar == 'l': code = 40;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;elif cchar == 'r': code = 41;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;elif cchar == 'g': code = 42;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;elif cchar == 'y': code = 43;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;elif cchar == 'b': code = 44;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;elif cchar == 'm': code = 45;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;elif cchar == 'c': code = 46;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;elif cchar == 'w': code = 47;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;if code == lastcode:&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;sys.stdout.write(" ");&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;else:&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;sys.stdout.write("\\033["+str(code)+"m ");&lt;br /&gt;
+sys.stdout.write("\\033[m\n");&lt;br /&gt;
+&lt;/code&gt;&lt;/section&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+This then prints to stdout (the terminal) the exact string I should paste into my program in order to show the graphic I patterned above.&lt;br /&gt;
+&lt;br /&gt;
+Let's say I wanted to test this first, just to see what it would look like in color. If we name the above color map doorway.cmap, we can run a single line in Bash to print it to the screen:&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;
+echo -ne "`./colormap.py doorway.cmap`"
+&lt;/code&gt;&lt;/section&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+This is the result of that image map:&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style="text-align: center;"&gt;&lt;a href="https://1.bp.blogspot.com/-YFQ3zjuYkq8/WUvjtlO2NAI/AAAAAAAAXKU/UFvrYn-xj2oYDxM_bKGQS6PmerMSKDkyACLcBGAs/s1600/Screenshot%2Bfrom%2B2017-06-22%2B11-35-01.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"&gt;&lt;img border="0" data-original-height="442" data-original-width="654" height="432" src="https://1.bp.blogspot.com/-YFQ3zjuYkq8/WUvjtlO2NAI/AAAAAAAAXKU/UFvrYn-xj2oYDxM_bKGQS6PmerMSKDkyACLcBGAs/s640/Screenshot%2Bfrom%2B2017-06-22%2B11-35-01.png" width="640" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="tr-caption" style="text-align: center;"&gt;The resulting cmap, as printed by echo on an 80x25 character terminal&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;&lt;/p&gt;
+&lt;p&gt;The result is color graphics. Escape sequences can't do a full color palette, having only seven choices including black and white, and my monospace font doesn't have half-height characters to split widths and heights to gain more resolution. So, given that background colors and spaces are the only tools used, images like this are possible using this procedure.&lt;br /&gt;
+&lt;br /&gt;
+In the end, the result is a graphics-enriched text based game, for which I can generate graphics easily from a text editor. My first few images I first drew in a small Gimp canvas, but before too long I realized that it was almost as quick to forego gimp entirely, and since Gimp can't zoom in one dimension and not the other, the resulting images there always looked half the height of the actual end product.&lt;br /&gt;
+&lt;br /&gt;
+And that's how you make color graphics using ANSI escape sequences and spaces.&lt;/p&gt;</content><category term="Tech"></category><category term="color"></category><category term="ansi"></category><category term="tech"></category></entry><entry><title>Web Programming a Desktop with Javascript</title><link href="https://cannoncontraption.github.io/web-programming-a-desktop-with-javascript.html" rel="alternate"></link><published>2017-02-25T00:00:00-05:00</published><updated>2017-02-25T00:00:00-05:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2017-02-25:/web-programming-a-desktop-with-javascript.html</id><summary type="html">&lt;p&gt;One of the things which most people in web programming have to deal with is the problem of interactive content. The oldest methods for solving this were through the use of Java applets, and Flash content. There are other ways to accomplish this too, with software such as QuickTime, Real …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the things which most people in web programming have to deal with is the problem of interactive content. The oldest methods for solving this were through the use of Java applets, and Flash content. There are other ways to accomplish this too, with software such as QuickTime, Real Player, VLC Media Player, and many more. In today's world, however, the use of most of these is an out-of-date concept. Most modern web applications are written using the features of HTML5, which fills the need to have built in media support, JavaScript, which fills the space of dynamic content handling, CSS, which handles layout and style separate from HTML, allowing for modular, even animated styling support, and AJAX, which is a small subset of JavaScript which is useful for fetching and sending data without reloading a page, filling the need for single-page dynamically loaded content.&lt;/p&gt;
+&lt;h2&gt;Why I care&lt;/h2&gt;
+&lt;p&gt;
+Last October, I joined the Framingham State Computer Science Club. It is a decision which I am very glad I made, for one simple reason. I was sitting at a table with three excellent individuals, and we decided we should make a website for the club. This is where my JS adventure began.
+&lt;/p&gt;
+&lt;p&gt;
+Our first several drafts of what the site should be generally boiled down to conveying information to club members on meeting times, discussion topics, and other useful information. It was always meant to be something which would be useful first and foremost to club members, and a point of interest for those who might join. Eventually, we settled on the idea of making the entire site work like a large blog site, where members of the club can post interesting posts of the same nature as this blog. After running through several interface ideas, the one that stuck the best is writing a desktop-paradigm interface in a browser, using the new technologies I mentioned in the introduction.
+&lt;/p&gt;
+&lt;h2&gt;Assembling the Tools&lt;/h2&gt;
+&lt;p&gt;
+One of my first instincts when writing an interface of this sort is to take an objective look at exactly what needs to be done. My first thoughts in these matters were that we needed to work first on which toolkit we would use. I looked at JQuery first, because I had used it for some projects before. The first thing that hit me was version 3 in fact tried hardest to be compatible with Internet Explorer, and had a note about compatibility with more modern browsers at something along the lines of latest -1 version. This was not acceptable at all to me, because none of the people I know who would be using this site would be using IE. While it was likely that the features would work on many older browsers, JQuery didn't seem to actually add much value to a project like this, and was a relatively large JavaScript library, so I quickly moved away from that.
+&lt;/p&gt;
+&lt;p&gt;
+I mentioned in my last post a &lt;a href=http://kroche.io&gt;friend of mine&lt;/a&gt;, whom I actually met because of this project. He directed me to another person's personal site, that of &lt;a href=http://samy.pl&gt;Samy Kamkar&lt;/a&gt;, and mentioned that he had used extjs. Upon closer examination, I found that he had used some clever tricks to stop the casual observer from finding his source code, labeling it as a challenge for those who really want to learn web. While I respect this, I would generally prefer to go into a project with a new library with an example, and this site wasn't going to make that easy.
+&lt;/p&gt;
+&lt;p&gt;
+This brought me to the conclusion that I really should just learn enough JavaScript to implement this without any third-party libraries. That way, the code will run quicker, smoother, and without extra overhead from functions and programming I would not be using. As to that last point, the library is not any smaller than what it would probably be with someone else's library simply because I added so many comments to the code in order to facilitate its repurposing and reuse. Unlike Samy Kamkar, I would like it to be easy for some casual onlooker to fire up the CS club page and see how it works.
+&lt;/p&gt;
+&lt;h2&gt;Window Management in a Browser&lt;/h2&gt;
+&lt;p&gt;
+The first challenge I had to face was how exactly I would get windows to exist in an HTML space. It was clear that it was possible, &lt;a href=http://samy.pl&gt;others had done it before&lt;/a&gt;. I had already assembled a taskbar and rudimentary start menu, those were simple. All that took was knowledge of CSS3 transitions and the z-index property. After much thought on the matter, I started investigating how JavaScript handles mouse positioning. I found that it deals in coordinates relative to the top left corner of the page, much like most graphics libraries and engines. This made it simple. All I had to do was record where I clicked the mouse down, where I released the mouse button, and then take the difference of the two in order to figure out how much to move the window. My first prototype window toolkit used this method. The biggest problem with this was that I couldn't see where I was moving the window to while I was doing it. I could see where I started, and where the window ended up, but no in-between.
+&lt;/p&gt;
+&lt;p&gt;
+After much tweaking, I found that the best way to handle the issue of window placement while moving was to actually make the browser update the window on the onMouseMove event. This would mean that every time the browser registered the mouse moving, there would be some JavaScript code to execute. My first thought was that this would make the entire interface unbelievably slow, but that expectation has largely been overshadowed by the fact that I have tried this on several computers, including a Dell Inspiron 6000 from 2003, and none of them have had a problem with it so far. As it turns out mouse position polling does not take that much work to accomplish. After hacking away at it for a little while, I managed to get a system which would detect when the user was dragging the window, and update automatically to reflect this. Window management was mostly done after that, as it was a simple matter to implement the JavaScript code to add and remove HTML elements with no ID and simply track them through JavaScript. This proved to be a stable and surprisingly quick solution which is still in use now.
+&lt;/p&gt;
+&lt;h2&gt;Window Components and Layout&lt;/h2&gt;
+&lt;p&gt;
+Another challenge I faced early on, perhaps even earlier than getting windows to move, was how to lay out a window so it has the same components that everyone and their uncle recognize from using Windows. The main components that I would need to add were:
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Titlebar&lt;/li&gt;
+&lt;li&gt;Window title text&lt;/li&gt;
+&lt;li&gt;Window content area&lt;/li&gt;
+&lt;li&gt;Close button&lt;/li&gt;
+&lt;li&gt;(Time permitting) Minimize and Maximize buttons&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+I decided to stick to just implementing the close button at first, as the window manager would need to mature significantly before I could start working on the other parts.
+&lt;/p&gt;
+&lt;p&gt;
+The first design I had in mind was a master toplevel div, which would float in a &lt;code&gt;position:absolute;&lt;/code&gt; style and be the thing which would hold all of the components of the window. Each component would sit in this toplevel div, and would actually be what showed content. The toplevel itself would provide a border around the whole window.
+&lt;/p&gt;
+&lt;p&gt;
+That didn't work out quite like that. One of the oddities about HTML is how div elements work. You can nest div elements inside each other without trouble, but things become tricky as soon as you want one div to start before a nested div and end after it in vertical space. It simply doesn't work this way. What I ended up doing was I defined the height of the toplevel div to be about 22 pixels or so (I can't recall the exact value, but the code is public so the interested reader can &lt;a href="https://github.com/push-eax/fsu-csclub-site/blob/master/windowTools/windowTools.css"&gt;look it up&lt;/a&gt;), and then nesting all the child elements inside that div like I had intended. The toplevel served as the background for the titlebar, and I simply made the window content area show up white. Window buttons would show up on the right-hand side like in Windows and KDE (the desktop I use almost everywhere), and the title text would be centered in the window. The only parameter that would need to be specified when creating a window in terms of dimensions would be how wide the window should be, that way it can expand in height dynamically to fit the content and I don't have to worry about making the arithmetic work right even if fonts change depending on the browser and operating system. Being a Linux user, I care about this stuff as many of my friends and fellow classmates use a completely different font set than I even have access to. The only step after determining all this was to actually connect signals and make the window react predictably. Since this was a simple matter, and the details of how I did it are in the code itself, I will leave that out of this post.
+&lt;/p&gt;
+&lt;h2&gt;Determining How to Make Content in a Window&lt;/h2&gt;
+&lt;p&gt;
+Another interesting challenge was how I should then make the window available to end-developers to use. At the time I had (perhaps wisely) decided I wanted the windowing code to be a discrete component which could later be taken out of context and used in a different site, and I didn't want the task of actually populating windows to be too much of a task.
+&lt;/p&gt;
+&lt;p&gt;
+My first solution was to simply add a section where someone could take flat HTML code and then insert it straight into the window as if it were another page. This was a neat idea, and very good for testing windows, but it raised on serious concern for me: there would be no easy way to ensure consistency of interface across all windows in the same site without some serious talk between members of the project about how to class each element so it matched up with the master stylesheets.
+&lt;/p&gt;
+&lt;p&gt;
+The solution I finally settled on was to keep the option to insert custom code into a window as a way of populating it, but also to add the option to add a single element to a window. This was the dawn of the widgetTools toolkit, which was created as another discrete component to compliment the site and yet still be portable to places outside of the website project.
+&lt;/p&gt;
+&lt;h2&gt;Drawing Inspiration from GTK+&lt;/h2&gt;
+&lt;p&gt;
+A large part of how widgetTools works is drawn from my prior experience working with GTK+3 in Python, C, and C++. GTK+ is a wonderfully useful and complete widget toolkit which delivers on the promise of consistent look and feel across applications on a single platform. Unlike competing technology in Java, most notably Swing, it manages to look and feel right in a Linux environment, and in Windows both. I have seen screenshots of it also fitting in almost exactly like Apple's own toolkit in macOS, but I do not own a mac and so I can't corroborate this. The Achilles' Heel of this toolkit is complexity. In order to do some relatively simple things in GTK+, you need to have some knowledge of the data structures and functions that it uses in order to generate the content on the user's screen. While this is all really well documented, and easy to learn if you have the time to figure it out, it is quite complex. Further, while GTK+ has a web backend, it is not built to work like a website, instead it is built to work more like another form of remote desktop, allowing single-application access over a LAN or internet connection. While it does implement window management too, the simple fact of the matter is it wouldn't work for a situation like this because of its single-instance nature.
+&lt;/p&gt;
+&lt;p&gt;
+That being said, I did quite enjoy working with GTK+, and it showed me a lot about what GUI development is and why so many people find it difficult. Some of the things they use in GTK+ are out of date, or workarounds for old problems since solved, but for the most part there is a valid reason for everything they do in that toolkit, which is something I wanted to do myself with mine. So that was what I decided I would do. I had already largely been working with JavaScript in order to write windowTools, so I continued using a similar model for widgetTools. First and foremost, windowTools was written in such a way that it could insert a single HTML DOM object into a window, as a sort of toplevel widget space. For that purpose, I created a simple function to create an empty div in widgetTools called the widget space. The first step in using widgetTools would be to create such an element and set it as the toplevel for the window.
+&lt;/p&gt;
+&lt;h2&gt;Less Complicated Widget Layout&lt;/h2&gt;
+&lt;p&gt;
+One thing that I really like about GTK+ is that it covers almost every case. In the case of widgetTools, however, I can't do that so much. A lot of that comes from the fact that HTML has a limited set of primitives to choose from when it comes to creating new UI elements. It is enough to do some really impressive stuff, as anyone who has used Google in recent years can tell you, but it is still not quite as much freedom as the developers of GTK+ had. Nor does it require quite so much work to get a foundation laid. This meant that I could both relax a little because some elements were ready-made for me, but it also meant that I would likely end up doing nothing but wrapping existing elements into JavaScript, which could turn dull quickly.
+&lt;/p&gt;
+&lt;p&gt;
+The main idea behind the widgetTools setup is that in order to place an element, you need only tell the toolkit what its parent should be. This means that in order to get a horizontal split in a single window the developer would have to use a table or something similar, but it also means that if the window did not require fancy layouts like that it could be developed quite quickly without worrying about placement. While I think Gtk_Grid is a nice solution to the problem of layout, it is overkill to the nth degree here, and so it would not be useful. This means that the syntax for creating and positioning a window element could simply be &lt;code&gt;makeButton(widgetSpace, "button", "this is a test button");&lt;/code&gt;.  That line, if run in widgetTools, would create a standard button (hence the "button" argument) which would automatically be placed in the toplevel widgetSpace below any existing elements (or beside them if there's no block element and the window is wide enough). This system returns the HTML DOM element as a JS object for each item it creates. If, for example, we wanted to put the button in a table data (td), all we would need to do is change the widgetSpace argument to some other object we have created. Assuming our table data is named tdtest, that would make the code to insert a button there &lt;code&gt;makeButton(tdtest, "button", "this is a test button");&lt;/code&gt;. This means that in order to determine layout, all you need know is where you wish to place the element, and the browser's existing layout engine can take care of the rest.
+&lt;/p&gt;
+&lt;p&gt;
+What we end up after this is actually relatively powerful:&lt;div class="separator" style="clear: both; text-align: center; width:550px; overflow:hidden;"&gt;&lt;a href="https://1.bp.blogspot.com/-5fJLo13DD9o/WLIDbndceDI/AAAAAAAAWTM/OYnDFKPcUgoPZ8s4C_jCwrds4oByZ2REQCPcB/s1600/widgetToolkit.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em; width:500px; overflow:hidden;"&gt;&lt;img border="0" src="https://1.bp.blogspot.com/-5fJLo13DD9o/WLIDbndceDI/AAAAAAAAWTM/OYnDFKPcUgoPZ8s4C_jCwrds4oByZ2REQCPcB/s1600/widgetToolkit.png" /&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;/p&gt;
+&lt;h2&gt;Minimization, Window Resizing&lt;/h2&gt;
+&lt;p&gt;
+If I were to write this post in order of how I actually wrote the code, resizing the window would have come into play around the same time as the widget toolkit, but I feel like resize and minimize work closely with each other, so I decided to put them in the same section. Both were at least started after the widget toolkit, although resize was done well before much was done at all in the widget toolkit. For details on how it was put together, reading the commit list on &lt;a href="https://github.com/push-eax/fsu-csclub-site"&gt;the GitHub repository&lt;/a&gt; is where you should go. It is incredibly detailed, so if you're not up for a real commit swim, it may be worth skipping that and just taking my word for it.
+&lt;/p&gt;
+&lt;h3&gt;Resize&lt;/h3&gt;
+&lt;p&gt;
+In order to fix the problem of window resizing, I approached the problem from the same angle as moving the window. Take the dimensions of the window when you click the grab handle, then poll the mouse to see where it moves and change the window accordingly. This stops when the user lifts the button. The issue with this was that instead of moving X and Y coordinates alone, I was dealing with adding properties for height so that the user could resize in both directions. This turned out to be less of a problem. When I started working with the idea of resizing based on move commands, I did not know that JavaScript does not take all of the window dimensions into account. It takes the inner dimensions of the window, and the outer dimensions to a point. The trick was not only resizing the toplevel's width, but the height of the content div. Since the dimensions don't quite match between these because I initially wanted a window border, only to settle for the titlebar being a little wider than the window. After a lot of work, I found that if I take the inner dimensions of the window and then only deal with those, the outer dimensions follow suit. All I had to do was modify the style properties for width and height based on my knowledge of how the box model is handled and a little black magic with known pixel count values to make resize work properly, and not exponetially expand into infinity like before I had figured out the missing properties.
+&lt;/p&gt;
+&lt;h3&gt;Minimize&lt;/h3&gt;
+&lt;p&gt;
+Like I said, minimize and resize are similar. The first problem I had to solve was adding window buttons to the taskbar, but doing that (and even tracking their location) was quite easy. The real trick was figuring out how to hide the windows themselves. In the end, I decided to add some global variables to represent the position of the window at the start of minimization, and then just change its width to match the taskbar button, and set its X and Y coordinates to match the top corner of the button.
+&lt;/p&gt;
+&lt;p&gt;This was the right decision to make in the end largely because it made animating the minimization process really easy. All I had to do there is keep track of how long I wanted the animation to run, and then use that to set CSS transitions so that it would smoothly move from its original location to its spot in the taskbar. Since I had found out during the time when I was writing the move facilities that transitions mess with window moving, I had to make the transitions reset to 0s for all transition properties, but considering what it took to make other functions work, this was a simple enough task.
+&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;
+Making windowing in a browser was a fun project which, in the end, turned out to include some useful components which can simply be placed in other projects to use for basically any purpose. Anyone can view the current CS Club site on GitHub, &lt;a href="https://github.com/push-eax/fsu-csclub-site"&gt;simply follow this link and you're there!&lt;/a&gt;
+&lt;/p&gt;</content><category term="Tech"></category><category term="web"></category><category term="desktop"></category><category term="javascript"></category><category term="tech"></category></entry><entry><title>Making Bash Prompt you with Information</title><link href="https://cannoncontraption.github.io/making-bash-prompt-you-with-information.html" rel="alternate"></link><published>2017-02-20T00:00:00-05:00</published><updated>2017-02-20T00:00:00-05:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2017-02-20:/making-bash-prompt-you-with-information.html</id><summary type="html">&lt;p&gt;In the world of Linux and Unix, one of the most powerful tools available is the command line. Those of us who are lucky enough to have Bash at our disposal will probably know of many of its varied powers and features. These include the ability to modify and rerun …&lt;/p&gt;</summary><content type="html">&lt;p&gt;In the world of Linux and Unix, one of the most powerful tools available is the command line. Those of us who are lucky enough to have Bash at our disposal will probably know of many of its varied powers and features. These include the ability to modify and rerun commands in history without retyping or scrolling through text, running simple logic and recursion from within the prompt, and setting custom prompts to display more information than is initially readily available.&lt;br /&gt;
+&lt;br /&gt;
+It is the last point of these that I want to touch on today.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h2&gt;
+Introduction to Bash's PS1 variable&lt;/h2&gt;
+&lt;p&gt;If you are familiar with how bash handles PS1 strings and colors, skip ahead to the section about dynamic prompts. &lt;br /&gt;
+&lt;br /&gt;
+In the past year, I have started exploring the power in how Bash handles the PS1 environment variable. For those of you in the know, PS1 is the string variable responsible for deciding what the prompt will contain. A very basic one may just be &lt;code&gt;PS1='\$ '&lt;/code&gt;, which will simply display a dollar sign and a space to signify the prompt is ready for input. A more common arrangement would display the user, the hostname, the working path, and then the dollar sign. This is often represented by the following PS1 string (or something similar): &lt;code&gt;PS1=\u@\h: \w\$ '&lt;/code&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+This is still really quite a simple prompt, and for those who are familiar with bash it probably doesn't take very much effort to parse. Where things get interesting is when colors are added. Ubuntu, for example, uses green for the &lt;code&gt;\u@\h&lt;/code&gt;, making it something similar to &lt;code&gt;PS1='[\033[1;32m]\u@\h[\033[m]: [\033[1;34m]\w \$[\033[m] '&lt;/code&gt;. Notice that aside from what we had before, we have sections encapsulated in &lt;code&gt;[ ]&lt;/code&gt;. These essentially tell bash that we are no longer outputting printing characters. This helps it align text when a line of input is longer than a single line long. It can figure out where the line break should be, and place it appropriately. Without these delimiters, sometimes instead of getting a new line, overflowed lines will react like \r on its own, or cause other interesting and unintended effects. Inside of these, the escape character (&lt;code&gt;\033&lt;/code&gt;) followed by an ANSI color sequence. Here's where I start to get creative.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h2&gt;
+Making Dynamic Prompts&lt;/h2&gt;
+&lt;p&gt;One of the neat features about bash is that it allows you to set custom functions to streamline a bunch of commands in the current process. In my case, I use this to evaluate the last return code from a program and then use that information when deciding how the PS1 variable should be put together. This works because Bash, unlike so many other shells, re-evaluates its PS1 every time you submit a command. In my case, I like to know whether a program returned 0 or not, and what it returned if it wasn't 0. Since I develop a lot of programs and scripts myself, this is really really handy for debugging things without using a debugger.&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;setpromptstyle(){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;lastreturn=$?&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;if [ $lastreturn = 0 ]; then &lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;echo -ne "\001\033[7;32m\002"&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;else &lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;echo -ne "\001\033[7;31m\002 $lastreturn "&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;fi&lt;br /&gt;
+}&lt;br /&gt;
+&lt;/code&gt;&lt;/section&gt;
+&lt;p&gt;So from here you can see that things aren't exactly as I described them above. Firstly, Bash doesn't seem to evaluate [ and ] inside of functions like this, so instead I used \001 and \002, which for those of you who aren't familiar with them are start of header and start of body characters, respectively. Second of all, by using the reverse-video flag in the color sequences, I get an easily recognizable place to stop for when I'm scrolling up to the top of a command's output. For regular users, I usually use green for a zero-return-code, and red for a non-zero one. You'll note that the number itself doesn't show up unless the program actually didn't return zero. This is especially handy when you have a really long working directory.&lt;br /&gt;
+&lt;br /&gt;
+For a while, I had the following as my PS1 variable:&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;section style="border-radius: 3px; border: 1px solid;"&gt;&lt;code&gt;PS1='$(setpromptstyle)\u@\h\[\033[m\]:\[\033[1;34m\]\w\[\033[1;33m\]\$\[\033[m\] '&lt;/code&gt;&lt;/section&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;h2&gt;
+Adding Git integration&lt;/h2&gt;&lt;/p&gt;
+&lt;p&gt;Just recently, &lt;a href="https://kroche.io/"&gt;a friend &lt;/a&gt;&lt;a href="https://github.com/push-eax/"&gt;of mine&lt;/a&gt; asked if I had ever used powerline, which is a git project for fancy vim/bash/etc. prompt lines. In vim, it clearly showed information like the current git branch. Being a frequent user of git and github, I figured this would be a nice feature to add to my own custom prompt. I didn't want to try powerline myself, in no small part because it would mean changing my current prompt (which I am really happy with) for something else which I'm not as familiar with. Normally I am all for jumping out of one's comfort zone, but this time I felt like it would be more useful for me to create my own variant of git/bash integration.&lt;br /&gt;
+&lt;br /&gt;
+The first thing I wanted to do was add a counter for uncommitted files. I know this post is about bash, but in this case I didn't want to bother with bash and went straight to perl:&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;&lt;code&gt;
+#!/usr/bin/perl&lt;br /&gt;
+my $gscounter = 0;&lt;br /&gt;
+for my $line(`git status -s`){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;$gscounter++;&lt;br /&gt;
+}&lt;br /&gt;
+print "$gscounter";&lt;br /&gt;
+&lt;/code&gt;&lt;/section&gt;
+&lt;p&gt;I saved this into bin/gitstatuscounter.pl, and put that into a function in bash. Stderr is redirected to /dev/null (&lt;code&gt;2&amp;gt;/dev/null&lt;/code&gt; at the end of the command), and it outputs a single number with no line break at the end, perfect for inserting into a prompt.&lt;br /&gt;
+&lt;br /&gt;
+The next thing I wanted to do was make the current branch show up in the prompt, so it's easy to see which one I'm working on. I've messed up which branch I'm working with more times than I'd care to admit, and so this is where the real usefulness of this project comes in. As it turns out, with a little sed and perl magic, we can make the git branch command output just the current working branch.&lt;br /&gt;
+&lt;code&gt;git branch | sed -n '/* /s///p' | perl -pe 'chomp'&lt;/code&gt;&lt;br /&gt;
+This makes git spit out the branch list, and then sed searches it for the line with a * in it, which is the delimiter for the current branch, then perl comes in and removes the trailing line break.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;h2&gt;
+But what if we're not in a repo?&lt;/h2&gt;&lt;/p&gt;
+&lt;p&gt;I haven't addressed a major problem with git integration, and that is what happens when we're not in a repo. As it turns out, the fix is quite simple. If &lt;code&gt;git status&lt;/code&gt; runs without error, we are in a repo. If it does not return 0, we are not in a repo and shouldn't run the git integration code. The git integration code can now be shoved into a single bash function like so:&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;getgitbranch(){&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;git status &amp;gt; /dev/null 2&amp;gt;&amp;amp;1&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;if [ $? == 0 ]; then&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;echo -ne ' \001\033[7;37m\002'&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;gitstatuscounter.pl 2&amp;gt;/dev/null&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;echo -ne '\001\033[7;36m\002 '&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;git branch | sed -n '/\* /s///p' | perl -pe 'chomp'&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;echo -n ' '&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;else&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;echo -n ''&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;fi&lt;br /&gt;
+}&lt;br /&gt;
+&lt;/code&gt;&lt;/section&gt;
+&lt;p&gt;I could probably take out that last &lt;code&gt;else&lt;/code&gt; and &lt;code&gt;echo -n ''&lt;/code&gt; statement, but for a while I was waffling on whether to print something else if we're not in a repo, and that would be the place to do it. For a time, that would print a space there, and it wouldn't be padded so much.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h2&gt;
+Applying our "wizdom"&lt;/h2&gt;
+&lt;p&gt;When I looked at the powerline screenshots from vim, one thing struck me- the entire thing used the reverse-video flag (the 7 in my escape sequences). After giving it about five second of thought I figured this would only make the prompt more visible since I can look anywhere across a line to see where I am. One of the things about my directory tree in my home directory on any given machine is that I like to use long folder names and have bash's auto-complete fill in the full name after I typed enough characters to distinguish it from other folders. This means that prompts will often span more than half of my terminal window. If this were all reverse-video, the prompt would be visible indeed.&lt;br /&gt;
+&lt;br /&gt;
+After a little bit of messing with different options, I settled on this as my final prompt:&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;section style="border-radius: 3px; border: 1px solid;"&gt;
+&lt;code&gt;PS1='$(setpromptstyle)\u@\h\[\033[m\]:\[\033[7;34m\]\w\[\033[m\]$(getgitbranch)\[\e[7;33m\]\$\[\e[m\] '
+&lt;br /&gt;
+&lt;/code&gt;&lt;/section&gt;
+&lt;p&gt;&lt;br /&gt;
+And this provides a nice, tight prompt with git integration that hides itself if we're not in a repo (or don't have git installed).
+&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;h2&gt;
+A note on code&lt;/h2&gt;
+&lt;p&gt;Of course, any code I post on this blog is free for anyone to use. If it's posted on here, assume it is licensed under the GPLv2 and (C) James Read unless otherwise specified. Please respect these rules, and if you have something you think would improve any code I post or any solution I have, please just write a comment on that post! If it's really really good, I may even feature it in an edit to the post itself!&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+Edit: I feel it is probably best if I include a screenshot of what the prompt looks like when all this is said and done. Here are two, one with a git repository, and one outside:&lt;br /&gt;&lt;/p&gt;
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;
+&lt;a href="https://4.bp.blogspot.com/-NaRU-1MWFow/WLH2y1AAsJI/AAAAAAAAWSg/LKGtWTRj7E04lf3-JZJeo6ffI-kGJcdpQCLcB/s1600/bashrc%2Bprompt.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://4.bp.blogspot.com/-NaRU-1MWFow/WLH2y1AAsJI/AAAAAAAAWSg/LKGtWTRj7E04lf3-JZJeo6ffI-kGJcdpQCLcB/s1600/bashrc%2Bprompt.png" /&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class="separator" style="clear: both; text-align: center;"&gt;
+&lt;a href="https://4.bp.blogspot.com/-250B_-hUy54/WLH20VDzAvI/AAAAAAAAWSk/rUPrDhorha8fQPgdzDZidDyB9-Nzr-cqQCLcB/s1600/githidden.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"&gt;&lt;img border="0" src="https://4.bp.blogspot.com/-250B_-hUy54/WLH20VDzAvI/AAAAAAAAWSk/rUPrDhorha8fQPgdzDZidDyB9-Nzr-cqQCLcB/s1600/githidden.png" /&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><category term="Tech"></category><category term="tech"></category><category term="bash"></category><category term="prompt"></category><category term="color"></category></entry></feed>
