@@ -20,7 +20,71 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../what-happened-to-the-tablet-revolution.html">What happened to the tablet revolution?</a></h1>
+                    <h1 class="entry-title"><a href="../gnomeshell-tablets.html">GNOME Shell is a Great Tablet UI</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-07-31T14:30:00-04:00">
+                Published: Sun 31 July 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="../category/tech.html">Tech</a>.</p>
+<p>tags: <a href="../tag/tablet.html">tablet</a> <a href="../tag/tech.html">tech</a> <a href="../tag/ios.html">ios</a> <a href="../tag/android.html">android</a> </p>
+</footer><!-- /.post-info --><p>GNOME Shell is a pretty great tablet UI. It's not the most polished one ever, but it works really well, in spite of targeting desktop first these days.</p>
+<p>I honestly wish I could get it on my (up-to-date) Surface RT.</p>
+<p>This all started from <a href="../tabletrevo.html">a post I did a couple days ago</a> about why the tablet revolution never came like we expected. This whole topic came to mind recently as I started reading other people's blogs, notably <a href="mrmoneymustache.com">Mr. Money Mustache</a>, and I dug up my old Surface RT so I could read the blog like a book. I got the Surface off of a friend who used it briefly in high school and was about to throw it out. It did get me to muse a little about what the future looked like back in 2012 when 'Surface' was a sexy new brand that showed a lot of promise, and some people still believed laptops and desktops would be gone in a few more years.</p>
+<p>The Surface wasn't the first tablet I reached for, though. I also have an XPS 15 2-in-1 (which in this case I bought myself) that I was briefly using GNOME on so I could use it like a tablet. In spite of its heft and size, this was a really nice way to read as far as I'm concerned, and I only really switched back to the Surface when the battery started running low.</p>
+<p>So that brings me to the other thought that occurred to me when I came up with <a href="../tabletrevo.html">the last post</a>, GNOME is a really pretty excellent tablet and touch interface. It's not perfect, but it's very comfortable and really would only need minor tweaks to do excatly what Windows 8 set out to do, but much better.</p>
+<h1>GNOME still targets keyboard and mouse</h1>
+<p>This is probably the single most important point. GNOME still supports keyboard and mouse input, and still treats it like a first-class citizen. That's where Windows stumbled with Windows 8. I'll defend that UI, actually, I think Windows 8 made a much better tablet OS than Windows 10, it's not even close. However, it's hard to argue that in the process of making Windows tablet friendly they didn't neglect the desktop in the process. GNOME came from keyboard and mouse, and while they also made radical shifts, they never went so far as to make the desktop a second-class interface in favor of whatever new thing they were doing.</p>
+<p>I'd also like to point out here that GNOME makes an excellent desktop UI; even without a touchpad or touchscreen, GNOME shines as a great desktop for productivity use. I almost gave up my tiling window manager for work at one point because GNOME was working so well. That's saying something, since I <a href="https://gitlab.com/CannonContraption/headcannon-dwm">maintain my own</a>.</p>
+<p>With this in mind, the GNOME team made some really smart (but not too drastic) decisions about UI scaling over time that made GNOME easier to use with a mouse, as well. A lot of people complained about the bigger buttons and UI elements, but once you get used to it, they're not so big as to make the UI comical and it's much faster (even with a mouse) to hit the button you want.</p>
+<p>In addition, when running on a tablet, you do actually have enough space to manage windows like a desktop, and it lends itself well to a much more productive workflow. App switchers make sense on a phone, but on a tablet you should have the option to look at more than one thing at a time.</p>
+<p>They also didn't make the desktop an "app" or something dumb like that.</p>
+<h1>GTK+ 3</h1>
+<p>I think it's safe to say at this point that, in spite of all of its early adoption struggles and increased system resource usage, GTK 3 was a massive leap forward. Beyond just smoother rendering and CSS themes (even if some people are in denial about these), we also got real multitouch support, swipe to scroll, and eventually enhanced versions of these with Wayland.</p>
+<p>As a brief aside, if you're trying to use a touchscreen or trackpad with GNOME on Xorg, try Wayland instead and see if things improve. Xorg has some very sane design decisions for the 1980s and 90s, but misses a lot of finer points about desktop navigation in the 21st century. For example, touching the screen moves the mouse pointer and left-clicks on the screen. The behavior in Wayland is similar, but the touch input is its own cursor and can get much fancier much more easily. This manifests in small (but important) graphical and input glitches that just don't exist on Wayland.</p>
+<h1>Touch Gestures</h1>
+<p>GNOME has touch gestures! Seriously, on your laptop try swiping up or down with 3 fingers, your overview should appear. Left and right switch workspaces.</p>
+<p>I really don't think I have to say much more, these gestures are very reliable, and you'll end up using them a lot if you learn them. They also work on the touchpad just as well as on a touchscreen.</p>
+<h1>Multitasking</h1>
+<h2>Multiple Windows</h2>
+<p>I touched on this earlier, but I feel like this is important. GNOME makes an effort to make window titlebars grabbable. You can touch and drag any window anywhere on the screen, and with snapping gestures, split screen and maximized windows are easy to accomplish with a finger. I remember header bars being somewhat controversial, but honestly I think this is a smart way to use all of the space in a window without making the titlebar too small to grab with a finger.</p>
+<h2>Workspaces</h2>
+<p>This is the real winner for the GNOME workflow, in my opinion.</p>
+<p>When you ask someone how they organize their work vs how they organize their desktop, there's probably a disconnect somewhere in there. Either the person will get confused, and say that they have folders for all of their projects, or they'll lay out a detailed system of how to identify which windows they want to restore from minimize in their taskbar to bring up the exact project they were working on. Alternatively, they'll admit it's a mess and probably say they should close stuff more often.</p>
+<p>This is why I count the fact that GNOME has no minimize button by default as a hilariously, obviously positive trait. You'll never find me faulting you for turning it back on if that's your preference, and it's good they kept that option, but in all honesty workspaces should be the real way people organize their work. Rather than hiding the stuff you're not working on, why not just categorize it?</p>
+<p>On a tablet this works just as well. In fact, it's even better here since you don't have to target your finger at tiny little taskbar icons to pull your work back up, you just swipe to the side.</p>
+<h1>Rough Edges</h1>
+<p>So, this whole post is mostly just me gushing about GNOME and all that's great about it. Truthfully, it's far from perfect, and there are even a few things that Windows 8 does much better, notably in the app grid. There are other rough edges elsewhere, too.</p>
+<p>Normally this is where I would say that I intend to fix these things or at least take a crack at them, but in all honesty I use GNOME maybe a few times a year at the moment, since I do most of my work in Headcannon-DWM and Sway. I would encourage anyone working on the team who still sees these as issues to give it a try, this really is most of the extra polish someone like me is looking for to take this from a "great" desktop to an "excellent" or "nearly flawless" desktop.</p>
+<h2>Virtual Keyboard</h2>
+<p>This exists! It works pretty well, as a matter of fact. However, there's definitely a reason there's a button to pull it up in the taskbar on Windows, a button that GNOME really needs. Using my XPS as an example, if it's folded into 2-in-1 mode, autorotate turns on (by default) and hitting a text field in a GTK3 app brings up the virtual keyboard. However, this isn't 100% reliable in apps using other frameworks. If you open a window that uses an old version of Tk and try to type, you'll probably need the keyboard again. GNOME can tell when the system is folded, so making this icon contextual would make a lot of sense and save a lot of headaches.</p>
+<h2>App Grid</h2>
+<p>This is one of those things that is "fine". It works as it should for basic things, and mostly isn't a big issue. The icons are huge, but many of them look nice enough I don't mind. There are three main issues with it, though.</p>
+<h3>Switching Pages</h3>
+<p>This just plain sucks. You need to complete a full swipe across the entire screen for the page to turn. I mess this up much more than I get it right, so I'm hard pressed to believe that this couldn't use some tweaking. You can tap the dots at the bottom of the page, but they're tiny and as far as I can tell they're built for a mouse. If you use a touchpad this swipe is fairly reliable, so this really seems to just be an issue with the touchscreen implementation.</p>
+<h3>Folders</h3>
+<p>Folders work just fine, but they're only really usable through touch gestures. There used to be a way to add things via the Software app (horrible name for that, while I'm on the topic), but that's gone now, as far as I can tell. If you want to use a folder, you have to drag and drop every item by hand into the folder without missing it by one tile.</p>
+<p>Furthermore, if you have a lot of apps you haven't categorized yet (for example you downloaded the "security lab" group in Fedora), you'll probably be dragging and dropping each app across multiple pages of the app grid. See the section on switching pages for why this is annoying.</p>
+<p>The easiest way I can think of on the spot to make this work better is to simply rip off the PS4's folder interface. You can create a folder and then pick what you want to put in it (which is useful for when you're just starting to sort things), or you can pick an item and tell the system to put it in a specific folder. This could look similar to the WiFi network picker, but with checkboxes rather than just a flat list.</p>
+<h1>Conclusion</h1>
+<p>Especially if you have a 2-in-1 laptop, or maybe even if you just have a regular laptop with a big touchpad, give GNOME another crack if it's been a while. They did what I once considered to be the impossible, and made a UI that targets tablet and desktop <em>both</em> without making either stick out as a bad experience.</p>
+<p>GNOME is a pretty solid tablet interface, and they didn't even make a "tablet mode" to get there. You'd also never know if you didn't have a touchscreen. I think that's pretty impressive indeed.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Read More!</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../tabletrevo.html" rel="bookmark"
+                           title="Permalink to What Happened to the Tablet Revolution?">What Happened to the Tablet Revolution?</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-07-29T00:00:00-04:00">
                 Published: Fri 29 July 2022
@@ -31,35 +95,10 @@
         </address>
 <p>In <a href="../category/tech.html">Tech</a>.</p>
 <p>tags: <a href="../tag/tech.html">tech</a> <a href="../tag/tablet.html">tablet</a> <a href="../tag/android.html">android</a> <a href="../tag/ios.html">ios</a> <a href="../tag/windows8.html">windows8</a> </p>
-</footer><!-- /.post-info --><p>Not that many years ago, there was a significant amount of worry from people in the PC world. There was a new, disruptive marketplace segment that threatened to wipe out the PC world entirely. The tablet takeover is all but irrelevant now, and PCs remain (in one form or another) completely dominant for serious work in many (perhaps even most) professions.</p>
-<h2>Why Use a Tablet?</h2>
-<p>First of all, it's probably worthwhile to first discuss what problems the tablet was suppsed to solve.</p>
-<p>Tablet computing was meant (as far as I can tell) to bring about a new revolution in computing by bringing a bigger screen to the more intuitive touchscreen interfaces. I don't think it's very hard to imagine why somebody would want this. Teaching someone new to computers how to use a mouse takes time, no matter how small that amount of time is. Ths time could be better spent teaching someone concepts such as design language in user interfaces, or what types of websites to avoid. Mousing around can be quite frustrating for a beginner, but by the time tablets were taken seriously, capacitive touchscreens had improved enough that they could be used to deliver actually compelling experiences all their own. It's natural to pinch to zoom, it's like stretching fabric, and you don't generally need a hint on screen to tell you how to do it. On the other hand, I'm not sure what portion of the popultion knows about Ctrl + and Ctrl -, but I'm pretty confident it's not 100%, or even as widely known as pinch to zoom. There's a lot of human factors involved in why this is, so intuitively it makes sense to push for this type of design. That's what progress looks like.</p>
-<p>So, the smartphone revolution happened, starting with the iPhone and cascading into Windows Mobile 7, the Zune HD, Android OS, and even (briefly) Blackberry OS. There were (and are) others, but these are the major players from the early days.</p>
-<p>Given this new revolution of friendly computing you can carry in your pocket, it made sense to scale this up to something bigger. We had been reading the news on our computers for ages, but a phone screen (still) is a little too small for many people to be comfortable using it to read the Times. The result was an immediate race to make the biggest and best tablet interface. Again, this more or less kicked into full gear with Apple's solution, the iPad.</p>
-<h2>Less than Excellent, Less than Last Time</h2>
-<p>This time was a little different, though. The major players (for the most part) took a phone interface and scaled it up for a tablet. Android 3.0, iOS, and Windows 8 all took this approach. Out of these, Windows largely went back to focusing on desktop, and Android went back to investing in the phone OS. Android still has a presence, as does Windows, but they're both relegated to budget offerings, where the iPad virtually dominates the high end of the market.</p>
-<p>Basically the only one of the thre of these to keep continuing to focus on a tablet interface in any meaningful way was Apple, and it shows. Android and Windows still offer tablet features, but both of them have kept their focuses on their original markets, respectively. More accurately, Android has never kept its focus on tablets, and Windows has opted to focus on 2-in-1 PCs over tablets.</p>
-<p>This has left us with Apple, Amazon's Kindle (basically the last serious long-running Android tablet), and 2-in-1 PCs that run desktop apps. Google's Play Store will ususally give you phone apps that scale poorly to larger screens, Windws apps scale poorly to smaller screens, and the iPad is left as the only really polished experience.</p>
-<p>Far from the revolution that was the smarphone, this time around we get a scaled up version of the phones we already have, or we get a lot of upset PC users over Windows 8.</p>
-<h2>Bad Email Device?</h2>
-<p>Typing on a tablet can be awkward. I'm writing this article on a Surface RT with the included touch cover, and while vastly better than using the touchscreen to try and type, it's far from a real keyboard and I mess up a lot more than even on my worst laptop.</p>
-<p>Phones get away with this due to their size. You can comfortably use your thumbs to type on the screen and get reasonable speeds that way. I think it's fair to say that the typing speed ceiling is far higher on a full size keyboard, but that doesn't make the phone terrible at typing. Then there's desktops and laptops. Both of these have a full size keyboard that (usually) give you individual, full size keys and a plethra of hotkeys to use with them, making the experience for keyboard users actually pretty good. Even Windows 8 could be operated comfortably from the keyboard without thinking too hard about it.</p>
-<p>Tablets, on the other hand, have a screen size that makes using thumbs to type a little awkward, since the full device is much bigger and heavier than a phone, but they're often too small to put a full size keyboard on screen; even when they're big enough, they rarely even try since half of the benefit of a full size keyboard is raised keys to aid in touch typing.</p>
-<p>The best solution that I've seen is on the Surface with the type cover, but then you're basically sitting down with a laptop and a stand. That's putting aside the fact that you're getting the touch cover with the $500 base surface, which doesn't even feature an Intel CPU. That's far less of a burden if you can at least install your own apps, but Microsoft's play during this era was to offer a tablet that only allows Windows Store apps. For a similar price you could get a much more capable laptop with a touchscreen and have a better in-lap experience anyhow.</p>
-<p>So while Ballmer's infamous soundbyte about the iPhone may seem funny now, had he been talking about tablets he may have had a point.</p>
-<h2>So do they Suck?</h2>
-<p>No*</p>
-<p>Tablets were never going to take over the PC market, and it's silly to think so in hindsight. The mouse offers so much more precision, and serious business usually requires a keyboard or something similar for conversations over email.</p>
-<p>Tablets are very good for reading things online, however, as well as in-car movies and light gaming, like Solitaire.</p>
-<p>This may seem kind of obvious in hindsight, but it's why the tablet revolution never came. Even for professions that now have the iPad Pro for their work, such as graphic design, there are lots and lots of industries that never got their tablets. Nobody seems to target the engineer or software developer with a tablet. It's widely preferred in these fields to have the precision and utility of a mouse and keyboard, and tablets sre specifically designed to remove the complicated options and precise input of a mouse in favor of a more intuitive touchscreen and fewer confusing looking ports on the side of the device.</p>
-<p>I feel like I should mention that this is in fact (very slowly) changing with the iPad. You /can/ do serious work on it in video and sound production, or really any artistic field that makes use of the pen. It's become a very cool /option/, and options are good. Furthermore, this iPad seems different with its keyboard case, similar to what the Surface attempted to do so many years ago.</p>
-<p>But that's it, that's my take on why the tablet revolution never came. Now to stop typing on this stupid touch cover and go back to my model M :)</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Read More!</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>Not that many years ago, there was a significant amount of worry from people in the PC world. There was a new, disruptive marketplace segment that threatened to wipe out the PC world entirely. The tablet takeover is all but irrelevant now, and PCs remain (in one form or another …</p>
+                <a class="readmore" href="../tabletrevo.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
