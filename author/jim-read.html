@@ -20,7 +20,78 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../gnomeshell-tablets.html">GNOME Shell is a Great Tablet UI</a></h1>
+                    <h1 class="entry-title"><a href="../xmpp.html">Running an Unfederated XMPP Server For Fun (but Not Profit)</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-08-02T19:15:00-04:00">
+                Published: Tue 02 August 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="../category/tech.html">Tech</a>.</p>
+<p>tags: <a href="../tag/xmpp.html">xmpp</a> <a href="../tag/chat.html">chat</a> <a href="../tag/server.html">server</a> <a href="../tag/communication.html">communication</a> </p>
+</footer><!-- /.post-info --><p>Since late 2018 or early 2019, I've been running a personal XMPP server. It's not federated, and there's only about 4 or 5 users, but I've learned a lot in the process of maintaining it.</p>
+<h1>Background</h1>
+<p>When I was in college, I had a number of friends who would text constantly. However, the state of text messaging on Android at the time was not all that great. There was no way to mute individual chats, nor was there a way to customize sounds on a chat-by-chat basis, and so on. Given these features, and the fact that some of my friends were somewhat disaster prone at the time, it was somewhat unwise to mute my phone in the car, but every time somebody sent a meme it would always buzz my pocket, pulling me out of the zone. I like driving quite a lot, but I definitely like it most when I can drive in the zone, uninterrupted and focused on getting the most out of the machine.*</p>
+<p>Given all of this, and the fact that SMS can sometimes be a bit flaky on the delivery side (leading to some heated arguments at times), I convinced the majority of the people I spent the most time with to switch to Hangouts.</p>
+<p>Who remembers Google's first few announcements about Hangouts going away?</p>
+<h2>Hangouts Substitutes</h2>
+<p>Around the first of these announcements I started searching for a replacement. I'm not sure if we had been on the platform for more than a year at this point, so feeling burned, I started my search.  There were a few that sat on my shortlist, but here are some of the highlights:</p>
+<h3>Tox</h3>
+<p>I'm not sure how seriously I took this one. Tox is a great system if everyone you're talking to has a degree in computing of some sort, and certainly the people that introduced this to me in high school were highly technical, so they would have used it OK. However, probably about half of the people I wanted to use this with would have gotten frustrated with it and moved on.</p>
+<p>This is mostly since Tox is totally peer-to-peer. This means no offline delivery, no central caching, and user IDs had to be carefully backed up in case somebody's phone broke. I suspect delivery in particular is handled slightly better by the most popular Tox clients today, but at the time this made it a non-starter.</p>
+<h3>IRC</h3>
+<p>This was my first choice, but I couldn't really figure out how to make it work right. The biggest problem was actually me- I didn't have mobile data at the time, which meant I couldn't just stay connected to an IRC channel all day. For anyone who doesn't know IRC all that well, I don't know of any server software that does delayed delivery. Either you're online and you receive the message from the server, or you're offline and you don't. This makes it actually an even harder sell than Tox, in spite of being centralized.</p>
+<p>I had planned at first to try and see if I could modify an IRC server to recognize registered nicks and send delayed messages, but in the end I never got around to even looking to see if an established server supported this. IRC is maybe a little <em>too</em> barebones for my uses in this case.</p>
+<h3>Matrix</h3>
+<p>I wanted this to work so badly. Matrix had the most promising server software, along with the concept of "bridges" which would have allowed those of us who wanted to use a console CLI and an IRC client to join in. There was at least one such person. However, I followed the official install instructions for their python server software, Synapse, and couldn't ever get it to work properly. Not wanting to dive into Docker (which in hindsight was pretty dumb, Docker is dead simple), I ended up giving up on this, too.</p>
+<h3>XMPP</h3>
+<p>I'll get into this later. Obviously it's the option I went with.</p>
+<h2>Chat Services I Didn't Want at All</h2>
+<h3>Whatsapp</h3>
+<p>This got ruled out pretty quickly. since I believe by the time I had looked into it enough to know what it is, Facebook had long since bought it. I don't think I really need to explain this, we all know about Facebook and data privacy.</p>
+<h3>Skype</h3>
+<p>I never took this one seriously. In hindsight maybe I should have, since it's very close in function to Hangouts, but the interface always sucked and it probably wouldn't have stuck around for very long as our preferred choice.</p>
+<h3>Signal</h3>
+<p>This wasn't very big or polished yet. It worked, and I do recall a friend or two telling me I should use it, but these were the same people who were telling me about Tox some years ago, so I dismissed the option. My impression is that Signal was quite a lot rougher in 2017 and 2018 than it is now (2022), so this probably wasn't a bad decision for the time. I didn't check, though.</p>
+<h3>Discord</h3>
+<p>This was aimed at gaming chat rather than general chatter like it is now. Many of us did play video games, but we already used Steam chat for that, and there didn't seem to be another compelling reason to use it.</p>
+<h1>Switch to XMPP</h1>
+<p>We had all decided to take Hangouts' shutdown seriously at this point, and I had been promising people I'd come up with a solution for a while. So, eventually, I figured out hosting and spun up a Prosody instance.</p>
+<p>The transition was less than smooth, however. One of my friends owned an iPhone at the time, and this turned out to be a serious problem since I used a strange port for the server. It was only ever supposed to be just among friends. As it turns out, we couldn't find an XMPP app on the app store (that was free) that let us set the port number for the server.</p>
+<p>Once we all did manage to get onto the server, though, there was a significant number of problems with the Android app we used at first. Yaxim is not a bad option, all things considered, but it's kind of heavy on data and battery. Shortly after I got this working, I also got mobile data on my phone, but only up to a maximum of 512 MB. It also had a tendency to crash every now and again, leading to missed messages.</p>
+<p>Eventually, I heard about Conversations and OMEMO encryption, and moved everyone over. This not only improved our encryption from simple HTTPS (like Telegram, but with hosting we controlled) to real end-to-end double-ratchet goodness (a la Signal). This also crashes a lot less, and uses a lot less data and battery. However, the only way to get it for free is to use F-Droid or compile it yourself. Normally I would just pay for it, but I was moving away from using the Play Store as much as possible, and I didn't want to input my credit card on each person's phone just to buy them one app.</p>
+<p>I don't actually recommend you go this route, always support the creator if it's practical, and Conversations deserves your support. The $3 or whatever on the Play Store is worth it, this is one of the most quality apps on the platform (IMO).</p>
+<p>At any rate, this is more or less the state of things now. The friend with an iPhone had been having other minor problems with it for a while, and took the chance to switch to Android and has been there ever since.</p>
+<h1>Experience Since</h1>
+<p>Honestly, it's worked OK. If you don't want to read the rest, my final verdict is that it's worth the effort if you're in <em>exactly</em> my position from a few years ago, but things have changed a bit since.</p>
+<h2>Pros</h2>
+<p>This is probably the most private solution for our uses. Like I've mentioned several times, we control the hosting, and since we all use either Profanity or Conversations (or both), we all have access to OMEMO encryption, which is on by default in most direct chats. All of the server and client code can be audited at any time, and we can rest easy to some degree since not being federated means that nobody is going to just server-to-server exploit our chat system. I actually briefly talked about federating the server, and the former iPhone friend actually stopped me for this reason.</p>
+<p>Since XMPP uses usernames (unlike cell phones), there are a few more options for notifications. For example, in a big group chat we can all link each other memes and say stuff that doesn't need everyone's attention, and anybody interested can see it. Anybody who's not interested doesn't have to have their pocket vibrate every time. This silence is truly golden, and the implementation of mentions (just say the person's username) is probably the smoothest one I've ever used. XMPP and IRC seem to be the primary users of this system, pretty much everywhere else you have to say +Somebody or @somebody, which is awkward on a cell phone keyboard. Equally critically, though, you can set this on a chat by chat basis, meaning that if there's a group chat where you want to hear everything right away, say for example for business reasons, you can just tell Conversations to make that chat always ping you. The default is mentions only, however.</p>
+<p>There's no storage limit on uploaded files, unless you impose one or use a tiny disk to store information. In our case space is pretty limited, but we don't tend to do a lot of large image or file transfers over XMPP, so storage hasn't been a problem yet.</p>
+<h2>Cons</h2>
+<p>Just like any other chat system, you either have to trust someone else to host it for you, or host it yourself. There's a huge issue with the number of choices for hosting elsewhere, so choosing a provider can be the same type of decision paralysis as choosing a Linux distro, or even worse. Also, not every server provides every feature you might want, so choosing somebody else's comes with some caveats.</p>
+<p>Self-hosting comes with other compromises, too. Unless you pick someone else's datacenter, you will need to either pay to colocate, or purchase a UPS and other associated hardware. If you run disk encryption (which is probably a good idea on your own hardware, just for privacy reasons), you'll need to unlock the disks on bootup for the server to operate. This can mean power outages lead to extended downtime without that UPS.</p>
+<p>Some components aren't very well documented. I haven't run into much of this, but at the beginning of the pandemic we tried voice/video calling, just out of curiosity, and it "worked", but never managed to connect successfully. I never looked into it any farther, but my hunch is the strange ports have something to do with it.</p>
+<h1>Conclusions</h1>
+<p>In today's world, I would pick Signal over going this route. It's quite possible that this XMPP server setup isn't long for this world at this point, in spite of some of its advantages. This is in part due to the small user base, I've been pretty picky about who I grant access to the server, even among friends. It was never interesting enough for someone to even question that, most people who found out about it reacted with "oh, that's cool" or something similar.</p>
+<p>Signal, on the other hand, is far better than even when I started using it. Since it uses phone numbers, connecting with people on the platform is seamless, so long as they're a contact. Furthermore, I'm not maintaining the user database, that's someone else's problem. This means anyone can join. We can pull in new members of the friend group pretty much risk free. It can also replace your SMS app, making it very easy to just automatically start using it with someone new. This all avoids device-specific pitfalls like over-simplified iOS clients, or vendor lock-in like with iMessage.</p>
+<p>I'd love a world where we all use XMPP much like we all use email. It's designed to work like that, and because of this design it's likely going to outlive all of the other options. However, you'll want a federated server to get that.</p>
+<p>* I drive stick shift, hence why I even <em>can</em> focus on that.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Read More!</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../gnomeshell-tablets.html" rel="bookmark"
+                           title="Permalink to GNOME Shell is a Great Tablet UI">GNOME Shell is a Great Tablet UI</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-07-31T14:30:00-04:00">
                 Published: Sun 31 July 2022
@@ -31,52 +102,12 @@
         </address>
 <p>In <a href="../category/tech.html">Tech</a>.</p>
 <p>tags: <a href="../tag/tablet.html">tablet</a> <a href="../tag/tech.html">tech</a> <a href="../tag/ios.html">ios</a> <a href="../tag/android.html">android</a> </p>
-</footer><!-- /.post-info --><p>GNOME Shell is a pretty great tablet UI. It's not the most polished one ever, but it works really well, in spite of targeting desktop first these days.</p>
+</footer><!-- /.post-info -->                <p>GNOME Shell is a pretty great tablet UI. It's not the most polished one ever, but it works really well, in spite of targeting desktop first these days.</p>
 <p>I honestly wish I could get it on my (up-to-date) Surface RT.</p>
-<p>This all started from <a href="../tabletrevo.html">a post I did a couple days ago</a> about why the tablet revolution never came like we expected. This whole topic came to mind recently as I started reading other people's blogs, notably <a href="mrmoneymustache.com">Mr. Money Mustache</a>, and I dug up my old Surface RT so I could read the blog like a book. I got the Surface off of a friend who used it briefly in high school and was about to throw it out. It did get me to muse a little about what the future looked like back in 2012 when 'Surface' was a sexy new brand that showed a lot of promise, and some people still believed laptops and desktops would be gone in a few more years.</p>
-<p>The Surface wasn't the first tablet I reached for, though. I also have an XPS 15 2-in-1 (which in this case I bought myself) that I was briefly using GNOME on so I could use it like a tablet. In spite of its heft and size, this was a really nice way to read as far as I'm concerned, and I only really switched back to the Surface when the battery started running low.</p>
-<p>So that brings me to the other thought that occurred to me when I came up with <a href="../tabletrevo.html">the last post</a>, GNOME is a really pretty excellent tablet and touch interface. It's not perfect, but it's very comfortable and really would only need minor tweaks to do excatly what Windows 8 set out to do, but much better.</p>
-<h1>GNOME still targets keyboard and mouse</h1>
-<p>This is probably the single most important point. GNOME still supports keyboard and mouse input, and still treats it like a first-class citizen. That's where Windows stumbled with Windows 8. I'll defend that UI, actually, I think Windows 8 made a much better tablet OS than Windows 10, it's not even close. However, it's hard to argue that in the process of making Windows tablet friendly they didn't neglect the desktop in the process. GNOME came from keyboard and mouse, and while they also made radical shifts, they never went so far as to make the desktop a second-class interface in favor of whatever new thing they were doing.</p>
-<p>I'd also like to point out here that GNOME makes an excellent desktop UI; even without a touchpad or touchscreen, GNOME shines as a great desktop for productivity use. I almost gave up my tiling window manager for work at one point because GNOME was working so well. That's saying something, since I <a href="https://gitlab.com/CannonContraption/headcannon-dwm">maintain my own</a>.</p>
-<p>With this in mind, the GNOME team made some really smart (but not too drastic) decisions about UI scaling over time that made GNOME easier to use with a mouse, as well. A lot of people complained about the bigger buttons and UI elements, but once you get used to it, they're not so big as to make the UI comical and it's much faster (even with a mouse) to hit the button you want.</p>
-<p>In addition, when running on a tablet, you do actually have enough space to manage windows like a desktop, and it lends itself well to a much more productive workflow. App switchers make sense on a phone, but on a tablet you should have the option to look at more than one thing at a time.</p>
-<p>They also didn't make the desktop an "app" or something dumb like that.</p>
-<h1>GTK+ 3</h1>
-<p>I think it's safe to say at this point that, in spite of all of its early adoption struggles and increased system resource usage, GTK 3 was a massive leap forward. Beyond just smoother rendering and CSS themes (even if some people are in denial about these), we also got real multitouch support, swipe to scroll, and eventually enhanced versions of these with Wayland.</p>
-<p>As a brief aside, if you're trying to use a touchscreen or trackpad with GNOME on Xorg, try Wayland instead and see if things improve. Xorg has some very sane design decisions for the 1980s and 90s, but misses a lot of finer points about desktop navigation in the 21st century. For example, touching the screen moves the mouse pointer and left-clicks on the screen. The behavior in Wayland is similar, but the touch input is its own cursor and can get much fancier much more easily. This manifests in small (but important) graphical and input glitches that just don't exist on Wayland.</p>
-<h1>Touch Gestures</h1>
-<p>GNOME has touch gestures! Seriously, on your laptop try swiping up or down with 3 fingers, your overview should appear. Left and right switch workspaces.</p>
-<p>I really don't think I have to say much more, these gestures are very reliable, and you'll end up using them a lot if you learn them. They also work on the touchpad just as well as on a touchscreen.</p>
-<h1>Multitasking</h1>
-<h2>Multiple Windows</h2>
-<p>I touched on this earlier, but I feel like this is important. GNOME makes an effort to make window titlebars grabbable. You can touch and drag any window anywhere on the screen, and with snapping gestures, split screen and maximized windows are easy to accomplish with a finger. I remember header bars being somewhat controversial, but honestly I think this is a smart way to use all of the space in a window without making the titlebar too small to grab with a finger.</p>
-<h2>Workspaces</h2>
-<p>This is the real winner for the GNOME workflow, in my opinion.</p>
-<p>When you ask someone how they organize their work vs how they organize their desktop, there's probably a disconnect somewhere in there. Either the person will get confused, and say that they have folders for all of their projects, or they'll lay out a detailed system of how to identify which windows they want to restore from minimize in their taskbar to bring up the exact project they were working on. Alternatively, they'll admit it's a mess and probably say they should close stuff more often.</p>
-<p>This is why I count the fact that GNOME has no minimize button by default as a hilariously, obviously positive trait. You'll never find me faulting you for turning it back on if that's your preference, and it's good they kept that option, but in all honesty workspaces should be the real way people organize their work. Rather than hiding the stuff you're not working on, why not just categorize it?</p>
-<p>On a tablet this works just as well. In fact, it's even better here since you don't have to target your finger at tiny little taskbar icons to pull your work back up, you just swipe to the side.</p>
-<h1>Rough Edges</h1>
-<p>So, this whole post is mostly just me gushing about GNOME and all that's great about it. Truthfully, it's far from perfect, and there are even a few things that Windows 8 does much better, notably in the app grid. There are other rough edges elsewhere, too.</p>
-<p>Normally this is where I would say that I intend to fix these things or at least take a crack at them, but in all honesty I use GNOME maybe a few times a year at the moment, since I do most of my work in Headcannon-DWM and Sway. I would encourage anyone working on the team who still sees these as issues to give it a try, this really is most of the extra polish someone like me is looking for to take this from a "great" desktop to an "excellent" or "nearly flawless" desktop.</p>
-<h2>Virtual Keyboard</h2>
-<p>This exists! It works pretty well, as a matter of fact. However, there's definitely a reason there's a button to pull it up in the taskbar on Windows, a button that GNOME really needs. Using my XPS as an example, if it's folded into 2-in-1 mode, autorotate turns on (by default) and hitting a text field in a GTK3 app brings up the virtual keyboard. However, this isn't 100% reliable in apps using other frameworks. If you open a window that uses an old version of Tk and try to type, you'll probably need the keyboard again. GNOME can tell when the system is folded, so making this icon contextual would make a lot of sense and save a lot of headaches.</p>
-<h2>App Grid</h2>
-<p>This is one of those things that is "fine". It works as it should for basic things, and mostly isn't a big issue. The icons are huge, but many of them look nice enough I don't mind. There are three main issues with it, though.</p>
-<h3>Switching Pages</h3>
-<p>This just plain sucks. You need to complete a full swipe across the entire screen for the page to turn. I mess this up much more than I get it right, so I'm hard pressed to believe that this couldn't use some tweaking. You can tap the dots at the bottom of the page, but they're tiny and as far as I can tell they're built for a mouse. If you use a touchpad this swipe is fairly reliable, so this really seems to just be an issue with the touchscreen implementation.</p>
-<h3>Folders</h3>
-<p>Folders work just fine, but they're only really usable through touch gestures. There used to be a way to add things via the Software app (horrible name for that, while I'm on the topic), but that's gone now, as far as I can tell. If you want to use a folder, you have to drag and drop every item by hand into the folder without missing it by one tile.</p>
-<p>Furthermore, if you have a lot of apps you haven't categorized yet (for example you downloaded the "security lab" group in Fedora), you'll probably be dragging and dropping each app across multiple pages of the app grid. See the section on switching pages for why this is annoying.</p>
-<p>The easiest way I can think of on the spot to make this work better is to simply rip off the PS4's folder interface. You can create a folder and then pick what you want to put in it (which is useful for when you're just starting to sort things), or you can pick an item and tell the system to put it in a specific folder. This could look similar to the WiFi network picker, but with checkboxes rather than just a flat list.</p>
-<h1>Conclusion</h1>
-<p>Especially if you have a 2-in-1 laptop, or maybe even if you just have a regular laptop with a big touchpad, give GNOME another crack if it's been a while. They did what I once considered to be the impossible, and made a UI that targets tablet and desktop <em>both</em> without making either stick out as a bad experience.</p>
-<p>GNOME is a pretty solid tablet interface, and they didn't even make a "tablet mode" to get there. You'd also never know if you didn't have a touchscreen. I think that's pretty impressive indeed.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Read More!</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>This all started from <a href="../tabletrevo.html">a post I did a couple …</a></p>
+                <a class="readmore" href="../gnomeshell-tablets.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
