@@ -21,7 +21,50 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="../biking.html">Muscle over Motor: Why Biking is the Way to Travel the Last Mile</a></h1>
+                    <h1 class="entry-title"><a href="../popos.html">Pop OS and Updates</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2022-08-06T23:07:00-04:00">
+                Published: Sat 06 August 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="../author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="../category/tech.html">Tech</a>.</p>
+<p>tags: <a href="../tag/popos.html">popos</a> <a href="../tag/linux.html">linux</a> </p>
+</footer><!-- /.post-info --><p>I recently bought my grandmother a new PC, just this past year. She had been using a mid-2007 iMac 24". The Mac enthusiasts among you may realize how out of date this is. It last received software updates in 2018, and ever since it's whined about a pending OS update it refuses to actually install. So, of course, when shopping for a computer I wanted something Mac like that I could keep updating basically forever. She had <em>not</em> outgrown the Core 2 Duo that machine was running, in spite of it being a meager T7300, and aside from a minor backlight issue, the iMac worked fine, so it was difficult to convince other family members it was time.</p>
+<p>So I just went and did it. I bought a System76 Meerkat, which is an Intel NUC with Pop OS on it, grabbed a monitor, PC keyboard and mouse, and set it up for her.</p>
+<h1>I Didn't Use the LTS</h1>
+<p>In the process of setting up this new computer, I found out about System76's then freshly released Cosmic desktop. Honestly speaking, it looked pretty Mac like, so I took the plunge and upgraded from the LTS to 21.10. My logic was pretty simple, I'm there about every 6 months or so, surely that's enough time to keep things up to date, and no matter how far the OS lags the current release, everything I put on there is virtually guaranteed to be newer than whatever was available in 2018 from Apple.</p>
+<p>To be clear, my plan wasn't to keep upgrading my grandmother to each new non-LTS release of Pop, it was just to use this one so the interface wouldn't be changing as soon as I next showed up to her house. I live pretty far away, so stability is actually a priority here, so I figured this would be a risk for the first 6 months and at worst get ironed out after that.</p>
+<h1>Upgrade time!</h1>
+<p>So it was my first time back since I installed the new computer, and I see a bunch of ominous warnings. They said things along the lines of "This version of Pop is no longer supported!" alongside the usual cheery "upgrade available!" notices. Being a long-time Ubuntu user up until a year or so before they axed the Unity desktop, I wasn't expecting this. Non-LTS releases of Ubuntu last a few months before they go obsolete, and the sources stay online for a year or two after they've shuttered support.</p>
+<p>Not so here.</p>
+<p>I opened the Pop Shop to grab updates, and was greeted by a very detailed error message saying it couldn't pull some archives. I figured this had to be a mistake, the archives had moved, or there was some package I was missing.</p>
+<p>After some browsing around, I found the hard truth- System76 had pulled the archives for Impish off of their servers, and nothing I found pointed to an "old-releases" archive where I could get fresh copies. As a result, the official Pop OS updater repeatedly failed to update to Jammy, since it would try to replace the sources.list it expected, complete with the (now gone) Pop OS packages, then update the existing system first. This is usually good practice when doing an OS upgrade like this, it ensures that you're taking the smallest leap in versions possible, and it ensures that the core components are already patched for the upgrade, etc. Since it put the sources.list back on its own, though, I could never get it to even refresh the package indexes.</p>
+<p>I tried all sorts of things to make this work, like typing in the Pop OS PPA address that they used in the old days, which existed for Impish, but every time the updater would point back to System76's own site and the update would fail.</p>
+<h1>Solution?</h1>
+<p>I did get it to update.</p>
+<p>I've used Debian for a long time now, and I've upgraded at least from 9 -&gt; 10 -&gt; 11, and probably before that too. The process of upgrading sources.list by hand doesn't daunt me all that much, and I'm prepared to do it. The wild card was System76's customizations. I could expect this would work on Ubuntu or Debian, but this wasn't my machine, would it be better to wipe it and do all of the work of re-importing things from 6 months ago?</p>
+<p>I took the plunge, in the end. I just hand-edited the sources.list from <code>deb https://url.example.com impish main universe multiverse</code> to <code>deb https://url.example.com jammy main universe multiverse</code> or whatever for each line, ran <code>apt update</code> then <code>apt dist-upgrade</code> and waited for fireworks.</p>
+<p>Fortunately, they never came and the update went smoothly. I asked Pop OS to update its recovery partition, and that worked OK, too.</p>
+<h1>Conclusion</h1>
+<p>Be careful with these smaller distributions. They're great for a lot of things, but take them seriously when they say they recommend the LTS. There's a good chance they don't expect you'll be upgrading 6 months down the line with no opportunity to even check in between.</p>
+<p>In the case of Pop OS, back up your data and do what I did if you ever find yourself in a jam upgrading to Jammy (or whatever the latest release is, I couldn't resist the pun). Just remember what you're getting yourself into.</p>
+<p>I should also note at this point that the computer has otherwise been working great for her. I bought the "tall" model with the 10th gen chip and an SD slot so that she could store the 20+ years of digital photos she has, and Shotwell as worked excellently as an iPhoto replacement. Pop OS is really solid, and the System76 support team has always been good to me, so they would probably help you through things if you got stuck and didn't know what I know. I still recommend them highly, even for Grandma!</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Read More!</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../biking.html" rel="bookmark"
+                           title="Permalink to Muscle over Motor: Why Biking is the Way to Travel the Last Mile">Muscle over Motor: Why Biking is the Way to Travel the Last Mile</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2022-08-04T16:10:00-04:00">
                 Published: Thu 04 August 2022
@@ -32,35 +75,10 @@
         </address>
 <p>In <a href="../category/misc.html">Misc</a>.</p>
 <p>tags: <a href="../tag/travel.html">travel</a> <a href="../tag/car.html">car</a> <a href="../tag/bike.html">bike</a> <a href="../tag/commute.html">commute</a> </p>
-</footer><!-- /.post-info --><p>In high school, I was the bike kid. I think every high school has at least one person like me, you know, that guy who rides a bike literally everywhere. In all honesty, looking back at it, I wouldn't shut up about it. The more time goes on, the more I believe this is a good thing.</p>
-<h1>I Like Cars!</h1>
-<p>Whoa, whiplash anyone?</p>
-<p>It's true, though. I learned to drive a manual transmission at the same time as I learned to drive. It was very efficient! This gave me an immediate appreciation for driving, as anyone who drives a small stick shift car can tell you. There's a certain connection with the vehicle that isn't possible any other way. I currently drive a sporty little Mazda3, which is incredibly fun to take on backroads on the weekend.</p>
-<p>But even so, it's an expensive hobby, and not something I want to turn into a chore. I like driving, but I like it because it's fun, not because it's practical.</p>
-<h1>I Bike Everywhere I Practically Can.</h1>
-<p>I live west of Boston. Anyone who knows this area probably thinks of winding, narrow roads surrounded by trees, punctuated by the occasional stroad or highway. That's about spot on. The amount of consideration bikes are given here is insanely low, this is the very type of situation I believe road design regulations were created to prevent, though in all reality those were created only considering cars.</p>
-<p>All of that said, I don't feel unsafe on a bike. I'm sure this is different in the American south, and other places in the world that think of cyclists as opinionated, wimpy, avocado-toast-addicted morons, but in my corner of the world, people in cars are generally pretty courteous. They tend to give you space on the road, they watch carefully to keep from running into you, and they wait to pass you if there isn't enough space. That's not to say that nobody is crazy or entitled on the road, but so far my Close Call Counter is still in the single-digits since I started riding.</p>
-<p>So, I ride everywhere. If I'm low on milk or out of apples, I jump on my bike and ride to the store. If I need a new pair of jeans, I jump on my bike and ride to the local thrift store, or very rarely the local clothing store. There's a pharmacy within biking distance, all of downtown, a brewpub and coffee roaster, another brewpub, and a ton of other local business and restaurants. The vast, vast majority of things I do can be serviced by a bike. I even ride my bike to visit friends miles away. I ride everywhere.</p>
-<h1>Why? You Just Said You Like Your Car...</h1>
-<p>It's true, I like my car, I love driving. In spite of this, I still bike.</p>
-<p>First of all, there's the cost equation. I remember actually running these numbers in high school when I was considering whether to buy a car. I was actually pretty amazed. The obvious two expenses are the cost of the vehicle and the cost of gas. These are the two things most people think about. However, when you take into account insurance, repair costs, oil, random filter changes, and so on, the cost per year is incredibly high. Even if your gas cost is somehow zero and you don't drive anywhere, you still need annual inspections from the state (at least here in MA), current insurance, registration, and a pile of other random fees. Even if your car is free, before you've driven a single mile, you've already paid more than you would need to buy a pretty nice bike, kitted out with headlights and taillights for nighttime riding, a rear rack for cargo, fenders for when it rains, and a new coat for riding in the winter. I could get rid of my car and buy a new, relatively high-end bike with the money I would save each year. I actually paid for my car and buy gas for it, so I could probably actually buy more like 2-3 bikes of the same variety as the one I own each year for the same cost.</p>
-<p>If you think that's the end of the costs, you're mistaken. That's just what you pay for, and I didn't even mention everything. Do your own accounting and your picture will probably look pretty similar to mine, just make sure you count all the expenses you incur as a result of the car. There's more than just monetary costs, though.</p>
-<p>There are also health implications to driving as well. Your tolerance for extreme heat and cold will be severely damaged, where riding a bike will acclimate you to even relatively extreme seasonal weather changes pretty painlessly and gradually (which will make the day the heat goes out way easier). You'll stay in shape better, you'll have more energy, you'll have less risk of injury from common tasks just due to your body adapting to doing even light work, and this in turn will lead to extra <em>years</em> on your life and a better attitude in the mean time. For those of you worried about COVID, this also does improve your immune response to viruses like COVID. That means less sick days lying in bed. That's not even mentioning the emissions from the cars that you aren't generating, making everyone else healthier. On top of all of this, the WHO recommends at least 30 minutes of moderate exercise in order to maintain a baseline of health, so you can think of your first half an hour of riding each day as essentially multitasking, you get that minimum benefit out of it. Anything in addition is like putting in a little extra time at the gym. You're unlikely to regret it.</p>
-<p>If you think those emissions are a serious risk to someone on a bike, you'll probably be interested to know that being in a car doesn't reduce your own risk at all. In fact, depending on where the air intake in your car is, you may actually be inhaling more toxic fumes from driving. This really is a wash either way.</p>
-<p>I don't have the stats in front of me, but I hear anecdotally that a large proportion of bike accidents are due to biking drunk. If you don't, your risk of getting into an accident on your bike (involving a car or otherwise) should be pretty low, even compared to driving. My own experience is that while driving tired is incredibly dangerous, especially if my body is on the verge of sleep (very late at night), the added physical activity from biking keeps me alert enough that even at 2AM I'm not about to run into anything. Alertness is not a problem in the same way (though you NEED to equip your bike with BOTH front <em>and</em> back lights colored appropriately if you ride at night. <strong>DO NOT CHEAP OUT ON THIS, IT'S NOT WORTH THE $30 SAVINGS.</strong> Plus, it's only like $30-$60, compare that to headlights and tail lights on a car.)</p>
-<p>For me personally, I have a well-fitted bike with a rack and fenders, so I can haul almost two weeks of groceries in one trip, and that's with only some pretty basic pannier bags and no milk crate on top. Also, no bike trailer. These can be had cheaply on Craigslist or Ebay, not to mention new from most places that sell bike anything. You can haul a lot more than you might think on a bike.</p>
-<h1>There Are Some Drawbacks</h1>
-<p>Biking takes longer than driving. If your commute is 50+ miles, might I suggest moving closer to work? I bet you would save money even with a more expensive house. But, barring that, biking probably isn't practical over that distance every day. While safety isn't the big glaring concern you've probably been led to believe it is, you do still need to be aware that you're not in a giant metal box. Stay to the side of the road and keep your eyes up and open. Owning an upright bike helps with safety much more than even owning a helmet, so it's probably wise to choose your ride carefully.</p>
-<p>You're also exposed to the elements. If it's hot, bring water. Bottle cages can be had for less than $10, bring water when it's over maybe 30-32 degrees C, (a little under 90F or so, if I recall). Wear a coat in winter. As much as this is a drawback, see my earlier section for why this is a benefit. If you're afraid of the cold, remember that you're doing work by riding, you'll stay surprisingly warm. After the first time or two overdressing, you'll know what I mean.</p>
-<h1>Conclusion</h1>
-<p>I couldn't think of any more big drawbacks, at least none that I've run into. My bike doesn't have the same carrying capacity as my hatchback, but think around the same as a Mazda Miata. Anyone who's owned one of those knows how deceptive they are, you can really fit a lot more than you think in one. Bikes are kind of like that.</p>
-<p>My bike is my vehicle of choice the vast majority of the time, and for most of you it probably should be, too. If you're not sold, do your own research, buy a bike, and try it. Even if you use it part of the year, having it around the next time gas prices go crazy will be a huge help. I haven't even really talked about bikes as recreation, you probably already know about that.</p>
-<p>So in conclusion, ride a bike! I'll see you out there!</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Read More!</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>In high school, I was the bike kid. I think every high school has at least one person like me, you know, that guy who rides a bike literally everywhere. In all honesty, looking back at it, I wouldn't shut up about it. The more time goes on, the more …</p>
+                <a class="readmore" href="../biking.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
