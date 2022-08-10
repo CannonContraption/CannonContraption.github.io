@@ -13,16 +13,20 @@
 <body id="index" class="home">
         <header id="banner" class="body">
                 <h1><a href="../">#!/bin/bash it 'till it works</a></h1> <strong>The blog of a Zsh user.</strong>                <nav><ul>
-                    <li><a href="../category/food.html">Food</a></li>
-                    <li><a href="../category/games.html">Games</a></li>
-                    <li><a href="../category/misc.html">Misc</a></li>
-                    <li><a href="../category/tech.html">Tech</a></li>
+                    <li><a href="archives">Archives</a></li>
+                    <li><a href="categories">Categories/Tags</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="../web-programming-a-desktop-with-javascript.html">Web Programming a Desktop with Javascript</a></h1>
+                <section id="content" class="body">
+                    <ol id="posts-list" class="hfeed" start="0">
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="../web-programming-a-desktop-with-javascript.html" rel="bookmark"
+                           title="Permalink to Web Programming a Desktop with Javascript">Web Programming a Desktop with Javascript</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2017-02-25T00:00:00-05:00">
                 Published: Sat 25 February 2017
@@ -33,97 +37,10 @@
         </address>
 <p>In <a href="../category/tech.html">Tech</a>.</p>
 <p>tags: <a href="../tag/web.html">web</a> <a href="../tag/desktop.html">desktop</a> <a href="../tag/javascript.html">javascript</a> <a href="../tag/tech.html">tech</a> </p>
-</footer><!-- /.post-info --><p>One of the things which most people in web programming have to deal with is the problem of interactive content. The oldest methods for solving this were through the use of Java applets, and Flash content. There are other ways to accomplish this too, with software such as QuickTime, Real Player, VLC Media Player, and many more. In today's world, however, the use of most of these is an out-of-date concept. Most modern web applications are written using the features of HTML5, which fills the need to have built in media support, JavaScript, which fills the space of dynamic content handling, CSS, which handles layout and style separate from HTML, allowing for modular, even animated styling support, and AJAX, which is a small subset of JavaScript which is useful for fetching and sending data without reloading a page, filling the need for single-page dynamically loaded content.</p>
-<h2>Why I care</h2>
-<p>
-Last October, I joined the Framingham State Computer Science Club. It is a decision which I am very glad I made, for one simple reason. I was sitting at a table with three excellent individuals, and we decided we should make a website for the club. This is where my JS adventure began.
-</p>
-<p>
-Our first several drafts of what the site should be generally boiled down to conveying information to club members on meeting times, discussion topics, and other useful information. It was always meant to be something which would be useful first and foremost to club members, and a point of interest for those who might join. Eventually, we settled on the idea of making the entire site work like a large blog site, where members of the club can post interesting posts of the same nature as this blog. After running through several interface ideas, the one that stuck the best is writing a desktop-paradigm interface in a browser, using the new technologies I mentioned in the introduction.
-</p>
-<h2>Assembling the Tools</h2>
-<p>
-One of my first instincts when writing an interface of this sort is to take an objective look at exactly what needs to be done. My first thoughts in these matters were that we needed to work first on which toolkit we would use. I looked at JQuery first, because I had used it for some projects before. The first thing that hit me was version 3 in fact tried hardest to be compatible with Internet Explorer, and had a note about compatibility with more modern browsers at something along the lines of latest -1 version. This was not acceptable at all to me, because none of the people I know who would be using this site would be using IE. While it was likely that the features would work on many older browsers, JQuery didn't seem to actually add much value to a project like this, and was a relatively large JavaScript library, so I quickly moved away from that.
-</p>
-<p>
-I mentioned in my last post a <a href=http://kroche.io>friend of mine</a>, whom I actually met because of this project. He directed me to another person's personal site, that of <a href=http://samy.pl>Samy Kamkar</a>, and mentioned that he had used extjs. Upon closer examination, I found that he had used some clever tricks to stop the casual observer from finding his source code, labeling it as a challenge for those who really want to learn web. While I respect this, I would generally prefer to go into a project with a new library with an example, and this site wasn't going to make that easy.
-</p>
-<p>
-This brought me to the conclusion that I really should just learn enough JavaScript to implement this without any third-party libraries. That way, the code will run quicker, smoother, and without extra overhead from functions and programming I would not be using. As to that last point, the library is not any smaller than what it would probably be with someone else's library simply because I added so many comments to the code in order to facilitate its repurposing and reuse. Unlike Samy Kamkar, I would like it to be easy for some casual onlooker to fire up the CS club page and see how it works.
-</p>
-<h2>Window Management in a Browser</h2>
-<p>
-The first challenge I had to face was how exactly I would get windows to exist in an HTML space. It was clear that it was possible, <a href=http://samy.pl>others had done it before</a>. I had already assembled a taskbar and rudimentary start menu, those were simple. All that took was knowledge of CSS3 transitions and the z-index property. After much thought on the matter, I started investigating how JavaScript handles mouse positioning. I found that it deals in coordinates relative to the top left corner of the page, much like most graphics libraries and engines. This made it simple. All I had to do was record where I clicked the mouse down, where I released the mouse button, and then take the difference of the two in order to figure out how much to move the window. My first prototype window toolkit used this method. The biggest problem with this was that I couldn't see where I was moving the window to while I was doing it. I could see where I started, and where the window ended up, but no in-between.
-</p>
-<p>
-After much tweaking, I found that the best way to handle the issue of window placement while moving was to actually make the browser update the window on the onMouseMove event. This would mean that every time the browser registered the mouse moving, there would be some JavaScript code to execute. My first thought was that this would make the entire interface unbelievably slow, but that expectation has largely been overshadowed by the fact that I have tried this on several computers, including a Dell Inspiron 6000 from 2003, and none of them have had a problem with it so far. As it turns out mouse position polling does not take that much work to accomplish. After hacking away at it for a little while, I managed to get a system which would detect when the user was dragging the window, and update automatically to reflect this. Window management was mostly done after that, as it was a simple matter to implement the JavaScript code to add and remove HTML elements with no ID and simply track them through JavaScript. This proved to be a stable and surprisingly quick solution which is still in use now.
-</p>
-<h2>Window Components and Layout</h2>
-<p>
-Another challenge I faced early on, perhaps even earlier than getting windows to move, was how to lay out a window so it has the same components that everyone and their uncle recognize from using Windows. The main components that I would need to add were:
-</p>
-<ul>
-<li>Titlebar</li>
-<li>Window title text</li>
-<li>Window content area</li>
-<li>Close button</li>
-<li>(Time permitting) Minimize and Maximize buttons</li>
-</ul>
-<p>
-I decided to stick to just implementing the close button at first, as the window manager would need to mature significantly before I could start working on the other parts.
-</p>
-<p>
-The first design I had in mind was a master toplevel div, which would float in a <code>position:absolute;</code> style and be the thing which would hold all of the components of the window. Each component would sit in this toplevel div, and would actually be what showed content. The toplevel itself would provide a border around the whole window.
-</p>
-<p>
-That didn't work out quite like that. One of the oddities about HTML is how div elements work. You can nest div elements inside each other without trouble, but things become tricky as soon as you want one div to start before a nested div and end after it in vertical space. It simply doesn't work this way. What I ended up doing was I defined the height of the toplevel div to be about 22 pixels or so (I can't recall the exact value, but the code is public so the interested reader can <a href="https://github.com/push-eax/fsu-csclub-site/blob/master/windowTools/windowTools.css">look it up</a>), and then nesting all the child elements inside that div like I had intended. The toplevel served as the background for the titlebar, and I simply made the window content area show up white. Window buttons would show up on the right-hand side like in Windows and KDE (the desktop I use almost everywhere), and the title text would be centered in the window. The only parameter that would need to be specified when creating a window in terms of dimensions would be how wide the window should be, that way it can expand in height dynamically to fit the content and I don't have to worry about making the arithmetic work right even if fonts change depending on the browser and operating system. Being a Linux user, I care about this stuff as many of my friends and fellow classmates use a completely different font set than I even have access to. The only step after determining all this was to actually connect signals and make the window react predictably. Since this was a simple matter, and the details of how I did it are in the code itself, I will leave that out of this post.
-</p>
-<h2>Determining How to Make Content in a Window</h2>
-<p>
-Another interesting challenge was how I should then make the window available to end-developers to use. At the time I had (perhaps wisely) decided I wanted the windowing code to be a discrete component which could later be taken out of context and used in a different site, and I didn't want the task of actually populating windows to be too much of a task.
-</p>
-<p>
-My first solution was to simply add a section where someone could take flat HTML code and then insert it straight into the window as if it were another page. This was a neat idea, and very good for testing windows, but it raised on serious concern for me: there would be no easy way to ensure consistency of interface across all windows in the same site without some serious talk between members of the project about how to class each element so it matched up with the master stylesheets.
-</p>
-<p>
-The solution I finally settled on was to keep the option to insert custom code into a window as a way of populating it, but also to add the option to add a single element to a window. This was the dawn of the widgetTools toolkit, which was created as another discrete component to compliment the site and yet still be portable to places outside of the website project.
-</p>
-<h2>Drawing Inspiration from GTK+</h2>
-<p>
-A large part of how widgetTools works is drawn from my prior experience working with GTK+3 in Python, C, and C++. GTK+ is a wonderfully useful and complete widget toolkit which delivers on the promise of consistent look and feel across applications on a single platform. Unlike competing technology in Java, most notably Swing, it manages to look and feel right in a Linux environment, and in Windows both. I have seen screenshots of it also fitting in almost exactly like Apple's own toolkit in macOS, but I do not own a mac and so I can't corroborate this. The Achilles' Heel of this toolkit is complexity. In order to do some relatively simple things in GTK+, you need to have some knowledge of the data structures and functions that it uses in order to generate the content on the user's screen. While this is all really well documented, and easy to learn if you have the time to figure it out, it is quite complex. Further, while GTK+ has a web backend, it is not built to work like a website, instead it is built to work more like another form of remote desktop, allowing single-application access over a LAN or internet connection. While it does implement window management too, the simple fact of the matter is it wouldn't work for a situation like this because of its single-instance nature.
-</p>
-<p>
-That being said, I did quite enjoy working with GTK+, and it showed me a lot about what GUI development is and why so many people find it difficult. Some of the things they use in GTK+ are out of date, or workarounds for old problems since solved, but for the most part there is a valid reason for everything they do in that toolkit, which is something I wanted to do myself with mine. So that was what I decided I would do. I had already largely been working with JavaScript in order to write windowTools, so I continued using a similar model for widgetTools. First and foremost, windowTools was written in such a way that it could insert a single HTML DOM object into a window, as a sort of toplevel widget space. For that purpose, I created a simple function to create an empty div in widgetTools called the widget space. The first step in using widgetTools would be to create such an element and set it as the toplevel for the window.
-</p>
-<h2>Less Complicated Widget Layout</h2>
-<p>
-One thing that I really like about GTK+ is that it covers almost every case. In the case of widgetTools, however, I can't do that so much. A lot of that comes from the fact that HTML has a limited set of primitives to choose from when it comes to creating new UI elements. It is enough to do some really impressive stuff, as anyone who has used Google in recent years can tell you, but it is still not quite as much freedom as the developers of GTK+ had. Nor does it require quite so much work to get a foundation laid. This meant that I could both relax a little because some elements were ready-made for me, but it also meant that I would likely end up doing nothing but wrapping existing elements into JavaScript, which could turn dull quickly.
-</p>
-<p>
-The main idea behind the widgetTools setup is that in order to place an element, you need only tell the toolkit what its parent should be. This means that in order to get a horizontal split in a single window the developer would have to use a table or something similar, but it also means that if the window did not require fancy layouts like that it could be developed quite quickly without worrying about placement. While I think Gtk_Grid is a nice solution to the problem of layout, it is overkill to the nth degree here, and so it would not be useful. This means that the syntax for creating and positioning a window element could simply be <code>makeButton(widgetSpace, "button", "this is a test button");</code>.  That line, if run in widgetTools, would create a standard button (hence the "button" argument) which would automatically be placed in the toplevel widgetSpace below any existing elements (or beside them if there's no block element and the window is wide enough). This system returns the HTML DOM element as a JS object for each item it creates. If, for example, we wanted to put the button in a table data (td), all we would need to do is change the widgetSpace argument to some other object we have created. Assuming our table data is named tdtest, that would make the code to insert a button there <code>makeButton(tdtest, "button", "this is a test button");</code>. This means that in order to determine layout, all you need know is where you wish to place the element, and the browser's existing layout engine can take care of the rest.
-</p>
-<p>
-What we end up after this is actually relatively powerful:<div class="separator" style="clear: both; text-align: center; width:550px; overflow:hidden;"><a href="https://1.bp.blogspot.com/-5fJLo13DD9o/WLIDbndceDI/AAAAAAAAWTM/OYnDFKPcUgoPZ8s4C_jCwrds4oByZ2REQCPcB/s1600/widgetToolkit.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em; width:500px; overflow:hidden;"><img border="0" src="https://1.bp.blogspot.com/-5fJLo13DD9o/WLIDbndceDI/AAAAAAAAWTM/OYnDFKPcUgoPZ8s4C_jCwrds4oByZ2REQCPcB/s1600/widgetToolkit.png" /></a></div>
-</p>
-<h2>Minimization, Window Resizing</h2>
-<p>
-If I were to write this post in order of how I actually wrote the code, resizing the window would have come into play around the same time as the widget toolkit, but I feel like resize and minimize work closely with each other, so I decided to put them in the same section. Both were at least started after the widget toolkit, although resize was done well before much was done at all in the widget toolkit. For details on how it was put together, reading the commit list on <a href="https://github.com/push-eax/fsu-csclub-site">the GitHub repository</a> is where you should go. It is incredibly detailed, so if you're not up for a real commit swim, it may be worth skipping that and just taking my word for it.
-</p>
-<h3>Resize</h3>
-<p>
-In order to fix the problem of window resizing, I approached the problem from the same angle as moving the window. Take the dimensions of the window when you click the grab handle, then poll the mouse to see where it moves and change the window accordingly. This stops when the user lifts the button. The issue with this was that instead of moving X and Y coordinates alone, I was dealing with adding properties for height so that the user could resize in both directions. This turned out to be less of a problem. When I started working with the idea of resizing based on move commands, I did not know that JavaScript does not take all of the window dimensions into account. It takes the inner dimensions of the window, and the outer dimensions to a point. The trick was not only resizing the toplevel's width, but the height of the content div. Since the dimensions don't quite match between these because I initially wanted a window border, only to settle for the titlebar being a little wider than the window. After a lot of work, I found that if I take the inner dimensions of the window and then only deal with those, the outer dimensions follow suit. All I had to do was modify the style properties for width and height based on my knowledge of how the box model is handled and a little black magic with known pixel count values to make resize work properly, and not exponetially expand into infinity like before I had figured out the missing properties.
-</p>
-<h3>Minimize</h3>
-<p>
-Like I said, minimize and resize are similar. The first problem I had to solve was adding window buttons to the taskbar, but doing that (and even tracking their location) was quite easy. The real trick was figuring out how to hide the windows themselves. In the end, I decided to add some global variables to represent the position of the window at the start of minimization, and then just change its width to match the taskbar button, and set its X and Y coordinates to match the top corner of the button.
-</p>
-<p>This was the right decision to make in the end largely because it made animating the minimization process really easy. All I had to do there is keep track of how long I wanted the animation to run, and then use that to set CSS transitions so that it would smoothly move from its original location to its spot in the taskbar. Since I had found out during the time when I was writing the move facilities that transitions mess with window moving, I had to make the transitions reset to 0s for all transition properties, but considering what it took to make other functions work, this was a simple enough task.
-</p>
-<h2>Conclusion</h2>
-<p>
-Making windowing in a browser was a fun project which, in the end, turned out to include some useful components which can simply be placed in other projects to use for basically any purpose. Anyone can view the current CS Club site on GitHub, <a href="https://github.com/push-eax/fsu-csclub-site">simply follow this link and you're there!</a>
-</p>                </article>
-            </aside><!-- /#featured -->
+</footer><!-- /.post-info -->                <p>One of the things which most people in web programming have to deal with is the problem of interactive content. The oldest methods for solving this were through the use of Java applets, and Flash content. There are other ways to accomplish this too, with software such as QuickTime, Real …</p>
+                <a class="readmore" href="../web-programming-a-desktop-with-javascript.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
