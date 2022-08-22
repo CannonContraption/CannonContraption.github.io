@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+        <title>Habit Changer Dev Log 2</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link rel="icon" href="./theme/images/icons/favicon.png" />
+        <link href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="#!/bin/bash it 'till it works Atom Feed" />
+        <link href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="#!/bin/bash it 'till it works RSS Feed" />
+        <meta name="description" content="Hello again, it's been a few days! I actually took somewhat of a weekend break in the middle there, but now we're back with more habit changer..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">#!/bin/bash it 'till it works</a></h1> <strong>The blog of a Zsh user.</strong>                <nav><ul>
+                    <li><a href="archives">Archives</a></li>
+                    <li><a href="categories">Categories/Tags</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./devlog2.html" rel="bookmark"
+           title="Permalink to Habit Changer Dev Log 2">Habit Changer Dev Log 2</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-08-22T18:50:00-04:00">
+                Published: Mon 22 August 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="./category/tech.html">Tech</a>.</p>
+<p>tags: <a href="./tag/devlog.html">devlog</a> <a href="./tag/dev.html">dev</a> <a href="./tag/android.html">android</a> </p>
+</footer><!-- /.post-info -->      <p>Hello again, it's been a few days!</p>
+<p>I actually took somewhat of a weekend break in the middle there, but now we're back with more habit changer work. However, during that time I managed to complete the data structures for the core habit system, a prototype algorithm for how to calculate habit changes, and a set of verbal descriptions of what the UI will look like. I haven't done any mockups yet, so the UI is still just a bunch of descriptions rather than a set form just yet. I also wrote the first bits of code for the algorithm tester in Rust, and so far that can represent and display habit data in a plain-English debug format. I may change this to be JSON or something before long just for automation purposes, but for early prototyping this should work OK.</p>
+<h1>Habit Templates</h1>
+<p>I wanted to touch on this briefly.</p>
+<p>My previous post talked about the idea of habit "templates". This would allow the user to just plop down a proposed habit change based on some common assumptions that could be used for other habits. It would also allow them to link data sources to the habit change as they saw fit. This model turned out not to make as much sense as I had thought. Here's what it would have looked like:</p>
+<p>Templates themselves:</p>
+<ul>
+<li>Type of Desired Adjustment (Numerical or Time)</li>
+<li>Adjustment is a Ratio</li>
+<li>Unit of Measure (numerator/non-ratio)</li>
+<li>Unit of Measure (denominator, ratio only)</li>
+<li>Default Regression Interval</li>
+</ul>
+<p>Each instance of this template would look something like this:</p>
+<ul>
+<li>Name of the Habit Change</li>
+<li>reference to the template</li>
+<li>Start Date</li>
+<li>Duration of Change (change complete in 1 month, etc.)</li>
+<li>List of Reported Activity</li>
+<li>Progress from Today</li>
+<li>Last Updated Date/Time</li>
+<li>Regression Interval</li>
+</ul>
+<p>What I realized pretty quickly was that this is kind of stupid. The templates contain very little in the way of unique data, and vastly complicated the data structure, since now we're dealing with "default settings" and have to refer a habit back to its template to get some details. Furthermore, if somebody wants to take a habit and make another one like it, they're probably just as comfortable taking an existing habit <em>as is</em> and then just adjusting it to fit their new needs. This vastly simplifies their usage patterns.</p>
+<h2>No Templates?</h2>
+<p>All of that said, I still like the idea of the "template system" that I defined in my requirements section in my <a href="./devlog1.html">last post</a>. Rather than make that an integral part of how the app works, I've opted to shoot for a simplified version.</p>
+<p>For the sake of giving this idea a name, I'm calling it "no templates".</p>
+<p>When looking at an existing habit, there will of course be some editing options. There will be a full edit screen, a screen for logging progress, a delete button somewhere, and so on. In addition to this, I think I'm going to add a "partial clone" and a "full clone" option.</p>
+<p>Full clone should describe itself, that will just duplicate a habit, ask for a new name, and then create a new habit entry starting on the current day with all of the settings from the habit that was just cloned. Theoretically, this type of habit could be exported and shared at this point, and would be the "template" replacement.</p>
+<p>Partial clone would be what the original templates system would have described. It will copy the type, adjustment, unit of measure, and regression interval fields and then open the habit edit screen to fill in the rest of the blanks and tweak things further.</p>
+<p>I personally love solutions like this. By moving away from a hard-and-fast "template" system to some simple data copy operations, I massively simplified the programming work that's needed to accomplish the same task, and managed to give the user <em>more</em> options in the process. In my mind, this is a hallmark of good iterative design, when trimming features and complexity leads to more flexibility and a more intuitive interface virtually for free.</p>
+<h1>Prototype in Rust?</h1>
+<p>Many of you probably know this already, but Rust isn't exactly most people's first choice of app development language (as far as I know you can't actually write an Android app in Rust without heavy use of the NDK and C bindings), nor is it most people's first choice of prototyping language. So why did I choose it?</p>
+<p>There's a number of reasons. Honestly speaking, my personal portfolio contains very little Rust code relative to the amount of it I've actually written. This is the least important reason, though.</p>
+<p>Crucially, Rust enforces sane code structure and strict data types. It's fully expressive in much the same way Python is, and will call you on bad design from the compiler half the time. It requires that you think of memory in a unique (and uniquely safe) way, and it's also just fun.</p>
+<p>Let's compare this to Python for a moment. Python is loosely typed, happily lets you define extra variables where you intended to modify an existing value, doesn't really let you touch any memory management in the first place, is somewhat sloppy with scope, and requires reading indentation to figure out the start and end of code blocks. None of these things are deal breaking issues on their own, but put together they make Python less than ideal.</p>
+<p>Using a language like C would also work, but then you're worrying about memory management in your prototype. If you can entirely avoid ever calling <code>malloc()</code> or similar in your C, then it's a good language to use. Otherwise, maybe look elsewhere.</p>
+<p>For me, I also want to be able to rapid test my algorithm with an automated test early on to prove it in a lot of different simulated scenarios. Rust helps here, too, since it's very fast.</p>
+<h1>What's Your Starting Point?</h1>
+<p>Part way through writing the first bits of display code for the prototyping system, I realized that using the app in the way that I had originally designed it requires that a person already have habit logging down to a science. In many, perhaps most cases, that's not very likely. So, rather than asking the user to input a starting point, I've added a "monitor mode" to the design. The idea is to simply watch and wait and see what a person's actual starting point is. Once they disable monitor mode, the app will log the "starting date" and calculate the percent change from some aggregate of the data they've entered, perhaps a daily average or something along those lines.</p>
+<p>This comes with the additional advantage that the app can suggest error margins based on some basic statistics from the data the user provides during this "learning" period.</p>
+<h1>Habit Algorithm</h1>
+<p>So, with all of that said, here's the prototype algorithm, more or less:</p>
+<p>Start by defining the habit. Then, the habit will enter "monitoring mode" for a few days. Once this is done, we'll have some of the data we need. As an example, we're just going to take the average, minimum, and maximum values. We'll use the "average" as a representation of the "current value". We'll then compare the average to the minimum and maximum values to come up with a deviation percentage. This can be used as the suggested deviation percentage per day. This will mask outliers more effectively than just guessing a number for this step.</p>
+<p>At that point, we'll take the target duration to adjust to the new habit and use it to come up with a rate of change. So, for example, if we started with an average of consuming 2500 calories and we want to reduce that to 1800 in 30 days, we'll target a calorie reduction of 23 and 1/3, give or take how much the starting number deviated from the average over the monitoring period.</p>
+<p>My original algorithm document then went on to say that the app won't be designed to maintain a habit, but in all honesty that would pretty soundly defeat the purpose of the app in the first place. The idea is to slowly get somebody to adapt to a new habit. My original assumption was that this would be as simple as just getting within a certain percentage of the desired outcome value, but in all honesty it should also still be able to coach you after the fact and let you know when your average over a certain number of days is slightly higher or lower than it should be. Using the calories example, that would give a person a better chance of forming an intuitive idea of how many calories is the right amount without the app. That's what the difference is between a temporary lifestyle change and an ingrained habit.</p>
+<h1>Progress So Far</h1>
+<p>The main data structures are drafted. The prototype and algorithmic test suite is probably about 20% done.</p>
+<p>These are the core data structures (as they exist now in code):</p>
+<div class="highlight"><pre><span></span><code><span class="o">/*</span><span class="w"></span>
+<span class="n">Adjustment</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Defines</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">habit</span><span class="w"> </span><span class="n">adjustment</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">made</span><span class="o">.</span><span class="w"></span>
+<span class="o">*/</span><span class="w"></span>
+<span class="c1">#[derive(PartialEq)]</span><span class="w"></span>
+<span class="k">enum</span><span class="w"> </span><span class="n">Adjustment</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Numerical</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Chronological</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="o">/*</span><span class="w"></span>
+<span class="n">Activity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Representation</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">goal</span><span class="o">.</span><span class="w"></span>
+<span class="o">*/</span><span class="w"></span>
+<span class="n">struct</span><span class="w"> </span><span class="n">Activity</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">delta</span><span class="p">:</span><span class="w">     </span><span class="n">u16</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">delta_den</span><span class="p">:</span><span class="w"> </span><span class="n">u16</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">datetime</span><span class="p">:</span><span class="w">  </span><span class="n">PrimitiveDateTime</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="o">/*</span><span class="w"></span>
+<span class="n">Habit</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Definition</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">ongoing</span><span class="w"> </span><span class="n">habit</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">change</span><span class="w"></span>
+<span class="o">*/</span><span class="w"></span>
+<span class="n">struct</span><span class="w"> </span><span class="n">Habit</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w">        </span><span class="nb nb-Type">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">adj_type</span><span class="p">:</span><span class="w">    </span><span class="n">Adjustment</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">adj_ratio</span><span class="p">:</span><span class="w">   </span><span class="nb nb-Type">bool</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">monitoring</span><span class="p">:</span><span class="w">  </span><span class="nb nb-Type">bool</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">unit_num</span><span class="p">:</span><span class="w">    </span><span class="nb nb-Type">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">unit_den</span><span class="p">:</span><span class="w">    </span><span class="nb nb-Type">String</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">start_date</span><span class="p">:</span><span class="w">  </span><span class="n">Date</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">tgt_done</span><span class="p">:</span><span class="w">    </span><span class="n">u32</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">activity</span><span class="p">:</span><span class="w">    </span><span class="n">Vec</span><span class="o">&lt;</span><span class="n">Activity</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">updated</span><span class="p">:</span><span class="w">     </span><span class="n">Date</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">regress_int</span><span class="p">:</span><span class="w"> </span><span class="n">f32</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+
+<p>I'll probably change a number of these fields to be <code>Option</code>s or something in order to allow for null values where they make sense.</p>
+<p>The system is starting to take shape and the very first bit of executable code is written and ready to be extended to include the algorithm proper. The design documents are written and make sense, and the project is on track to produce something useful.</p>
+<h1>Design Changes</h1>
+<p>Habit maintenance is the name of the game. Anecdotally I've heard that 3 weeks is the sweet spot to make a habit stick, which is a fact I clear forgot in my initial design drafts.</p>
+<p>Templates underwent a total change, moving from a rigid structure that each habit must use to a simple data serialization idea.</p>
+<p>The design now takes training into account. This is doubly useful since much of the same code can be used for initial monitoring beforehand and maintenance after reaching the target.</p>
+<h1>Still Left to Do</h1>
+<p>The prototype system needs to be finished. It's started and looking like it'll be in good shape, but that's a far cry from complete and ready. Then, of course, the test cases need to be written to stress the design, and it needs to be ported to an app to complete the project.</p>
+<p>See you next time!</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/windowTools">WindowTools</a></li>
+                            <li><a href="desktop/">Desktop Site</a></li>
+                            <li><a href="https://gitlab.com/spacecowboy/Feeder">Feeder for Android</a></li>
+                            <li><a href="https://hyliu.me/fluent-reader/">Fluent Reader</a></li>
+                            <li><a href="https://apps.apple.com/app/feedly-get-smarter/id396069556">Feedly for iOS</a></li>
+                            <li><a href="archives">Archives</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://gitlab.com/CannonContraption">GitLab</a></li>
+                            <li><a href="https://github.com/CannonContraption">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q">YouTube</a></li>
+                            <li><a href="https://soundcloud.com/jimmydean886">SoundCloud</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
