@@ -47,32 +47,9 @@
              var introwindow = addWindow(
                  "About",
                  800);
-             var widgetSpace = makeWidgetSpace();
-             setWidgetSpace(
+             setWindowContents(
                  introwindow,
-                 widgetSpace);
-             makeLabel(
-                 widgetSpace,
-                 "<h2>About</h2>"+
-                 "CannonContraption");
-             makeRule(
-                 widgetSpace);
-             makeLabel(
-                 widgetSpace,
-                 "Hello! I'm Jim Read, a software engineer in Massachusetts, currently working for Dell EMC.<br>"+
-                 "I have a passion for odd and unusual (espeically unix-ey) utilities and programs that can streamline my work as a developer.");
-             makeRule(
-                 widgetSpace);
-             makeLabel(
-                 widgetSpace,
-                 "<h3>Find me somewhere else in the tubez!</h3>");
-             makeTableWithData(
-                 widgetSpace,
-                 true,
-                 [["Github!", "<a href=https://github.com/CannonContraption>github.com/CannonContraption</a>", "My contributions to Microsoft's AI training."],
-                  ["Gitlab!", "<a href=https://gitlab.com/CannonContraption>gitlab.com/CannonContraption</a>", "Most of my projects live here now, I found the issue tracker slightly nicer at one point."],
-                  ["YouTube!", "<a href=https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q>https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q</a>", "I sometimes make videos"],
-                  ["SoundCloud!", "<a href=https://soundcloud.com/jimmydean886>https://soundcloud.com/jimmydean886</a>", "I write music!"]]);
+                 "<iframe src='/pages/about.html' style='width:100%;height:100%;' frameborder=0></iframe>");
          }
 
          function frame_post(

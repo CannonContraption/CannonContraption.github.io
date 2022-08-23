@@ -176,6 +176,7 @@ div.figure p.caption, figure p.caption { /* margin provided by figure */
 /*
 	Header
 *****************/
+
 #banner {
 	margin: 0 auto;
 	padding: 2.5em 0 0 0;
@@ -250,6 +251,15 @@ div.figure p.caption, figure p.caption { /* margin provided by figure */
 		-moz-border-radius-bottomleft: 5px;
 		-webkit-border-bottom-left-radius: 5px;
 	}
+
+
+/* Hide the desktop site on mobile to save space in the header.
+It doesn't work on small screens, anyhow. */
+@media only screen and (max-width: 800px) {
+    #banner nav #navlink-desktop{
+        display: none;
+    }
+}
 
 /*
 	Featured
