@@ -353,7 +353,7 @@ function makeIcon(
     var iconimg = document.createElement("img");
     iconimg.setAttribute(
         "src",
-        "resources/icons/" +
+        wtoolsrpath+"resources/icons/" +
             icontheme +
             "/" +
             iconname +

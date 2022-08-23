@@ -1,0 +1,664 @@
+<html>
+    <head>
+        <meta
+            http-equiv="Content-Type"
+            content="text/html"
+            charset="utf-8" >
+        <title>#!/bin/bash it 'till it works</title>
+        <!-- Shortcut icon -->
+        <link rel="shortcut icon" href="cannoncontraption.ico" type="favicon/ico" />
+        <!-- Style information -->
+        <link rel="stylesheet" type="text/css" href="/theme/scripts/windowTools/windowTools.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/css/desktop-theme.css" />
+        <link rel="stylesheet" type="text/css" href="/theme/scripts/widgetTools/widgetTools.css" />
+        <!-- Script sources -->
+        <script>
+         wtoolspath="/theme/scripts/"
+         wtoolsrpath="/theme/"
+        </script>
+        <script src="/theme/scripts/windowTools/windowTools.js"></script>
+        <script src="/theme/scripts/widgetTools/widgetTools.js"></script>
+    </head>
+    <body>
+        <script>
+         var colorScheme = {
+             activepanelcolor: "#8b8889",
+             lowerpanelcolor: "#d1ad79",
+             lowerwindowborder: 'black',
+             minipanelcolor: '#333c4f',
+         }
+
+         function make_introduction_window()
+         {
+             var introwindow = addWindow(
+                 "Intro",
+                 800);
+             var widgetSpace = makeWidgetSpace();
+             setWidgetSpace(
+                 introwindow,
+                 widgetSpace);
+             makeLabel(
+                 widgetSpace,
+                 "<h1>Welcome to the Desktop Site!</h1><hr><p>This is a showcase of windowTools and widgetTools, two projects I helped develop in college. I wrote the vast majority of the logic to make them work, and I also designed every piece of the graphics and visual style.</p><p>All of my posts are available to browse here, if you prefer this interface. Simply open the main menu in the bottom left, then pick a category. The interface should feel familiar. Bear in mind, however, that due to a shortcoming in how some browsers render iframes, you may need to move slowly when resizing and moving a post on the screen.</p><p>This was the original interface for #!/bin/bash it 'till it works from when I first ported it away from Blogger in June, 2018. You can see <a href=\"../tag/blog.html\">my series on blogging</a> for the whole story. Note that clicking that link will pull you out of the desktop for now, maybe I'll change that at some point.</p>");
+         }
+
+         function make_about_window()
+         {
+             var introwindow = addWindow(
+                 "About",
+                 800);
+             var widgetSpace = makeWidgetSpace();
+             setWidgetSpace(
+                 introwindow,
+                 widgetSpace);
+             makeLabel(
+                 widgetSpace,
+                 "<h2>About</h2>"+
+                 "CannonContraption");
+             makeRule(
+                 widgetSpace);
+             makeLabel(
+                 widgetSpace,
+                 "Hello! I'm Jim Read, a software engineer in Massachusetts, currently working for Dell EMC.<br>"+
+                 "I have a passion for odd and unusual (espeically unix-ey) utilities and programs that can streamline my work as a developer.");
+             makeRule(
+                 widgetSpace);
+             makeLabel(
+                 widgetSpace,
+                 "<h3>Find me somewhere else in the tubez!</h3>");
+             makeTableWithData(
+                 widgetSpace,
+                 true,
+                 [["Github!", "<a href=https://github.com/CannonContraption>github.com/CannonContraption</a>", "My contributions to Microsoft's AI training."],
+                  ["Gitlab!", "<a href=https://gitlab.com/CannonContraption>gitlab.com/CannonContraption</a>", "Most of my projects live here now, I found the issue tracker slightly nicer at one point."],
+                  ["YouTube!", "<a href=https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q>https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q</a>", "I sometimes make videos"],
+                  ["SoundCloud!", "<a href=https://soundcloud.com/jimmydean886>https://soundcloud.com/jimmydean886</a>", "I write music!"]]);
+         }
+
+         function frame_post(
+             post_path,
+             slug,
+             category)
+         {
+             var blogwd = addWindow(
+                 slug + " in " + category,
+                 800);
+             setWindowContents(
+                 blogwd,
+                 "<iframe src='/"+post_path+"' style='width:100%;height:100%;' frameborder=0></iframe>");
+         }
+
+         function load_post(
+             post_function_name,
+             post_title,
+             long_post_title,
+             date_string)
+         {
+             var post_window = addWindow(
+                 "blog/"+post_title,
+                 700);
+             var widgetSpace = makeWidgetSpace();
+             setWidgetSpace(
+                 post_window,
+                 widgetSpace);
+             var post_title = makeLabel(
+                 widgetSpace,
+                 "<h2>"+
+                 long_post_title +
+                 "</h2>"+
+                 date_string);
+             makeRule(widgetSpace);
+             var text = makeLabel(
+                 widgetSpace,
+                 post_function_name());
+             widgetSpace.style.height=500;
+             post_window.resizeEvent.push(
+                 function(
+                     cwindow,
+                     deltax,
+                     deltay)
+                 {
+                     var widgetSpace = cwindow.body.getElementsByClassName(
+                         "widgetSpace")[0];
+                     var height = widgetSpace.style.height;
+                     height = height.substring(0,height.length-2);
+                     widgetSpace.style.height = parseInt(height)+deltay;
+             });
+             post_window.maximizeEvent.push(
+                 function(
+                     cwindow,
+                     windowWidth,
+                     windowHeight)
+                 {
+                     var widgetSpace = cwindow.body.getElementsByClassName(
+                         "widgetSpace")[0];
+                     var height = widgetSpace.style.height;
+                     height = height.substring(0,height.length-2);
+                     widgetSpace.style.height = windowHeight;
+             });
+             widgetSpace.style.overflowY="auto";
+             return post_window;
+         }
+
+         function blog_window(
+             category)
+         {
+             var blog_browser_window = addWindow(
+                 category + " blog",
+                 500);
+             var widgetSpace = makeWidgetSpace();
+             setWidgetSpace(
+                 blog_browser_window,
+                 widgetSpace);
+             var toolbar = makeToolbar(
+                 widgetSpace);
+             var latestButton = makeButton(
+                 toolbar,
+                 "tbutton",
+                 "Latest post");
+             var browser_section = makeSection(
+                 widgetSpace);
+             if(category == "keyboards")
+             {
+                 setClickAction(
+                     latestButton,
+                     function(){
+                         frame_post(
+                             "intro",
+                             "intro.html",
+                             "keyboard")});
+                 let introicon = makeIcon(
+                     browser_section,
+                     "intro",
+                     "blogpost");
+                 setDblClickAction(
+                     introicon,
+                     function(){
+                         frame_post(
+                             "intro",
+                             "intro.html",
+                             "keyboard")});
+             }
+         }
+
+         function make_menu_buttons()
+         {
+             var menu_space = makeWidgetSpace();
+             addMenuElement(menu_space);
+             makeLabel(
+                 makeSection(menu_space),
+                 "cannoncontraption.github.io/");
+             var about_button = makeButton(
+                 menu_space,
+                 "menubutton",
+                 "about");
+             setClickAction(
+                 about_button,
+                 function(){
+                     menuexec(make_about_window);
+             });
+
+             /* Pelican generates by category */
+             var keyboard_button = makeButton(
+                 menu_space,
+                 "menubutton",
+                 "Food");
+             setClickAction(
+                 keyboard_button,
+                 function(){
+                     menuexec(
+                         function(){
+                             var blog_browser_window = addWindow(
+                                 "Food",
+                                 500);
+                             var widgetSpace = makeWidgetSpace();
+                             setWidgetSpace(
+                                 blog_browser_window,
+                                 widgetSpace);
+                             var toolbar = makeToolbar(
+                                 widgetSpace);
+                             var latestButton = makeButton(
+                                 toolbar,
+                                 "tbutton",
+                                 "Latest post");
+                             var browser_section = makeSection(
+                                 widgetSpace);
+                             setClickAction(
+                                 latestButton,
+                                 function(){
+                                     frame_post(
+                                         "an-instant-pot-is-not-a-slow-cooker.html",
+                                         "an-instant-pot-is-not-a-slow-cooker",
+                                         "Food")});
+                             let an_instant_pot_is_not_a_slow_cookericon = makeIcon(
+                                 browser_section,
+                                 "an-instant-pot-is-not-a-slow-cooker",
+                                 "blogpost");
+                             setDblClickAction(
+                                 an_instant_pot_is_not_a_slow_cookericon,
+                                 function(){
+                                     frame_post(
+                                         "an-instant-pot-is-not-a-slow-cooker.html",
+                                         "an-instant-pot-is-not-a-slow-cooker",
+                                         "Food")
+                             });
+                             let foodicon = makeIcon(
+                                 browser_section,
+                                 "food",
+                                 "blogpost");
+                             setDblClickAction(
+                                 foodicon,
+                                 function(){
+                                     frame_post(
+                                         "food.html",
+                                         "food",
+                                         "Food")
+                             });
+                     });
+             });
+             var keyboard_button = makeButton(
+                 menu_space,
+                 "menubutton",
+                 "Games");
+             setClickAction(
+                 keyboard_button,
+                 function(){
+                     menuexec(
+                         function(){
+                             var blog_browser_window = addWindow(
+                                 "Games",
+                                 500);
+                             var widgetSpace = makeWidgetSpace();
+                             setWidgetSpace(
+                                 blog_browser_window,
+                                 widgetSpace);
+                             var toolbar = makeToolbar(
+                                 widgetSpace);
+                             var latestButton = makeButton(
+                                 toolbar,
+                                 "tbutton",
+                                 "Latest post");
+                             var browser_section = makeSection(
+                                 widgetSpace);
+                             setClickAction(
+                                 latestButton,
+                                 function(){
+                                     frame_post(
+                                         "ps4review.html",
+                                         "ps4review",
+                                         "Games")});
+                             let ps4reviewicon = makeIcon(
+                                 browser_section,
+                                 "ps4review",
+                                 "blogpost");
+                             setDblClickAction(
+                                 ps4reviewicon,
+                                 function(){
+                                     frame_post(
+                                         "ps4review.html",
+                                         "ps4review",
+                                         "Games")
+                             });
+                             let ratchet_and_clank_ps2_reviewicon = makeIcon(
+                                 browser_section,
+                                 "ratchet-and-clank-ps2-review",
+                                 "blogpost");
+                             setDblClickAction(
+                                 ratchet_and_clank_ps2_reviewicon,
+                                 function(){
+                                     frame_post(
+                                         "ratchet-and-clank-ps2-review.html",
+                                         "ratchet-and-clank-ps2-review",
+                                         "Games")
+                             });
+                             let gamesicon = makeIcon(
+                                 browser_section,
+                                 "games",
+                                 "blogpost");
+                             setDblClickAction(
+                                 gamesicon,
+                                 function(){
+                                     frame_post(
+                                         "games.html",
+                                         "games",
+                                         "Games")
+                             });
+                     });
+             });
+             var keyboard_button = makeButton(
+                 menu_space,
+                 "menubutton",
+                 "Misc");
+             setClickAction(
+                 keyboard_button,
+                 function(){
+                     menuexec(
+                         function(){
+                             var blog_browser_window = addWindow(
+                                 "Misc",
+                                 500);
+                             var widgetSpace = makeWidgetSpace();
+                             setWidgetSpace(
+                                 blog_browser_window,
+                                 widgetSpace);
+                             var toolbar = makeToolbar(
+                                 widgetSpace);
+                             var latestButton = makeButton(
+                                 toolbar,
+                                 "tbutton",
+                                 "Latest post");
+                             var browser_section = makeSection(
+                                 widgetSpace);
+                             setClickAction(
+                                 latestButton,
+                                 function(){
+                                     frame_post(
+                                         "fishing.html",
+                                         "fishing",
+                                         "Misc")});
+                             let fishingicon = makeIcon(
+                                 browser_section,
+                                 "fishing",
+                                 "blogpost");
+                             setDblClickAction(
+                                 fishingicon,
+                                 function(){
+                                     frame_post(
+                                         "fishing.html",
+                                         "fishing",
+                                         "Misc")
+                             });
+                             let bikingicon = makeIcon(
+                                 browser_section,
+                                 "biking",
+                                 "blogpost");
+                             setDblClickAction(
+                                 bikingicon,
+                                 function(){
+                                     frame_post(
+                                         "biking.html",
+                                         "biking",
+                                         "Misc")
+                             });
+                     });
+             });
+             var keyboard_button = makeButton(
+                 menu_space,
+                 "menubutton",
+                 "Tech");
+             setClickAction(
+                 keyboard_button,
+                 function(){
+                     menuexec(
+                         function(){
+                             var blog_browser_window = addWindow(
+                                 "Tech",
+                                 500);
+                             var widgetSpace = makeWidgetSpace();
+                             setWidgetSpace(
+                                 blog_browser_window,
+                                 widgetSpace);
+                             var toolbar = makeToolbar(
+                                 widgetSpace);
+                             var latestButton = makeButton(
+                                 toolbar,
+                                 "tbutton",
+                                 "Latest post");
+                             var browser_section = makeSection(
+                                 widgetSpace);
+                             setClickAction(
+                                 latestButton,
+                                 function(){
+                                     frame_post(
+                                         "pelican3.html",
+                                         "pelican3",
+                                         "Tech")});
+                             let pelican3icon = makeIcon(
+                                 browser_section,
+                                 "pelican3",
+                                 "blogpost");
+                             setDblClickAction(
+                                 pelican3icon,
+                                 function(){
+                                     frame_post(
+                                         "pelican3.html",
+                                         "pelican3",
+                                         "Tech")
+                             });
+                             let devlog2icon = makeIcon(
+                                 browser_section,
+                                 "devlog2",
+                                 "blogpost");
+                             setDblClickAction(
+                                 devlog2icon,
+                                 function(){
+                                     frame_post(
+                                         "devlog2.html",
+                                         "devlog2",
+                                         "Tech")
+                             });
+                             let devlog1icon = makeIcon(
+                                 browser_section,
+                                 "devlog1",
+                                 "blogpost");
+                             setDblClickAction(
+                                 devlog1icon,
+                                 function(){
+                                     frame_post(
+                                         "devlog1.html",
+                                         "devlog1",
+                                         "Tech")
+                             });
+                             let devlog0icon = makeIcon(
+                                 browser_section,
+                                 "devlog0",
+                                 "blogpost");
+                             setDblClickAction(
+                                 devlog0icon,
+                                 function(){
+                                     frame_post(
+                                         "devlog0.html",
+                                         "devlog0",
+                                         "Tech")
+                             });
+                             let forkdwmicon = makeIcon(
+                                 browser_section,
+                                 "forkdwm",
+                                 "blogpost");
+                             setDblClickAction(
+                                 forkdwmicon,
+                                 function(){
+                                     frame_post(
+                                         "forkdwm.html",
+                                         "forkdwm",
+                                         "Tech")
+                             });
+                             let ansibleicon = makeIcon(
+                                 browser_section,
+                                 "ansible",
+                                 "blogpost");
+                             setDblClickAction(
+                                 ansibleicon,
+                                 function(){
+                                     frame_post(
+                                         "ansible.html",
+                                         "ansible",
+                                         "Tech")
+                             });
+                             let taskmanagementicon = makeIcon(
+                                 browser_section,
+                                 "taskmanagement",
+                                 "blogpost");
+                             setDblClickAction(
+                                 taskmanagementicon,
+                                 function(){
+                                     frame_post(
+                                         "taskmanagement.html",
+                                         "taskmanagement",
+                                         "Tech")
+                             });
+                             let pelican2icon = makeIcon(
+                                 browser_section,
+                                 "pelican2",
+                                 "blogpost");
+                             setDblClickAction(
+                                 pelican2icon,
+                                 function(){
+                                     frame_post(
+                                         "pelican2.html",
+                                         "pelican2",
+                                         "Tech")
+                             });
+                             let poposicon = makeIcon(
+                                 browser_section,
+                                 "popos",
+                                 "blogpost");
+                             setDblClickAction(
+                                 poposicon,
+                                 function(){
+                                     frame_post(
+                                         "popos.html",
+                                         "popos",
+                                         "Tech")
+                             });
+                             let xmppicon = makeIcon(
+                                 browser_section,
+                                 "xmpp",
+                                 "blogpost");
+                             setDblClickAction(
+                                 xmppicon,
+                                 function(){
+                                     frame_post(
+                                         "xmpp.html",
+                                         "xmpp",
+                                         "Tech")
+                             });
+                             let gnomeshell_tabletsicon = makeIcon(
+                                 browser_section,
+                                 "gnomeshell-tablets",
+                                 "blogpost");
+                             setDblClickAction(
+                                 gnomeshell_tabletsicon,
+                                 function(){
+                                     frame_post(
+                                         "gnomeshell-tablets.html",
+                                         "gnomeshell-tablets",
+                                         "Tech")
+                             });
+                             let tabletrevoicon = makeIcon(
+                                 browser_section,
+                                 "tabletrevo",
+                                 "blogpost");
+                             setDblClickAction(
+                                 tabletrevoicon,
+                                 function(){
+                                     frame_post(
+                                         "tabletrevo.html",
+                                         "tabletrevo",
+                                         "Tech")
+                             });
+                             let transition_to_pelicanicon = makeIcon(
+                                 browser_section,
+                                 "transition-to-pelican",
+                                 "blogpost");
+                             setDblClickAction(
+                                 transition_to_pelicanicon,
+                                 function(){
+                                     frame_post(
+                                         "transition-to-pelican.html",
+                                         "transition-to-pelican",
+                                         "Tech")
+                             });
+                             let blogging_is_hardicon = makeIcon(
+                                 browser_section,
+                                 "blogging-is-hard",
+                                 "blogpost");
+                             setDblClickAction(
+                                 blogging_is_hardicon,
+                                 function(){
+                                     frame_post(
+                                         "blogging-is-hard.html",
+                                         "blogging-is-hard",
+                                         "Tech")
+                             });
+                             let zsh_scripts_are_dumbicon = makeIcon(
+                                 browser_section,
+                                 "zsh-scripts-are-dumb",
+                                 "blogpost");
+                             setDblClickAction(
+                                 zsh_scripts_are_dumbicon,
+                                 function(){
+                                     frame_post(
+                                         "zsh-scripts-are-dumb.html",
+                                         "zsh-scripts-are-dumb",
+                                         "Tech")
+                             });
+                             let lisp_recursive_gloryicon = makeIcon(
+                                 browser_section,
+                                 "lisp-recursive-glory",
+                                 "blogpost");
+                             setDblClickAction(
+                                 lisp_recursive_gloryicon,
+                                 function(){
+                                     frame_post(
+                                         "lisp-recursive-glory.html",
+                                         "lisp-recursive-glory",
+                                         "Tech")
+                             });
+                             let code_style_and_how_to_write_for_readingicon = makeIcon(
+                                 browser_section,
+                                 "code-style-and-how-to-write-for-reading",
+                                 "blogpost");
+                             setDblClickAction(
+                                 code_style_and_how_to_write_for_readingicon,
+                                 function(){
+                                     frame_post(
+                                         "code-style-and-how-to-write-for-reading.html",
+                                         "code-style-and-how-to-write-for-reading",
+                                         "Tech")
+                             });
+                             let ansi_color_block_graphicsicon = makeIcon(
+                                 browser_section,
+                                 "ansi-color-block-graphics",
+                                 "blogpost");
+                             setDblClickAction(
+                                 ansi_color_block_graphicsicon,
+                                 function(){
+                                     frame_post(
+                                         "ansi-color-block-graphics.html",
+                                         "ansi-color-block-graphics",
+                                         "Tech")
+                             });
+                             let web_programming_a_desktop_with_javascripticon = makeIcon(
+                                 browser_section,
+                                 "web-programming-a-desktop-with-javascript",
+                                 "blogpost");
+                             setDblClickAction(
+                                 web_programming_a_desktop_with_javascripticon,
+                                 function(){
+                                     frame_post(
+                                         "web-programming-a-desktop-with-javascript.html",
+                                         "web-programming-a-desktop-with-javascript",
+                                         "Tech")
+                             });
+                             let making_bash_prompt_you_with_informationicon = makeIcon(
+                                 browser_section,
+                                 "making-bash-prompt-you-with-information",
+                                 "blogpost");
+                             setDblClickAction(
+                                 making_bash_prompt_you_with_informationicon,
+                                 function(){
+                                     frame_post(
+                                         "making-bash-prompt-you-with-information.html",
+                                         "making-bash-prompt-you-with-information",
+                                         "Tech")
+                             });
+                     });
+             });
+         }
+
+         addStartupHook(make_menu_buttons);
+         addStartupHook(make_introduction_window);
+        </script>
+    </body>
+</html>

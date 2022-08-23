@@ -13,7 +13,7 @@ body
 {
     height: 100%;
     background-color: #000000;
-    background: url("../bashworks2.jpg");
+    background: url("/theme/images/bashworks2.jpg");
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;

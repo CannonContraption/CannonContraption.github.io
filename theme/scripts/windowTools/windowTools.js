@@ -577,7 +577,7 @@ function addWindow(
         "class",
         "closebutton");
     windowclose.innerHTML =
-        "<img class=closebutton_icon src=windowTools/CloseButton.png></img>";
+        "<img class=closebutton_icon src="+wtoolspath+"windowTools/CloseButton.png></img>";
     newwindow.appendChild(windowclose);
 
     var windowmax = document.createElement("button")
@@ -585,7 +585,7 @@ function addWindow(
         "class",
         "maximizebutton");
     windowmax.innerHTML =
-        "<img class=maximizebutton_icon src=windowTools/MaximizeButton.png></img>";
+        "<img class=maximizebutton_icon src="+wtoolspath+"windowTools/MaximizeButton.png></img>";
     newwindow.appendChild(windowmax);
     
     var windowminimize = document.createElement("button");
@@ -593,7 +593,7 @@ function addWindow(
         "class",
         "minimizebutton");
     windowminimize.innerHTML =
-        "<img class=minimizebutton_icon src=windowTools/MinimizeButton.png></img>";
+        "<img class=minimizebutton_icon src="+wtoolspath+"windowTools/MinimizeButton.png></img>";
     newwindow.appendChild(windowminimize);
     
     var grabhandles = document.createElement("div")
@@ -608,7 +608,7 @@ function addWindow(
         "ghimage");
     grabhandleimage.setAttribute(
         "src",
-        "windowTools/Grabhandle2.png");
+        wtoolspath+"windowTools/Grabhandle2.png");
     grabhandleimage.setAttribute(
         "draggable",
         "false");
@@ -739,7 +739,7 @@ function addDialogWindow(
         "class",
         "closebutton");
     windowclose.innerHTML =
-        "<img class=closebutton_icon src=windowTools/CloseButton.png></img>";
+        "<img class=closebutton_icon src="+wtoolspath+"windowTools/CloseButton.png></img>";
     newwindow.appendChild(windowclose);
     
     //No minimize, we're a dialog.
@@ -862,7 +862,7 @@ function prepareWindowToolsStartupInitial()
 	"id",
 	"menubutton");
     menubutton.src =
-	"windowTools/beta-start-button-3.png";
+	wtoolspath+"windowTools/beta-start-button-3.png";
     menu = document.createElement(
 	"div");
     menu.setAttribute(
@@ -896,13 +896,13 @@ function addMenuElement(
 function menuButtonMouseHover()
 {
     menubutton.src =
-        "windowTools/beta-start-button-3-hover.png";
+        wtoolspath+"windowTools/beta-start-button-3-hover.png";
 }
 
 function menuButtonMouseLeave()
 {
     document.getElementById("menubutton").src =
-        "windowTools/beta-start-button-3.png";
+        wtoolspath+"windowTools/beta-start-button-3.png";
 }
 
 function openmenu()
