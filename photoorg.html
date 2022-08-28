@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+        <title>Organizing and Tagging Photos</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link rel="icon" href="./theme/images/icons/favicon.png" />
+        <link href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="#!/bin/bash it 'till it works Atom Feed" />
+        <link href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="#!/bin/bash it 'till it works RSS Feed" />
+        <meta name="description" content="I take a lot of photos. I like to think I'm OK at it, but for a long time I always stumbled when it came to organizing them properly. In the..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">#!/bin/bash it 'till it works</a></h1> <strong>The blog of a Zsh user.</strong>                <nav><ul>
+                    <li><a href="/archives">Archives</a></li>
+                    <li><a href="/categories">Categories/Tags</a></li>
+                    <li  id="navlink-about"><a href="./pages/about.html">About</a></li>
+                    <li  id="navlink-desktop"><a href="./pages/desktop.html">Desktop Site</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./photoorg.html" rel="bookmark"
+           title="Permalink to Organizing and Tagging Photos">Organizing and Tagging Photos</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-08-27T23:20:00-04:00">
+                Published: Sat 27 August 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="./category/tech.html">Tech</a>.</p>
+<p>tags: <a href="./tag/photos.html">photos</a> <a href="./tag/shell.html">shell</a> <a href="./tag/scripts.html">scripts</a> <a href="./tag/scripting.html">scripting</a> <a href="./tag/travel.html">travel</a> </p>
+</footer><!-- /.post-info -->      <p>I take a lot of photos. I like to think I'm OK at it, but for a long time I always stumbled when it came to organizing them properly.</p>
+<p>In the beginning, I used Shotwell to pull photos off my camera and into folders. This worked OK, but Shotwell is kind of big, and pretty GNOME specific, so occasionally I would use Digikam. Anyone who has used both of these knows that they sort files <em>ever so slightly differently</em>, for example adding leading zeros on single-digit months and days. Most of my photos stayed sorted like this, but it certainly wasn't great.</p>
+<p>Then, I moved away from swapping between KDE and GNOME to using i3 pretty much full time. Shotwell looks a little odd in KDE, but most apps built for KDE and GNOME work great in i3, except for some rough edges. Unfortunately, without GNOME loaded, it took even <em>longer</em> to start up. At the time I was using exclusively spinning hard drives, exacerbating the problem.</p>
+<p>So, eventually, I wrote a shell script.</p>
+<h1>photoorg</h1>
+<p>This is actually relatively recent for me. Photoorg didn't exist 5 years ago, and honestly it's pretty targeted at exactly my use case.</p>
+<p>Here's how it works:</p>
+<ol>
+<li>Mount the SD card as your user</li>
+<li><code>cd</code> into the directory you mounted it to</li>
+<li>type <code>photoorg</code></li>
+</ol>
+<p>Your photos will show up in <code>~/pic/YYYY/MM/DD</code> with no name change. If the camera called it IMG_891.JPG, that's what it'll be called once it's sorted.</p>
+<p>I wrote in an optimization for my cell phone, since it formats the date in the filename. That was the easy part. It was much harder to accommodate my other cameras, though.</p>
+<h2>Supporting Any Camera</h2>
+<p>My favorite camera is my Nikon D3200. It's an entry level DSLR, and it's pretty basic. I also have an old Canon PowerShot a590is from 2008, which I use when I'm hiking or don't want to risk dropping or breaking the DSLR.</p>
+<p>Neither of these format filenames like the phone does. The Canon uses a format like <code>/IMG_[0-9]{3}.JPG/</code>, and the Nikon <code>/DSC_[0-9]{4}.{JPG|NEF}/</code>. As it turns out, I'm not the first person to run into this. ImageMagick has a command called <code>identify</code> that contained exactly what I needed.</p>
+<h2>Source Code</h2>
+<p>Here's the source to the script as it stands right now:</p>
+<p><a href="https://gitlab.com/CannonContraption/envy-scripts/-/blob/stable/photo/photoorg">photoorg in envy-scripts on GitLab</a></p>
+<p>You can see in there how I parsed apart the phone date syntax, and the alternate code path that uses <code>identify</code> first. I have some code in there to cache photos so that identify doesn't have to read the file off the SD card directly, and also an option to copy files off the SD card rather than move them.</p>
+<h1>tagsearch</h1>
+<p>I was pretty pleased with the result of photoorg, importing photos became a lot less painful. Most of my laptops have an fstab entry to let me mount the SD card as a user, which means I get the same photo import capabilities of Shotwell without needing to load half of GNOME to get there.</p>
+<p>However, I did miss the ability to tag things. If I'm looking for some landscape photos to use somewhere, for example as the background to the desktop site (that is one of mine, just lightly edited), I would have to sift through everything to look for it. Tools like <code>sxiv</code> make this fairly easy, since they can provide the thumbnail view, but that doesn't include any logic to add tags to things.</p>
+<p>That's when it dawned on me what a simple problem this is. I could use a full-blown file indexer to do the job, or I could just keep a plain text file containing every file in a directory and a list of tags associated with it. If I ever wanted to look up a file, I could just grep the second column for the text string of the tag, and grep will spit out a list of all of the files. Combine that with some careful use of ls and the path, and I could reconstruct full paths to files by just grepping a whole bunch of these tags files.</p>
+<p>That's what eventually became <a href="https://gitlab.com/CannonContraption/tagsearch">tagsearch.</a></p>
+<p>Tagsearch can find a file matching a tag, list the tags currently in use, find files by a tag substring, find untagged files, or show photos using sxiv based on a tag substring.</p>
+<p>Between these two scripts, I've now completely replaced Shotwell for everything I used it for. To be clear, I still like the program and happily set it up for my grandmother, who recently migrated from iPhoto (yes, that old) to Shotwell. Digikam is also solid, though it requires a little bit more setup to get working right. Both of them have merits beyond import and tagging, but those are the only two features I ever used.</p>
+<p>The result is far less memory usage, and far more SD cards with space for more photos.</p>
+<p>Here are some photos out of my archives, just for fun:</p>
+<p><img alt="Some cranes in NJ, 2022-07-29" src="./images/photoorg/cranes.JPG" width="100%">
+<img alt="Cacti on a table, 2022-08-01" src="./images/photoorg/cacti.JPG" width="100%">
+<img alt="One of the first photos with my DSLR, a bird's nest, 2014-12-25" src="./images/photoorg/birdsnest.JPG" width="100%">
+<img alt="Windmill in Nantucket, taken from the seat of a bike, 2012-10-07" src="./images/photoorg/windmill.JPG" width="100%"></p>
+<p>Some of these photos were scaled down and/or cropped prior to posting, mostly to save storage space. I do still have the originals, they just seemed a little big to upload to GitHub Pages (~8-10MB each anyone?)</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/windowTools">WindowTools</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/widgetTools">WidgetTools</a></li>
+                            <li><a href="https://gitlab.com/spacecowboy/Feeder">Feeder for Android</a></li>
+                            <li><a href="https://hyliu.me/fluent-reader/">Fluent Reader</a></li>
+                            <li><a href="https://apps.apple.com/app/feedly-get-smarter/id396069556">Feedly for iOS</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://gitlab.com/CannonContraption">GitLab</a></li>
+                            <li><a href="https://github.com/CannonContraption">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q">YouTube</a></li>
+                            <li><a href="https://soundcloud.com/jimmydean886">SoundCloud</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+            <address id="about" class="vcard body">
+                <img style='float:right;' src="/theme/images/icons/favicon.png" />
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.<br>
+                Original content &#169; 2017-2022 Jim Read<br>
+                The theme was originally by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and has since been heavily modified to be responsive.
+            </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -375,9 +375,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "fswap.html",
-                                         "fswap",
+                                         "photoorg.html",
+                                         "photoorg",
                                          "Tech")});
+                             let photoorgicon = makeIcon(
+                                 browser_section,
+                                 "photoorg",
+                                 "blogpost");
+                             setDblClickAction(
+                                 photoorgicon,
+                                 function(){
+                                     frame_post(
+                                         "photoorg.html",
+                                         "photoorg",
+                                         "Tech")
+                             });
                              let fswapicon = makeIcon(
                                  browser_section,
                                  "fswap",
