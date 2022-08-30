@@ -4,6 +4,13 @@
     --bg-color: #333c4f;
 }
 
+@media only screen and (min-width: 850px) and (min-height: 600px) {
+    div#screenwidthwarning
+    {
+        display:none;
+    }
+}
+
 html
 {
     height: 100%;

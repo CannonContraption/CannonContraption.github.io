@@ -255,7 +255,7 @@ div.figure p.caption, figure p.caption { /* margin provided by figure */
 
 /* Hide the desktop site on mobile to save space in the header.
 It doesn't work on small screens, anyhow. */
-@media only screen and (max-width: 800px) {
+@media only screen and ((max-width: 799px) or (max-height: 599px)) {
     #banner nav #navlink-desktop{
         display: none;
     }

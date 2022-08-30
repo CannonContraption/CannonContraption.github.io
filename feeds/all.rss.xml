@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>#!/bin/bash it 'till it works</title><link>https://cannoncontraption.github.io/</link><description>The blog of a Zsh user.</description><lastBuildDate>Sat, 27 Aug 2022 23:20:00 -0400</lastBuildDate><item><title>Organizing and Tagging Photos</title><link>https://cannoncontraption.github.io/photoorg.html</link><description>&lt;p&gt;I take a lot of photos. I like to think I'm OK at it, but for a long time I always stumbled when it came to organizing them properly.&lt;/p&gt;
+<rss version="2.0"><channel><title>#!/bin/bash it 'till it works</title><link>https://cannoncontraption.github.io/</link><description>The blog of a Zsh user.</description><lastBuildDate>Mon, 29 Aug 2022 23:59:00 -0400</lastBuildDate><item><title>Quick Mac and Cheese</title><link>https://cannoncontraption.github.io/macncheese.html</link><description>&lt;p&gt;So a quick recipe for mac and cheese:&lt;/p&gt;
+&lt;h1&gt;Ingredients&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Stick of butter&lt;/li&gt;
+&lt;li&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1lb shredded cheese (your choice, mix and match to taste)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;12-16 oz pasta (Macaroni or shells are best)&lt;/li&gt;
+&lt;li&gt;Double the amount of water (by volume) as pasta&lt;/li&gt;
+&lt;li&gt;1/4-1/2 cup milk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Instructions&lt;/h1&gt;
+&lt;p&gt;Boil water on the stove …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Read</dc:creator><pubDate>Mon, 29 Aug 2022 23:59:00 -0400</pubDate><guid isPermaLink="false">tag:cannoncontraption.github.io,2022-08-29:/macncheese.html</guid><category>Food</category><category>food</category></item><item><title>Organizing and Tagging Photos</title><link>https://cannoncontraption.github.io/photoorg.html</link><description>&lt;p&gt;I take a lot of photos. I like to think I'm OK at it, but for a long time I always stumbled when it came to organizing them properly.&lt;/p&gt;
 &lt;p&gt;In the beginning, I used Shotwell to pull photos off my camera and into folders. This worked OK, but Shotwell is …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Read</dc:creator><pubDate>Sat, 27 Aug 2022 23:20:00 -0400</pubDate><guid isPermaLink="false">tag:cannoncontraption.github.io,2022-08-27:/photoorg.html</guid><category>Tech</category><category>photos</category><category>shell</category><category>scripts</category><category>scripting</category><category>travel</category></item><item><title>Virtual Memory Inspired File Management</title><link>https://cannoncontraption.github.io/fswap.html</link><description>&lt;p&gt;&lt;img alt="fswap comment header" src="https://cannoncontraption.github.io/images/fswap/fswap-logo.png"&gt;&lt;/p&gt;
 &lt;p&gt;In my opinion, &lt;a href="https://gitlab.com/CannonContraption/fswap"&gt;this is one of the coolest tools I've ever made.&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Maybe you agree, maybe you think the &lt;a href="https://cannoncontraption.github.io/pages/desktop.html"&gt;desktop site&lt;/a&gt; is cooler, but this pretty much universally solved a whole load of problems I was facing all at once, and it's not even that complicated under the hood …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Read</dc:creator><pubDate>Thu, 25 Aug 2022 23:51:00 -0400</pubDate><guid isPermaLink="false">tag:cannoncontraption.github.io,2022-08-25:/fswap.html</guid><category>Tech</category><category>fswap</category><category>files</category><category>server</category><category>rsync</category></item><item><title>Transition to Pelican: Part 3</title><link>https://cannoncontraption.github.io/pelican3.html</link><description>&lt;p&gt;The &lt;a href="https://cannoncontraption.github.io/pages/desktop.html"&gt;desktop site&lt;/a&gt; is here!&lt;/p&gt;

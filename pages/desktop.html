@@ -20,7 +20,23 @@
         <script src="/theme/scripts/widgetTools/widgetTools.js"></script>
     </head>
     <body>
+        <div id=jsalert style="color:black; background-color:white; padding:10px; max-width: 700px; margin: 10px;">
+            You currently don't have JavaScript enabled. If you're interested in
+            using the desktop in a browser UI, please enable it. If you don't
+            care and are here to read my blog, please use the
+            <a href=../>regular web interface</a>.
+            It's entirely JavaScript free, and isn't missing any blog posts or
+            pages available here. Happy browsing!
+        </div>
+        <div id="screenwidthwarning" style="color:black; background-color:white; padding:10px; max-width: 700px; margin: 10px;">
+            Your browser window is smaller than the desktop is designed to
+            handle. Please consider maximizing your browser window, or
+            switching to a device with a larger screen. Alternatively, you can
+            use the <a href=../>regular web interface</a>, which
+            scales to any size device. Happy browsing!
+        </div>
         <script>
+         document.getElementById("jsalert").remove()
          var colorScheme = {
              activepanelcolor: "#8b8889",
              lowerpanelcolor: "#d1ad79",
@@ -147,9 +163,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "an-instant-pot-is-not-a-slow-cooker.html",
-                                         "an-instant-pot-is-not-a-slow-cooker",
+                                         "macncheese.html",
+                                         "macncheese",
                                          "Food")});
+                             let macncheeseicon = makeIcon(
+                                 browser_section,
+                                 "macncheese",
+                                 "blogpost");
+                             setDblClickAction(
+                                 macncheeseicon,
+                                 function(){
+                                     frame_post(
+                                         "macncheese.html",
+                                         "macncheese",
+                                         "Food")
+                             });
                              let an_instant_pot_is_not_a_slow_cookericon = makeIcon(
                                  browser_section,
                                  "an-instant-pot-is-not-a-slow-cooker",
