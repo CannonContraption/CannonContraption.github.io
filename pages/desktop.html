@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "photoorg.html",
-                                         "photoorg",
+                                         "staticsite.html",
+                                         "staticsite",
                                          "Tech")});
+                             let staticsiteicon = makeIcon(
+                                 browser_section,
+                                 "staticsite",
+                                 "blogpost");
+                             setDblClickAction(
+                                 staticsiteicon,
+                                 function(){
+                                     frame_post(
+                                         "staticsite.html",
+                                         "staticsite",
+                                         "Tech")
+                             });
                              let photoorgicon = makeIcon(
                                  browser_section,
                                  "photoorg",

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>#!/bin/bash it 'till it works</title><link>https://cannoncontraption.github.io/</link><description>The blog of a Zsh user.</description><lastBuildDate>Mon, 29 Aug 2022 23:59:00 -0400</lastBuildDate><item><title>Quick Mac and Cheese</title><link>https://cannoncontraption.github.io/macncheese.html</link><description>&lt;p&gt;So a quick recipe for mac and cheese:&lt;/p&gt;
+<rss version="2.0"><channel><title>#!/bin/bash it 'till it works</title><link>https://cannoncontraption.github.io/</link><description>The blog of a Zsh user.</description><lastBuildDate>Wed, 31 Aug 2022 20:10:00 -0400</lastBuildDate><item><title>Blogging via Pelican and an Intro to Static Site Generation</title><link>https://cannoncontraption.github.io/staticsite.html</link><description>&lt;p&gt;I've posted a &lt;a href="https://cannoncontraption.github.io/tag/blog.html"&gt;series of articles&lt;/a&gt; talking about my transition away from hand-coded HTML to &lt;a href="https://getpelican.com/"&gt;Pelican&lt;/a&gt;. However, in all of this, I haven't really talked about my own workflow and how I handle writing and posting to the blog. Now that I've more or less finished transferring everything over to …&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jim Read</dc:creator><pubDate>Wed, 31 Aug 2022 20:10:00 -0400</pubDate><guid isPermaLink="false">tag:cannoncontraption.github.io,2022-08-31:/staticsite.html</guid><category>Tech</category><category>blog</category><category>tech</category><category>blogging</category></item><item><title>Quick Mac and Cheese</title><link>https://cannoncontraption.github.io/macncheese.html</link><description>&lt;p&gt;So a quick recipe for mac and cheese:&lt;/p&gt;
 &lt;h1&gt;Ingredients&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Stick of butter&lt;/li&gt;
-&lt;li&gt;
-&lt;blockquote&gt;
-&lt;p&gt;1lb shredded cheese (your choice, mix and match to taste)&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;/li&gt;
+&lt;li&gt;&gt;1lb shredded cheese (your choice, mix and match to taste)&lt;/li&gt;
 &lt;li&gt;12-16 oz pasta (Macaroni or shells are best)&lt;/li&gt;
 &lt;li&gt;Double the amount of water (by volume) as pasta&lt;/li&gt;
 &lt;li&gt;1/4-1/2 cup milk&lt;/li&gt;
