@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "staticsite.html",
-                                         "staticsite",
+                                         "devlog3.html",
+                                         "devlog3",
                                          "Tech")});
+                             let devlog3icon = makeIcon(
+                                 browser_section,
+                                 "devlog3",
+                                 "blogpost");
+                             setDblClickAction(
+                                 devlog3icon,
+                                 function(){
+                                     frame_post(
+                                         "devlog3.html",
+                                         "devlog3",
+                                         "Tech")
+                             });
                              let staticsiteicon = makeIcon(
                                  browser_section,
                                  "staticsite",
