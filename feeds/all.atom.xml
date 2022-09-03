@@ -94,7 +94,7 @@ $
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Today we have an error value of 4
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;This is where that integer math rears its ugly head. This is supposed to be (deviation * 100) / average = error percentage, but with a deviation of 5 and an average of 60, we should get 8.(3 repeating) (Sorry, Chrome doesn't support MathML and I don't know another way to represent 3 repeating lol (We should &lt;em&gt;all&lt;/em&gt; use Firefox /s)).&lt;/p&gt;
+&lt;p&gt;This is where that integer math rears its ugly head. This is supposed to be (deviation * 100) / average = error percentage, but with a deviation of 5 and an average of 60, we should get 8.(3 repeating) (Sorry, Chrome doesn't support MathML and I don't know another way to represent 3 repeating lol).&lt;/p&gt;
 &lt;p&gt;So, we have an error of 8% stored away. It gets worse, though. If we apply an 8% error to 57, we get 4.56 as our deviation, which again gets lopped off by our friend the integer. Thus, we have an error value of "4". This is entirely my fault and a prototype bump.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Lower&lt;/span&gt; &lt;span class="nv"&gt;target&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;2022&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="mi"&gt;47&lt;/span&gt;, &lt;span class="nv"&gt;upper&lt;/span&gt; &lt;span class="mi"&gt;55&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;

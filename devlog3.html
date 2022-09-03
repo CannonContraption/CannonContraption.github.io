@@ -133,7 +133,7 @@ $
 <div class="highlight"><pre><span></span><code>Today we have an error value of 4
 </code></pre></div>
 
-<p>This is where that integer math rears its ugly head. This is supposed to be (deviation * 100) / average = error percentage, but with a deviation of 5 and an average of 60, we should get 8.(3 repeating) (Sorry, Chrome doesn't support MathML and I don't know another way to represent 3 repeating lol (We should <em>all</em> use Firefox /s)).</p>
+<p>This is where that integer math rears its ugly head. This is supposed to be (deviation * 100) / average = error percentage, but with a deviation of 5 and an average of 60, we should get 8.(3 repeating) (Sorry, Chrome doesn't support MathML and I don't know another way to represent 3 repeating lol).</p>
 <p>So, we have an error of 8% stored away. It gets worse, though. If we apply an 8% error to 57, we get 4.56 as our deviation, which again gets lopped off by our friend the integer. Thus, we have an error value of "4". This is entirely my fault and a prototype bump.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">Lower</span> <span class="nv">target</span> <span class="k">for</span> <span class="mi">2022</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">29</span> <span class="nv">is</span> <span class="mi">47</span>, <span class="nv">upper</span> <span class="mi">55</span>
 </code></pre></div>
