@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "devlog3.html",
-                                         "devlog3",
+                                         "qemu-ansible-test.html",
+                                         "qemu-ansible-test",
                                          "Tech")});
+                             let qemu_ansible_testicon = makeIcon(
+                                 browser_section,
+                                 "qemu-ansible-test",
+                                 "blogpost");
+                             setDblClickAction(
+                                 qemu_ansible_testicon,
+                                 function(){
+                                     frame_post(
+                                         "qemu-ansible-test.html",
+                                         "qemu-ansible-test",
+                                         "Tech")
+                             });
                              let devlog3icon = makeIcon(
                                  browser_section,
                                  "devlog3",

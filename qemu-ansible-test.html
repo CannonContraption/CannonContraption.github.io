@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+        <title>Testing Novel Software Configurations Using QEMU</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link rel="icon" href="./theme/images/icons/favicon.png" />
+        <link href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="#!/bin/bash it 'till it works Atom Feed" />
+        <link href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="#!/bin/bash it 'till it works RSS Feed" />
+        <meta name="description" content="Since late 2009, I've been volunteering at the church I attend. I started by simply running the mixing board and recording the church service..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">#!/bin/bash it 'till it works</a></h1> <strong>The blog of a Zsh user.</strong>                <nav><ul>
+                    <li><a href="/archives">Archives</a></li>
+                    <li><a href="/categories">Categories/Tags</a></li>
+                    <li  id="navlink-about"><a href="./pages/about.html">About</a></li>
+                    <li  id="navlink-desktop"><a href="./pages/desktop.html">Desktop Site</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./qemu-ansible-test.html" rel="bookmark"
+           title="Permalink to Testing Novel Software Configurations Using QEMU">Testing Novel Software Configurations Using QEMU</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-09-04T23:10:00-04:00">
+                Published: Sun 04 September 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="./category/tech.html">Tech</a>.</p>
+<p>tags: <a href="./tag/ansible.html">ansible</a> <a href="./tag/linux.html">linux</a> <a href="./tag/code.html">code</a> <a href="./tag/desktop.html">desktop</a> <a href="./tag/scripting.html">scripting</a> <a href="./tag/shell.html">shell</a> </p>
+</footer><!-- /.post-info -->      <p>Since late 2009, I've been volunteering at the church I attend. I started by simply running the mixing board and recording the church service audio, but as time went on my role has expanded greatly. I've since started managing some of the computer systems surrounding the A/V system, for example.</p>
+<p>In a post-COVID world, we've decided to move to a hybrid worship model, allowing people to sign in over Zoom to attend the service or come in person. We're not really done with this transition, though, and we do still produce our hymns ahead of time, making our choir virtual for the moment. This means we need to display a lot of videos.</p>
+<p>My role with hybrid worship is running the mixing board, and editing and displaying the pre-recorded choir videos on the main projector screen. The issue with this is that you generally can't reliably run 100ft of HDMI without some extra effort, and I didn't make time to even plan this before the first hybrid service. Our projector setup was created with the idea being that whomever is speaking would connect their laptop from the front, after all, so we weren't exactly set up for it to start with.</p>
+<p>I use three computers during the service. One of them is my personal machine. I maintain it, obviously, so it acts as a backup if I need to swap out one of the other systems, but more importantly for day-to-day stuff it shows the liturgist's script without the need to print it. It's also on hand if I have to edit one of the videos I've produced for that week, which doesn't happen very often but having the project files on hand has saved me at least once. The second computer is a laptop on the other side of the room that stays closed, connected to the projector at the front. The third is a machine I mainly use to control the projector computer. </p>
+<h1>Custom Setup</h1>
+<p>So yeah, this whole thing is pretty custom. Obviously, the projector PC doesn't focus a whole lot on GUI controls, since it's essentially just a display machine. The machine in the back is pretty standard, though, since it is pretty much just meant to be an interface and not much else. It's got shortcuts to the SSH connection pinned to the dock in GNOME, making it fast and easy to access.</p>
+<p>There's also a laptop doing camera control, though for this discussion it's pretty unimportant. It runs an XFCE desktop, and there's a shell script that pulls a video feed off of the remote controlled camera we have and launches Firefox pointed at the control web page. These controls are handled by the person controlling video, so I won't focus on them, but that's the only other specifically custom setup.</p>
+<p>I want to laser in on the projector PC, though, since it's pretty deeply customized.</p>
+<h2>Projector PC</h2>
+<p>Bootup on this machine looks like a regular systemd boot, but once the system is up and running, it logs in automatically, showing only a photo of the cross behind the projector screen, and about 10 seconds later it switches to tag 9 in a (stealthed) copy of DWM and launches Zoom.</p>
+<p>There's a collection of shell scripts in the ~/bin directory, mostly macros using xdotool to control the content on the screen. Zoom on Linux is a half-finished mess (and Zoom deserves some shame over this, they've already done the hard part making a client work in the first place) so it's missing a <em>lot</em> of keybinds. To work around this, probably the command I use the most is <code>gallery</code>, which is a shell script that clicks the 'View' menu, then 'Gallery View'. Crucially, it does this within a second, making it fairly transparent. As another example, <code>recordok</code> accepts the 'Recording in Progress' dialog, again without any mouse movement. The cursor snaps to the correct button, clicks it, then gets hidden again. Even logging in is done by a script, which simulates the mouse and keyboard inputs needed to sign in. The script only needs the meeting ID and password, then it sets the options Zoom forgets every time and switches to tag 1 where the final Zoom view lives.</p>
+<p>A lot of decisions with this system were made based on a notion of "signal purity". What I mean by that is that whatever is presented on the screen needs to be as close to a scripted television show as we can make it. This means nobody is moving the mouse over something, when there's a glitch or some lag, there needs to be something intentional to fill its place, and as much as possible the UI just needs to not be there. There's a big jump in presentation quality when the viewers don't see a giant "play" button at the beginning of every hymn, as an example</p>
+<p>So, obviously, this system has seen some tweaks. Many of them are system level and fairly under the hood, and they all represent some piece of manual system edits that would need to be set up to make the system work again. I did this by hand the first time around, which means if the particular laptop that's driving the projector ever dies, I have to do all of that work again, by hand.</p>
+<h1>Automation?</h1>
+<p>When I was prototyping my own home setup script using Ansible, I had a pretty big advantage. I have a rack of 5 laptops sitting next to my desktop, so I could freely pull one out of service to just reimage and run playbooks on repeatedly. I picked one with a rotating disk to do most of the testing on, then deployed the configuration to one of my SSD laptops (which was new (at least to me) at the time). I don't have that luxury this time.</p>
+<p>I still want this setup to be automated. Setting up custom configurations like the projector PC <em>when something fails</em> sucks, and everybody's looking at you the whole time. I don't mind the limelight, but other than the sympathy I get (because most people in my church are genuinely very nice), the attention isn't positive.</p>
+<h1>Virtual Test Environment</h1>
+<p>The solution to this is, of course, VMs! Virtual machines are virtually made for this exact purpose. However, many of them (VMWare, VirtualBox, etc.) are built around complex GUIs and service models that expect you're about to run a server or a desktop for serious work, just with maybe better backups or a custom environment to program something very specific. In our case, we want to encourage churn since we're testing a system configuration script rather than developing a tool on some long-lived VM.</p>
+<p>My own solution is to use QEMU. Normally I'm a big fan of tools like virt-manager, since they pull a lot of the manual work out of setting up the VM, and it's a lot harder to forget the specific configuration options you want that way. However, in this case, we want quick copies of a base, followed by lots of boots of an (essentially entirely disposable) environment. <code>virt-manager</code> can handle this, but we can do better with just the command line.</p>
+<h1>Making a Baseline Image</h1>
+<p>First step is to make the baseline image. Maybe the Fedora folks have a copy of their minimal install for VMs (a qcow2 image) already available online, but I have the netinstall iso already downloaded so I admittedly didn't even check. My internet is quite slow at the moment, which doesn't help. Doing it the way I did, this takes two steps. One step creates the qcow2 VM drive (which will act as the hard disk) and the other is to launch qemu with the installer media and a bunch of options:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">qemu</span><span class="o">-</span><span class="nv">img</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">qcow2</span> .<span class="o">/</span><span class="nv">fedora</span><span class="o">-</span><span class="nv">minimal</span>.<span class="nv">qcow2</span> <span class="mi">20</span><span class="nv">G</span>
+<span class="nv">qemu</span><span class="o">-</span><span class="nv">system</span><span class="o">-</span><span class="nv">x86_64</span> \
+  <span class="o">-</span><span class="nv">enable</span><span class="o">-</span><span class="nv">kvm</span> \
+  <span class="o">-</span><span class="nv">m</span> <span class="mi">2048</span> \
+  <span class="o">-</span><span class="nv">nic</span> <span class="nv">user</span>,<span class="nv">model</span><span class="o">=</span><span class="nv">virtio</span> \
+  <span class="o">-</span><span class="nv">drive</span> <span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">fedora</span><span class="o">-</span><span class="nv">minimal</span>.<span class="nv">qcow2</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span> \
+  <span class="o">-</span><span class="nv">cdrom</span> <span class="o">~/</span><span class="nv">dwn</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">linux</span><span class="o">/</span><span class="nv">Fedora</span><span class="o">-</span><span class="nv">Server</span><span class="o">-</span><span class="nv">netinst</span><span class="o">-</span><span class="nv">x86_64</span><span class="o">-</span><span class="mi">36</span><span class="o">-</span><span class="mi">1</span>.<span class="mi">5</span>.<span class="nv">iso</span> \
+  <span class="o">-</span><span class="nv">smp</span> <span class="nv">cores</span><span class="o">=</span><span class="mi">4</span> \
+  <span class="o">-</span><span class="nv">display</span> <span class="nv">sdl</span>,<span class="nv">gl</span><span class="o">=</span><span class="nv">on</span>
+<span class="nv">qemu</span><span class="o">-</span><span class="nv">img</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">raw</span> <span class="nv">flashdrive</span>.<span class="nv">img</span> <span class="mi">1</span><span class="nv">G</span>
+<span class="nv">mkfs</span>.<span class="nv">ext4</span> <span class="nv">flashdrive</span>.<span class="nv">img</span>
+</code></pre></div>
+
+<p>So I made a 20G VM disk in qcow2 format, then launched the VM pointed to an iso that I have on hand. Let's go over this option by option.</p>
+<div class="highlight"><pre><span></span><code>qemu-img create -f qcow2 ./fedora-minimal.qcow2 20G
+</code></pre></div>
+
+<p>Here I specify a format of qcow2, a size of 20G, and a filename for the new disk <code>fedora-minimal.qcow2</code>.</p>
+<p>I then use the QEMU command that matches my system architecture, in this case <code>qemu-system-x86_64</code>. I highly recommend using shell tab complete to get the full command name.</p>
+<div class="highlight"><pre><span></span><code>-enable-kvm
+</code></pre></div>
+
+<p>This enables the Linux kernel's built-in hypervisor, simply dubbed the "Kernel Virtual Machine". It's similar to VMWare's or VirtualBox's hypervisors, but already available as a part of Linux. It's performant and you probably already have it.</p>
+<div class="highlight"><pre><span></span><code>-m 2048
+</code></pre></div>
+
+<p>Set the memory size to 2 GiB, or 2048 MiB.</p>
+<div class="highlight"><pre><span></span><code>-nic user,model=virtio
+</code></pre></div>
+
+<p>Set the network card to the built-in <code>virtio</code> model in user mode, meaning we don't need <code>sudo</code>, <code>doas</code>, or root permissions at all.</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="nv">drive</span> <span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">fedora</span><span class="o">-</span><span class="nv">minimal</span>.<span class="nv">qcow2</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span>
+</code></pre></div>
+
+<p>Point QEMU at our new, blank drive.</p>
+<div class="highlight"><pre><span></span><code>-cdrom ~/dwn/iso/linux/Fedora-Server-netinst-x86_64-36-1.5.iso
+</code></pre></div>
+
+<p>Point QEMU at the CD installer.</p>
+<div class="highlight"><pre><span></span><code>-smp cores=4
+</code></pre></div>
+
+<p>SMP in this case stands for Symmetric MultiProcessing. Essentially, this parameter controls how many cores the system has and how they're split between "physical" and "virtual" cores. In my case, I just specified 4 since I have 8 hardware cores and 16 hardware threads on my machine, so letting the VM run away with 4 threads won't tax anything but will still let it run fairly fast.</p>
+<div class="highlight"><pre><span></span><code>-display sdl,gl=on
+</code></pre></div>
+
+<p>I always seem to get this wrong, messing something up with the display. The Fedora installer was pretty unstable until I specified the <code>gl=on</code> parameter. Otherwise, this controls what window the display will show up in. There are also options for VNC and Spice servers, if you're running a VM headless. In this case, we're just working with a simple example.</p>
+<p>At this point, run the installer and shut down the VM when you're done. If you're not sure how, a safe way is to log in to the VM and then issue <code>systemctl poweroff</code> since there's no power button.</p>
+<div class="highlight"><pre><span></span><code>qemu-img create -f raw flashdrive.img 1G
+mkfs.ext4 flashdrive.img
+</code></pre></div>
+
+<p>And finally, I make a "flash drive" and format it as EXT4. The filesystem decision was arbitrary, but we do need a way to twink files over to our VM, and this is one option. You could use SSH to accomplish this, but then you will have installed and set up SSH prior to running your script. In reality, it's much more likely to reside on a flash drive, requiring no extra software. This means you'll test whether your script sets up SSH as you expect, too. Of course, if you intend to set the machine up yourself, this detail is irrelevant.</p>
+<h1>Setting Up for a Test</h1>
+<p>There's broadly three steps needed to do this. Copy your test script to the flash drive, copy the VM image, then boot it using a <em>very slightly</em> modified QEMU command.</p>
+<p>So, first we mount the <code>flashdrive.img</code> file:</p>
+<div class="highlight"><pre><span></span><code>sudo mkdir flashdrive
+sudo mount ./flashdrive.img ./flashdrive
+</code></pre></div>
+
+<p>You'll probably need <code>sudo</code> to copy over files to <code>./flashdrive</code> now, but they'll show up on the drive when we mount it in the VM later.</p>
+<p>Copy your files to the flash drive, then unmount it:</p>
+<div class="highlight"><pre><span></span><code>sudo umount ./flashdrive
+</code></pre></div>
+
+<p>Next, we "clone" our VM:</p>
+<div class="highlight"><pre><span></span><code>cp fedora-minimal.qcow2 projectorautomation-test1.qcow2
+</code></pre></div>
+
+<p>Then, we can boot it:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">qemu</span><span class="o">-</span><span class="nv">system</span><span class="o">-</span><span class="nv">x86_64</span> \
+    <span class="o">-</span><span class="nv">enable</span><span class="o">-</span><span class="nv">kvm</span> \
+    <span class="o">-</span><span class="nv">m</span> <span class="mi">2048</span> \
+    <span class="o">-</span><span class="nv">nic</span> <span class="nv">user</span>,<span class="nv">model</span><span class="o">=</span><span class="nv">virtio</span> \
+    <span class="o">-</span><span class="nv">drive</span> <span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">projectorautomation</span><span class="o">-</span><span class="nv">test1</span>.<span class="nv">qcow2</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span> \
+    <span class="o">-</span><span class="nv">drive</span> <span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">flashdrive</span>.<span class="nv">img</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span> \
+    <span class="o">-</span><span class="nv">smp</span> <span class="nv">cores</span><span class="o">=</span><span class="mi">4</span> \
+    <span class="o">-</span><span class="nv">display</span> <span class="nv">sdl</span>,<span class="nv">gl</span><span class="o">=</span><span class="nv">on</span>
+</code></pre></div>
+
+<p>In my case, the flash drive showed up as <code>/dev/vdb</code>, and it can be mounted directly since we've already formatted it as EXT4. You'll note the only change we made to the commands here is that we substituted the line mentioning our CD drive with the line mentioning the flash drive.</p>
+<h1>Testing the Script</h1>
+<p>Last step is to mount the flash drive in the VM, then copy and execute your script.</p>
+<p>When you're done, you can just discard that test image and create another copy of the base image from earlier to try again. You can do this as many times as you like without needing to ever actually reach for physical hardware at all.</p>
+<h1>QEMU</h1>
+<p>In general, I highly recommend learning to operate QEMU like this. My first experience with it was in high school, not that long after I first discovered VirtualBox. I hadn't found the option to use the KVM yet, so it was much slower, but once I found that switch I never actually installed VirtualBox again. It was much later that I discovered <code>virt-manager</code>.</p>
+<p>In all honesty though, while it's good to know QEMU, <code>virt-manager</code> is actually what I use to manage my server. The ability to connect to another machine transparently using your own X/Wayland session (no SSH forwarding involved) is a very nice feature, and it also means I don't have to worry about accidentally hitting C-c on the wrong window and killing one of my VMs.</p>
+<p><code>virt-manager</code> struggles with iterative processes like this, however. It has a very robust snapshots feature that you <em>can</em> use for this purpose, but it's not exactly built to accommodate rapid iteration like this, instead opting to save as much state as possible. This makes save and restore very slow, where our <code>cp</code> command here is totally instantaneous (on my machine).</p>
+<h1>Testing the Restore Script</h1>
+<p>The goal for me here is to test some setup scripts that will let me keep exactly one backup computer for producing a hybrid worship service. Ideally, the setup script could be deployed quickly on this backup machine to make it become whatever machine we need it to. This is how I'll be testing those setup scripts.</p>
+    </div><!-- /.entry-content -->
+    <hr>
+    <div class="comments">
+      Have a comment on this article? <a href="mailto:jimmydean886@hotmail.com?subject='Comment on qemu-ansible-test:'">Send me an email!</a>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/windowTools">WindowTools</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/widgetTools">WidgetTools</a></li>
+                            <li><a href="https://gitlab.com/spacecowboy/Feeder">Feeder for Android</a></li>
+                            <li><a href="https://hyliu.me/fluent-reader/">Fluent Reader</a></li>
+                            <li><a href="https://apps.apple.com/app/feedly-get-smarter/id396069556">Feedly for iOS</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://gitlab.com/CannonContraption">GitLab</a></li>
+                            <li><a href="https://github.com/CannonContraption">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q">YouTube</a></li>
+                            <li><a href="https://soundcloud.com/jimmydean886">SoundCloud</a></li>
+                            <li><a href="mailto:jimmydean886@hotmail.com?subject=Hello!">Email</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+            <address id="about" class="vcard body">
+                <img style='float:right;' src="/theme/images/icons/favicon.png" />
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.<br>
+                Original content &#169; 2017-2022 Jim Read<br>
+                The theme was originally by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and has since been heavily modified to be responsive.
+            </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
