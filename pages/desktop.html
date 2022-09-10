@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "qemu-ansible-test.html",
-                                         "qemu-ansible-test",
+                                         "protorust.html",
+                                         "protorust",
                                          "Tech")});
+                             let protorusticon = makeIcon(
+                                 browser_section,
+                                 "protorust",
+                                 "blogpost");
+                             setDblClickAction(
+                                 protorusticon,
+                                 function(){
+                                     frame_post(
+                                         "protorust.html",
+                                         "protorust",
+                                         "Tech")
+                             });
                              let qemu_ansible_testicon = makeIcon(
                                  browser_section,
                                  "qemu-ansible-test",

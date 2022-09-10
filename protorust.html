@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+        <title>Why Am I Prototyping the Habit Changer in Rust?</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link rel="icon" href="./theme/images/icons/favicon.png" />
+        <link href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="#!/bin/bash it 'till it works Atom Feed" />
+        <link href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="#!/bin/bash it 'till it works RSS Feed" />
+        <meta name="description" content="I got asked recently why I decided to make a prototype of something in Rust, and I'm not happy with how I responded. There's a lot of reasons why..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">#!/bin/bash it 'till it works</a></h1> <strong>The blog of a Zsh user.</strong>                <nav><ul>
+                    <li><a href="/archives">Archives</a></li>
+                    <li><a href="/categories">Categories/Tags</a></li>
+                    <li  id="navlink-about"><a href="./pages/about.html">About</a></li>
+                    <li  id="navlink-desktop"><a href="./pages/desktop.html">Desktop Site</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./protorust.html" rel="bookmark"
+           title="Permalink to Why Am I Prototyping the Habit Changer in Rust?">Why Am I Prototyping the Habit Changer in Rust?</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-09-10T17:55:00-04:00">
+                Published: Sat 10 September 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="./category/tech.html">Tech</a>.</p>
+<p>tags: <a href="./tag/devlog.html">devlog</a> <a href="./tag/rust.html">rust</a> <a href="./tag/programming.html">programming</a> </p>
+</footer><!-- /.post-info -->      <p>I got asked recently why I decided to make a <em>prototype</em> of something in Rust, and I'm not happy with how I responded. There's a lot of reasons why I'm not happy with my answer, but the crux of the matter is that I didn't fully represent the circumstances that led me to make this decision. While I'm probably overlapping somewhat with some of the other posts in the devlog series, I wanted to touch on this for a bit and answer this more completely, why am I prototyping in Rust?</p>
+<h1>I'm Not... kind of</h1>
+<p>I'm "prototyping" the algorithm for the habit changer. There's a chance that this code will end up as the actual end product backend. I had discussed this at the beginning, but I'm considering whether I even want this whole project to end up as an app or if I want it to end up as a website. I could honestly see it turning out either way, there's benefits to each approach. In fact, there might even be more benefits to the website approach since I don't own a Macintosh and thus can't write the app for iOS.</p>
+<p>Furthermore, if this doesn't end up as the prototype version, and I do go the route of hosting this online, I have some extra considerations to take into account. If I wrote this in something like Python, then I'd have to worry about the cost of running the application. As it happens, Python isn't very fast, and requires a pretty large amount of I/O in order to work. This means that I would need a fair amount of CPU time to do tasks that would otherwise happen faster than simply launching the Python interpreter. The habit changer likely <em>won't</em> ever become large enough that it couldn't run on a machine from the mid 90s or earlier, at least to run the algorithm itself. Thus, if I end up doing any sort of server-side calculations, keeping overhead small is important to me. If this runs client side, using Rust gives me a good runway into web assembly as well, which is something I haven't played with yet.</p>
+<h1>But Even If I Were...</h1>
+<p>Let's say that I go the app route. I decide to completely abandon the Rust code, since it's "just a proof of concept" and make a completely new code base in something like Kotlin. This provides a slightly less favorable situation for Rust, but I feel like it still has its benefits.</p>
+<p>Rust is <em>expressive</em>. It's nearly as expressive as a language like Python. Furthermore, it enforces <em>correctness</em>. As a bonus, it's fast; I could unit test my algorithm in literally thousands of scenarios in less than a second on a modern computer, since Rust's compiled performance is similar to C. Let's focus on the first two points, though, since (on my machine anyhow) they matter more.</p>
+<h2>Expressiveness</h2>
+<p>Let's look at a contrived example or two. I'm going to compare Rust vs. Python vs. C here, in order to represent either end of the imperative language spectrum, as I like to think of it.</p>
+<h3>String Comparison</h3>
+<p>To start out with, I've decided to pick on <code>strcmp()</code> et. al. for a moment. Let's look at the code to compare strings in Python:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="w"></span>
+<span class="nv">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="w"></span>
+<span class="nv">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is also a string&quot;</span><span class="w"></span>
+
+#<span class="w"> </span><span class="nv">Compare</span><span class="w"> </span><span class="nv">Equality</span>:<span class="w"></span>
+
+<span class="k">if</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string2</span>:<span class="w"></span>
+<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;String1/2 match.&quot;</span><span class="ss">)</span><span class="w"></span>
+<span class="k">else</span>:<span class="w"></span>
+<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;String1/2 don&#39;t match&quot;</span><span class="ss">)</span><span class="w"></span>
+
+<span class="k">if</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string3</span>:<span class="w"></span>
+<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;String1/3 match&quot;</span><span class="ss">)</span><span class="w"></span>
+<span class="k">else</span>:<span class="w"></span>
+<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;String1/3 don&#39;t match&quot;</span><span class="ss">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>This produces the output you would expect if you didn't know about string management:</p>
+<div class="highlight"><pre><span></span><code>$ python compare-strings.py
+String1/2 match.
+String1/3 don<span class="err">&#39;</span>t match
+$
+</code></pre></div>
+
+<p>Let's do that in Rust:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">fn</span><span class="w"> </span><span class="nv">main</span><span class="ss">()</span><span class="w"> </span>{<span class="w"></span>
+<span class="w">    </span><span class="nv">let</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a str&quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span><span class="nv">let</span><span class="w"> </span><span class="nv">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a str&quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span><span class="nv">let</span><span class="w"> </span><span class="nv">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is also a str&quot;</span><span class="c1">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string2</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">        </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Strings 1/2 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">        </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Strings 1/2 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string3</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">        </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Strings 1/3 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+<span class="w">    </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">        </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Strings 1/3 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+}<span class="w"></span>
+</code></pre></div>
+
+<p>This also produces the output that Python would:</p>
+<div class="highlight"><pre><span></span><code>$ cargo run
+   Compiling strcmp-rust v0.1.0 <span class="o">(</span>/home/jim/src/tmp/protorust/strcmp/strcmp-rust<span class="o">)</span>
+    Finished dev <span class="o">[</span>unoptimized + debuginfo<span class="o">]</span> target<span class="o">(</span>s<span class="o">)</span> <span class="k">in</span> <span class="m">0</span>.12s
+     Running <span class="sb">`</span>target/debug/strcmp-rust<span class="sb">`</span>
+Strings <span class="m">1</span>/2 match
+Strings <span class="m">1</span>/3 don<span class="err">&#39;</span>t match
+$
+</code></pre></div>
+
+<p>In the Rust example, I wasn't even using the <code>std::String</code> struct like the name would suggest, I was using raw <code>str</code> string slices instead, and this still worked because there's an implementation of Eq() in the standard library for <code>str</code>. If there wasn't, I could implement it myself to tell the language what I meant by <code>string1 == string2</code>, for example.</p>
+<p>Now let's look at C:</p>
+<div class="highlight"><pre><span></span><code>#<span class="k">include</span><span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span><span class="w"></span>
+#<span class="k">include</span><span class="o">&lt;</span><span class="nv">string</span>.<span class="nv">h</span><span class="o">&gt;</span><span class="w"></span>
+
+<span class="nv">int</span><span class="w"> </span><span class="nv">main</span><span class="ss">()</span><span class="w"></span>
+{<span class="w"></span>
+<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is another string&quot;</span><span class="c1">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="o">!</span><span class="nv">strcmp</span><span class="ss">(</span><span class="nv">string1</span>,<span class="w"> </span><span class="nv">string2</span><span class="ss">))</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/2 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/2 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="o">!</span><span class="nv">strcmp</span><span class="ss">(</span><span class="nv">string1</span>,<span class="w"> </span><span class="nv">string3</span><span class="ss">))</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/3 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/3 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="c1">;</span><span class="w"></span>
+}<span class="w"></span>
+</code></pre></div>
+
+<p>Here we can build a clear case for why this is less expressive. We don't have a string type, which means no UTF-8 support, we're dealing with bytes here. This also can lead to a lot of buffer overflow issues if we're not careful (far less than ideal for a prototype), and furthermore I wouldn't blame a novice who isn't used to using strings in C getting confused at why I'm using <code>!strcmp()</code> (or alternatively <code>strcmp() == 0</code>, they mean the same thing) instead of testing if the value is true. They match, after all, and comparisons resolve to <code>True</code> in Python. Plus, while the output of this works:</p>
+<div class="highlight"><pre><span></span><code>$ gcc stringcompare.c -o stringcompare
+$ ./stringcompare
+String <span class="m">1</span>/2 match
+String <span class="m">1</span>/3 don<span class="err">&#39;</span>t match
+$
+</code></pre></div>
+
+<p>if I had defined these as fixed arrays and then used <code>==</code> it wouldn't work:</p>
+<p>stringcompare-static.c:</p>
+<div class="highlight"><pre><span></span><code>#<span class="k">include</span><span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span><span class="w"></span>
+
+<span class="nv">int</span><span class="w"> </span><span class="nv">main</span><span class="ss">()</span><span class="w"></span>
+{<span class="w"></span>
+<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="nv">string1</span>[<span class="mi">64</span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="nv">string2</span>[<span class="mi">64</span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="nv">string3</span>[<span class="mi">64</span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is another string&quot;</span><span class="c1">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string2</span><span class="ss">)</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/2 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/2 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string3</span><span class="ss">)</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/3 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/3 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="c1">;</span><span class="w"></span>
+}<span class="w"></span>
+</code></pre></div>
+
+<p>console:</p>
+<div class="highlight"><pre><span></span><code>$ gcc stringcompare-static.c -o stringcompare-static
+$ ./stringcompare-static
+String <span class="m">1</span>/2 don<span class="s1">&#39;t match</span>
+<span class="s1">String 1/3 don&#39;</span>t match
+$
+</code></pre></div>
+
+<p><em>but</em>, had I either just used <code>strcmp</code> <em>or</em> left all the strings as <code>char*</code> rather than <code>char[]</code>, this would work. This is the type of bug that's really hard to find when things blow up. Furthermore, the C compiler won't stop us from doing something like this:</p>
+<div class="highlight"><pre><span></span><code>...<span class="w"></span>
+<span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string &quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is another string&quot;</span><span class="c1">;</span><span class="w"></span>
+
+<span class="nv">string2</span>[<span class="mi">1</span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="c1">;</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string2</span><span class="ss">)</span><span class="w"></span>
+...<span class="w"></span>
+</code></pre></div>
+
+<p>console:</p>
+<div class="highlight"><pre><span></span><code>$ gcc stringcompare.c -o stringcompare
+$ <span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">0</span>
+$ ./stringcompare
+zsh: segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>  ./stringcompare
+$
+</code></pre></div>
+
+<p>we're left to find that out on our own. Try this in Rust and you'll see why the guard rails from <code>rustc</code> would prevent this type of problem; instead of just segfaulting we get a useful error message:</p>
+<div class="highlight"><pre><span></span><code><span class="w">   </span><span class="n">Compiling</span><span class="w"> </span><span class="n">strcmp</span><span class="o">-</span><span class="n">rust</span><span class="w"> </span><span class="n">v0</span><span class="mf">.1.0</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">jim</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">protorust</span><span class="o">/</span><span class="n">strcmp</span><span class="o">/</span><span class="n">strcmp</span><span class="o">-</span><span class="n">rust</span><span class="p">)</span><span class="w"></span>
+<span class="k">error</span><span class="err">[</span><span class="n">E0277</span><span class="err">]</span><span class="o">:</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="n n-Quoted">`str`</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">indexed</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n n-Quoted">`{integer}`</span><span class="w"></span>
+<span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="p">.</span><span class="n">rs</span><span class="o">:</span><span class="mi">6</span><span class="o">:</span><span class="mi">5</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"></span>
+<span class="mi">6</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="n">string2</span><span class="err">[</span><span class="mi">0</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w">     </span><span class="o">^^^^^^^^^^</span><span class="w"> </span><span class="k">string</span><span class="w"> </span><span class="n">indices</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">ranges</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">`usize`</span><span class="w"></span>
+<span class="w">  </span><span class="o">|</span><span class="w"></span>
+<span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">help</span><span class="o">:</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">trait</span><span class="w"> </span><span class="n n-Quoted">`SliceIndex&lt;str&gt;`</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">implemented</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n n-Quoted">`{integer}`</span><span class="w"></span>
+<span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">note</span><span class="o">:</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n n-Quoted">`.chars().nth()`</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n n-Quoted">`.bytes().nth()`</span><span class="w"></span>
+<span class="w">          </span><span class="k">for</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">information</span><span class="p">,</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">chapter</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">Book</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">https</span><span class="o">://</span><span class="n">doc</span><span class="p">.</span><span class="n">rust</span><span class="o">-</span><span class="n">lang</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">book</span><span class="o">/</span><span class="n">ch08</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="n">strings</span><span class="p">.</span><span class="n">html</span><span class="c1">#indexing-into-strings&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">help</span><span class="o">:</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">trait</span><span class="w"> </span><span class="n n-Quoted">`SliceIndex&lt;[T]&gt;`</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">implemented</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n n-Quoted">`usize`</span><span class="w"></span>
+<span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">note</span><span class="o">:</span><span class="w"> </span><span class="n">required</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">requirements</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">impl</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n n-Quoted">`Index&lt;{integer}&gt;`</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n n-Quoted">`str`</span><span class="w"></span>
+
+<span class="k">For</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">error</span><span class="p">,</span><span class="w"> </span><span class="n">try</span><span class="w"> </span><span class="n n-Quoted">`rustc --explain E0277`</span><span class="p">.</span><span class="w"></span>
+<span class="k">error</span><span class="o">:</span><span class="w"> </span><span class="n">could</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">compile</span><span class="w"> </span><span class="n n-Quoted">`strcmp-rust`</span><span class="w"> </span><span class="n">due</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="k">error</span><span class="w"></span>
+</code></pre></div>
+
+<p>We get a message saying exactly where the bug is, what's wrong, and even some solutions that could achieve what the compiler things we're trying to do. The last two lines even end up telling us that the code was not compiled and points us to a command that can explain more about what went wrong. While in this case it ends up explaining that we tried to use a type that doesn't implement some trait rather than specifics about indexing strings, there's still plenty of information to figure out some next steps to fixing the problem. To be clear, there's more than one problem here and Rust only caught the first, but it's still a massive improvement over a segfault.</p>
+<h2>Correctness</h2>
+<p>I'm going to drop C from the conversation at this point, since I think I've beaten it enough. There <em>are</em> cases where prototypes in C make sense, but they're mostly things that have to do with some low-level hardware function, and we're not doing any of that here. So, let's compare algorithmic correctness enforcement between Rust and Python.</p>
+<p>We'll start with Rust, let's write a program with a pretty trivial bug. This is a <em>very</em> contrived example, but I'm sure if you've had much experience you can imagine a case where it's happened before:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">fn</span><span class="w"> </span><span class="nv">main</span><span class="ss">()</span><span class="w"> </span>{<span class="w"></span>
+<span class="w">    </span><span class="nv">let</span><span class="w"> </span><span class="nv">mut</span><span class="w"> </span><span class="nv">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="mi">0</span>..<span class="mi">18</span><span class="w"></span>
+<span class="w">    </span>{<span class="w"></span>
+<span class="w">        </span><span class="nv">cntr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i</span><span class="c1">;</span><span class="w"></span>
+<span class="w">    </span>}<span class="w"></span>
+
+<span class="w">    </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Counter is at {}&quot;</span>,<span class="w"> </span><span class="nv">counter</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
+}<span class="w"></span>
+</code></pre></div>
+
+<p>If we try and run this, <code>rustc</code> again catches us:</p>
+<div class="highlight"><pre><span></span><code>$ cargo run
+   Compiling shadow-rust v0.1.0 <span class="o">(</span>/home/jim/src/tmp/protorust/shadow/shadow-rust<span class="o">)</span>
+error<span class="o">[</span>E0425<span class="o">]</span>: cannot find value <span class="sb">`</span>cntr<span class="sb">`</span> <span class="k">in</span> this scope
+ --&gt; src/main.rs:5:9
+  <span class="p">|</span>
+<span class="m">5</span> <span class="p">|</span>         <span class="nv">cntr</span> <span class="o">=</span> i<span class="p">;</span>
+  <span class="p">|</span>         ^^^^ not found <span class="k">in</span> this scope
+
+For more information about this error, try <span class="sb">`</span>rustc --explain E0425<span class="sb">`</span>.
+error: could not compile <span class="sb">`</span>shadow-rust<span class="sb">`</span> due to previous error
+$ <span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">101</span>
+$
+</code></pre></div>
+
+<p>It points us straight to where the problem is and gives us a clear error.</p>
+<p>Let's do the same thing in Python:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">range</span><span class="ss">(</span><span class="mi">0</span>,<span class="mi">18</span><span class="ss">)</span>:<span class="w"></span>
+<span class="w">    </span><span class="nv">cntr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i</span><span class="w"></span>
+
+<span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;Counter is at&quot;</span>,<span class="w"> </span><span class="nv">counter</span><span class="ss">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>Now, we have a working, "correct" Python program and we just get output we don't want:</p>
+<div class="highlight"><pre><span></span><code>$ python shadow.py
+Counter is at <span class="m">0</span>
+$ <span class="nb">echo</span> <span class="nv">$?</span>
+<span class="m">0</span>
+$
+</code></pre></div>
+
+<p>In this case, the bug should be pretty obvious since we're at 4 or so lines of very contrived example code. However, if you're dealing with something much more substantial than that, this could turn into a needle in a haystack problem <em>very</em> quickly.</p>
+<p>This same argument could apply to a number of other languages, too, like JavaScript, shell, or really anything else that doesn't require that variables be explicitly <em>declared</em> before they're used.</p>
+<h2>Data Types</h2>
+<p>I'm not going to write up example code for this, too, but it's important (even in a prototype) to be aware of data types. See my <a href="./devlog3.html">last devlog</a> if you want to see an example of where this is helpful. To get around this, we could very well use something like Typescript, or just explicitly define where we're dealing with a <code>float</code> vs an <code>int</code> by hand. Using something like Rust forces us to consider the intersection between data types and where we might be typecasting <em>before</em> we go into the final implementation, allowing for the algorithm to change if it turns out we're losing data to casts in an expected scenario. Were I to write a GUI and interaction model around one algorithm and find some bug at that point that the last language didn't catch, I might have to start over from scratch or implement some shims and extra code to make the interaction model and algorithm fit again.</p>
+<h1>Conclusion</h1>
+<p>I probably shouldn't have called the Rust implementation a "prototype". In reality, it's about 50% likely to <em>become</em> the production version, and that definitely factored into my decision to use it. However, beyond that, there are actual benefits to using it for prototyping an algorithm, even though other options might be the more popular choice.</p>
+    </div><!-- /.entry-content -->
+    <hr>
+    <div class="comments">
+      Have a comment on this article? <a href="mailto:jimmydean886@hotmail.com?subject='Comment on protorust:'">Send me an email!</a>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/windowTools">WindowTools</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/widgetTools">WidgetTools</a></li>
+                            <li><a href="https://gitlab.com/spacecowboy/Feeder">Feeder for Android</a></li>
+                            <li><a href="https://hyliu.me/fluent-reader/">Fluent Reader</a></li>
+                            <li><a href="https://apps.apple.com/app/feedly-get-smarter/id396069556">Feedly for iOS</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://gitlab.com/CannonContraption">GitLab</a></li>
+                            <li><a href="https://github.com/CannonContraption">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q">YouTube</a></li>
+                            <li><a href="https://soundcloud.com/jimmydean886">SoundCloud</a></li>
+                            <li><a href="mailto:jimmydean886@hotmail.com?subject=Hello!">Email</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+            <address id="about" class="vcard body">
+                <img style='float:right;' src="/theme/images/icons/favicon.png" />
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.<br>
+                Original content &#169; 2017-2022 Jim Read<br>
+                The theme was originally by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and has since been heavily modified to be responsive.
+            </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
