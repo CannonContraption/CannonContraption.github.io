@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "protorust.html",
-                                         "protorust",
+                                         "recycle.html",
+                                         "recycle",
                                          "Tech")});
+                             let recycleicon = makeIcon(
+                                 browser_section,
+                                 "recycle",
+                                 "blogpost");
+                             setDblClickAction(
+                                 recycleicon,
+                                 function(){
+                                     frame_post(
+                                         "recycle.html",
+                                         "recycle",
+                                         "Tech")
+                             });
                              let protorusticon = makeIcon(
                                  browser_section,
                                  "protorust",
