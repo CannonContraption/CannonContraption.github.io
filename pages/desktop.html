@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "recycle.html",
-                                         "recycle",
+                                         "smallware.html",
+                                         "smallware",
                                          "Tech")});
+                             let smallwareicon = makeIcon(
+                                 browser_section,
+                                 "smallware",
+                                 "blogpost");
+                             setDblClickAction(
+                                 smallwareicon,
+                                 function(){
+                                     frame_post(
+                                         "smallware.html",
+                                         "smallware",
+                                         "Tech")
+                             });
                              let recycleicon = makeIcon(
                                  browser_section,
                                  "recycle",
