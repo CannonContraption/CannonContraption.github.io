@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "smallware.html",
-                                         "smallware",
+                                         "aerc.html",
+                                         "aerc",
                                          "Tech")});
+                             let aercicon = makeIcon(
+                                 browser_section,
+                                 "aerc",
+                                 "blogpost");
+                             setDblClickAction(
+                                 aercicon,
+                                 function(){
+                                     frame_post(
+                                         "aerc.html",
+                                         "aerc",
+                                         "Tech")
+                             });
                              let smallwareicon = makeIcon(
                                  browser_section,
                                  "smallware",
