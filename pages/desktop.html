@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "aerc.html",
-                                         "aerc",
+                                         "rust.html",
+                                         "rust",
                                          "Tech")});
+                             let rusticon = makeIcon(
+                                 browser_section,
+                                 "rust",
+                                 "blogpost");
+                             setDblClickAction(
+                                 rusticon,
+                                 function(){
+                                     frame_post(
+                                         "rust.html",
+                                         "rust",
+                                         "Tech")
+                             });
                              let aercicon = makeIcon(
                                  browser_section,
                                  "aerc",
