@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "rust.html",
-                                         "rust",
+                                         "applight.html",
+                                         "applight",
                                          "Tech")});
+                             let applighticon = makeIcon(
+                                 browser_section,
+                                 "applight",
+                                 "blogpost");
+                             setDblClickAction(
+                                 applighticon,
+                                 function(){
+                                     frame_post(
+                                         "applight.html",
+                                         "applight",
+                                         "Tech")
+                             });
                              let rusticon = makeIcon(
                                  browser_section,
                                  "rust",
