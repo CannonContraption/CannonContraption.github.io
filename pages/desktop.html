@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "androidstudio.html",
-                                         "androidstudio",
+                                         "ansible-git.html",
+                                         "ansible-git",
                                          "Tech")});
+                             let ansible_giticon = makeIcon(
+                                 browser_section,
+                                 "ansible-git",
+                                 "blogpost");
+                             setDblClickAction(
+                                 ansible_giticon,
+                                 function(){
+                                     frame_post(
+                                         "ansible-git.html",
+                                         "ansible-git",
+                                         "Tech")
+                             });
                              let androidstudioicon = makeIcon(
                                  browser_section,
                                  "androidstudio",
