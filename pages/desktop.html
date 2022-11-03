@@ -363,14 +363,14 @@
              var category_button = makeButton(
                  menu_space,
                  "menubutton",
-                 "Tech");
+                 "tech");
              setClickAction(
                  category_button,
                  function(){
                      menuexec(
                          function(){
                              var blog_browser_window = addWindow(
-                                 "Tech",
+                                 "tech",
                                  500);
                              var widgetSpace = makeWidgetSpace();
                              setWidgetSpace(
@@ -403,9 +403,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "ansible-git.html",
-                                         "ansible-git",
-                                         "Tech")});
+                                         "shellprompt.html",
+                                         "shellprompt",
+                                         "tech")});
+                             let shellprompticon = makeIcon(
+                                 browser_section,
+                                 "shellprompt",
+                                 "blogpost");
+                             setDblClickAction(
+                                 shellprompticon,
+                                 function(){
+                                     frame_post(
+                                         "shellprompt.html",
+                                         "shellprompt",
+                                         "tech")
+                             });
                              let ansible_giticon = makeIcon(
                                  browser_section,
                                  "ansible-git",
@@ -416,7 +428,7 @@
                                      frame_post(
                                          "ansible-git.html",
                                          "ansible-git",
-                                         "Tech")
+                                         "tech")
                              });
                              let androidstudioicon = makeIcon(
                                  browser_section,
@@ -428,7 +440,7 @@
                                      frame_post(
                                          "androidstudio.html",
                                          "androidstudio",
-                                         "Tech")
+                                         "tech")
                              });
                              let applighticon = makeIcon(
                                  browser_section,
@@ -440,7 +452,7 @@
                                      frame_post(
                                          "applight.html",
                                          "applight",
-                                         "Tech")
+                                         "tech")
                              });
                              let rusticon = makeIcon(
                                  browser_section,
@@ -452,7 +464,7 @@
                                      frame_post(
                                          "rust.html",
                                          "rust",
-                                         "Tech")
+                                         "tech")
                              });
                              let aercicon = makeIcon(
                                  browser_section,
@@ -464,7 +476,7 @@
                                      frame_post(
                                          "aerc.html",
                                          "aerc",
-                                         "Tech")
+                                         "tech")
                              });
                              let smallwareicon = makeIcon(
                                  browser_section,
@@ -476,7 +488,7 @@
                                      frame_post(
                                          "smallware.html",
                                          "smallware",
-                                         "Tech")
+                                         "tech")
                              });
                              let recycleicon = makeIcon(
                                  browser_section,
@@ -488,7 +500,7 @@
                                      frame_post(
                                          "recycle.html",
                                          "recycle",
-                                         "Tech")
+                                         "tech")
                              });
                              let protorusticon = makeIcon(
                                  browser_section,
@@ -500,7 +512,7 @@
                                      frame_post(
                                          "protorust.html",
                                          "protorust",
-                                         "Tech")
+                                         "tech")
                              });
                              let qemu_ansible_testicon = makeIcon(
                                  browser_section,
@@ -512,7 +524,7 @@
                                      frame_post(
                                          "qemu-ansible-test.html",
                                          "qemu-ansible-test",
-                                         "Tech")
+                                         "tech")
                              });
                              let devlog3icon = makeIcon(
                                  browser_section,
@@ -524,7 +536,7 @@
                                      frame_post(
                                          "devlog3.html",
                                          "devlog3",
-                                         "Tech")
+                                         "tech")
                              });
                              let staticsiteicon = makeIcon(
                                  browser_section,
@@ -536,7 +548,7 @@
                                      frame_post(
                                          "staticsite.html",
                                          "staticsite",
-                                         "Tech")
+                                         "tech")
                              });
                              let photoorgicon = makeIcon(
                                  browser_section,
@@ -548,7 +560,7 @@
                                      frame_post(
                                          "photoorg.html",
                                          "photoorg",
-                                         "Tech")
+                                         "tech")
                              });
                              let fswapicon = makeIcon(
                                  browser_section,
@@ -560,7 +572,7 @@
                                      frame_post(
                                          "fswap.html",
                                          "fswap",
-                                         "Tech")
+                                         "tech")
                              });
                              let pelican3icon = makeIcon(
                                  browser_section,
@@ -572,7 +584,7 @@
                                      frame_post(
                                          "pelican3.html",
                                          "pelican3",
-                                         "Tech")
+                                         "tech")
                              });
                              let devlog2icon = makeIcon(
                                  browser_section,
@@ -584,7 +596,7 @@
                                      frame_post(
                                          "devlog2.html",
                                          "devlog2",
-                                         "Tech")
+                                         "tech")
                              });
                              let devlog1icon = makeIcon(
                                  browser_section,
@@ -596,7 +608,7 @@
                                      frame_post(
                                          "devlog1.html",
                                          "devlog1",
-                                         "Tech")
+                                         "tech")
                              });
                              let devlog0icon = makeIcon(
                                  browser_section,
@@ -608,7 +620,7 @@
                                      frame_post(
                                          "devlog0.html",
                                          "devlog0",
-                                         "Tech")
+                                         "tech")
                              });
                              let forkdwmicon = makeIcon(
                                  browser_section,
@@ -620,7 +632,7 @@
                                      frame_post(
                                          "forkdwm.html",
                                          "forkdwm",
-                                         "Tech")
+                                         "tech")
                              });
                              let ansibleicon = makeIcon(
                                  browser_section,
@@ -632,7 +644,7 @@
                                      frame_post(
                                          "ansible.html",
                                          "ansible",
-                                         "Tech")
+                                         "tech")
                              });
                              let taskmanagementicon = makeIcon(
                                  browser_section,
@@ -644,7 +656,7 @@
                                      frame_post(
                                          "taskmanagement.html",
                                          "taskmanagement",
-                                         "Tech")
+                                         "tech")
                              });
                              let pelican2icon = makeIcon(
                                  browser_section,
@@ -656,7 +668,7 @@
                                      frame_post(
                                          "pelican2.html",
                                          "pelican2",
-                                         "Tech")
+                                         "tech")
                              });
                              let poposicon = makeIcon(
                                  browser_section,
@@ -668,7 +680,7 @@
                                      frame_post(
                                          "popos.html",
                                          "popos",
-                                         "Tech")
+                                         "tech")
                              });
                              let xmppicon = makeIcon(
                                  browser_section,
@@ -680,7 +692,7 @@
                                      frame_post(
                                          "xmpp.html",
                                          "xmpp",
-                                         "Tech")
+                                         "tech")
                              });
                              let gnomeshell_tabletsicon = makeIcon(
                                  browser_section,
@@ -692,7 +704,7 @@
                                      frame_post(
                                          "gnomeshell-tablets.html",
                                          "gnomeshell-tablets",
-                                         "Tech")
+                                         "tech")
                              });
                              let tabletrevoicon = makeIcon(
                                  browser_section,
@@ -704,7 +716,7 @@
                                      frame_post(
                                          "tabletrevo.html",
                                          "tabletrevo",
-                                         "Tech")
+                                         "tech")
                              });
                              let transition_to_pelicanicon = makeIcon(
                                  browser_section,
@@ -716,7 +728,7 @@
                                      frame_post(
                                          "transition-to-pelican.html",
                                          "transition-to-pelican",
-                                         "Tech")
+                                         "tech")
                              });
                              let blogging_is_hardicon = makeIcon(
                                  browser_section,
@@ -728,7 +740,7 @@
                                      frame_post(
                                          "blogging-is-hard.html",
                                          "blogging-is-hard",
-                                         "Tech")
+                                         "tech")
                              });
                              let zsh_scripts_are_dumbicon = makeIcon(
                                  browser_section,
@@ -740,7 +752,7 @@
                                      frame_post(
                                          "zsh-scripts-are-dumb.html",
                                          "zsh-scripts-are-dumb",
-                                         "Tech")
+                                         "tech")
                              });
                              let lisp_recursive_gloryicon = makeIcon(
                                  browser_section,
@@ -752,7 +764,7 @@
                                      frame_post(
                                          "lisp-recursive-glory.html",
                                          "lisp-recursive-glory",
-                                         "Tech")
+                                         "tech")
                              });
                              let code_style_and_how_to_write_for_readingicon = makeIcon(
                                  browser_section,
@@ -764,7 +776,7 @@
                                      frame_post(
                                          "code-style-and-how-to-write-for-reading.html",
                                          "code-style-and-how-to-write-for-reading",
-                                         "Tech")
+                                         "tech")
                              });
                              let ansi_color_block_graphicsicon = makeIcon(
                                  browser_section,
@@ -776,7 +788,7 @@
                                      frame_post(
                                          "ansi-color-block-graphics.html",
                                          "ansi-color-block-graphics",
-                                         "Tech")
+                                         "tech")
                              });
                              let web_programming_a_desktop_with_javascripticon = makeIcon(
                                  browser_section,
@@ -788,7 +800,7 @@
                                      frame_post(
                                          "web-programming-a-desktop-with-javascript.html",
                                          "web-programming-a-desktop-with-javascript",
-                                         "Tech")
+                                         "tech")
                              });
                              let making_bash_prompt_you_with_informationicon = makeIcon(
                                  browser_section,
@@ -800,7 +812,7 @@
                                      frame_post(
                                          "making-bash-prompt-you-with-information.html",
                                          "making-bash-prompt-you-with-information",
-                                         "Tech")
+                                         "tech")
                              });
                      });
              });

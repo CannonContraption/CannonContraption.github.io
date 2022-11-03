@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+        <title>Shell Prompt Update</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link rel="icon" href="./theme/images/icons/favicon.png" />
+        <link href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="#!/bin/bash it 'till it works Atom Feed" />
+        <link href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="#!/bin/bash it 'till it works RSS Feed" />
+        <meta name="description" content="As you can tell from the subtitle of this blog, I don't use Bash anymore. In fact, I switched away from Bash a long time ago now, for a myriad of..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">#!/bin/bash it 'till it works</a></h1> <strong>The blog of a Zsh user.</strong>                <nav><ul>
+                    <li><a href="/archives">Archives</a></li>
+                    <li><a href="/categories">Categories/Tags</a></li>
+                    <li  id="navlink-about"><a href="./pages/about.html">About</a></li>
+                    <li  id="navlink-desktop"><a href="./pages/desktop.html">Desktop Site</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./shellprompt.html" rel="bookmark"
+           title="Permalink to Shell Prompt Update">Shell Prompt Update</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-11-02T22:33:00-04:00">
+                Published: Wed 02 November 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="./category/tech.html">tech</a>.</p>
+<p>tags: <a href="./tag/tech.html">tech</a> <a href="./tag/shell.html">shell</a> </p>
+</footer><!-- /.post-info -->      <p>As you can tell from the subtitle of this blog, I don't use Bash anymore. In fact, I switched away from Bash a long time ago now, for a myriad of reasons. I'll probably touch on some of those here, but the basic point is that my old post about <a href="./making-bash-prompt-you-with-information.html">making Bash prompt you with information</a> is woefully out of date. So, what changed?</p>
+<p>The answer isn't just one thing. I didn't decide out of nowhere to abandon Bash, it was an iterative process that I started long before I really used the shell all that much. Zsh first impressed me back when I was still in high school, when I believed that every command had to be typed in its entirety in order for the command line to work. You can imagine how much more I started using it when somebody finally told me about tab completion!</p>
+<p>Back then, I liked Zsh for the prompt switching ability it had. There were plenty of templates to make my prompt look much more utilized than it actually was, and of course I loved that sort of thing. I didn't go much further with it, so after reimaging my computer, I just wouldn't bother reinstalling it.</p>
+<p>In reality, I learned how to use my computer more effectively. There are things that I did back when I posted about my bash prompt that I would never do these days, and I've learned a lot about what makes a prompt good. To be clear, there are plenty of things I did besides the shell stuff from back then that I'm still quite proud of, like the <a href="./pages/desktop.html">desktop in a browser</a> <a href="./web-programming-a-desktop-with-javascript.html">that I also posted about</a>, though that post is also pretty clearly out of date. However, I don't use KDE anymore, I use Sway (and occasionally <a href="./forkdwm.html">my own fork of DWM</a>), and I'm pretty sure I'd write an actual terminal drawing program before coming up with another <a href="./ansi-color-block-graphics.html">character substitution script in Python to make text graphics.</a></p>
+<h1>All the Prompts</h1>
+<p>So here's a collection of all the screenshots of prompts I could find, though do note that I couldn't find that many compared to the number of iterations it's actually gone through. Most of these are minor iterations, though there's a fair number of them that I've not been able to find screenshots of using Powerline characters. These looked cool, even if my current design is much more practical:</p>
+<p><img alt="2017-03-23" src="./images/shellprompt/2017-03-23.png"><br>
+<img alt="2017-10-28" src="./images/shellprompt/2017-10-28.png"><br>
+<img alt="2018-05-02" src="./images/shellprompt/2018-05-02.png"><br>
+<img alt="2019-02-12" src="./images/shellprompt/2019-02-12-1.png"><br>
+<img alt="2019-02-12-err" src="./images/shellprompt/2019-02-12-2.png"><br>
+<img alt="2020-05-03" src="./images/shellprompt/2020-05-03.png">  </p>
+<p>and now my current prompt, in various situations:</p>
+<p><img alt="screen1.png" src="./images/shellprompt/screen.png"><br>
+<img alt="screen2.png" src="./images/shellprompt/screen2.png">  </p>
+<p>While the terminal colors aren't quite constant over time anyhow, you'll note the switch to light mode. I find this much easier to use, though not as many people focus on it anymore. While I didn't end up using the palette from it, <a href="https://www.reddit.com/r/unixporn/comments/ubyipg/gnome_do_you_like_light_themes/">this post on Reddit</a> is what convinced me that a light color palette could work as well as a dark one.</p>
+<p>I'm not going to dwell too much on the specifics of each of the older ones, partly because I didn't screenshot them with the intent of saving the prompt, so I don't have the code for each. The prompt is a side effect of my work, not the work itself, anyhow.</p>
+<h1>What Information I Include</h1>
+<p>This hasn't changed a ton, but there are some notable differences between before and now. First of all, and probably most obvious, the status code always shows up, even if it's 0. This mostly just keeps the columns aligned down the screen, which looks a little less jarring. In the second to most recent screenshot, you'll see the first line is offset from the start of the line. I thought this was kind of clever, since you could tell whether a program returned 0 based on whether the first character was colored, but honestly that's no different than just making it green, and it did mess up the alignment a bit. Mostly the problem stemmed from the fact that I didn't specify the number of characters the return code would use, so sometimes errors would cause the lines to mismatch each other, even when everything was returning non-zero.</p>
+<p>I've also started specifying what VCS I'm using. This hasn't been so important for a while, but I did use SVN for a short time, and I've used Mercurial to do real work, so both of these are supported, or at least they were at one point.</p>
+<p>Sometimes I wanted to know how long a terminal had been sitting there so that I could give a rough estimate of how long something takes to run. However, I wouldn't always remember to use the time command to check that for sure, so I started including the time that the prompt was printed. Now, I can compare against the last prompt (and my memory) to get a rough idea of how long certain things will take.</p>
+<h1>Text Selection</h1>
+<p>You'll also notice that the only separator in the whole prompt is a space. I'm strictly using color to denote fields, that way you can easily select part of the prompt with a double-click. Incidentally, this is why I abandoned the Powerline characters, they looked nice except when you're selecting something, and would often times not render correctly on new installs or strange terminals. Some terminals also recognized them as more letters, meaning no double-click to select.</p>
+<p>Furthermore, there's no "prompt ready" character. I'm honestly not a huge fan of these, especially on their own line, since it means you can't just triple-click a command to quickly put it in the clipboard. This helps a ton when I'm designing a new script to do something useful- I can prototype the command, get it working, then just select and paste it into the script body when I know it works.</p>
+<h1>Internals</h1>
+<p>This is where the real radical departure comes from. This goes way beyond the obvious "it's Zsh now!"</p>
+<p>So we'll start with the prompt string. I'm going to gloss over a lot here, I promise I'll get back to (most of) it.</p>
+<div class="highlight"><pre><span></span><code><span class="n">PROMPT</span><span class="o">=</span><span class="n">$</span><span class="s1">&#39;`lastreturn`%n@%m%{</span><span class="se">\0</span><span class="s1">33[0m%} %{</span><span class="err">\</span><span class="s1">e[1;34m%}%~%{</span><span class="err">\</span><span class="s1">e[m%} %{</span><span class="err">\</span><span class="s1">e[33m%}$(date +%H:%M)%{</span><span class="err">\</span><span class="s1">e[m%}`getgitbranch`</span><span class="se">\n</span><span class="s1">&#39;</span><span class="w"></span>
+</code></pre></div>
+
+<p>OK, that's not so different, mostly just minor tweaks. I have commands start on a new line, and the string to denote non-printing characters has changed, moving on.</p>
+<div class="highlight"><pre><span></span><code>lastreturn<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">RCODE</span><span class="o">=</span><span class="nv">$?</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$RCODE</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> -ne <span class="s1">&#39;%{\033[7;32m%}  0 %{\033[m%} %{\033[40;37m%}&#39;</span>
+    <span class="k">else</span>
+        <span class="nb">echo</span> -ne <span class="s2">&quot;%{\033[7;31m%}&quot;</span>
+        <span class="nb">printf</span> <span class="s2">&quot;%03s&quot;</span> <span class="nv">$RCODE</span>
+        <span class="nb">echo</span> -ne <span class="s2">&quot; %{\033[m%} %{\033[40;37m%}&quot;</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+getgitbranch<span class="o">()</span> <span class="o">{</span>
+    git rev-parse &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nv">CHANGEDFILES</span><span class="o">=</span><span class="k">$(</span>git status -s <span class="m">2</span>&gt;/dev/null <span class="p">|</span> wc -l<span class="k">)</span>
+        <span class="nb">echo</span> -ne <span class="s2">&quot;%{\033[m\033[32m%} GIT %{\033[0;4m%}&quot;</span>
+        <span class="nb">echo</span> -n <span class="k">$(</span>git branch <span class="p">|</span> sed -n <span class="s1">&#39;/\* /s///p&#39;</span><span class="k">)</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nv">$CHANGEDFILES</span> !<span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">echo</span> -ne <span class="s2">&quot;%{\033[0;1;31m%} &quot;</span>
+            <span class="nb">echo</span> -n <span class="nv">$CHANGEDFILES</span>
+        <span class="k">fi</span>
+        <span class="nb">echo</span> -ne <span class="s1">&#39;%{\033[m%}&#39;</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<p><a href="./making-bash-prompt-you-with-information.html">Don't read how I did this before.</a> It's maddening. Notably, there's Perl involved. Actually, <a href="./zsh-scripts-are-dumb.html">don't read about how I don't like Zsh scripts, either.</a> I think that was a file I/O issue over NFS, not an actual problem with the performance of Zsh. I use an SSD now, that obliterates the gigabit connection I was using then.</p>
+<p>Instead, let's look at some optimizations I've made. In spite of the added information, my prompt is <em>vastly</em> faster than it was. This doesn't matter all the time, but when your disk is thrashing or your CPU is busy, it matters.</p>
+<p>First, the Git integration. There's no point in calling <code>git status</code> if all we want to know is if we're in a repository. <code>git rev-parse</code> is quite a bit quicker. I'm amazed I didn't find it in my <a href="./zsh-scripts-are-dumb.html">Zsh scripts article</a></p>
+<p>There's also no else branch with a blank echo statement in the Git integration. I'm really not sure why I put that there.</p>
+<p>If I haven't changed anything, the <code>0</code> representing the changed files is kind of a distraction, especially since it's now bright red, so I also don't bother printing that.</p>
+<p>However, there really isn't anything optimized in the return code section, that's just about unchanged. I am using <code>printf</code> now to lock the number of printed characters to 3 to keep the same width, but that's it.</p>
+<h2>Syntax Highlighting</h2>
+<p>I learned about this and then couldn't stop using it. It's very handy to have a color coded reference telling you when a command is mistyped or a file doesn't exist. However, Arch Linux puts the script in a different place from everyone else, so it's 6 lines instead of 3, including whitespace.</p>
+<p>The package to get this is called <code>zsh-syntax-highlighting</code> in pretty much every distro I've used.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enable syntax highlighting (if available)</span>
+<span class="o">[</span> -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh <span class="o">]</span> <span class="o">&amp;&amp;</span>
+   <span class="nb">source</span> /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+<span class="o">[</span> -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh <span class="o">]</span> <span class="o">&amp;&amp;</span>
+   <span class="nb">source</span> /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+</code></pre></div>
+
+<h1>Not Just Prompts</h1>
+<p>I also edit the window title based on the running command and the <code>$PWD</code>,</p>
+<div class="highlight"><pre><span></span><code>precmd<span class="o">(){</span>
+    <span class="nb">echo</span> -ne <span class="s2">&quot;\033]0;zsh </span><span class="nv">$PWD</span><span class="s2">\007&quot;</span>
+<span class="o">}</span>
+preexec<span class="o">(){</span>
+    <span class="nb">echo</span> -ne <span class="s2">&quot;\033]0;</span><span class="nv">$1</span><span class="s2">\007&quot;</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<p>but even more interesting is dev mode.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Dev mode - enables/disables extra prompt settings, and optionally a dev env</span>
+<span class="c1">#            if such a thing exists. Tracks its state through $devmode_enabled</span>
+<span class="c1">#            so subsequent runs of the devmode command toggle its state.</span>
+<span class="nb">export</span> <span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;no&quot;</span>
+devmode<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$devmode_enabled</span> <span class="o">=</span> <span class="s2">&quot;no&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nv">PS1</span><span class="o">=</span><span class="s1">$&#39;: %{\033[36m%}$(history -n -1)%{\033[m%}\n&#39;</span><span class="nv">$PS1</span>
+        <span class="k">if</span> <span class="o">[</span> -e env/bin/activate <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="nb">source</span> env/bin/activate
+        <span class="k">fi</span>
+        <span class="nb">export</span> <span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+    <span class="k">else</span>
+        which deactivate &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">&amp;&amp;</span>
+        deactivate
+        <span class="nv">PS1</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$PS1</span> <span class="p">|</span> tail -n <span class="m">2</span><span class="k">)</span><span class="s1">$&#39;\n&#39;</span>
+        <span class="nb">export</span> <span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;no&quot;</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+</code></pre></div>
+
+<p>So what is this?</p>
+<p>In short, this is a quick shortcut to make activating and deactivating a Python virtual environment (or something similar) much easier, as well as a set of prompt changes that only really make sense when you're doing fairly serious work. Really, that amounts to indicating the last run command and sourcing a script in a certain directory relative to the <code>$PWD</code>.</p>
+<p>Some of my own projects have started to take advantage of this, too. For example, if there's some unit testing commands that make no sense outside of a project directory, I'll put them in the virtual environment instead of my global bin directory. This has a number of positive effects. First of all, the commands can live with the project. If I repurpose them elsewhere, the original version stays intact, linked to the project it was developed for. It also means that if there are any environment settings I want to have enabled, I can simply activate the virtual environment and things will work great. I'll link to some of my projects that use this approach once they're public.</p>
+<p>So, I mentioned <a href="https://docs.python.org/3/tutorial/venv.html">Python virtual environments</a>, and while that's what this was originally developed for, I don't actually use those anymore. Mostly, my argument against them boils down to platform incompatibility. They expect some level of dependencies are installed on your system, but since they look like they solve all dependencies, these might get left by the wayside, leaving somebody to find those packages on their own. Of course, it might still save time, but my estimation is that it's very rare for a Python application to <em>actually</em> get distributed with its virtual environment, it's more likely to get packaged in a Linux system alongside the relevant libraries from upstream. Avoiding them also means there's less incentive to import ancient libraries because they have a bug you rely on. Also, Python Pip has been used to distribute malware successfully already, where at the very least most external software distributions (like FreeBSD, Fedora, etc.) have package maintainers that can catch stuff like that, as well as platform bugs that a virtual environment couldn't possibly know about (but a package maintainer would).</p>
+<p>Crucially, my own virtual environments tend to be helper scripts that I would generally want included with my software anyhow, rather than shortcuts to a third-party package manager, so I mostly dodge these issues. It's good to know about these pitfalls, however.</p>
+<h1>That's My Prompt</h1>
+<p>That's it. Going into this I expected I'd be writing (even) more about the prompt, but as it turns out, beyond just stylistic tweaks and a completely different shell, I'm mechanically doing the exact same thing I was years ago. That's not to say it hasn't improved since then, using Perl to count lines is <em>insanely</em> dumb and a good showcase of how green I was at shell scripting at the time, but the concept seemed really cool to me then, and it still kind of does!</p>
+    </div><!-- /.entry-content -->
+    <hr>
+    <div class="comments">
+      Have a comment on this article? <a href="mailto:jimmydean886@hotmail.com?subject='Comment on shellprompt:'">Send me an email!</a>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/windowTools">WindowTools</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/widgetTools">WidgetTools</a></li>
+                            <li><a href="https://gitlab.com/spacecowboy/Feeder">Feeder for Android</a></li>
+                            <li><a href="https://hyliu.me/fluent-reader/">Fluent Reader</a></li>
+                            <li><a href="https://apps.apple.com/app/feedly-get-smarter/id396069556">Feedly for iOS</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://gitlab.com/CannonContraption">GitLab</a></li>
+                            <li><a href="https://github.com/CannonContraption">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q">YouTube</a></li>
+                            <li><a href="https://soundcloud.com/jimmydean886">SoundCloud</a></li>
+                            <li><a href="mailto:jimmydean886@hotmail.com?subject=Hello!">Email</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+            <address id="about" class="vcard body">
+                <img style='float:right;' src="/theme/images/icons/favicon.png" />
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.<br>
+                Original content &#169; 2017-2022 Jim Read<br>
+                The theme was originally by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and has since been heavily modified to be responsive.
+            </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
