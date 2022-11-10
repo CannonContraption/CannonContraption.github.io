@@ -247,9 +247,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "ps4review.html",
-                                         "ps4review",
+                                         "xboxonereview.html",
+                                         "xboxonereview",
                                          "Games")});
+                             let xboxonereviewicon = makeIcon(
+                                 browser_section,
+                                 "xboxonereview",
+                                 "blogpost");
+                             setDblClickAction(
+                                 xboxonereviewicon,
+                                 function(){
+                                     frame_post(
+                                         "xboxonereview.html",
+                                         "xboxonereview",
+                                         "Games")
+                             });
                              let ps4reviewicon = makeIcon(
                                  browser_section,
                                  "ps4review",
