@@ -118,7 +118,7 @@ $
 </code></pre></div>
 
 <p>This is the last line I had programmed before today, except for the <code>, dev. 5</code> part which was today. This is the result of running the average function over the daily input data. It includes three pieces of information: the average, the number of days we have on record (discarding blank days), and the greatest deviation in either direction from that average. These get used later to determine some stuff.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">This</span> <span class="nv">habit</span> <span class="nv">is</span> <span class="nv">in</span> <span class="nv">monitoring</span> <span class="nv">mode</span>, <span class="nv">so</span> <span class="nv">there</span><span class="s1">&#39;</span><span class="s">s no target yet. (when getting target for 2022-08-29)</span>
+<div class="highlight"><pre><span></span><code><span class="nv">This</span><span class="w"> </span><span class="nv">habit</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">monitoring</span><span class="w"> </span><span class="nv">mode</span>,<span class="w"> </span><span class="nv">so</span><span class="w"> </span><span class="nv">there</span><span class="err">&#39;s no target yet. (when getting target for 2022-08-29)</span><span class="w"></span>
 </code></pre></div>
 
 <p>I implemented error checking in the daily target routine, so this is the message it prints when you try to get a target for a habit that is not started yet. There are different messages if the routine runs into some data it can't find. This routine actually doesn't modify the struct at all, so that's perfectly safe.</p>
@@ -135,7 +135,7 @@ $
 
 <p>This is where that integer math rears its ugly head. This is supposed to be (deviation * 100) / average = error percentage, but with a deviation of 5 and an average of 60, we should get 8.(3 repeating) (Sorry, Chrome doesn't support MathML and I don't know another way to represent 3 repeating lol).</p>
 <p>So, we have an error of 8% stored away. It gets worse, though. If we apply an 8% error to 57, we get 4.56 as our deviation, which again gets lopped off by our friend the integer. Thus, we have an error value of "4". This is entirely my fault and a prototype bump.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">Lower</span> <span class="nv">target</span> <span class="k">for</span> <span class="mi">2022</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">29</span> <span class="nv">is</span> <span class="mi">47</span>, <span class="nv">upper</span> <span class="mi">55</span>
+<div class="highlight"><pre><span></span><code><span class="nv">Lower</span><span class="w"> </span><span class="nv">target</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="mi">2022</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">29</span><span class="w"> </span><span class="nv">is</span><span class="w"> </span><span class="mi">47</span>,<span class="w"> </span><span class="nv">upper</span><span class="w"> </span><span class="mi">55</span><span class="w"></span>
 </code></pre></div>
 
 <p>But, we press on anyhow, blissfully unaware of our error and get a slightly narrower range of 47-55 units for the next day. Overall, there are bugs, but we got a good result.</p>
