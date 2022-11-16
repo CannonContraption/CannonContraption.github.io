@@ -51,21 +51,21 @@
 <p>Let's look at a contrived example or two. I'm going to compare Rust vs. Python vs. C here, in order to represent either end of the imperative language spectrum, as I like to think of it.</p>
 <h3>String Comparison</h3>
 <p>To start out with, I've decided to pick on <code>strcmp()</code> et. al. for a moment. Let's look at the code to compare strings in Python:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="w"></span>
-<span class="nv">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="w"></span>
-<span class="nv">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is also a string&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">string1</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a string</span><span class="s2">&quot;</span>
+<span class="nv">string2</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a string</span><span class="s2">&quot;</span>
+<span class="nv">string3</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is also a string</span><span class="s2">&quot;</span>
 
-#<span class="w"> </span><span class="nv">Compare</span><span class="w"> </span><span class="nv">Equality</span>:<span class="w"></span>
+# <span class="nv">Compare</span> <span class="nv">Equality</span>:
 
-<span class="k">if</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string2</span>:<span class="w"></span>
-<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;String1/2 match.&quot;</span><span class="ss">)</span><span class="w"></span>
-<span class="k">else</span>:<span class="w"></span>
-<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;String1/2 don&#39;t match&quot;</span><span class="ss">)</span><span class="w"></span>
+<span class="k">if</span> <span class="nv">string1</span> <span class="o">==</span> <span class="nv">string2</span>:
+    <span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String1/2 match.</span><span class="s2">&quot;</span><span class="ss">)</span>
+<span class="k">else</span>:
+    <span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String1/2 don&#39;t match</span><span class="s2">&quot;</span><span class="ss">)</span>
 
-<span class="k">if</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string3</span>:<span class="w"></span>
-<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;String1/3 match&quot;</span><span class="ss">)</span><span class="w"></span>
-<span class="k">else</span>:<span class="w"></span>
-<span class="w">    </span><span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;String1/3 don&#39;t match&quot;</span><span class="ss">)</span><span class="w"></span>
+<span class="k">if</span> <span class="nv">string1</span> <span class="o">==</span> <span class="nv">string3</span>:
+    <span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String1/3 match</span><span class="s2">&quot;</span><span class="ss">)</span>
+<span class="k">else</span>:
+    <span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String1/3 don&#39;t match</span><span class="s2">&quot;</span><span class="ss">)</span>
 </code></pre></div>
 
 <p>This produces the output you would expect if you didn't know about string management:</p>
@@ -76,29 +76,29 @@ $
 </code></pre></div>
 
 <p>Let's do that in Rust:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">fn</span><span class="w"> </span><span class="nv">main</span><span class="ss">()</span><span class="w"> </span>{<span class="w"></span>
-<span class="w">    </span><span class="nv">let</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a str&quot;</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span><span class="nv">let</span><span class="w"> </span><span class="nv">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a str&quot;</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span><span class="nv">let</span><span class="w"> </span><span class="nv">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is also a str&quot;</span><span class="c1">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">fn</span> <span class="nv">main</span><span class="ss">()</span> {
+    <span class="nv">let</span> <span class="nv">string1</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a str</span><span class="s2">&quot;</span><span class="c1">;</span>
+    <span class="nv">let</span> <span class="nv">string2</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a str</span><span class="s2">&quot;</span><span class="c1">;</span>
+    <span class="nv">let</span> <span class="nv">string3</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is also a str</span><span class="s2">&quot;</span><span class="c1">;</span>
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string2</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">        </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Strings 1/2 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">        </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Strings 1/2 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
+    <span class="k">if</span> <span class="nv">string1</span> <span class="o">==</span> <span class="nv">string2</span>
+    {
+        <span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">Strings 1/2 match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+    <span class="k">else</span>
+    {
+        <span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">Strings 1/2 don&#39;t match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
 
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string3</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">        </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Strings 1/3 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-<span class="w">    </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">        </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Strings 1/3 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-}<span class="w"></span>
+    <span class="k">if</span> <span class="nv">string1</span> <span class="o">==</span> <span class="nv">string3</span>
+    {
+        <span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">Strings 1/3 match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+    <span class="k">else</span>
+    {
+        <span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">Strings 1/3 don&#39;t match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+}
 </code></pre></div>
 
 <p>This also produces the output that Python would:</p>
@@ -113,34 +113,34 @@ $
 
 <p>In the Rust example, I wasn't even using the <code>std::String</code> struct like the name would suggest, I was using raw <code>str</code> string slices instead, and this still worked because there's an implementation of Eq() in the standard library for <code>str</code>. If there wasn't, I could implement it myself to tell the language what I meant by <code>string1 == string2</code>, for example.</p>
 <p>Now let's look at C:</p>
-<div class="highlight"><pre><span></span><code>#<span class="k">include</span><span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span><span class="w"></span>
-#<span class="k">include</span><span class="o">&lt;</span><span class="nv">string</span>.<span class="nv">h</span><span class="o">&gt;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>#<span class="k">include</span><span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span>
+#<span class="k">include</span><span class="o">&lt;</span><span class="nv">string</span>.<span class="nv">h</span><span class="o">&gt;</span>
 
-<span class="nv">int</span><span class="w"> </span><span class="nv">main</span><span class="ss">()</span><span class="w"></span>
-{<span class="w"></span>
-<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="c1">;</span><span class="w"></span>
-<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="c1">;</span><span class="w"></span>
-<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is another string&quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="nv">int</span> <span class="nv">main</span><span class="ss">()</span>
+{
+  <span class="nv">char</span> <span class="o">*</span> <span class="nv">string1</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a string</span><span class="s2">&quot;</span><span class="c1">;</span>
+  <span class="nv">char</span> <span class="o">*</span> <span class="nv">string2</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a string</span><span class="s2">&quot;</span><span class="c1">;</span>
+  <span class="nv">char</span> <span class="o">*</span> <span class="nv">string3</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is another string</span><span class="s2">&quot;</span><span class="c1">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="o">!</span><span class="nv">strcmp</span><span class="ss">(</span><span class="nv">string1</span>,<span class="w"> </span><span class="nv">string2</span><span class="ss">))</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/2 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/2 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
+  <span class="k">if</span> <span class="ss">(</span><span class="o">!</span><span class="nv">strcmp</span><span class="ss">(</span><span class="nv">string1</span>, <span class="nv">string2</span><span class="ss">))</span>
+    {
+      <span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String 1/2 match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+  <span class="k">else</span>
+    {
+      <span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String 1/2 don&#39;t match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
 
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="o">!</span><span class="nv">strcmp</span><span class="ss">(</span><span class="nv">string1</span>,<span class="w"> </span><span class="nv">string3</span><span class="ss">))</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/3 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/3 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="c1">;</span><span class="w"></span>
-}<span class="w"></span>
+  <span class="k">if</span> <span class="ss">(</span><span class="o">!</span><span class="nv">strcmp</span><span class="ss">(</span><span class="nv">string1</span>, <span class="nv">string3</span><span class="ss">))</span>
+    {
+      <span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String 1/3 match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+  <span class="k">else</span>
+    {
+      <span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String 1/3 don&#39;t match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+  <span class="k">return</span> <span class="mi">0</span><span class="c1">;</span>
+}
 </code></pre></div>
 
 <p>Here we can build a clear case for why this is less expressive. We don't have a string type, which means no UTF-8 support, we're dealing with bytes here. This also can lead to a lot of buffer overflow issues if we're not careful (far less than ideal for a prototype), and furthermore I wouldn't blame a novice who isn't used to using strings in C getting confused at why I'm using <code>!strcmp()</code> (or alternatively <code>strcmp() == 0</code>, they mean the same thing) instead of testing if the value is true. They match, after all, and comparisons resolve to <code>True</code> in Python. Plus, while the output of this works:</p>
@@ -153,33 +153,33 @@ $
 
 <p>if I had defined these as fixed arrays and then used <code>==</code> it wouldn't work:</p>
 <p>stringcompare-static.c:</p>
-<div class="highlight"><pre><span></span><code>#<span class="k">include</span><span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>#<span class="k">include</span><span class="o">&lt;</span><span class="nv">stdio</span>.<span class="nv">h</span><span class="o">&gt;</span>
 
-<span class="nv">int</span><span class="w"> </span><span class="nv">main</span><span class="ss">()</span><span class="w"></span>
-{<span class="w"></span>
-<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="nv">string1</span>[<span class="mi">64</span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="c1">;</span><span class="w"></span>
-<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="nv">string2</span>[<span class="mi">64</span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string&quot;</span><span class="c1">;</span><span class="w"></span>
-<span class="w">  </span><span class="nv">char</span><span class="w"> </span><span class="nv">string3</span>[<span class="mi">64</span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is another string&quot;</span><span class="c1">;</span><span class="w"></span>
+<span class="nv">int</span> <span class="nv">main</span><span class="ss">()</span>
+{
+  <span class="nv">char</span> <span class="nv">string1</span>[<span class="mi">64</span>] <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a string</span><span class="s2">&quot;</span><span class="c1">;</span>
+  <span class="nv">char</span> <span class="nv">string2</span>[<span class="mi">64</span>] <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a string</span><span class="s2">&quot;</span><span class="c1">;</span>
+  <span class="nv">char</span> <span class="nv">string3</span>[<span class="mi">64</span>] <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is another string</span><span class="s2">&quot;</span><span class="c1">;</span>
 
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string2</span><span class="ss">)</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/2 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/2 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
+  <span class="k">if</span> <span class="ss">(</span><span class="nv">string1</span> <span class="o">==</span> <span class="nv">string2</span><span class="ss">)</span>
+    {
+      <span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String 1/2 match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+  <span class="k">else</span>
+    {
+      <span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String 1/2 don&#39;t match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
 
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string3</span><span class="ss">)</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/3 match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">      </span><span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;String 1/3 don&#39;t match&quot;</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="c1">;</span><span class="w"></span>
-}<span class="w"></span>
+  <span class="k">if</span> <span class="ss">(</span><span class="nv">string1</span> <span class="o">==</span> <span class="nv">string3</span><span class="ss">)</span>
+    {
+      <span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String 1/3 match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+  <span class="k">else</span>
+    {
+      <span class="nv">puts</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">String 1/3 don&#39;t match</span><span class="s2">&quot;</span><span class="ss">)</span><span class="c1">;</span>
+    }
+  <span class="k">return</span> <span class="mi">0</span><span class="c1">;</span>
+}
 </code></pre></div>
 
 <p>console:</p>
@@ -191,13 +191,13 @@ $
 </code></pre></div>
 
 <p><em>but</em>, had I either just used <code>strcmp</code> <em>or</em> left all the strings as <code>char*</code> rather than <code>char[]</code>, this would work. This is the type of bug that's really hard to find when things blow up. Furthermore, the C compiler won't stop us from doing something like this:</p>
-<div class="highlight"><pre><span></span><code>...<span class="w"></span>
-<span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is a string &quot;</span><span class="c1">;</span><span class="w"></span>
-<span class="nv">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">string3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;This is another string&quot;</span><span class="c1">;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code>...
+<span class="nv">char</span> <span class="o">*</span> <span class="nv">string2</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is a string </span><span class="s2">&quot;</span><span class="c1">;</span>
+<span class="nv">char</span> <span class="o">*</span> <span class="nv">string3</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">This is another string</span><span class="s2">&quot;</span><span class="c1">;</span>
 
-<span class="nv">string2</span>[<span class="mi">1</span>]<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="c1">;</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">string1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">string2</span><span class="ss">)</span><span class="w"></span>
-...<span class="w"></span>
+<span class="nv">string2</span>[<span class="mi">1</span>] <span class="o">=</span> <span class="s1">&#39;</span><span class="s">a</span><span class="s1">&#39;</span><span class="c1">;</span>
+<span class="k">if</span> <span class="ss">(</span><span class="nv">string1</span> <span class="o">==</span> <span class="nv">string2</span><span class="ss">)</span>
+...
 </code></pre></div>
 
 <p>console:</p>
@@ -231,15 +231,15 @@ $
 <h2>Correctness</h2>
 <p>I'm going to drop C from the conversation at this point, since I think I've beaten it enough. There <em>are</em> cases where prototypes in C make sense, but they're mostly things that have to do with some low-level hardware function, and we're not doing any of that here. So, let's compare algorithmic correctness enforcement between Rust and Python.</p>
 <p>We'll start with Rust, let's write a program with a pretty trivial bug. This is a <em>very</em> contrived example, but I'm sure if you've had much experience you can imagine a case where it's happened before:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">fn</span><span class="w"> </span><span class="nv">main</span><span class="ss">()</span><span class="w"> </span>{<span class="w"></span>
-<span class="w">    </span><span class="nv">let</span><span class="w"> </span><span class="nv">mut</span><span class="w"> </span><span class="nv">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="mi">0</span>..<span class="mi">18</span><span class="w"></span>
-<span class="w">    </span>{<span class="w"></span>
-<span class="w">        </span><span class="nv">cntr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i</span><span class="c1">;</span><span class="w"></span>
-<span class="w">    </span>}<span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">fn</span> <span class="nv">main</span><span class="ss">()</span> {
+    <span class="nv">let</span> <span class="nv">mut</span> <span class="nv">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="c1">;</span>
+    <span class="k">for</span> <span class="nv">i</span> <span class="nv">in</span> <span class="mi">0</span>..<span class="mi">18</span>
+    {
+        <span class="nv">cntr</span> <span class="o">=</span> <span class="nv">i</span><span class="c1">;</span>
+    }
 
-<span class="w">    </span><span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;Counter is at {}&quot;</span>,<span class="w"> </span><span class="nv">counter</span><span class="ss">)</span><span class="c1">;</span><span class="w"></span>
-}<span class="w"></span>
+    <span class="nv">println</span><span class="o">!</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">Counter is at {}</span><span class="s2">&quot;</span>, <span class="nv">counter</span><span class="ss">)</span><span class="c1">;</span>
+}
 </code></pre></div>
 
 <p>If we try and run this, <code>rustc</code> again catches us:</p>
@@ -260,11 +260,11 @@ $
 
 <p>It points us straight to where the problem is and gives us a clear error.</p>
 <p>Let's do the same thing in Python:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
-<span class="k">for</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">range</span><span class="ss">(</span><span class="mi">0</span>,<span class="mi">18</span><span class="ss">)</span>:<span class="w"></span>
-<span class="w">    </span><span class="nv">cntr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">i</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="nv">counter</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="nv">i</span> <span class="nv">in</span> <span class="nv">range</span><span class="ss">(</span><span class="mi">0</span>,<span class="mi">18</span><span class="ss">)</span>:
+    <span class="nv">cntr</span> <span class="o">=</span> <span class="nv">i</span>
 
-<span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;Counter is at&quot;</span>,<span class="w"> </span><span class="nv">counter</span><span class="ss">)</span><span class="w"></span>
+<span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">Counter is at</span><span class="s2">&quot;</span>, <span class="nv">counter</span><span class="ss">)</span>
 </code></pre></div>
 
 <p>Now, we have a working, "correct" Python program and we just get output we don't want:</p>
