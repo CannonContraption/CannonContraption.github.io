@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+        <title>Should I Have Used Hugo Instead of Pelican?</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link rel="icon" href="./theme/images/icons/favicon.png" />
+        <link href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="#!/bin/bash it 'till it works Atom Feed" />
+        <link href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="#!/bin/bash it 'till it works RSS Feed" />
+        <meta name="description" content="Shortly after I finished transitioning to Pelican, I started to do some research about what the most popular static site generators are. Normally,..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">#!/bin/bash it 'till it works</a></h1> <strong>The blog of a Zsh user.</strong>                <nav><ul>
+                    <li><a href="/archives">Archives</a></li>
+                    <li><a href="/categories">Categories/Tags</a></li>
+                    <li  id="navlink-about"><a href="./pages/about.html">About</a></li>
+                    <li  id="navlink-desktop"><a href="./pages/desktop.html">Desktop Site</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./hugo.html" rel="bookmark"
+           title="Permalink to Should I Have Used Hugo Instead of Pelican?">Should I Have Used Hugo Instead of Pelican?</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2022-11-19T00:00:00-05:00">
+                Published: Sat 19 November 2022
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="./category/tech.html">Tech</a>.</p>
+<p>tags: <a href="./tag/blog.html">blog</a> <a href="./tag/blogging.html">blogging</a> <a href="./tag/pelican.html">pelican</a> <a href="./tag/hugo.html">hugo</a> </p>
+</footer><!-- /.post-info -->      <p>Shortly after I finished transitioning to Pelican, I started to do some research about what the most popular static site generators are. Normally, I would advise doing this the other way around, but my main reason for the shift was familiarity with Pelican combined with a desire to write more. So, I decided to just jump right into it. To be totally fair to Pelican, it worked, and I don't really have any needs beyond what Pelican offers. So why then am I considering alternatives?</p>
+<h1>What Alternatives? You See No Alternatives</h1>
+<p>This is basically the attitude that I had when I started. I thought about keeping my blog the way it was, and not messing with it at all. However, like I detailed in <a href="./blogging-is-hard.html">this post</a> blogging wasn't a super low-friction activity at the time. I had to do a lot of things by hand in order for it to work correctly, which always made it a little difficult to actually justify posting anything. That's not to say that I didn't post anything after that point, but I certainly didn't just jump on the idea whenever something occurred to me like I do now. It was a much more deliberate and considered process, weighing the pros and cons for a bit.</p>
+<p>My first experiences with Pelican are already detailed <a href="./transition-to-pelican.html">in this post</a>. While I only briefly touched on where my exposure to Pelican came from, I didn't exactly spend the time to comparison shop once I decided to post again.</p>
+<h1>Post-Transition</h1>
+<p>It was a little bit later on that I ran across a video by <a href="https://odysee.com/@Luke:7/hugo-actually-explained-%28websites%2C:6">Luke Smith talking about Hugo</a> and some info about <a href="https://jekyllrb.com/">Jekyll</a>, what <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll">GitHub Pages recommends</a>, that I really started comparison shopping.</p>
+<p>First of all, I was impressed just how widely used all three of these tools were. I hadn't realized that <a href="https://www.kernel.org/">the Linux Kernel Archives</a> site (which I had seen/used for the better part of a decade) was Pelican generated. Jekyll had an <a href="https://jekyllrb.com/showcase/">even more impressive list</a> which I'm just going to link to, since none of the sites on there were ones I used extensively. However, some of them are similarly important to the kernel archives. <a href="https://gohugo.io/showcase/">Hugo has a similar (and similarly impressive) page</a>.</p>
+<p>There were a lot of other alternatives people recommended, but the general vibe that I got was that these three were really the main competitors in the space. If your favorite isn't one of these three, don't think I think less of it, I just didn't run across as much about it. Basically, it boiled down to this, more or less: Pelican is great if you love Python or just want something simple. Hugo is <em>fast</em>, and much more flexible. Jekyll is great if you're publishing to GitHub.</p>
+<p>These are (obviously) <em>enormous</em> oversimplifications of deep, complicated software products, but that's enough information to get an idea of how they're used. It seems like a lot of the people who use one of these don't actually end up looking for alternatives. For my money, this is a <em>great</em> sign. It means that each one is <em>so mature</em> that you can literally pick <em>any</em> of them and never actually have the desire to try another one. Most people don't seem to even look.</p>
+<p>So, the next time that I needed to create a static site, this time for documenting a complex AV system, I turned to Hugo. I was impressed. My blog takes close to a second to regenerate every time I hit save. The last time that I saved this post, the devserver spit this out on my terminal:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="w"> </span><span class="n">Modified</span><span class="o">:</span><span class="w"> </span><span class="n">content</span><span class="p">.</span><span class="w"> </span><span class="n">re</span><span class="o">-</span><span class="n">generating</span><span class="p">...</span><span class="w"></span>
+<span class="n">Done</span><span class="o">:</span><span class="w"> </span><span class="n">Processed</span><span class="w"> </span><span class="mi">45</span><span class="w"> </span><span class="n">articles</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">drafts</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">hidden</span><span class="w"> </span><span class="n">articles</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">pages</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">hidden</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="kr">and</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">draft</span><span class="w"> </span><span class="n">pages</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="mf">0.96</span><span class="w"> </span><span class="n">seconds</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
+
+<p>This is fine. Waiting a full second for a site to generate isn't a big deal. However, you'll note that I only have 47 pages or so to generate, so we're talking about a whole 20 ms or so to actually generate a single page. That's a long time to just compile some markdown.</p>
+<p>However, I copied my posts directory to that documentation site in a whole new category while its server was running, and got this:</p>
+<div class="highlight"><pre><span></span><code>Change detected, rebuilding site.
+2022-11-19 14:44:21.157 -0500
+Rebuilt in 110 ms
+</code></pre></div>
+
+<p>Granted, this is just the articles, I didn't convert the files into a format that Hugo would recognize, so there's no page titles, etc. However, that's still 1/10 the time, and I'm copying the <em>whole posts directory at once</em> rather than just hitting 'save' on a single page.</p>
+<p>For the sake of completeness, Pelican only takes about 1.2 seconds to regenerate the whole site on the same laptop, though I'm not really sure whether that's a good thing or a bad thing. It also took 10-14 ms to regenerate just this post when I copied it. I'm not sure whether this makes either solution look better or worse than before, but I have those numbers, too, so I may as well list them.</p>
+<h1>Hugo Drawbacks</h1>
+<p>This is where I'm going to start ripping into each solution, talking about why they suck. Both of them have problems, but I want to make it clear, <em>neither of these suck in the slightest</em> so you may as well call this whole section "Jim's Nitpick Arena" if you really want to.</p>
+<p>Hugo has no default template at all. If you use their quickstarter and don't download a theme on your own, you'll get a blank page. For my purposes with the docs site, that was fine, however I probably wouldn't have gotten up and running so quickly with my blog had I needed to choose a template first.</p>
+<p>The server also seems to occasionally delay a little between when you save a file, and when it picks it up and reloads it. This isn't a huge difference, but it's there.</p>
+<p>Hugo is written in Go. I don't hate Go, far from it, but I don't love some of its design decisions. The language is clean <em>enough</em> to be vastly faster than Python, but it still has a garbage collector, it still adds a <code>~/go</code> directory (wtf!?) and it seems like they're gearing up to change the language significantly with Go 2. I'll talk about what I like and don't like about Go once I've convinced myself to learn it a little more thoroughly.</p>
+<h1>Pelican Drawbacks</h1>
+<p>Most of these boil down to performance, for my case, but there's a few other things I'm not a fan of.</p>
+<p>Performance is kind of bad. I have reloaded pages to see an edit before Pelican has caught up to me (this happens all the time) and it's been getting steadily worse as I add more to my blog.</p>
+<p>Pelican seems to be heavily tilted towards bloggers. This is true of pretty much all of these, but the default template favors posts with a date, tags, categories, etc. All things that suggest that Pelican is blogging software, not a generic static site generator that <em>can</em> do blogging.</p>
+<p>After using Hugo for a bit, I actually really prefer how it structures pages and categories. To be clear, Pelican does this fine, but making each category a directory makes a ton of sense to me, as somebody who has dealt with an ever-increasing library of files to wrangle. I like deep directory trees when they're in the service of actually organizing things. This can be taken too far, if you need proof just make a project in Android Studio, but Hugo's system is quite reasonable, in my opinion. Pelican, on the other hand, puts all of its pages in the site root, by default, and leans on pages in order to organize them when presented to a user. It works, but the actual output isn't as tidy.</p>
+<p>I mentioned the default theme, but Pelican doesn't exactly copy it to your blog for you. Instead (at least when using the Fedora package) you'll have to go digging around <code>/usr/share</code> to find it if you want to make changes. This adds a lot of extra steps to do something custom but not from scratch. It took me a couple of tries to get it right, for example. Once I did get it copied, the default theme wasn't responsive <em>at all</em> so the theme actually needed a fair amount of adjustment to work on a phone. I get that the theme is probably close to 10 years old by now, but phones are pretty important now. This is something I should probably contribute back to the project, since I've done the work.</p>
+<p>I complained about Go, but honestly I don't personally find Python to be a great language for real work, most of the time. It's fine and certainly does the job, but it's <em>slow</em>, it relies far to heavily on indentation rules to function properly, and since it doesn't differentiate variable declaration and assignment, it's really easy to lose track of some piece of data due to a typo. Honestly, though, I really wish Go were more approachable, because it seems similarly simple, and it actually seems to do concurrency really well, unlike Python. It's pretty clear, however, that Go is targeted at people who have already done some programming before, so I don't expect it'll replace Python any time soon.</p>
+<p>Again, both of these last two sections are nitpicks rather than real complaints, but you can probably tell which one I prefer by now.</p>
+<h1>I'm rewriting the theme I use at some point, should I switch while I'm at it?</h1>
+<p>No.</p>
+<p>I mentioned the directory structure change, but that's important. I do a lot of linking to posts, and every time someone bookmarks something at some point, they expect it to stay there. If I switched to Hugo today, I would want to take full advantage of that category structure I was just talking about. This could be done, and I'll probably still switch at some point, but it's really hard for me to actually recommend doing it seriously since all my old links from the outside world would break.</p>
+<p>Honestly, Pelican is good enough. Maybe once I'm waiting 2-3 seconds for my blog to generate, I'll think about switching, but for now I'll just deal with reloading twice.</p>
+<p>If you're just starting out and you write a lot, though, I would highly recommend you take a look at Hugo instead of Pelican, it's much faster and produces equally quality output.</p>
+<p>Blogging is a practice that can help immensely when it comes to clearing your own thoughts. Putting down something you've been considering but haven't made a decision on can serve the same purpose as explaining the pros and cons to a friend, and it can also serve as a reference for why you made some decision. For my part, I actually still recommend <a href="blogger.com">Blogger</a> in spite of the fact that I've <a href="https://binbashworks.blogspot.com/2019/08/this-blog-has-moved.html">long since moved away from it</a>. You'll note that I didn't announce that right away. However, once you've gotten started and Blogger inevitably feels like it's missing some features you want or is too much effort to use, might I recommend Hugo?</p>
+    </div><!-- /.entry-content -->
+    <hr>
+    <div class="comments">
+      Have a comment on this article? <a href="mailto:jimmydean886@hotmail.com?subject='Comment on hugo:'">Send me an email!</a>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/windowTools">WindowTools</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/widgetTools">WidgetTools</a></li>
+                            <li><a href="https://gitlab.com/spacecowboy/Feeder">Feeder for Android</a></li>
+                            <li><a href="https://hyliu.me/fluent-reader/">Fluent Reader</a></li>
+                            <li><a href="https://apps.apple.com/app/feedly-get-smarter/id396069556">Feedly for iOS</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://gitlab.com/CannonContraption">GitLab</a></li>
+                            <li><a href="https://github.com/CannonContraption">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q">YouTube</a></li>
+                            <li><a href="https://soundcloud.com/jimmydean886">SoundCloud</a></li>
+                            <li><a href="mailto:jimmydean886@hotmail.com?subject=Hello!">Email</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+            <address id="about" class="vcard body">
+                <img style='float:right;' src="/theme/images/icons/favicon.png" />
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.<br>
+                Original content &#169; 2017-2022 Jim Read<br>
+                The theme was originally by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and has since been heavily modified to be responsive.
+            </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
