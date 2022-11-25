@@ -427,9 +427,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "hugo.html",
-                                         "hugo",
+                                         "keyboardworkman.html",
+                                         "keyboardworkman",
                                          "Tech")});
+                             let keyboardworkmanicon = makeIcon(
+                                 browser_section,
+                                 "keyboardworkman",
+                                 "blogpost");
+                             setDblClickAction(
+                                 keyboardworkmanicon,
+                                 function(){
+                                     frame_post(
+                                         "keyboardworkman.html",
+                                         "keyboardworkman",
+                                         "Tech")
+                             });
                              let hugoicon = makeIcon(
                                  browser_section,
                                  "hugo",
