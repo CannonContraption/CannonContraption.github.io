@@ -247,9 +247,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "ffviii.html",
-                                         "ffviii",
+                                         "negativereviews.html",
+                                         "negativereviews",
                                          "Games")});
+                             let negativereviewsicon = makeIcon(
+                                 browser_section,
+                                 "negativereviews",
+                                 "blogpost");
+                             setDblClickAction(
+                                 negativereviewsicon,
+                                 function(){
+                                     frame_post(
+                                         "negativereviews.html",
+                                         "negativereviews",
+                                         "Games")
+                             });
                              let ffviiiicon = makeIcon(
                                  browser_section,
                                  "ffviii",
