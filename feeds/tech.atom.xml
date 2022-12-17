@@ -1,5 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>#!/bin/bash it 'till it works - Tech</title><link href="https://cannoncontraption.github.io/" rel="alternate"></link><link href="https://cannoncontraption.github.io/feeds/tech.atom.xml" rel="self"></link><id>https://cannoncontraption.github.io/</id><updated>2022-11-25T13:54:00-05:00</updated><subtitle>The blog of a Zsh user.</subtitle><entry><title>Adventures in Keyboard Layouts: Workman</title><link href="https://cannoncontraption.github.io/keyboardworkman.html" rel="alternate"></link><published>2022-11-25T13:54:00-05:00</published><updated>2022-11-25T13:54:00-05:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2022-11-25:/keyboardworkman.html</id><summary type="html">&lt;p&gt;I've been using the Workman keyboard layout since 2019. It's been a pleasant experience, for the most part, and I've learned a lot about what makes a good keyboard layout and why people use them. But why did I choose to uproot my own muscle memory? Why did I choose …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been using the Workman keyboard layout since 2019. It's been a pleasant experience, for the most part, and I've learned a lot about what makes a good keyboard layout and why people use them. But why did I choose to uproot my own muscle memory? Why did I choose to do it &lt;em&gt;after&lt;/em&gt; leaving university, and what did I learn?&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>#!/bin/bash it 'till it works - Tech</title><link href="https://cannoncontraption.github.io/" rel="alternate"></link><link href="https://cannoncontraption.github.io/feeds/tech.atom.xml" rel="self"></link><id>https://cannoncontraption.github.io/</id><updated>2022-12-16T00:00:00-05:00</updated><subtitle>The blog of a Zsh user.</subtitle><subtitle>The blog of a Zsh user.</subtitle><entry><title>Minified JS and Mathematical Notation</title><link href="https://cannoncontraption.github.io/miniproof.html" rel="alternate"></link><published>2022-12-16T00:00:00-05:00</published><updated>2022-12-16T00:00:00-05:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2022-12-16:/miniproof.html</id><summary type="html">&lt;p&gt;I studied computer science in college. I earned my BS in 2019, and entered the workforce working for a big company on an embedded OS. Quite honestly, while some of the classes that I took provided some useful information and set my mindset in a positive direction at school, there …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I studied computer science in college. I earned my BS in 2019, and entered the workforce working for a big company on an embedded OS. Quite honestly, while some of the classes that I took provided some useful information and set my mindset in a positive direction at school, there was an awful lot of focus placed on making computing more "mathematical", as I like to think of it. Most of the theory classes were bent on proving the correctness of an algorithm against some set of constraints, and all of them ended up representing the algorithm symbolically, using a derivative of mathematical notation.&lt;/p&gt;
+&lt;p&gt;On an unrelated note, have you ever opened the "View Source" panel on Google's homepage?&lt;/p&gt;
+&lt;h1&gt;This Connection May Annoy You&lt;/h1&gt;
+&lt;p&gt;Just a quick disclaimer before getting started here, there are a lot of places where my take in this post are going to run counter to certain fields' top priorities. If you need to mathematically prove all of your algorithms for your job, consider first why this requirement is placed upon you before you go challenging it. If your job is implementing cryptography algorithms or anything safety related, &lt;em&gt;please&lt;/em&gt; consider the impact of your software, and the impact of getting your code &lt;em&gt;wrong&lt;/em&gt; before you read too deeply into what I'm going to say.&lt;/p&gt;
+&lt;p&gt;However, for the rest of us, let's talk about some stuff that's going to annoy a lot of academics.&lt;/p&gt;
+&lt;h1&gt;Mathematical Notation Sucks&lt;/h1&gt;
+&lt;p&gt;I said it. The notation that we use to denote mathematical equations is horrible, mostly due to the set of symbols that we use to denote it.&lt;/p&gt;
+&lt;p&gt;Consider the following:&lt;/p&gt;
+&lt;p&gt;&amp;lambda;&lt;/p&gt;
+&lt;p&gt;What does this mean? Take your time, answer in your notebook.&lt;/p&gt;
+&lt;p&gt;Got it?&lt;/p&gt;
+&lt;p&gt;Wrong. If you answered half-life, you either game too much or you're not in the field of computer science. If you answered a symbol denoting a lambda abstraction, you're on the right track given the computer science stuff I talked about before, but that's not how I intended it here, either.&lt;/p&gt;
+&lt;p&gt;No, I'm using it as a stand-in for &amp;mu;L, which while obsolete, is a unit of measure once used in science in the late 1800's.&lt;/p&gt;
+&lt;p&gt;So let's take a look at where we might use this. Let's say you're working for a pharma company, developing an algorithm that calculates the half-life of a substance that's measured in at least one of your source materials in &amp;lambda;, and you want to now use lambda calculus to explain some transform on this quantity. It's a contrived and somewhat extreme example, admittedly, but in this hypothetical you're now bouncing around the use of one Greek letter for three different purposes that all pertain to your work &lt;em&gt;at once&lt;/em&gt;, and are forced to either put up with it, and expect that whoever is reading your work will understand it from the context clues, or you're going to have to work very hard to make sure that you &lt;em&gt;very clearly&lt;/em&gt; denote some substitutions to prevent collisions. Let's write an equation* using this insane example:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="&amp;lt;Some insane lambda calculus about half-lives&amp;gt;" src="https://cannoncontraption.github.io/images/miniproof/aaaaaaaaaaaaaaaa.png"&gt;&lt;/p&gt;
+&lt;p&gt;I have to admit, my grasp of this notation is pretty shaky at this point, just from a lack of use. There's a good chance that I got this very wrong, and that's a large part of my critique of the format as a whole. There's an additional risk that I also messed up the premise of the equation as a whole on top of that, so please don't use this in any professional context involving half-life. I haven't used my high school chemistry knowledge in a long time.&lt;/p&gt;
+&lt;p&gt;However, assuming I didn't screw anything up, you'll notice that &amp;lambda; is overloaded here, and you'll need to use context and intuition to figure out which one is which. However, it gets even worse, since there's a chance I meant something totally different, and the &lt;em&gt;&amp;lambda;d&lt;/em&gt; portion is actually supposed to be &lt;em&gt;7d&lt;/em&gt;. It's pretty clear here that it's not, but when crossing disciplines even a little, this notation becomes a mess.&lt;/p&gt;
+&lt;p&gt;Obviously, this is a manufactured example, and most of the time this doesn't wind up being a problem. However, if you've studied enough different branches of science that use math, or even enough disciplines in math, you'll encounter at least one collision. &lt;code&gt;d/dx&lt;/code&gt; anyone?&lt;/p&gt;
+&lt;h2&gt;Alternatives?&lt;/h2&gt;
+&lt;p&gt;This isn't an unsolvable problem, however. In fact, we've already got a myriad of solutions that also happen to be the very same format that your compiler will end up reading when all is said and done: programming languages!&lt;/p&gt;
+&lt;p&gt;This also sidesteps a lot of the problems with mathematical notation, since (for example) introductory programming lessons will teach a programmer to avoid single letter variables, why that's bad, and what to do instead. It doesn't actually teach them how to properly name things, that's an art that we all get wrong no matter how much practice we have, for a variety of reasons given whatever circumstances.&lt;/p&gt;
+&lt;p&gt;At the beginning of this post, I compared mathematical notation to minified JavaScript. That's not bashing on either mathematical notation or JavaScript, that's just the fact of their designs; both are intended to be read quickly and efficiently by an "expert". It's true that a beginner will have a much easier time reading some equation as a program for a computer than a math equation with domain-specific (usually Greek) letter substitution to describe some constant or transform. In the same way, a person reading a computer program will have to shuffle a lot less in their head if it's not minified, even if that wastes a lot of RAM and CPU cycles to execute in production.&lt;/p&gt;
+&lt;p&gt;But, in the same way that we don't ask people to un-minify Google's home page scripts, we shouldn't expect that a mathematical formula will make an algorithm any easier to understand for the average person, or any easier to prove, for that matter. If it's an exercise you enjoy, by all means, don't let me stop you. If you need a standard format to prove correctness for some other reason? You could do worse than this. However, the fact that this format is standard is, in my opinion, a holdover from the days when computing professionals weren't taken seriously yet.&lt;/p&gt;
+&lt;h1&gt;Is Your Algorithm the Right Algorithm?&lt;/h1&gt;
+&lt;p&gt;This is much more to the point. You can prove that your algorithm does exactly what it's supposed to do and prove that it handles all cases, but is what it's supposed to do the right thing to do?&lt;/p&gt;
+&lt;p&gt;I'm going to throw out a made-up statistic here, but I'd say something around 90% or more of the code a person writes in their day-to-day as a software programmer has more to do with error handling, input and output, or changing data formats and adapting data to different standards rather than the provable transforms on that data. Your algorithm could be rock solid, but if you mix up some three-letter-acronym (and remember, all TLAs are overloaded) then you're much more likely to introduce some weird bug nobody can track down. A similar issue occurs if you don't handle your pointers with extreme care. To my knowledge, there's no real agreed upon syntax for memory management in theoretical computer science, yet it's one of the single greatest defect surfaces in any code.&lt;/p&gt;
+&lt;h1&gt;Don't Prove, Instead...&lt;/h1&gt;
+&lt;p&gt;So here are some alternatives. In all cases, you will want to be absolutely sure that you aren't trying to square the circle, pick the alternative that suits &lt;em&gt;your&lt;/em&gt; needs, regardless of what I might think.&lt;/p&gt;
+&lt;h2&gt;...Test!&lt;/h2&gt;
+&lt;p&gt;If you can get example data and simulate the environment where your whole codebase lives, this is one of the best options. Not only should you test expected input, but unexpected input. If you can put a system "into production" with a shadow of live data that would be used in real life, this is the best. However, failing that, there are plenty of other options to test code. I'm sure you'll find hundreds of opinions on which version to start with, but just pick one. The more you stress your code, the more you'll be thinking along the lines of how to break it. To be clear, the more you can break it, the better. When you're done, you shouldn't be able to break it anymore, no matter who you put to the task.&lt;/p&gt;
+&lt;h2&gt;...Lint!&lt;/h2&gt;
+&lt;p&gt;Sometimes, a language comes with a linter. One of the best-known examples of this is Pylint, but your language will undoubtedly have something like that which will catch your mistakes in many cases, even if it can't catch them all.&lt;/p&gt;
+&lt;p&gt;A particular (and unexpected) standout example of this is Android's command line tools. Running &lt;code&gt;gradlew build&lt;/code&gt; actually runs a small test suite and produces a report from the built-in linter. Its output is filled with requests to internet resources in JavaScript, though, which I'm very much not a fan of. Nevertheless, it's a good tool and worth using if you're writing an Android app. It caught me on a potential memory leak today, for example.&lt;/p&gt;
+&lt;h2&gt;...Peer Program!&lt;/h2&gt;
+&lt;p&gt;If you have someone you can do this with, sometimes coding with someone looking over your shoulder really is the best thing you can do. Put your heads together, and you'll quickly realize that the mechanical action of inputting code can (and will) push things out of memory occasionally. You'll forget something half-way through a statement at least once in a while, and having someone to back you up and make sure you didn't forget something critical can be the difference between a functional and a correct algorithm.&lt;/p&gt;
+&lt;p&gt;This is also something that formally proving an algorithm using mathematical notation won't fix. Even if you can prove that your algorithm is "correct", it needs to be correct in implementation or nothing else matters. This is where block comments make sense, as an example.&lt;/p&gt;
+&lt;h1&gt;Bad Habits?&lt;/h1&gt;
+&lt;p&gt;I touched on this briefly, but we don't all use Turing machines. Our computers have memory, and cache, and secondary memory, and weird, buggy CPU instructions. Nothing in theory will prepare you for this. So personally, I believe that trying to prove an algorithm the classic way is a waste of time at best, and a distraction from the part that matters (the implementation) at worst. Draw your own conclusions here, though, maybe it's caught you on something? Personally, I've never had that happen, but I won't rule it out.&lt;/p&gt;
+&lt;p&gt;So why did I write this article? If you don't accept that I just wanted to rant about Chrome and MathML, then consider this:&lt;/p&gt;
+&lt;p&gt;I'm still working on the habit changer, and I ran into an issue that I thought was with the algorithm. I started writing out the steps to reproduce it on paper, and running through what was going on with a pen. Every time, however, I got the right results. I showed consistently that for the inputs I was giving my algorithm, the outputs were correct.&lt;/p&gt;
+&lt;p&gt;That's when I started combing over the implementation and found that I was converting days to milliseconds twice. The problem was my hasty port out of Rust, not the algorithm itself. No formal proof would have caught this, but a quick examination of the path the data took would have.&lt;/p&gt;
+&lt;p&gt;Read your own code before you turn to rewriting it (again).&lt;/p&gt;
+&lt;p&gt;If you expected something more profound from the conclusion, maybe approach it from this angle:&lt;/p&gt;
+&lt;p&gt;Correctness, that is, writing the &lt;em&gt;right&lt;/em&gt; thing, should always be on your mind. However, while writing a proof is the way we're all taught to do this, in fact the field of computer science is all about finding edge cases and exploiting them, then proving that our solution is bulletproof, that's not the end of the story. You don't need the mathematical notation to prove something is right, nor do you need to prove anything that way to have a correct algorithm. Furthermore, a correct algorithm will always fall prey to a bad implementation, which is a much larger problem. The two &lt;em&gt;both&lt;/em&gt; need to be correct, but they don't have to be &lt;em&gt;separate&lt;/em&gt;, and in fact, they shouldn't be.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;* I was going to use MathML here, but then I remembered the last time I used it. In high school I used to turn in assignments using it, but then one of my teachers started using Chrome over Firefox and everything broke. So, if you don't like the ugly look of a stretched PNG, blame the Google devs who removed support after Chrome 24, rather than fixing their awful implementation.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Just to poke fun at Chrome users, and because it was honestly easier to get this than the screenshot, here's the MathML version of the insane Lambda equation above:&lt;/p&gt;
+&lt;math xmlns="http://www.w3.org/1998/Math/MathML" display="block"&gt;
+ &lt;semantics&gt;
+  &lt;mtable&gt;
+   &lt;mtr&gt;
+    &lt;mtd&gt;
+     &lt;mrow&gt;
+      &lt;mrow&gt;
+       &lt;mi&gt;λ&lt;/mi&gt;
+       &lt;mo stretchy="false"&gt;=&lt;/mo&gt;
+       &lt;mn&gt;7&lt;/mn&gt;
+      &lt;/mrow&gt;
+      &lt;mtext&gt;days&lt;/mtext&gt;
+     &lt;/mrow&gt;
+    &lt;/mtd&gt;
+   &lt;/mtr&gt;
+   &lt;mtr&gt;
+    &lt;mtd&gt;
+     &lt;mrow&gt;
+      &lt;mrow&gt;
+       &lt;mi&gt;x&lt;/mi&gt;
+       &lt;mo stretchy="false"&gt;=&lt;/mo&gt;
+       &lt;mtext&gt;Amount of substance (in &lt;/mtext&gt;
+      &lt;/mrow&gt;
+      &lt;mi&gt;λ&lt;/mi&gt;
+      &lt;mtext&gt;)&lt;/mtext&gt;
+     &lt;/mrow&gt;
+    &lt;/mtd&gt;
+   &lt;/mtr&gt;
+   &lt;mtr&gt;
+    &lt;mtd&gt;
+     &lt;mrow&gt;
+      &lt;mi&gt;d&lt;/mi&gt;
+      &lt;mo stretchy="false"&gt;=&lt;/mo&gt;
+      &lt;mtext&gt;Number of days&lt;/mtext&gt;
+     &lt;/mrow&gt;
+    &lt;/mtd&gt;
+   &lt;/mtr&gt;
+   &lt;mtr&gt;
+    &lt;mtd&gt;
+     &lt;mrow&gt;
+      &lt;mrow&gt;
+       &lt;mi&gt;S&lt;/mi&gt;
+       &lt;mo stretchy="false"&gt;=&lt;/mo&gt;
+       &lt;mtext&gt;total amount of substance after &lt;/mtext&gt;
+      &lt;/mrow&gt;
+      &lt;mi&gt;d&lt;/mi&gt;
+      &lt;mtext&gt; days&lt;/mtext&gt;
+     &lt;/mrow&gt;
+    &lt;/mtd&gt;
+   &lt;/mtr&gt;
+   &lt;mtr&gt;
+    &lt;mtd&gt;
+     &lt;mrow&gt;
+      &lt;mrow&gt;
+       &lt;mi&gt;S&lt;/mi&gt;
+       &lt;mo stretchy="false"&gt;=&lt;/mo&gt;
+       &lt;mi&gt;λ&lt;/mi&gt;
+      &lt;/mrow&gt;
+      &lt;mi&gt;x&lt;/mi&gt;
+      &lt;mi&gt;.&lt;/mi&gt;
+      &lt;mrow&gt;
+       &lt;mo fence="true" form="prefix" stretchy="false"&gt;(&lt;/mo&gt;
+       &lt;mrow&gt;
+        &lt;mfrac&gt;
+         &lt;mi&gt;x&lt;/mi&gt;
+         &lt;mrow&gt;
+          &lt;mn&gt;2&lt;/mn&gt;
+          &lt;mrow&gt;
+           &lt;mo fence="true" form="prefix" stretchy="false"&gt;(&lt;/mo&gt;
+           &lt;mrow&gt;
+            &lt;mrow&gt;
+             &lt;mi&gt;λ&lt;/mi&gt;
+             &lt;mi&gt;d&lt;/mi&gt;
+             &lt;mi&gt;.&lt;/mi&gt;
+             &lt;mfrac&gt;
+              &lt;mi&gt;d&lt;/mi&gt;
+              &lt;mi&gt;λ&lt;/mi&gt;
+             &lt;/mfrac&gt;
+            &lt;/mrow&gt;
+           &lt;/mrow&gt;
+           &lt;mo fence="true" form="postfix" stretchy="false"&gt;)&lt;/mo&gt;
+          &lt;/mrow&gt;
+         &lt;/mrow&gt;
+        &lt;/mfrac&gt;
+       &lt;/mrow&gt;
+       &lt;mo fence="true" form="postfix" stretchy="false"&gt;)&lt;/mo&gt;
+      &lt;/mrow&gt;
+     &lt;/mrow&gt;
+    &lt;/mtd&gt;
+   &lt;/mtr&gt;
+  &lt;/mtable&gt;
+  &lt;annotation encoding="StarMath 5.0"&gt;{ %lambda = 7 &amp;quot;days&amp;quot; } newline
+{ x = &amp;quot;Amount of substance (in &amp;quot;%lambda&amp;quot;)&amp;quot; } newline
+{ d = &amp;quot;Number of days&amp;quot; } newline
+{ S = &amp;quot;total amount of substance after &amp;quot;d&amp;quot; days&amp;quot; } newline
+{ S = %lambda x.( { x } over { 2 (%lambda d.d over %lambda) } ) }&lt;/annotation&gt;
+ &lt;/semantics&gt;
+&lt;/math&gt;
+
+&lt;p&gt;To my (pleasant) surprise, this worked just fine in GNOME Web, not just Firefox, and it should also work in Safari, though I have no way of testing that. If you see StarMath equations instead (e.g., it's a bunch of text not a properly formatted equation), your browser doesn't support MathML. This is a real shame, because (at least in my copy of Firefox) this appears to render better than LibreOffice's default, with less random collisions and a better overall representation of the structure of the formula.&lt;/p&gt;
+&lt;p&gt;If you want to make your own math equations for use like this, rendered by the browser, you can either use some JavaScript library to do it, or use LibreOffice Math to export to a MathML file, then paste that into your HTML source. That's what I did, anyhow.&lt;/p&gt;</content><category term="Tech"></category><category term="theory"></category><category term="rant"></category><category term="proof"></category><category term="javascript"></category><category term="minimalism"></category><category term="organization"></category><category term="programming"></category></entry><entry><title>Adventures in Keyboard Layouts: Workman</title><link href="https://cannoncontraption.github.io/keyboardworkman.html" rel="alternate"></link><published>2022-11-25T13:54:00-05:00</published><updated>2022-11-25T13:54:00-05:00</updated><author><name>Jim Read</name></author><id>tag:cannoncontraption.github.io,2022-11-25:/keyboardworkman.html</id><summary type="html">&lt;p&gt;I've been using the Workman keyboard layout since 2019. It's been a pleasant experience, for the most part, and I've learned a lot about what makes a good keyboard layout and why people use them. But why did I choose to uproot my own muscle memory? Why did I choose …&lt;/p&gt;</summary><content type="html">&lt;p&gt;I've been using the Workman keyboard layout since 2019. It's been a pleasant experience, for the most part, and I've learned a lot about what makes a good keyboard layout and why people use them. But why did I choose to uproot my own muscle memory? Why did I choose to do it &lt;em&gt;after&lt;/em&gt; leaving university, and what did I learn?&lt;/p&gt;
 &lt;p&gt;We'll start with the easy stuff:&lt;/p&gt;
 &lt;h1&gt;What is Workman?&lt;/h1&gt;
 &lt;p&gt;&lt;img alt="this" src="https://github.com/kdeloach/workman/raw/gh-pages/images/workman_layout.png"&gt;&lt;/p&gt;
@@ -511,21 +659,21 @@ clone_home&lt;span class="o"&gt;()&lt;/span&gt;
 &lt;p&gt;Let's look at a contrived example or two. I'm going to compare Rust vs. Python vs. C here, in order to represent either end of the imperative language spectrum, as I like to think of it.&lt;/p&gt;
 &lt;h3&gt;String Comparison&lt;/h3&gt;
 &lt;p&gt;To start out with, I've decided to pick on &lt;code&gt;strcmp()&lt;/code&gt; et. al. for a moment. Let's look at the code to compare strings in Python:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-&lt;span class="nv"&gt;string2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-&lt;span class="nv"&gt;string3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is also a string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a string&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a string&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is also a string&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-# &lt;span class="nv"&gt;Compare&lt;/span&gt; &lt;span class="nv"&gt;Equality&lt;/span&gt;:
+#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Compare&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;Equality&lt;/span&gt;:&lt;span class="w"&gt;&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nv"&gt;string2&lt;/span&gt;:
-    &lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String1/2 match.&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;:
-    &lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String1/2 don&amp;#39;t match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;:&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String1/2 match.&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;:&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String1/2 don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nv"&gt;string3&lt;/span&gt;:
-    &lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String1/3 match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-&lt;span class="k"&gt;else&lt;/span&gt;:
-    &lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String1/3 don&amp;#39;t match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string3&lt;/span&gt;:&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String1/3 match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;:&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String1/3 don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This produces the output you would expect if you didn't know about string management:&lt;/p&gt;
@@ -536,29 +684,29 @@ $
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Let's do that in Rust:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;fn&lt;/span&gt; &lt;span class="nv"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt; {
-    &lt;span class="nv"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a str&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    &lt;span class="nv"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;string2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a str&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    &lt;span class="nv"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;string3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is also a str&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a str&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a str&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is also a str&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nv"&gt;string2&lt;/span&gt;
-    {
-        &lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Strings 1/2 match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-    &lt;span class="k"&gt;else&lt;/span&gt;
-    {
-        &lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Strings 1/2 don&amp;#39;t match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Strings 1/2 match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Strings 1/2 don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
 
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nv"&gt;string3&lt;/span&gt;
-    {
-        &lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Strings 1/3 match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-    &lt;span class="k"&gt;else&lt;/span&gt;
-    {
-        &lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Strings 1/3 don&amp;#39;t match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-}
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Strings 1/3 match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Strings 1/3 don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+}&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This also produces the output that Python would:&lt;/p&gt;
@@ -573,34 +721,34 @@ $
 
 &lt;p&gt;In the Rust example, I wasn't even using the &lt;code&gt;std::String&lt;/code&gt; struct like the name would suggest, I was using raw &lt;code&gt;str&lt;/code&gt; string slices instead, and this still worked because there's an implementation of Eq() in the standard library for &lt;code&gt;str&lt;/code&gt;. If there wasn't, I could implement it myself to tell the language what I meant by &lt;code&gt;string1 == string2&lt;/code&gt;, for example.&lt;/p&gt;
 &lt;p&gt;Now let's look at C:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;#&lt;span class="k"&gt;include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;stdio&lt;/span&gt;.&lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
-#&lt;span class="k"&gt;include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;.&lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;#&lt;span class="k"&gt;include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;stdio&lt;/span&gt;.&lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+#&lt;span class="k"&gt;include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;string&lt;/span&gt;.&lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-&lt;span class="nv"&gt;int&lt;/span&gt; &lt;span class="nv"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
-{
-  &lt;span class="nv"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-  &lt;span class="nv"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;string2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-  &lt;span class="nv"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;string3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is another string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a string&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a string&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is another string&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nv"&gt;strcmp&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;, &lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="ss"&gt;))&lt;/span&gt;
-    {
-      &lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String 1/2 match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-  &lt;span class="k"&gt;else&lt;/span&gt;
-    {
-      &lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String 1/2 don&amp;#39;t match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nv"&gt;strcmp&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="ss"&gt;))&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String 1/2 match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String 1/2 don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
 
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nv"&gt;strcmp&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;, &lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="ss"&gt;))&lt;/span&gt;
-    {
-      &lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String 1/3 match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-  &lt;span class="k"&gt;else&lt;/span&gt;
-    {
-      &lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String 1/3 don&amp;#39;t match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-}
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nv"&gt;strcmp&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="ss"&gt;))&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String 1/3 match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String 1/3 don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+}&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Here we can build a clear case for why this is less expressive. We don't have a string type, which means no UTF-8 support, we're dealing with bytes here. This also can lead to a lot of buffer overflow issues if we're not careful (far less than ideal for a prototype), and furthermore I wouldn't blame a novice who isn't used to using strings in C getting confused at why I'm using &lt;code&gt;!strcmp()&lt;/code&gt; (or alternatively &lt;code&gt;strcmp() == 0&lt;/code&gt;, they mean the same thing) instead of testing if the value is true. They match, after all, and comparisons resolve to &lt;code&gt;True&lt;/code&gt; in Python. Plus, while the output of this works:&lt;/p&gt;
@@ -613,33 +761,33 @@ $
 
 &lt;p&gt;if I had defined these as fixed arrays and then used &lt;code&gt;==&lt;/code&gt; it wouldn't work:&lt;/p&gt;
 &lt;p&gt;stringcompare-static.c:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;#&lt;span class="k"&gt;include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;stdio&lt;/span&gt;.&lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;#&lt;span class="k"&gt;include&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;stdio&lt;/span&gt;.&lt;span class="nv"&gt;h&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-&lt;span class="nv"&gt;int&lt;/span&gt; &lt;span class="nv"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;
-{
-  &lt;span class="nv"&gt;char&lt;/span&gt; &lt;span class="nv"&gt;string1&lt;/span&gt;[&lt;span class="mi"&gt;64&lt;/span&gt;] &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-  &lt;span class="nv"&gt;char&lt;/span&gt; &lt;span class="nv"&gt;string2&lt;/span&gt;[&lt;span class="mi"&gt;64&lt;/span&gt;] &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-  &lt;span class="nv"&gt;char&lt;/span&gt; &lt;span class="nv"&gt;string3&lt;/span&gt;[&lt;span class="mi"&gt;64&lt;/span&gt;] &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is another string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;int&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;[&lt;span class="mi"&gt;64&lt;/span&gt;]&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a string&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;[&lt;span class="mi"&gt;64&lt;/span&gt;]&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a string&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string3&lt;/span&gt;[&lt;span class="mi"&gt;64&lt;/span&gt;]&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is another string&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-    {
-      &lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String 1/2 match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-  &lt;span class="k"&gt;else&lt;/span&gt;
-    {
-      &lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String 1/2 don&amp;#39;t match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String 1/2 match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String 1/2 don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
 
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-    {
-      &lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String 1/3 match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-  &lt;span class="k"&gt;else&lt;/span&gt;
-    {
-      &lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;String 1/3 don&amp;#39;t match&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-}
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String 1/3 match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="nv"&gt;puts&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;String 1/3 don&amp;#39;t match&amp;quot;&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+}&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;console:&lt;/p&gt;
@@ -651,13 +799,13 @@ $
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;em&gt;but&lt;/em&gt;, had I either just used &lt;code&gt;strcmp&lt;/code&gt; &lt;em&gt;or&lt;/em&gt; left all the strings as &lt;code&gt;char*&lt;/code&gt; rather than &lt;code&gt;char[]&lt;/code&gt;, this would work. This is the type of bug that's really hard to find when things blow up. Furthermore, the C compiler won't stop us from doing something like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;...
-&lt;span class="nv"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;string2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is a string &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-&lt;span class="nv"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;string3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;This is another string&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;...&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is a string &amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nv"&gt;char&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;This is another string&amp;quot;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-&lt;span class="nv"&gt;string2&lt;/span&gt;[&lt;span class="mi"&gt;1&lt;/span&gt;] &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;a&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
-...
+&lt;span class="nv"&gt;string2&lt;/span&gt;[&lt;span class="mi"&gt;1&lt;/span&gt;]&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;string1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;string2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+...&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;console:&lt;/p&gt;
@@ -691,15 +839,15 @@ $
 &lt;h2&gt;Correctness&lt;/h2&gt;
 &lt;p&gt;I'm going to drop C from the conversation at this point, since I think I've beaten it enough. There &lt;em&gt;are&lt;/em&gt; cases where prototypes in C make sense, but they're mostly things that have to do with some low-level hardware function, and we're not doing any of that here. So, let's compare algorithmic correctness enforcement between Rust and Python.&lt;/p&gt;
 &lt;p&gt;We'll start with Rust, let's write a program with a pretty trivial bug. This is a &lt;em&gt;very&lt;/em&gt; contrived example, but I'm sure if you've had much experience you can imagine a case where it's happened before:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;fn&lt;/span&gt; &lt;span class="nv"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt; {
-    &lt;span class="nv"&gt;let&lt;/span&gt; &lt;span class="nv"&gt;mut&lt;/span&gt; &lt;span class="nv"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;..&lt;span class="mi"&gt;18&lt;/span&gt;
-    {
-        &lt;span class="nv"&gt;cntr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-    }
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;fn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;main&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;mut&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;counter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;..&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;{&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nv"&gt;cntr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;}&lt;span class="w"&gt;&lt;/span&gt;
 
-    &lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Counter is at {}&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;, &lt;span class="nv"&gt;counter&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
-}
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;println&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Counter is at {}&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;counter&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+}&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;If we try and run this, &lt;code&gt;rustc&lt;/code&gt; again catches us:&lt;/p&gt;
@@ -720,11 +868,11 @@ $
 
 &lt;p&gt;It points us straight to where the problem is and gives us a clear error.&lt;/p&gt;
 &lt;p&gt;Let's do the same thing in Python:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;range&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;,&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
-    &lt;span class="nv"&gt;cntr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;i&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;counter&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;range&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;,&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;cntr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 
-&lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Counter is at&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;, &lt;span class="nv"&gt;counter&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;print&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Counter is at&amp;quot;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;counter&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Now, we have a working, "correct" Python program and we just get output we don't want:&lt;/p&gt;
@@ -761,17 +909,17 @@ $
 &lt;p&gt;My own solution is to use QEMU. Normally I'm a big fan of tools like virt-manager, since they pull a lot of the manual work out of setting up the VM, and it's a lot harder to forget the specific configuration options you want that way. However, in this case, we want quick copies of a base, followed by lots of boots of an (essentially entirely disposable) environment. &lt;code&gt;virt-manager&lt;/code&gt; can handle this, but we can do better with just the command line.&lt;/p&gt;
 &lt;h1&gt;Making a Baseline Image&lt;/h1&gt;
 &lt;p&gt;First step is to make the baseline image. Maybe the Fedora folks have a copy of their minimal install for VMs (a qcow2 image) already available online, but I have the netinstall iso already downloaded so I admittedly didn't even check. My internet is quite slow at the moment, which doesn't help. Doing it the way I did, this takes two steps. One step creates the qcow2 VM drive (which will act as the hard disk) and the other is to launch qemu with the installer media and a bunch of options:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;qemu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;img&lt;/span&gt; &lt;span class="nv"&gt;create&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;qcow2&lt;/span&gt; .&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;fedora&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;minimal&lt;/span&gt;.&lt;span class="nv"&gt;qcow2&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="nv"&gt;G&lt;/span&gt;
-&lt;span class="nv"&gt;qemu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;system&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;x86_64&lt;/span&gt; \
-  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;enable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;kvm&lt;/span&gt; \
-  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt; \
-  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;nic&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;,&lt;span class="nv"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt; \
-  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;drive&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;fedora&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;minimal&lt;/span&gt;.&lt;span class="nv"&gt;qcow2&lt;/span&gt;,&lt;span class="nv"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;,&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt; \
-  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;cdrom&lt;/span&gt; &lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="nv"&gt;dwn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;iso&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;Fedora&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;netinst&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;x86_64&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt;.&lt;span class="nv"&gt;iso&lt;/span&gt; \
-  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;smp&lt;/span&gt; &lt;span class="nv"&gt;cores&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; \
-  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;display&lt;/span&gt; &lt;span class="nv"&gt;sdl&lt;/span&gt;,&lt;span class="nv"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;on&lt;/span&gt;
-&lt;span class="nv"&gt;qemu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;img&lt;/span&gt; &lt;span class="nv"&gt;create&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt; &lt;span class="nv"&gt;raw&lt;/span&gt; &lt;span class="nv"&gt;flashdrive&lt;/span&gt;.&lt;span class="nv"&gt;img&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="nv"&gt;G&lt;/span&gt;
-&lt;span class="nv"&gt;mkfs&lt;/span&gt;.&lt;span class="nv"&gt;ext4&lt;/span&gt; &lt;span class="nv"&gt;flashdrive&lt;/span&gt;.&lt;span class="nv"&gt;img&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;qemu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;img&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;create&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;qcow2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;fedora&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;minimal&lt;/span&gt;.&lt;span class="nv"&gt;qcow2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="nv"&gt;G&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nv"&gt;qemu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;system&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;x86_64&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;enable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;kvm&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2048&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;nic&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;user&lt;/span&gt;,&lt;span class="nv"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;drive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;fedora&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;minimal&lt;/span&gt;.&lt;span class="nv"&gt;qcow2&lt;/span&gt;,&lt;span class="nv"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;,&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;cdrom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="nv"&gt;dwn&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;iso&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;linux&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;Fedora&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;Server&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;netinst&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;x86_64&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;36&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;.&lt;span class="mi"&gt;5&lt;/span&gt;.&lt;span class="nv"&gt;iso&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;smp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;cores&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;display&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;sdl&lt;/span&gt;,&lt;span class="nv"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;on&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nv"&gt;qemu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;img&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;create&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;f&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;raw&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;flashdrive&lt;/span&gt;.&lt;span class="nv"&gt;img&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="nv"&gt;G&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="nv"&gt;mkfs&lt;/span&gt;.&lt;span class="nv"&gt;ext4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;flashdrive&lt;/span&gt;.&lt;span class="nv"&gt;img&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;So I made a 20G VM disk in qcow2 format, then launched the VM pointed to an iso that I have on hand. Let's go over this option by option.&lt;/p&gt;
@@ -792,7 +940,7 @@ $
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Set the network card to the built-in &lt;code&gt;virtio&lt;/code&gt; model in user mode, meaning we don't need &lt;code&gt;sudo&lt;/code&gt;, &lt;code&gt;doas&lt;/code&gt;, or root permissions at all.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;drive&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;fedora&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;minimal&lt;/span&gt;.&lt;span class="nv"&gt;qcow2&lt;/span&gt;,&lt;span class="nv"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;,&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;drive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;fedora&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;minimal&lt;/span&gt;.&lt;span class="nv"&gt;qcow2&lt;/span&gt;,&lt;span class="nv"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;,&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Point QEMU at our new, blank drive.&lt;/p&gt;
@@ -831,14 +979,14 @@ sudo mount ./flashdrive.img ./flashdrive
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Then, we can boot it:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;qemu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;system&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;x86_64&lt;/span&gt; \
-    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;enable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;kvm&lt;/span&gt; \
-    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt; \
-    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;nic&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt;,&lt;span class="nv"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt; \
-    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;drive&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;projectorautomation&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;test1&lt;/span&gt;.&lt;span class="nv"&gt;qcow2&lt;/span&gt;,&lt;span class="nv"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;,&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt; \
-    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;drive&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;flashdrive&lt;/span&gt;.&lt;span class="nv"&gt;img&lt;/span&gt;,&lt;span class="nv"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;,&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt; \
-    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;smp&lt;/span&gt; &lt;span class="nv"&gt;cores&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt; \
-    &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;display&lt;/span&gt; &lt;span class="nv"&gt;sdl&lt;/span&gt;,&lt;span class="nv"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;on&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;qemu&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;system&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;x86_64&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;enable&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;kvm&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2048&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;nic&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;user&lt;/span&gt;,&lt;span class="nv"&gt;model&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;drive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;projectorautomation&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;test1&lt;/span&gt;.&lt;span class="nv"&gt;qcow2&lt;/span&gt;,&lt;span class="nv"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;,&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;drive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;.&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;flashdrive&lt;/span&gt;.&lt;span class="nv"&gt;img&lt;/span&gt;,&lt;span class="nv"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;,&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;virtio&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;smp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;cores&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;\&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;display&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;sdl&lt;/span&gt;,&lt;span class="nv"&gt;gl&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;on&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In my case, the flash drive showed up as &lt;code&gt;/dev/vdb&lt;/code&gt;, and it can be mounted directly since we've already formatted it as EXT4. You'll note the only change we made to the commands here is that we substituted the line mentioning our CD drive with the line mentioning the flash drive.&lt;/p&gt;
@@ -930,7 +1078,7 @@ $
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This is the last line I had programmed before today, except for the &lt;code&gt;, dev. 5&lt;/code&gt; part which was today. This is the result of running the average function over the daily input data. It includes three pieces of information: the average, the number of days we have on record (discarding blank days), and the greatest deviation in either direction from that average. These get used later to determine some stuff.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;This&lt;/span&gt; &lt;span class="nv"&gt;habit&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;monitoring&lt;/span&gt; &lt;span class="nv"&gt;mode&lt;/span&gt;, &lt;span class="nv"&gt;so&lt;/span&gt; &lt;span class="nv"&gt;there&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;s no target yet. (when getting target for 2022-08-29)&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;This&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;habit&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;monitoring&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;mode&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;so&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;there&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;s no target yet. (when getting target for 2022-08-29)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;I implemented error checking in the daily target routine, so this is the message it prints when you try to get a target for a habit that is not started yet. There are different messages if the routine runs into some data it can't find. This routine actually doesn't modify the struct at all, so that's perfectly safe.&lt;/p&gt;
@@ -947,7 +1095,7 @@ $
 
 &lt;p&gt;This is where that integer math rears its ugly head. This is supposed to be (deviation * 100) / average = error percentage, but with a deviation of 5 and an average of 60, we should get 8.(3 repeating) (Sorry, Chrome doesn't support MathML and I don't know another way to represent 3 repeating lol).&lt;/p&gt;
 &lt;p&gt;So, we have an error of 8% stored away. It gets worse, though. If we apply an 8% error to 57, we get 4.56 as our deviation, which again gets lopped off by our friend the integer. Thus, we have an error value of "4". This is entirely my fault and a prototype bump.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Lower&lt;/span&gt; &lt;span class="nv"&gt;target&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="mi"&gt;2022&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="mi"&gt;47&lt;/span&gt;, &lt;span class="nv"&gt;upper&lt;/span&gt; &lt;span class="mi"&gt;55&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nv"&gt;Lower&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;target&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2022&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;47&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;upper&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;55&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;But, we press on anyhow, blissfully unaware of our error and get a slightly narrower range of 47-55 units for the next day. Overall, there are bugs, but we got a good result.&lt;/p&gt;

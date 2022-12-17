@@ -451,9 +451,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "keyboardworkman.html",
-                                         "keyboardworkman",
+                                         "miniproof.html",
+                                         "miniproof",
                                          "Tech")});
+                             let miniprooficon = makeIcon(
+                                 browser_section,
+                                 "miniproof",
+                                 "blogpost");
+                             setDblClickAction(
+                                 miniprooficon,
+                                 function(){
+                                     frame_post(
+                                         "miniproof.html",
+                                         "miniproof",
+                                         "Tech")
+                             });
                              let keyboardworkmanicon = makeIcon(
                                  browser_section,
                                  "keyboardworkman",
