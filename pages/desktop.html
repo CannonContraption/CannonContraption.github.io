@@ -123,14 +123,14 @@
              var category_button = makeButton(
                  menu_space,
                  "menubutton",
-                 "Food");
+                 "food");
              setClickAction(
                  category_button,
                  function(){
                      menuexec(
                          function(){
                              var blog_browser_window = addWindow(
-                                 "Food",
+                                 "food",
                                  500);
                              var widgetSpace = makeWidgetSpace();
                              setWidgetSpace(
@@ -163,9 +163,21 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "macncheese.html",
-                                         "macncheese",
-                                         "Food")});
+                                         "castiron.html",
+                                         "castiron",
+                                         "food")});
+                             let castironicon = makeIcon(
+                                 browser_section,
+                                 "castiron",
+                                 "blogpost");
+                             setDblClickAction(
+                                 castironicon,
+                                 function(){
+                                     frame_post(
+                                         "castiron.html",
+                                         "castiron",
+                                         "food")
+                             });
                              let macncheeseicon = makeIcon(
                                  browser_section,
                                  "macncheese",
@@ -176,7 +188,7 @@
                                      frame_post(
                                          "macncheese.html",
                                          "macncheese",
-                                         "Food")
+                                         "food")
                              });
                              let an_instant_pot_is_not_a_slow_cookericon = makeIcon(
                                  browser_section,
@@ -188,7 +200,7 @@
                                      frame_post(
                                          "an-instant-pot-is-not-a-slow-cooker.html",
                                          "an-instant-pot-is-not-a-slow-cooker",
-                                         "Food")
+                                         "food")
                              });
                              let foodicon = makeIcon(
                                  browser_section,
@@ -200,7 +212,7 @@
                                      frame_post(
                                          "food.html",
                                          "food",
-                                         "Food")
+                                         "food")
                              });
                      });
              });
