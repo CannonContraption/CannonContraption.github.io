@@ -391,9 +391,33 @@
                                  latestButton,
                                  function(){
                                      frame_post(
-                                         "fishing.html",
-                                         "fishing",
+                                         "analogwatch.html",
+                                         "analogwatch",
                                          "Misc")});
+                             let analogwatchicon = makeIcon(
+                                 browser_section,
+                                 "analogwatch",
+                                 "blogpost");
+                             setDblClickAction(
+                                 analogwatchicon,
+                                 function(){
+                                     frame_post(
+                                         "analogwatch.html",
+                                         "analogwatch",
+                                         "Misc")
+                             });
+                             let watchjourneyicon = makeIcon(
+                                 browser_section,
+                                 "watchjourney",
+                                 "blogpost");
+                             setDblClickAction(
+                                 watchjourneyicon,
+                                 function(){
+                                     frame_post(
+                                         "watchjourney.html",
+                                         "watchjourney",
+                                         "Misc")
+                             });
                              let fishingicon = makeIcon(
                                  browser_section,
                                  "fishing",
