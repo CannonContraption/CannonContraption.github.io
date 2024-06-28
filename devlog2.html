@@ -90,43 +90,43 @@
 <h1>Progress So Far</h1>
 <p>The main data structures are drafted. The prototype and algorithmic test suite is probably about 20% done.</p>
 <p>These are the core data structures (as they exist now in code):</p>
-<div class="highlight"><pre><span></span><code><span class="o">/*</span><span class="w"></span>
-<span class="n">Adjustment</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Defines</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">habit</span><span class="w"> </span><span class="n">adjustment</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">made</span><span class="o">.</span><span class="w"></span>
-<span class="o">*/</span><span class="w"></span>
-<span class="c1">#[derive(PartialEq)]</span><span class="w"></span>
-<span class="k">enum</span><span class="w"> </span><span class="n">Adjustment</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Numerical</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">Chronological</span><span class="p">,</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="o">/*</span>
+<span class="n">Adjustment</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Defines</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">habit</span><span class="w"> </span><span class="n">adjustment</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">made</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="c1">#[derive(PartialEq)]</span>
+<span class="k">enum</span><span class="w"> </span><span class="n">Adjustment</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Numerical</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Chronological</span><span class="p">,</span>
+<span class="p">}</span>
 
-<span class="o">/*</span><span class="w"></span>
-<span class="n">Activity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Representation</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">goal</span><span class="o">.</span><span class="w"></span>
-<span class="o">*/</span><span class="w"></span>
-<span class="n">struct</span><span class="w"> </span><span class="n">Activity</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">delta</span><span class="p">:</span><span class="w">     </span><span class="n">u16</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">delta_den</span><span class="p">:</span><span class="w"> </span><span class="n">u16</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">datetime</span><span class="p">:</span><span class="w">  </span><span class="n">PrimitiveDateTime</span><span class="p">,</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="o">/*</span>
+<span class="n">Activity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Representation</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">goal</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">struct</span><span class="w"> </span><span class="n">Activity</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">delta</span><span class="p">:</span><span class="w">     </span><span class="n">u16</span><span class="p">,</span>
+<span class="w">    </span><span class="n">delta_den</span><span class="p">:</span><span class="w"> </span><span class="n">u16</span><span class="p">,</span>
+<span class="w">    </span><span class="n">datetime</span><span class="p">:</span><span class="w">  </span><span class="n">PrimitiveDateTime</span><span class="p">,</span>
+<span class="p">}</span>
 
-<span class="o">/*</span><span class="w"></span>
-<span class="n">Habit</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Definition</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">ongoing</span><span class="w"> </span><span class="n">habit</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">change</span><span class="w"></span>
-<span class="o">*/</span><span class="w"></span>
-<span class="n">struct</span><span class="w"> </span><span class="n">Habit</span><span class="w"></span>
-<span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w">        </span><span class="nb nb-Type">String</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">adj_type</span><span class="p">:</span><span class="w">    </span><span class="n">Adjustment</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">adj_ratio</span><span class="p">:</span><span class="w">   </span><span class="nb nb-Type">bool</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">monitoring</span><span class="p">:</span><span class="w">  </span><span class="nb nb-Type">bool</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">unit_num</span><span class="p">:</span><span class="w">    </span><span class="nb nb-Type">String</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">unit_den</span><span class="p">:</span><span class="w">    </span><span class="nb nb-Type">String</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">start_date</span><span class="p">:</span><span class="w">  </span><span class="n">Date</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">tgt_done</span><span class="p">:</span><span class="w">    </span><span class="n">u32</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">activity</span><span class="p">:</span><span class="w">    </span><span class="n">Vec</span><span class="o">&lt;</span><span class="n">Activity</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">updated</span><span class="p">:</span><span class="w">     </span><span class="n">Date</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">regress_int</span><span class="p">:</span><span class="w"> </span><span class="n">f32</span><span class="p">,</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="o">/*</span>
+<span class="n">Habit</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Definition</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">ongoing</span><span class="w"> </span><span class="n">habit</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">change</span>
+<span class="o">*/</span>
+<span class="n">struct</span><span class="w"> </span><span class="n">Habit</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">name</span><span class="p">:</span><span class="w">        </span><span class="nb nb-Type">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">adj_type</span><span class="p">:</span><span class="w">    </span><span class="n">Adjustment</span><span class="p">,</span>
+<span class="w">    </span><span class="n">adj_ratio</span><span class="p">:</span><span class="w">   </span><span class="nb nb-Type">bool</span><span class="p">,</span>
+<span class="w">    </span><span class="n">monitoring</span><span class="p">:</span><span class="w">  </span><span class="nb nb-Type">bool</span><span class="p">,</span>
+<span class="w">    </span><span class="n">unit_num</span><span class="p">:</span><span class="w">    </span><span class="nb nb-Type">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">unit_den</span><span class="p">:</span><span class="w">    </span><span class="nb nb-Type">String</span><span class="p">,</span>
+<span class="w">    </span><span class="n">start_date</span><span class="p">:</span><span class="w">  </span><span class="n">Date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">tgt_done</span><span class="p">:</span><span class="w">    </span><span class="n">u32</span><span class="p">,</span>
+<span class="w">    </span><span class="n">activity</span><span class="p">:</span><span class="w">    </span><span class="n">Vec</span><span class="o">&lt;</span><span class="n">Activity</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">updated</span><span class="p">:</span><span class="w">     </span><span class="n">Date</span><span class="p">,</span>
+<span class="w">    </span><span class="n">regress_int</span><span class="p">:</span><span class="w"> </span><span class="n">f32</span><span class="p">,</span>
+<span class="p">}</span>
 </code></pre></div>
 
 <p>I'll probably change a number of these fields to be <code>Option</code>s or something in order to allow for null values where they make sense.</p>

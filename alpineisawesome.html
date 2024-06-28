@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Pelican" />
+        <title>Alpine Linux is Amazing</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+        <link rel="icon" href="./theme/images/icons/favicon.png" />
+        <link href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="#!/bin/bash it 'till it works Atom Feed" />
+        <link href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate" title="#!/bin/bash it 'till it works RSS Feed" />
+        <meta name="description" content="I use a lot of old machines. I'm typing this article on a Dell D630 running a Core 2 Duo T8300 with a whopping 4G of RAM. I have a second one with..." />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">#!/bin/bash it 'till it works</a></h1> <strong>The blog of a Zsh user.</strong>                <nav><ul>
+                    <li><a href="/archives">Archives</a></li>
+                    <li><a href="/categories">Categories/Tags</a></li>
+                    <li  id="navlink-about"><a href="./pages/about.html">About</a></li>
+                    <li  id="navlink-desktop"><a href="./pages/desktop.html">Desktop Site</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="./alpineisawesome.html" rel="bookmark"
+           title="Permalink to Alpine Linux is Amazing">Alpine Linux is Amazing</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2024-06-27T23:55:00-04:00">
+                Published: Thu 27 June 2024
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/jim-read.html">Jim Read</a>
+        </address>
+<p>In <a href="./category/tech.html">tech</a>.</p>
+<p>tags: <a href="./tag/linux.html">linux</a> <a href="./tag/distros.html">distros</a> <a href="./tag/alpine.html">alpine</a> </p>
+</footer><!-- /.post-info -->      <p>I use a lot of old machines. I'm typing this article on a Dell D630 running a Core 2 Duo T8300 with a whopping 4G of RAM. I have a second one with a T7700 that's otherwise identical. I love these old systems for a lot of the same reasons people love old cars. They're reliable in a way that a lot of new machines aren't, they have very nice keyboards (as laptops go), they come with trackpoints, and they're <em>just</em> modern enough to have SATA and gigabit Ethernet ports. On top of that, they're virtually e-waste, so parts are plentiful and cheap, and so are the machines themselves. Nobody would be happy running Windows 11 on one of these, even if they could, but I could throw one off a cliff and grab another for $20 on ebay. Last time I checked, the CPUs for these things run in the $3 range on ebay, and they're socketed, too. I'll stop just short of saying it's like owning an ultra-durable Framework laptop for a fraction of the price, but that's the general idea.</p>
+<p>There's a catch, though. The more time marches on, the less compatible they become with modern software. Mainstream Linux distributions even have trouble on them, I'll say from my own experience that running Fedora (my usual distro of choice) on them becomes a complete mess after not very long.</p>
+<p>I'm not sure what the reason for this is, because they're still targeting generic x86_64 processors, they don't need any fancy AVX instructions to run my desktop, and the system still <em>works</em>, it just has some performance issues.</p>
+<p>I'm not opposed to doing something drastic like installing a copy of Puppy Linux on one of these machines, but I like having a good package manager and a decent suite of software without needing some split layered file system with image files, so I'd rather not.</p>
+<h1>Void Linux</h1>
+<p>This brings me to what I actually run on these systems day to day. I'll say that I started with Void Linux, having heard a lot about its minimalist design and light weight package manager. Also, it can run on musl rather than glibc!</p>
+<p>I really do have to say that Void is an excellent option for old machines like this. I love Runit, it's absolutely my favorite init system short of systemd, and Void lets you fairly easily get yourself up and running with a complete desktop system. However, it doesn't have the best support for alternate keyboard layouts (at least in Musl installations) and it has some rough edges. It also does run faster than a lot of systems, but I think that's less a result of thoughtful design and more a result of the fact that the OS doesn't install the kitchen sink for you, it runs fairly lean.</p>
+<p>Before I move on though, I'll say that Void runs <em>well enough</em> on old hardware that I'm not planning on removing it from the last Core 2 laptop I have running it.</p>
+<h1>Alpine Linux</h1>
+<p>I've seen mentions of Alpine for years. I first heard about it when I did a Docker tutorial at work about five years ago or so, and I wasn't super impressed at the time. It felt like a Linux distribution, just like anything else. The package manager was odd, the system was super barebones, and I didn't really fully understand it yet.</p>
+<p>If you've been a reader of my blog for any length of time, you know I follow a few other people who have blogs. Admittedly I used the NextCloud reader for this and I've pulled my NextCloud server offline and haven't brought it back yet, so I'm probably pretty far behind by now, but still, I heard about Alpine again when reading Drew DeVault's blog. He wrote a post called <a href="https://drewdevault.com/2023/07/25/Alpine-does-not-make-news.html">Alpine Linux does not make the news</a> which turned my head. I had known that he ran Alpine for a while, he's talked about porting things to run on Alpine before, but up to that point I had more or less thought of it as 'the Docker OS' and left it at that.</p>
+<p>Hearing him mention he used it everywhere made me curious, so I grabbed a copy of the Alpine Extended iso and put it on one of my laptops. I don't remember which one, it may have even been the one I'm typing on now.</p>
+<p>I was sold immediately.</p>
+<p>It's hard to convey just how fast Alpine is when it's booted. To be fair, it does run OpenRC as its init system, so it doesn't boot particularly quickly, but once it's up it flies. Their package manager, the Alpine Package Keeper, is hands down the fastest one I've ever used. If you've used a Core 2 Duo system when it was new, you probably have pretty fond memories of it. This replicates that experience fairly closely with modern software. It doesn't make my Core 2 suddenly not a Core 2, YouTube is still a little bit of a struggle, and I don't suddenly have good drivers for the Nvidia Quadro NVS 135M, but I'm still very impressed.</p>
+<p>Furthermore, Busybox makes for a much more competent set of core utils than it seems if you've only ever used it on Android. Ash is a fantastic shell, and while none of the utilities come with the feature set of the GNU ones, once you've gotten used to it, it rocks anyhow. This is such a tight system.</p>
+<p>As a cherry on top, the system's Linux console obeys the keyboard layout you set when you install the OS, and they <em>include the Workman layout, too!</em></p>
+<h1>Drawbacks</h1>
+<p>I don't love to dwell on the negative parts of systems I'm excited about, but here goes.</p>
+<p>Alpine is <em>difficult</em> to set up the first time. There are a ton of different ways to set up a desktop on Alpine, and while the wiki will hold your hand through a lot of it, there will be times when you'll need a bit of configuration skill to set up a proper desktop system. For example, if you want to run Wayland sessions you'll need a seat manager. Alpine tells you about seatd and elogind. At first glance, they make it sound like both are roughly equally easy to set up, but elogind has more features. Maybe this is true, but I have had no luck with elogind. It's my own fault. I have not sunk time into it at all. However, nothing in the Alpine wiki suggested to me that there was anything more involved in getting elogind running compared to seatd.</p>
+<p>APK is great for speed, and it hasn't left me with a broken system yet. However, it does get its speed from writing new packages directly on top of old ones. This makes updates significantly riskier than on some other systems, since a half-downloaded update will leave you with a system in between the older and the updated state. In practice, this hasn't bitten me. However, this prevents me from being comfortable displacing Fedora Atomic Sway for work.</p>
+<h1>Overall</h1>
+<p>Alpine is quickly winning me over. It gets frequent updates that tend to work, APK is <em>fast</em>, it sips power on my antique laptop battery, and it really does make my Core 2 feel just like it would have were it still running Windows Vista (except it's Linux, so it's substantially more flexible).</p>
+<p>If you have an old system you still want to daily drive, a server you want to run as lean as possible, or if you're interested in a system that gives you a wrench and shows you the nuts and bolts, Alpine is virtually perfect.</p>
+    </div><!-- /.entry-content -->
+    <hr>
+    <div class="comments">
+      Have a comment on this article? <a href="mailto:jimmydean886@hotmail.com?subject='Comment on alpineisawesome:'">Send me an email!</a>
+    </div>
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/windowTools">WindowTools</a></li>
+                            <li><a href="https://gitlab.com/CannonContraption/widgetTools">WidgetTools</a></li>
+                            <li><a href="https://gitlab.com/spacecowboy/Feeder">Feeder for Android</a></li>
+                            <li><a href="https://hyliu.me/fluent-reader/">Fluent Reader</a></li>
+                            <li><a href="https://apps.apple.com/app/feedly-get-smarter/id396069556">Feedly for iOS</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            <li><a href="https://cannoncontraption.github.io/feeds/all.rss.xml" type="application/rss+xml" rel="alternate">rss feed</a></li>
+
+                            <li><a href="https://gitlab.com/CannonContraption">GitLab</a></li>
+                            <li><a href="https://github.com/CannonContraption">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/channel/UC5Yt2D-FPphO4fjQix-S05Q">YouTube</a></li>
+                            <li><a href="https://soundcloud.com/jimmydean886">SoundCloud</a></li>
+                            <li><a href="mailto:jimmydean886@hotmail.com?subject=Hello!">Email</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+            <address id="about" class="vcard body">
+                <img style='float:right;' src="/theme/images/icons/favicon.png" />
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.<br>
+                Original content &#169; 2017-2022 Jim Read<br>
+                The theme was originally by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a> and has since been heavily modified to be responsive.
+            </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

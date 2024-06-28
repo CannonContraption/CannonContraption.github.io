@@ -80,22 +80,22 @@
 
 clone_home<span class="o">()</span>
 <span class="o">{</span>
-    <span class="nb">cd</span> /tmp
-    mkdir jim-makehome
-    <span class="nb">cd</span> jim-makehome
-    git clone homenas:/home/jim/git/home.git
-    mv home/.git ~/
-    <span class="nb">cd</span> ..
-    rm -rf jim-makehome
-    <span class="nb">cd</span>
-    git pull
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>/tmp
+<span class="w">    </span>mkdir<span class="w"> </span>jim-makehome
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>jim-makehome
+<span class="w">    </span>git<span class="w"> </span>clone<span class="w"> </span>homenas:/home/jim/git/home.git
+<span class="w">    </span>mv<span class="w"> </span>home/.git<span class="w"> </span>~/
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>..
+<span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span>jim-makehome
+<span class="w">    </span><span class="nb">cd</span>
+<span class="w">    </span>git<span class="w"> </span>pull
 <span class="o">}</span>
 
-<span class="k">if</span> <span class="o">[</span> -e <span class="s2">&quot;/home/jim/.git&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nb">cd</span>
-    git pull
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;/home/jim/.git&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">cd</span>
+<span class="w">    </span>git<span class="w"> </span>pull
 <span class="k">else</span>
-    clone_home
+<span class="w">    </span>clone_home
 <span class="k">fi</span>
 </code></pre></div>
 

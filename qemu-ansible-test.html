@@ -61,17 +61,17 @@
 <p>My own solution is to use QEMU. Normally I'm a big fan of tools like virt-manager, since they pull a lot of the manual work out of setting up the VM, and it's a lot harder to forget the specific configuration options you want that way. However, in this case, we want quick copies of a base, followed by lots of boots of an (essentially entirely disposable) environment. <code>virt-manager</code> can handle this, but we can do better with just the command line.</p>
 <h1>Making a Baseline Image</h1>
 <p>First step is to make the baseline image. Maybe the Fedora folks have a copy of their minimal install for VMs (a qcow2 image) already available online, but I have the netinstall iso already downloaded so I admittedly didn't even check. My internet is quite slow at the moment, which doesn't help. Doing it the way I did, this takes two steps. One step creates the qcow2 VM drive (which will act as the hard disk) and the other is to launch qemu with the installer media and a bunch of options:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">qemu</span><span class="o">-</span><span class="nv">img</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">qcow2</span> .<span class="o">/</span><span class="nv">fedora</span><span class="o">-</span><span class="nv">minimal</span>.<span class="nv">qcow2</span> <span class="mi">20</span><span class="nv">G</span>
-<span class="nv">qemu</span><span class="o">-</span><span class="nv">system</span><span class="o">-</span><span class="nv">x86_64</span> \
-  <span class="o">-</span><span class="nv">enable</span><span class="o">-</span><span class="nv">kvm</span> \
-  <span class="o">-</span><span class="nv">m</span> <span class="mi">2048</span> \
-  <span class="o">-</span><span class="nv">nic</span> <span class="nv">user</span>,<span class="nv">model</span><span class="o">=</span><span class="nv">virtio</span> \
-  <span class="o">-</span><span class="nv">drive</span> <span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">fedora</span><span class="o">-</span><span class="nv">minimal</span>.<span class="nv">qcow2</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span> \
-  <span class="o">-</span><span class="nv">cdrom</span> <span class="o">~/</span><span class="nv">dwn</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">linux</span><span class="o">/</span><span class="nv">Fedora</span><span class="o">-</span><span class="nv">Server</span><span class="o">-</span><span class="nv">netinst</span><span class="o">-</span><span class="nv">x86_64</span><span class="o">-</span><span class="mi">36</span><span class="o">-</span><span class="mi">1</span>.<span class="mi">5</span>.<span class="nv">iso</span> \
-  <span class="o">-</span><span class="nv">smp</span> <span class="nv">cores</span><span class="o">=</span><span class="mi">4</span> \
-  <span class="o">-</span><span class="nv">display</span> <span class="nv">sdl</span>,<span class="nv">gl</span><span class="o">=</span><span class="nv">on</span>
-<span class="nv">qemu</span><span class="o">-</span><span class="nv">img</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">f</span> <span class="nv">raw</span> <span class="nv">flashdrive</span>.<span class="nv">img</span> <span class="mi">1</span><span class="nv">G</span>
-<span class="nv">mkfs</span>.<span class="nv">ext4</span> <span class="nv">flashdrive</span>.<span class="nv">img</span>
+<div class="highlight"><pre><span></span><code>qemu-img create -f qcow2 ./fedora-minimal.qcow2 20G
+qemu-system-x86_64 \
+  -enable-kvm \
+  -m 2048 \
+  -nic user,model=virtio \
+  -drive file=./fedora-minimal.qcow2,media=disk,if=virtio \
+  -cdrom ~/dwn/iso/linux/Fedora-Server-netinst-x86_64-36-1.5.iso \
+  -smp cores=4 \
+  -display sdl,gl=on
+qemu-img create -f raw flashdrive.img 1G
+mkfs.ext4 flashdrive.img
 </code></pre></div>
 
 <p>So I made a 20G VM disk in qcow2 format, then launched the VM pointed to an iso that I have on hand. Let's go over this option by option.</p>
@@ -92,7 +92,7 @@
 </code></pre></div>
 
 <p>Set the network card to the built-in <code>virtio</code> model in user mode, meaning we don't need <code>sudo</code>, <code>doas</code>, or root permissions at all.</p>
-<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="nv">drive</span> <span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">fedora</span><span class="o">-</span><span class="nv">minimal</span>.<span class="nv">qcow2</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="nv">drive</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">fedora</span><span class="o">-</span><span class="nv">minimal</span>.<span class="nv">qcow2</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span>
 </code></pre></div>
 
 <p>Point QEMU at our new, blank drive.</p>
@@ -131,14 +131,14 @@ sudo mount ./flashdrive.img ./flashdrive
 </code></pre></div>
 
 <p>Then, we can boot it:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">qemu</span><span class="o">-</span><span class="nv">system</span><span class="o">-</span><span class="nv">x86_64</span> \
-    <span class="o">-</span><span class="nv">enable</span><span class="o">-</span><span class="nv">kvm</span> \
-    <span class="o">-</span><span class="nv">m</span> <span class="mi">2048</span> \
-    <span class="o">-</span><span class="nv">nic</span> <span class="nv">user</span>,<span class="nv">model</span><span class="o">=</span><span class="nv">virtio</span> \
-    <span class="o">-</span><span class="nv">drive</span> <span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">projectorautomation</span><span class="o">-</span><span class="nv">test1</span>.<span class="nv">qcow2</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span> \
-    <span class="o">-</span><span class="nv">drive</span> <span class="nv">file</span><span class="o">=</span>.<span class="o">/</span><span class="nv">flashdrive</span>.<span class="nv">img</span>,<span class="nv">media</span><span class="o">=</span><span class="nv">disk</span>,<span class="k">if</span><span class="o">=</span><span class="nv">virtio</span> \
-    <span class="o">-</span><span class="nv">smp</span> <span class="nv">cores</span><span class="o">=</span><span class="mi">4</span> \
-    <span class="o">-</span><span class="nv">display</span> <span class="nv">sdl</span>,<span class="nv">gl</span><span class="o">=</span><span class="nv">on</span>
+<div class="highlight"><pre><span></span><code>qemu-system-x86_64 \
+    -enable-kvm \
+    -m 2048 \
+    -nic user,model=virtio \
+    -drive file=./projectorautomation-test1.qcow2,media=disk,if=virtio \
+    -drive file=./flashdrive.img,media=disk,if=virtio \
+    -smp cores=4 \
+    -display sdl,gl=on
 </code></pre></div>
 
 <p>In my case, the flash drive showed up as <code>/dev/vdb</code>, and it can be mounted directly since we've already formatted it as EXT4. You'll note the only change we made to the commands here is that we substituted the line mentioning our CD drive with the line mentioning the flash drive.</p>

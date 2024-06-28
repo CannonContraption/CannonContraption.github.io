@@ -63,8 +63,8 @@
 <p><img alt="working theme" src="./images/pelican3/early-working-theme.png" width="100%"></p>
 <h1>windowTools and widgetTools Changes</h1>
 <p>The next part was to modify windowTools and widgetTools. They both kind of expect that they're always going to be in the site root, or at the very least in the same directory as the base page. Of course, Pelican sorts things rather differently, so I had to change them so that they add a relative path variable to find their image resources. For windowTools, I made that a JavaScript variable <code>wtoolspath</code>, and for widgetTools <code>wtoolsrpath</code>. In the case of the desktop site, I set these like so:</p>
-<div class="highlight"><pre><span></span><code><span class="n">wtoolspath</span><span class="o">=</span><span class="s2">&quot;/theme/scripts/&quot;</span><span class="w"></span>
-<span class="n">wtoolsrpath</span><span class="o">=</span><span class="s2">&quot;/theme/&quot;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">wtoolspath</span><span class="o">=</span><span class="s2">&quot;/theme/scripts/&quot;</span>
+<span class="n">wtoolsrpath</span><span class="o">=</span><span class="s2">&quot;/theme/&quot;</span>
 </code></pre></div>
 
 <p>since windowTools and widgetTools are submodules checked out in my <a href="https://github.com/CannonContraption/blag">blog source</a> in <code>themes/bashworks/static/scripts/</code>, meaning Pelican puts them in <code>theme/scripts</code> in the generated result, and the 'resources' folder for the icon theme in widgetTools is in <code>theme/resources</code>, but widgetTools already looks for <code>resources/</code> so all I need is the path to the theme directory added on the front. My hope is that this approach won't mess up any existing installations. Maybe I'll roll back a copy of my site to the old version and see if it still works when I <code>git pull</code> these changes.</p>

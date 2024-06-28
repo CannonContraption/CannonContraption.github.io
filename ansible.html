@@ -81,10 +81,10 @@
 </code></pre></div>
 
 <p>For my use case, this is just a couple of import_tasks lines:</p>
-<div class="highlight"><pre><span></span><code>- hosts: localhost
-  tasks:
-  - import_tasks: tasks/fedora-packages.yml
-  - import_tasks: tasks/desktop-configuration.yml
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nx">hosts</span><span class="p">:</span><span class="w"> </span><span class="nx">localhost</span>
+<span class="w">  </span><span class="nx">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="nx">import_tasks</span><span class="p">:</span><span class="w"> </span><span class="nx">tasks</span><span class="o">/</span><span class="nx">fedora</span><span class="o">-</span><span class="nx">packages</span><span class="p">.</span><span class="nx">yml</span>
+<span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="nx">import_tasks</span><span class="p">:</span><span class="w"> </span><span class="nx">tasks</span><span class="o">/</span><span class="nx">desktop</span><span class="o">-</span><span class="nx">configuration</span><span class="p">.</span><span class="nx">yml</span>
 </code></pre></div>
 
 <p>Doing it like this lets you split different components off in interesting ways. I specified in this example the files <code>fedora-packages.yml</code>, meaning package installation for Fedora Linux, and <code>desktop-configuration.yml</code> meaning install the configuration I want on my desktops and laptops, not my server. To make a server playbook, I could keep the exact same list of packages and just change the <code>desktop-configuration.yml</code> include to be <code>server-configuration.yml</code> to install specifically just server stuff. I do recommend putting your sub-playbooks in a separate directory (like <code>tasks/</code> in my example) so that you don't mistake them for top-level configuration templates.</p>
@@ -107,10 +107,10 @@
 <h2>Apt Task</h2>
 <p>This works <em>exactly</em> like the DNF task for our purposes, just replace <code>dnf:</code> with <code>apt:</code> and use it the same way.</p>
 <h2>Copy Task</h2>
-<div class="highlight"><pre><span></span><code>- name: Copy LMMS Configuration
-  copy:
-    src: conf/lmmsrc.xml
-    dest: /home/yourusername/lmmsrc.xml
+<div class="highlight"><pre><span></span><code><span class="n">- name: Copy LMMS Configuration</span>
+<span class="n">  copy:</span>
+<span class="n">    src: conf/lmmsrc.xml</span>
+<span class="n">    dest: /home/yourusername/lmmsrc.xml</span>
 </code></pre></div>
 
 <p>This is the most straightforward type of copy, no permissions management included. In this case, I copied my LMMS configuration to my <code>~</code> since it doesn't store its configuration in an XDG location like <code>~/.config</code>, which I much prefer.</p>
@@ -181,16 +181,16 @@
 <p>The option <code>-K</code> tells Ansible that you're using the <code>become</code> feature and it needs to ask for a password. I believe this gets stored in memory while the playbook runs, but I'm not an Ansible developer so it's probably just as likely they spawn a process as <code>root</code> right at the start and discard the password, or something along those lines. I'm really not sure.</p>
 <h2>What to Check In To Git</h2>
 <p>So if you followed this guide closely enough, you will probably end up with a directory structure like this:</p>
-<div class="highlight"><pre><span></span><code>|- .gitignore
-|- desktop.yml
-|- pi-desktop.yml
-|- tasks/
-|  |- fedora-packages.yml
-|  |- pi-packages.yml
-|  |- desktop-configuration.yml
-|- conf/
-   |- .zshrc
-   |- .zprofile
+<div class="highlight"><pre><span></span><code><span class="o">|-</span><span class="w"> </span><span class="p">.</span><span class="nx">gitignore</span>
+<span class="o">|-</span><span class="w"> </span><span class="nx">desktop</span><span class="p">.</span><span class="nx">yml</span>
+<span class="o">|-</span><span class="w"> </span><span class="nx">pi</span><span class="o">-</span><span class="nx">desktop</span><span class="p">.</span><span class="nx">yml</span>
+<span class="o">|-</span><span class="w"> </span><span class="nx">tasks</span><span class="o">/</span>
+<span class="o">|</span><span class="w">  </span><span class="o">|-</span><span class="w"> </span><span class="nx">fedora</span><span class="o">-</span><span class="nx">packages</span><span class="p">.</span><span class="nx">yml</span>
+<span class="o">|</span><span class="w">  </span><span class="o">|-</span><span class="w"> </span><span class="nx">pi</span><span class="o">-</span><span class="nx">packages</span><span class="p">.</span><span class="nx">yml</span>
+<span class="o">|</span><span class="w">  </span><span class="o">|-</span><span class="w"> </span><span class="nx">desktop</span><span class="o">-</span><span class="nx">configuration</span><span class="p">.</span><span class="nx">yml</span>
+<span class="o">|-</span><span class="w"> </span><span class="nx">conf</span><span class="o">/</span>
+<span class="w">   </span><span class="o">|-</span><span class="w"> </span><span class="p">.</span><span class="nx">zshrc</span>
+<span class="w">   </span><span class="o">|-</span><span class="w"> </span><span class="p">.</span><span class="nx">zprofile</span>
 </code></pre></div>
 
 <p>You should check all of these things into Git. If you store credentials in your zshrc, clean them out first using a tool like Pass, and use its integrated Git support to clone your (now encrypted) credentials across machines. Don't upload these to GitHub either, since it only takes decrypting them to read the passwords, but if you have a server this can be your central Git storage for Pass.</p>

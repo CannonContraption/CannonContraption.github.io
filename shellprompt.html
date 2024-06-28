@@ -67,33 +67,33 @@
 <h1>Internals</h1>
 <p>This is where the real radical departure comes from. This goes way beyond the obvious "it's Zsh now!"</p>
 <p>So we'll start with the prompt string. I'm going to gloss over a lot here, I promise I'll get back to (most of) it.</p>
-<div class="highlight"><pre><span></span><code><span class="n">PROMPT</span><span class="o">=</span><span class="n">$</span><span class="s1">&#39;`lastreturn`%n@%m%{</span><span class="se">\0</span><span class="s1">33[0m%} %{</span><span class="err">\</span><span class="s1">e[1;34m%}%~%{</span><span class="err">\</span><span class="s1">e[m%} %{</span><span class="err">\</span><span class="s1">e[33m%}$(date +%H:%M)%{</span><span class="err">\</span><span class="s1">e[m%}`getgitbranch`</span><span class="se">\n</span><span class="s1">&#39;</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">PROMPT</span><span class="o">=</span><span class="n">$</span><span class="s1">&#39;`lastreturn`%n@%m%{</span><span class="se">\0</span><span class="s1">33[0m%} %{</span><span class="err">\</span><span class="s1">e[1;34m%}%~%{</span><span class="err">\</span><span class="s1">e[m%} %{</span><span class="err">\</span><span class="s1">e[33m%}$(date +%H:%M)%{</span><span class="err">\</span><span class="s1">e[m%}`getgitbranch`</span><span class="se">\n</span><span class="s1">&#39;</span>
 </code></pre></div>
 
 <p>OK, that's not so different, mostly just minor tweaks. I have commands start on a new line, and the string to denote non-printing characters has changed, moving on.</p>
-<div class="highlight"><pre><span></span><code>lastreturn<span class="o">()</span> <span class="o">{</span>
-    <span class="nv">RCODE</span><span class="o">=</span><span class="nv">$?</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="nv">$RCODE</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-        <span class="nb">echo</span> -ne <span class="s1">&#39;%{\033[7;32m%}  0 %{\033[m%} %{\033[40;37m%}&#39;</span>
-    <span class="k">else</span>
-        <span class="nb">echo</span> -ne <span class="s2">&quot;%{\033[7;31m%}&quot;</span>
-        <span class="nb">printf</span> <span class="s2">&quot;%03s&quot;</span> <span class="nv">$RCODE</span>
-        <span class="nb">echo</span> -ne <span class="s2">&quot; %{\033[m%} %{\033[40;37m%}&quot;</span>
-    <span class="k">fi</span>
+<div class="highlight"><pre><span></span><code>lastreturn<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="nv">RCODE</span><span class="o">=</span><span class="nv">$?</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$RCODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s1">&#39;%{\033[7;32m%}  0 %{\033[m%} %{\033[40;37m%}&#39;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s2">&quot;%{\033[7;31m%}&quot;</span>
+<span class="w">        </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;%03s&quot;</span><span class="w"> </span><span class="nv">$RCODE</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s2">&quot; %{\033[m%} %{\033[40;37m%}&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
 <span class="o">}</span>
 
-getgitbranch<span class="o">()</span> <span class="o">{</span>
-    git rev-parse &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-        <span class="nv">CHANGEDFILES</span><span class="o">=</span><span class="k">$(</span>git status -s <span class="m">2</span>&gt;/dev/null <span class="p">|</span> wc -l<span class="k">)</span>
-        <span class="nb">echo</span> -ne <span class="s2">&quot;%{\033[m\033[32m%} GIT %{\033[0;4m%}&quot;</span>
-        <span class="nb">echo</span> -n <span class="k">$(</span>git branch <span class="p">|</span> sed -n <span class="s1">&#39;/\* /s///p&#39;</span><span class="k">)</span>
-        <span class="k">if</span> <span class="o">[</span> <span class="nv">$CHANGEDFILES</span> !<span class="o">=</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-            <span class="nb">echo</span> -ne <span class="s2">&quot;%{\033[0;1;31m%} &quot;</span>
-            <span class="nb">echo</span> -n <span class="nv">$CHANGEDFILES</span>
-        <span class="k">fi</span>
-        <span class="nb">echo</span> -ne <span class="s1">&#39;%{\033[m%}&#39;</span>
-    <span class="k">fi</span>
+getgitbranch<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>git<span class="w"> </span>rev-parse<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nv">CHANGEDFILES</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l<span class="k">)</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s2">&quot;%{\033[m\033[32m%} GIT %{\033[0;4m%}&quot;</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;/\* /s///p&#39;</span><span class="k">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$CHANGEDFILES</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s2">&quot;%{\033[0;1;31m%} &quot;</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="nv">$CHANGEDFILES</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s1">&#39;%{\033[m%}&#39;</span>
+<span class="w">    </span><span class="k">fi</span>
 <span class="o">}</span>
 </code></pre></div>
 
@@ -107,20 +107,20 @@ getgitbranch<span class="o">()</span> <span class="o">{</span>
 <p>I learned about this and then couldn't stop using it. It's very handy to have a color coded reference telling you when a command is mistyped or a file doesn't exist. However, Arch Linux puts the script in a different place from everyone else, so it's 6 lines instead of 3, including whitespace.</p>
 <p>The package to get this is called <code>zsh-syntax-highlighting</code> in pretty much every distro I've used.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Enable syntax highlighting (if available)</span>
-<span class="o">[</span> -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh <span class="o">]</span> <span class="o">&amp;&amp;</span>
-   <span class="nb">source</span> /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+<span class="o">[</span><span class="w"> </span>-e<span class="w"> </span>/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">   </span><span class="nb">source</span><span class="w"> </span>/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-<span class="o">[</span> -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh <span class="o">]</span> <span class="o">&amp;&amp;</span>
-   <span class="nb">source</span> /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+<span class="o">[</span><span class="w"> </span>-e<span class="w"> </span>/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">   </span><span class="nb">source</span><span class="w"> </span>/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 </code></pre></div>
 
 <h1>Not Just Prompts</h1>
 <p>I also edit the window title based on the running command and the <code>$PWD</code>,</p>
 <div class="highlight"><pre><span></span><code>precmd<span class="o">(){</span>
-    <span class="nb">echo</span> -ne <span class="s2">&quot;\033]0;zsh </span><span class="nv">$PWD</span><span class="s2">\007&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s2">&quot;\033]0;zsh </span><span class="nv">$PWD</span><span class="s2">\007&quot;</span>
 <span class="o">}</span>
 preexec<span class="o">(){</span>
-    <span class="nb">echo</span> -ne <span class="s2">&quot;\033]0;</span><span class="nv">$1</span><span class="s2">\007&quot;</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-ne<span class="w"> </span><span class="s2">&quot;\033]0;</span><span class="nv">$1</span><span class="s2">\007&quot;</span>
 <span class="o">}</span>
 </code></pre></div>
 
@@ -128,20 +128,20 @@ preexec<span class="o">(){</span>
 <div class="highlight"><pre><span></span><code><span class="c1"># Dev mode - enables/disables extra prompt settings, and optionally a dev env</span>
 <span class="c1">#            if such a thing exists. Tracks its state through $devmode_enabled</span>
 <span class="c1">#            so subsequent runs of the devmode command toggle its state.</span>
-<span class="nb">export</span> <span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;no&quot;</span>
-devmode<span class="o">()</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="nv">$devmode_enabled</span> <span class="o">=</span> <span class="s2">&quot;no&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-        <span class="nv">PS1</span><span class="o">=</span><span class="s1">$&#39;: %{\033[36m%}$(history -n -1)%{\033[m%}\n&#39;</span><span class="nv">$PS1</span>
-        <span class="k">if</span> <span class="o">[</span> -e env/bin/activate <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
-            <span class="nb">source</span> env/bin/activate
-        <span class="k">fi</span>
-        <span class="nb">export</span> <span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
-    <span class="k">else</span>
-        which deactivate &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">&amp;&amp;</span>
-        deactivate
-        <span class="nv">PS1</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="nv">$PS1</span> <span class="p">|</span> tail -n <span class="m">2</span><span class="k">)</span><span class="s1">$&#39;\n&#39;</span>
-        <span class="nb">export</span> <span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;no&quot;</span>
-    <span class="k">fi</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;no&quot;</span>
+devmode<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$devmode_enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;no&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">$&#39;: %{\033[36m%}$(history -n -1)%{\033[m%}\n&#39;</span><span class="nv">$PS1</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-e<span class="w"> </span>env/bin/activate<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span><span class="nb">source</span><span class="w"> </span>env/bin/activate
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">        </span><span class="nb">export</span><span class="w"> </span><span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span>which<span class="w"> </span>deactivate<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span>deactivate
+<span class="w">        </span><span class="nv">PS1</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PS1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="k">)</span><span class="s1">$&#39;\n&#39;</span>
+<span class="w">        </span><span class="nb">export</span><span class="w"> </span><span class="nv">devmode_enabled</span><span class="o">=</span><span class="s2">&quot;no&quot;</span>
+<span class="w">    </span><span class="k">fi</span>
 <span class="o">}</span>
 </code></pre></div>
 
